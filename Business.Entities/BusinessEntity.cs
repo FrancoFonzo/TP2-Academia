@@ -12,11 +12,6 @@ namespace Business.Entities
         {
             this.State = States.New;
         }
-
-        public int ID { get; set; } 
-
-        public States State { get; set; }
-
         public enum States
         {
             Deleted,
@@ -24,5 +19,8 @@ namespace Business.Entities
             Modified,
             Unmodified
         }
+
+        public int ID { get; set; } 
+        public States State { get; set; }
     }
 }
