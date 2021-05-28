@@ -1,6 +1,6 @@
 # TP2-Academia
 TP2 - Sistema de Gestión Academica
-Integrantes:
+Grupo 8 - Integrantes:
 
 - Candela Poratti
 - Franco Fonzo
