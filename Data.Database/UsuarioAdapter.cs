@@ -1,9 +1,11 @@
-using Business.Entities;
+using System;
 using System.Collections.Generic;
+using System.Text;
+using Business.Entities;
 
 namespace Data.Database
 {
-    public class UsuarioAdapter : Adapter
+    public class UsuarioAdapter:Adapter
     {
         #region DatosEnMemoria
         // Esta región solo se usa en esta etapa donde los datos se mantienen en memoria.
@@ -64,7 +66,7 @@ namespace Data.Database
 
         public Business.Entities.Usuario GetOne(int ID)
         {
-            return Usuarios.Find(delegate (Usuario u) { return u.ID == ID; });
+            return Usuarios.Find(delegate(Usuario u) { return u.ID == ID; });
         }
 
         public void Delete(int ID)
@@ -93,9 +95,9 @@ namespace Data.Database
             }
             else if (usuario.State == BusinessEntity.States.Modified)
             {
-                Usuarios[Usuarios.FindIndex(delegate (Usuario u) { return u.ID == usuario.ID; })] = usuario;
+                Usuarios[Usuarios.FindIndex(delegate(Usuario u) { return u.ID == usuario.ID; })]=usuario;
             }
-            usuario.State = BusinessEntity.States.Unmodified;
+            usuario.State = BusinessEntity.States.Unmodified;            
         }
     }
 }
