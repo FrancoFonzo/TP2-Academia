@@ -17,7 +17,7 @@ namespace UI.Desktop
         public Usuarios()
         {
             InitializeComponent();
-
+            dgvUsuarios.AutoGenerateColumns = false;
         }
 
         public void Listar()
@@ -28,7 +28,6 @@ namespace UI.Desktop
 
         private void Usuarios_Load(object sender, EventArgs e)
         {
-            dgvUsuarios.AutoGenerateColumns = false;
             this.Listar();
         }
 
@@ -40,11 +39,6 @@ namespace UI.Desktop
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e)

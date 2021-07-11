@@ -8,6 +8,9 @@ namespace Business.Entities
 {
     public class BusinessEntity
     {
+        public int ID { get; set; } 
+        public States State { get; set; }
+
         public BusinessEntity()
         {
             this.State = States.New;
@@ -19,8 +22,5 @@ namespace Business.Entities
             Modified,
             Unmodified
         }
-
-        public int ID { get; set; } 
-        public States State { get; set; }
     }
 }

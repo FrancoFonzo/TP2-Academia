@@ -18,6 +18,7 @@ namespace UI.Desktop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Usuarios());
+            //TODO: Application.Run(new Menu());
         }
     }
 }

@@ -35,7 +35,6 @@ namespace UI.Desktop
 
         public Usuario UsuarioActual { get; set; }
 
-        //override?
         public override void MapearDeDatos() 
         {
             this.txtID.Text = this.UsuarioActual.ID.ToString();
@@ -54,11 +53,18 @@ namespace UI.Desktop
 
         public override void MapearADatos() 
         {
-            if(Modo == ModoForm.Alta) UsuarioActual = new Usuario();
-
+            if (Modo == ModoForm.Alta)
+            {
+                UsuarioActual = new Usuario();
+                UsuarioActual.State = BusinessEntity.States.New;
+            }
             if(Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
-                if (Modo != ModoForm.Alta) this.UsuarioActual.ID = int.Parse(this.txtID.Text);
+                if (Modo == ModoForm.Modificacion)
+                {
+                    this.UsuarioActual.ID = int.Parse(this.txtID.Text);
+                    UsuarioActual.State = BusinessEntity.States.Modified;
+                }
                 this.UsuarioActual.Habilitado = this.chkHabilitado.Checked;
                 this.UsuarioActual.Nombre = this.txtNombre.Text;
                 this.UsuarioActual.Apellido = this.txtApellido.Text;
@@ -66,11 +72,8 @@ namespace UI.Desktop
                 this.UsuarioActual.NombreUsuario = this.txtUsuario.Text;
                 this.UsuarioActual.Clave = this.txtClave.Text;
             }
-            
-            if (Modo == ModoForm.Alta) UsuarioActual.State = BusinessEntity.States.New;
-            if (Modo == ModoForm.Baja) UsuarioActual.State = BusinessEntity.States.Deleted;
-            //if (Modo == ModoForm.Consulta) UsuarioActual.State = BusinessEntity.States.Unmodified;// Consulta actualiza State a Unmodified?
-            if (Modo == ModoForm.Modificacion) UsuarioActual.State = BusinessEntity.States.Modified;
+            else if (Modo == ModoForm.Baja) UsuarioActual.State = BusinessEntity.States.Deleted;
+            else if (Modo == ModoForm.Consulta) UsuarioActual.State = BusinessEntity.States.Unmodified; 
         }
 
         public override void GuardarCambios() 
@@ -82,18 +85,37 @@ namespace UI.Desktop
 
         public override bool Validar() 
         {
-            if (txtNombre.Text.Equals(String.Empty) ||
-                txtApellido.Text.Equals(String.Empty) ||
-                txtEmail.Text.Equals(String.Empty) ||
-                txtUsuario.Text.Equals(String.Empty) ||
-                txtClave.Text.Equals(String.Empty) ||
-                txtConfirmarClave.Text.Equals(String.Empty))
+            if (!Validaciones.FormularioCompleto(
+                    new List<string> { txtNombre.Text, txtApellido.Text, txtEmail.Text,
+                        txtUsuario.Text, txtClave.Text, txtConfirmarClave.Text }))
             {
                 Notificar("Informacion invalida", "Complete todos los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (!txtClave.Text.Equals(txtConfirmarClave.Text))
+
+            if (!Validaciones.ValidarNyA(txtNombre.Text) || !Validaciones.ValidarNyA(txtApellido.Text))
+            {
+                Notificar("Nombre o Apellido invalido", "Porfavor ingrese su nombre y apellido correctamente.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!Validaciones.ValidarEmail(txtEmail.Text))
+            {
+                Notificar("Email invalido", "Porfavor ingrese un email valido.", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!Validaciones.ValidarClave(txtClave.Text))
+            {
+                Notificar("Contraseña invalida", "La contraseñas debe tener entre 4 y 50 caracteres.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!Validaciones.ValidarClaveConfirmada(txtClave.Text, txtConfirmarClave.Text))
             {
                 Notificar("Contraseña invalida", "Las contraseñas no coinciden.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -101,16 +123,6 @@ namespace UI.Desktop
             }
 
             return true;
-        }
-
-        private void UsuarioDesktop_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
