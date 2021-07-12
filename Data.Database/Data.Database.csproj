@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapter.cs" />
     <Compile Include="alumnos_inscripciones.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -106,6 +107,7 @@
     <Compile Include="modulos_usuarios.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonaAdapter.cs" />
     <Compile Include="personas.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>

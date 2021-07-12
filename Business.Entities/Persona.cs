@@ -30,6 +30,6 @@ namespace Business.Entities
         //public List<AlumnoInscripcion> MisInscripciones { get => misInscripciones; set => misInscripciones = value; }
         //public List<DocenteCurso> MisDictados { get => misDictados; set => misDictados = value; }
 
-        public string NombreCompleto { get { return this.ToString(); } }
+        public string NombreCompleto { get { return $"{Nombre} {Apellido}"; } }
     }
 }

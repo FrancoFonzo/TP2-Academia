@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Data.Database
 {
-    public class UsuarioAdapter
+    public class UsuarioAdapter : Adapter
     {
         public List<Usuario> GetAll()
         {
@@ -25,8 +25,8 @@ namespace Data.Database
                         NombreUsuario = user.nombre_usuario,
                         Clave = user.clave,
                         Habilitado = user.habilitado,
-                        ID_Persona = user.id_persona
                     };
+                    if (user.id_persona != null) usuario.MiPersona = personaData.GetOne((int)user.id_persona);
                     usuarios.Add(usuario);
                 }
             }
@@ -43,7 +43,7 @@ namespace Data.Database
                 usuario.NombreUsuario = usr.nombre_usuario;
                 usuario.Clave = usr.clave;
                 usuario.Habilitado = usr.habilitado;
-                usuario.ID_Persona = usr.id_persona;
+                if (usr.id_persona != null) usuario.MiPersona = personaData.GetOne((int)usr.id_persona);
             }
             return usuario;
         }
@@ -90,17 +90,26 @@ namespace Data.Database
 
         protected void Insert(Usuario usuario)
         {
-            using (var db = new AcademiaEntities())
+            try
             {
-                usuarios usr = new usuarios();
-                usr.id_usuario = usuario.ID;
-                usr.nombre_usuario = usuario.NombreUsuario;
-                usr.clave = usuario.Clave;
-                usr.habilitado = usuario.Habilitado;
-                usr.id_persona = usuario.ID_Persona;
+                using (var db = new AcademiaEntities())
+                {
+                    usuarios usr = new usuarios();
+                    usr.id_usuario = usuario.ID;
+                    usr.nombre_usuario = usuario.NombreUsuario;
+                    usr.clave = usuario.Clave;
+                    usr.habilitado = usuario.Habilitado;
+                    if (usuario.MiPersona != null) usr.id_persona = usuario.MiPersona.ID;
 
-                db.SaveChanges();
+                    db.SaveChanges();
+                }
             }
+            catch (Exception)
+            {
+
+                throw new Exception("Error al insertar nuevo usuario");
+            }
+
         }
     }
 }
