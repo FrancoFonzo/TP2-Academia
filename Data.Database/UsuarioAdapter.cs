@@ -48,6 +48,29 @@ namespace Data.Database
             return usuario;
         }
 
+        public Usuario GetOneNombreUsuario(string nom_usuario)
+        {
+            Usuario usuario = new Usuario();
+            try
+            {
+                using (var db = new AcademiaEntities())
+                {
+                    var usr = db.usuarios.Where(u => u.nombre_usuario == nom_usuario).Single();
+                    usuario.ID = usr.id_usuario;
+                    usuario.NombreUsuario = usr.nombre_usuario;
+                    usuario.Clave = usr.clave;
+                    usuario.Habilitado = usr.habilitado;
+                    if (usr.id_persona != null) usuario.MiPersona = personaData.GetOne((int)usr.id_persona);
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                usuario = null;
+                //throw new InvalidOperationException("No se encontraron Usuarios en la Base de datos");
+            }
+            return usuario;
+        }
+
         public void Delete(int ID)
         {
             using (var db = new AcademiaEntities())

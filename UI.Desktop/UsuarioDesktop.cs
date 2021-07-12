@@ -116,7 +116,7 @@ namespace UI.Desktop
                 return false;
             }
             */
-            if (!Validaciones.ValidarClave(txtClave.Text))
+            if (!Validaciones.ValidarRegexClave(txtClave.Text))
             {
                 Notificar("Contraseña invalida", "La contraseñas debe tener entre 4 y 50 caracteres.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

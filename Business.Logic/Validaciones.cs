@@ -9,7 +9,7 @@ namespace Business.Logic
 {
     public static class Validaciones
     {
-        public static bool ValidarEmail(string email)
+        public static bool ValidarRegexEmail(string email)
         {
             String patron = @"^[a-z0-9!#$%&'""*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'""*+/=?^_`{|}~-]+)*" +
                     @"@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
@@ -17,7 +17,7 @@ namespace Business.Logic
             return true;
         }
 
-        public static bool ValidarClave(string clave)
+        public static bool ValidarRegexClave(string clave)
         {
             string patron = ".{4,50}";
             if (!Regex.IsMatch(clave, patron)) return false;
@@ -30,7 +30,7 @@ namespace Business.Logic
             return true;
         }
 
-        public static bool ValidarNyA(string texto)
+        public static bool ValidarRegexNyA(string texto)
         {
             String patron = @"^[A-Za-zÀ-ú]+([-' ][A-Za-zÀ-ú]+)*$";
             if (!Regex.IsMatch(texto, patron)) return false;
@@ -42,6 +42,12 @@ namespace Business.Logic
             bool rta=true;
             txts.ForEach(t => { if(t.Equals(String.Empty)) rta=false; });
             return rta;
+        }
+
+        public static bool ValidarClave(string clave_usr, string txt_clave)
+        {
+            if (!clave_usr.Equals(txt_clave)) return false;
+            return true;
         }
     }
 }

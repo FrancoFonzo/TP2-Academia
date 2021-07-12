@@ -62,6 +62,18 @@
     <Compile Include="ApplicationForm.Designer.cs">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="formLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formLogin.Designer.cs">
+      <DependentUpon>formLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formMain.Designer.cs">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsuarioDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +90,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ApplicationForm.resx">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formLogin.resx">
+      <DependentUpon>formLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formMain.resx">
+      <DependentUpon>formMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsuarioDesktop.resx">
       <DependentUpon>UsuarioDesktop.cs</DependentUpon>
