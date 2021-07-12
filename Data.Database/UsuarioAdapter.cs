@@ -129,7 +129,6 @@ namespace Data.Database
             }
             catch (Exception)
             {
-
                 throw new Exception("Error al insertar nuevo usuario");
             }
 

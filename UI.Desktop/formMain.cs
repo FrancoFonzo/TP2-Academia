@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace UI.Desktop
 {
-    public partial class formMain : Form
+    public partial class formMain : ApplicationForm
     {
         public formMain()
         {
@@ -19,11 +19,6 @@ namespace UI.Desktop
 
         private void formMain_Shown(object sender, EventArgs e)
         {
-            formLogin appLogin = new formLogin();
-            if (appLogin.ShowDialog() != DialogResult.OK)
-            {
-                this.Dispose();
-            }
         }
     }
 }
