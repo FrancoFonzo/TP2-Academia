@@ -19,7 +19,7 @@ namespace Business.Logic
 
         public static bool ValidarClave(string clave)
         {
-            string patron = ".{4,32}";
+            string patron = ".{4,50}";
             if (!Regex.IsMatch(clave, patron)) return false;
             return true;
         }
