@@ -52,7 +52,6 @@
     <Compile Include="ApplicationForm.Designer.cs">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DesktopExceptions.cs" />
     <Compile Include="UsuarioDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
