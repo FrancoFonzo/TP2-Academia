@@ -17,10 +17,10 @@ namespace UI.Desktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Usuarios());
             formLogin login = new formLogin();
-            if(login.ShowDialog() != DialogResult.OK) return;
+            if(login.ShowDialog() != DialogResult.OK) Application.Exit();
             Application.Run(new formMain());
-            //Application.Run(new Usuarios());
         }
     }
 }

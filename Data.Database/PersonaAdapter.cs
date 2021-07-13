@@ -37,29 +37,53 @@ namespace Data.Database
             return personas;
         }
 
+        public List<Persona> GetPersonasSinUsuario()
+        {
+            List<Persona> personas = new List<Persona>();
+            using (AcademiaEntities db = new AcademiaEntities())
+            {
+                var lstPersonas = from p in db.personas 
+                                  where !(from u in db.usuarios select u.id_persona)
+                                  .Contains(p.id_persona) select p;
+
+                foreach (var per in lstPersonas)
+                {
+                    Persona persona = new Persona()
+                    {
+                        ID = per.id_persona,
+                        Apellido = per.apellido,
+                        Nombre = per.nombre,
+                        EMail = per.email,
+                        FechaNacimiento = per.fecha_nac,
+                        Legajo = per.legajo,
+                        Direccion = per.direccion,
+                        Telefono = per.telefono,
+                        Tipo = (Persona.TiposPersonas)per.tipo_persona
+                    };
+
+                    personas.Add(persona);
+                }
+            }
+            return personas;
+        }
+
         public Persona GetOne(int ID)
         {
             Persona persona = new Persona();
-            try
+            using (var db = new AcademiaEntities())
             {
-                using (var db = new AcademiaEntities())
-                {
-                    //Si persona con ese id no existe?
-                    var per = db.personas.Where(p => p.id_persona == ID).Single();
-                    persona.ID = per.id_persona;
-                    persona.Apellido = per.apellido;
-                    persona.Nombre = per.nombre;
-                    persona.EMail = per.email;
-                    persona.FechaNacimiento = per.fecha_nac;
-                    persona.Legajo = per.legajo;
-                    persona.Direccion = per.direccion;
-                    persona.Telefono = per.telefono;
-                    persona.Tipo = (Persona.TiposPersonas)per.tipo_persona;
-                }
-            }
-            catch (Exception)
-            {
-                throw new Exception("Ocurrio un error al recuperar una persona");
+                //Si persona con ese id no existe?
+                var per = db.personas.SingleOrDefault(p => p.id_persona == ID);
+                if (per == null) return null;
+                persona.ID = per.id_persona;
+                persona.Apellido = per.apellido;
+                persona.Nombre = per.nombre;
+                persona.EMail = per.email;
+                persona.FechaNacimiento = per.fecha_nac;
+                persona.Legajo = per.legajo;
+                persona.Direccion = per.direccion;
+                persona.Telefono = per.telefono;
+                persona.Tipo = (Persona.TiposPersonas)per.tipo_persona;
             }
             return persona;
         }
@@ -68,7 +92,8 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                var per = db.personas.Where(p => p.id_persona == ID);
+                var per = db.personas.SingleOrDefault(p => p.id_persona == ID);
+                if (per == null) return;
                 db.Entry(per).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
             }
@@ -95,7 +120,8 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                var per = db.personas.Where(p => p.id_persona == persona.ID).FirstOrDefault();
+                var per = db.personas.SingleOrDefault(p => p.id_persona == persona.ID);
+                if (per == null) return;
                 per.apellido = persona.Apellido;
                 per.nombre = persona.Nombre; 
                 per.email = persona.EMail;
@@ -124,6 +150,7 @@ namespace Data.Database
                 per.telefono = persona.Telefono;
                 per.tipo_persona = (int)persona.Tipo;
 
+                db.personas.Add(per);
                 db.SaveChanges();
             }
         }

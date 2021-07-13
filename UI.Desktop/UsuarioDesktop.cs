@@ -20,8 +20,8 @@ namespace UI.Desktop
         public UsuarioDesktop()
         {
             InitializeComponent();
-            PersonaLogic perLogic = new PersonaLogic();
-            this.cbxPersona.DataSource = perLogic.GetAll();
+            PersonaLogic perLogic = new PersonaLogic();            
+            this.cbxPersona.DataSource = perLogic.GetPersonasSinUsuario();
         }
 
         public UsuarioDesktop(ModoForm modo) : this()

@@ -38,7 +38,8 @@ namespace Data.Database
             Usuario usuario = new Usuario();
             using (var db = new AcademiaEntities())
             {
-                var usr = db.usuarios.Where(u => u.id_usuario == ID).FirstOrDefault();
+                var usr = db.usuarios.SingleOrDefault(u => u.id_usuario == ID);
+                if (usr == null) return null;
                 usuario.ID = usr.id_usuario;
                 usuario.NombreUsuario = usr.nombre_usuario;
                 usuario.Clave = usr.clave;
@@ -51,22 +52,15 @@ namespace Data.Database
         public Usuario GetOneNombreUsuario(string nom_usuario)
         {
             Usuario usuario = new Usuario();
-            try
+            using (var db = new AcademiaEntities())
             {
-                using (var db = new AcademiaEntities())
-                {
-                    var usr = db.usuarios.Where(u => u.nombre_usuario == nom_usuario).Single();
-                    usuario.ID = usr.id_usuario;
-                    usuario.NombreUsuario = usr.nombre_usuario;
-                    usuario.Clave = usr.clave;
-                    usuario.Habilitado = usr.habilitado;
-                    if (usr.id_persona != null) usuario.MiPersona = personaData.GetOne((int)usr.id_persona);
-                }
-            }
-            catch (InvalidOperationException)
-            {
-                usuario = null;
-                //throw new InvalidOperationException("No se encontraron Usuarios en la Base de datos");
+                var usr = db.usuarios.SingleOrDefault(u => u.nombre_usuario == nom_usuario);
+                if (usr == null) return null;
+                usuario.ID = usr.id_usuario;
+                usuario.NombreUsuario = usr.nombre_usuario;
+                usuario.Clave = usr.clave;
+                usuario.Habilitado = usr.habilitado;
+                if (usr.id_persona != null) usuario.MiPersona = personaData.GetOne((int)usr.id_persona);
             }
             return usuario;
         }
@@ -75,8 +69,9 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                var usr = db.usuarios.Where(u => u.id_usuario == ID);
-                db.Entry(usr).State = System.Data.Entity.EntityState.Deleted;
+                var usr = db.usuarios.SingleOrDefault(u => u.id_usuario == ID);
+                if (usr == null) return;
+                db.usuarios.Remove(usr);
                 db.SaveChanges();
             }
         }
@@ -102,7 +97,8 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                var usr = db.usuarios.Where(u => u.id_usuario == usuario.ID).FirstOrDefault();
+                var usr = db.usuarios.SingleOrDefault(u => u.id_usuario == usuario.ID);
+                if (usr == null) return;
                 usr.nombre_usuario = usuario.NombreUsuario;
                 usr.clave = usuario.Clave;
                 usr.habilitado = usuario.Habilitado;
@@ -113,25 +109,18 @@ namespace Data.Database
 
         protected void Insert(Usuario usuario)
         {
-            try
+            using (var db = new AcademiaEntities())
             {
-                using (var db = new AcademiaEntities())
-                {
-                    usuarios usr = new usuarios();
-                    usr.id_usuario = usuario.ID;
-                    usr.nombre_usuario = usuario.NombreUsuario;
-                    usr.clave = usuario.Clave;
-                    usr.habilitado = usuario.Habilitado;
-                    if (usuario.MiPersona != null) usr.id_persona = usuario.MiPersona.ID;
-
-                    db.SaveChanges();
-                }
+                usuarios usr = new usuarios();
+                usr.id_usuario = usuario.ID;
+                usr.nombre_usuario = usuario.NombreUsuario;
+                usr.clave = usuario.Clave;
+                usr.habilitado = usuario.Habilitado;
+                if (usuario.MiPersona != null) usr.id_persona = usuario.MiPersona.ID;
+                
+                db.usuarios.Add(usr);
+                db.SaveChanges();
             }
-            catch (Exception)
-            {
-                throw new Exception("Error al insertar nuevo usuario");
-            }
-
         }
     }
 }

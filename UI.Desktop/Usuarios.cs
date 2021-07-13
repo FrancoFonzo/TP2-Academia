@@ -30,7 +30,6 @@ namespace UI.Desktop
             }
             catch (Exception ex)
             {
-                
                 MessageBox.Show("Error al recuperar los datos del usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw ex;
             }
@@ -65,7 +64,7 @@ namespace UI.Desktop
                 MessageBox.Show("Porfavor seleccione una fila.", "Acción invalida", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int ID = ((Business.Entities.Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+            int ID = ((Usuario) this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
             UsuarioDesktop formUsuario = new UsuarioDesktop(ID, ApplicationForm.ModoForm.Modificacion);
             formUsuario.ShowDialog();
             this.Listar();

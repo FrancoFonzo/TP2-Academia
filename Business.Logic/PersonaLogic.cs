@@ -27,6 +27,11 @@ namespace Business.Logic
             return PersonaData.GetAll();
         }
 
+        public List<Persona> GetPersonasSinUsuario()
+        {
+            return PersonaData.GetPersonasSinUsuario();
+        }
+
         public void Save(Persona persona)
         {
             PersonaData.Save(persona);
