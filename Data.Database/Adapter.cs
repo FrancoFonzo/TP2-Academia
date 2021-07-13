@@ -1,34 +1,23 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.Configuration;
-using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace Data.Database
 {
     public class Adapter
     {
-        //Clave por defecto a utlizar para la cadena de conexion
-        private const string consKeyDefaultCnnString = "ConnStringLocal";
-        private static string connString;
-        protected SqlConnection sqlConn;
 
-        protected void OpenConnection()
-        {
-            connString = ConfigurationManager.ConnectionStrings[consKeyDefaultCnnString].ConnectionString;
-            sqlConn = new SqlConnection(connString);
-            sqlConn.Open();
-        }
-
-        protected void CloseConnection()
-        {
-            sqlConn.Close();
-            sqlConn = null;
-        }
-
-        protected SqlDataReader ExecuteReader(String commandText)
-        {
-            throw new Exception("Metodo no implementado");
-        }
+        protected static PersonaAdapter personaData = new PersonaAdapter();
+        //protected static AlumnoInscripcionAdapter inscripcionData = new AlumnoInscripcionAdapter();
+        //protected static CursoAdapter cursoData = new CursoAdapter();
+        //protected static MateriaAdapter materiaData = new MateriaAdapter();
+        //protected static ComisionAdapter comisionData = new ComisionAdapter();
+        //protected static PlanAdapter planData = new PlanAdapter();
+        //protected static ModuloAdapter moduloData = new ModuloAdapter();
+        //protected static EspecialidadAdapter especialidadData = new EspecialidadAdapter();
+        //protected static DocenteCursoAdapter dictadoAdapter = new DocenteCursoAdapter();
+        //protected static ModuloUsuarioAdapter moduloUsuarioData = new ModuloUsuarioAdapter();
     }
 }

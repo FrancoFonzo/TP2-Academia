@@ -10,9 +10,34 @@ namespace Business.Entities
     {
         public string NombreUsuario { get; set; }
         public string Clave { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string EMail { get; set; }
+        public Persona MiPersona { get; set; }
         public bool Habilitado { get; set; }
+
+        // Propiedades para bindear a columnas de dgvUsuarios (alguna otra manera?)
+        public string NombrePersona 
+        { 
+            get 
+            {
+                if(MiPersona == null) return "";
+                return MiPersona.Nombre;
+            } 
+        }
+        public string ApellidoPersona
+        {
+            get
+            {
+                if (MiPersona == null) return "";
+                return MiPersona.Apellido;
+            }
+        }
+        public string EMailPersona
+        {
+            get
+            {
+                if (MiPersona == null) return "";
+                return MiPersona.EMail;
+            }
+        }
+
     }
 }

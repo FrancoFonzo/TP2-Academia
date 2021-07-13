@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1b0d40d4a2094d2fb762cf1a1b328082" Name="Diagram1">
+        <EntityTypeShape EntityType="AcademiaModel.alumnos_inscripciones" Width="1.5" PointX="9.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.comisiones" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.cursos" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.docentes_cursos" Width="1.5" PointX="12.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.especialidades" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.materias" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.modulos" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.modulos_usuarios" Width="1.5" PointX="9.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.personas" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.planes" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.usuarios" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="AcademiaModel.FK_alumnos_inscripciones_cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_alumnos_inscripciones_personas" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_comisiones_planes" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_cursos_comisiones" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_cursos_materias" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_docentes_cursos_cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_docentes_cursos_personas" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_planes_especialidades" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_materias_planes" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_modulos_usuarios_modulos" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_modulos_usuarios_usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_personas_planes" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademiaModel.FK_usuarios_personas" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

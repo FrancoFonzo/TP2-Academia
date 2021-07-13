@@ -4,105 +4,75 @@ using System.Text;
 using Business.Entities;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Data.Database
 {
-    public class UsuarioAdapter:Adapter
+    public class UsuarioAdapter : Adapter
     {
-      
         public List<Usuario> GetAll()
         {
             List<Usuario> usuarios = new List<Usuario>();
-            try
+            using (AcademiaEntities db = new AcademiaEntities())
             {
-                this.OpenConnection();
-                SqlCommand cmdUsuarios = new SqlCommand("select * from usuarios", sqlConn);
-                SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
+                var lstUsuarios = db.usuarios;
 
-                while (drUsuarios.Read())
+                foreach (var user in lstUsuarios)
                 {
-                    Usuario usr = new Usuario();
-                    usr.ID = (int)drUsuarios["id_usuario"];
-                    usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
-                    usr.Clave = (string)drUsuarios["clave"];
-                    usr.Habilitado = (bool)drUsuarios["habilitado"];
-                    usr.Nombre = (string)drUsuarios["nombre"];
-                    usr.Apellido = (string)drUsuarios["apellido"];
-                    usr.EMail = (string)drUsuarios["email"];
-
-                    usuarios.Add(usr);
+                    Usuario usuario = new Usuario()
+                    {
+                        ID = user.id_usuario,
+                        NombreUsuario = user.nombre_usuario,
+                        Clave = user.clave,
+                        Habilitado = user.habilitado,
+                    };
+                    if (user.id_persona != null) usuario.MiPersona = personaData.GetOne((int)user.id_persona);
+                    usuarios.Add(usuario);
                 }
-                drUsuarios.Close();
-            }
-            catch (Exception ex)
-            {
-                Exception ExcepcionManejada =
-                    new Exception("Error al recuperar lista de usuarios", ex);
-                throw ExcepcionManejada;
-                //TODO: Mandar excepciones a la capa de presentacion para mostrarlas uen mesasgeBox.
-                //throw new DesktopException();?
-            }
-            finally
-            {
-                this.CloseConnection();
             }
             return usuarios;
         }
 
-        public Business.Entities.Usuario GetOne(int ID)
+        public Usuario GetOne(int ID)
         {
-            Usuario usr = new Usuario();
-            try
+            Usuario usuario = new Usuario();
+            using (var db = new AcademiaEntities())
             {
-                this.OpenConnection();
-                SqlCommand cmdUsuarios = new SqlCommand("select * from usuarios where id_usuario=@id", sqlConn);
-                cmdUsuarios.Parameters.Add("@id", SqlDbType.Int).Value = ID;
-                SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
+                var usr = db.usuarios.SingleOrDefault(u => u.id_usuario == ID);
+                if (usr == null) return null;
+                usuario.ID = usr.id_usuario;
+                usuario.NombreUsuario = usr.nombre_usuario;
+                usuario.Clave = usr.clave;
+                usuario.Habilitado = usr.habilitado;
+                if (usr.id_persona != null) usuario.MiPersona = personaData.GetOne((int)usr.id_persona);
+            }
+            return usuario;
+        }
 
-                if (drUsuarios.Read())
-                {
-                    usr.ID = (int)drUsuarios["id_usuario"];
-                    usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
-                    usr.Clave = (string)drUsuarios["clave"];
-                    usr.Habilitado = (bool)drUsuarios["habilitado"];
-                    usr.Nombre = (string)drUsuarios["nombre"];
-                    usr.Apellido = (string)drUsuarios["apellido"];
-                    usr.EMail = (string)drUsuarios["email"];
-                }
-                drUsuarios.Close();
-            }
-            catch (Exception ex)
+        public Usuario GetOneNombreUsuario(string nom_usuario)
+        {
+            Usuario usuario = new Usuario();
+            using (var db = new AcademiaEntities())
             {
-                Exception ExcepcionManejada =
-                    new Exception("Error al recuperar los datos del usuarios", ex);
-                throw ExcepcionManejada;
+                var usr = db.usuarios.SingleOrDefault(u => u.nombre_usuario == nom_usuario);
+                if (usr == null) return null;
+                usuario.ID = usr.id_usuario;
+                usuario.NombreUsuario = usr.nombre_usuario;
+                usuario.Clave = usr.clave;
+                usuario.Habilitado = usr.habilitado;
+                if (usr.id_persona != null) usuario.MiPersona = personaData.GetOne((int)usr.id_persona);
             }
-            finally
-            {
-                this.CloseConnection();
-            }
-            return usr;
+            return usuario;
         }
 
         public void Delete(int ID)
         {
-            try
+            using (var db = new AcademiaEntities())
             {
-                this.OpenConnection();
-
-                SqlCommand cmdDelete = new SqlCommand("delete usuarios where id_usuario=@id", sqlConn);
-                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
-
-                cmdDelete.ExecuteNonQuery();
-            }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al eliminar el usuario", Ex);
-                throw ExcepcionManejada;
-            }
-            finally
-            {
-                this.CloseConnection();
+                var usr = db.usuarios.SingleOrDefault(u => u.id_usuario == ID);
+                if (usr == null) return;
+                db.usuarios.Remove(usr);
+                db.SaveChanges();
             }
         }
 
@@ -125,63 +95,31 @@ namespace Data.Database
 
         protected void Update(Usuario usuario)
         {
-            try
+            using (var db = new AcademiaEntities())
             {
-                this.OpenConnection();
-
-                SqlCommand cmdUpdate = new SqlCommand(
-                    "update usuarios set nombre_usuario = @nombre_usuario, clave=@clave, " +
-                    "habilitado=@habilitado, nombre=@nombre, apellido=@apellido, email=@email " +
-                    "where id_usuario=@id", sqlConn);
-
-                cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
-                cmdUpdate.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
-                cmdUpdate.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
-                cmdUpdate.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
-                cmdUpdate.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
-                cmdUpdate.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
-                cmdUpdate.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.EMail;
-
-                cmdUpdate.ExecuteNonQuery();
-            }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al modificar datos del usuario", Ex);
-                throw ExcepcionManejada;
-            }
-            finally
-            {
-                this.CloseConnection();
+                var usr = db.usuarios.SingleOrDefault(u => u.id_usuario == usuario.ID);
+                if (usr == null) return;
+                usr.nombre_usuario = usuario.NombreUsuario;
+                usr.clave = usuario.Clave;
+                usr.habilitado = usuario.Habilitado;
+                
+                db.SaveChanges();
             }
         }
+
         protected void Insert(Usuario usuario)
         {
-            try
+            using (var db = new AcademiaEntities())
             {
-                this.OpenConnection();
-
-                SqlCommand cmdInsert = new SqlCommand(
-                    "insert into usuarios(nombre_usuario, clave, habilitado, nombre, apellido, email)" +
-                    "values(@nombre_usuario, @clave, @habilitado, @nombre, @apellido, @email)" +
-                    "select @@identity", sqlConn);
-
-                cmdInsert.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
-                cmdInsert.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
-                cmdInsert.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
-                cmdInsert.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
-                cmdInsert.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
-                cmdInsert.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
-                cmdInsert.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.EMail;
-                usuario.ID = Decimal.ToInt32((decimal) cmdInsert.ExecuteScalar());
-            }
-            catch (Exception Ex)
-            {
-                Exception ExcepcionManejada = new Exception("Error al crear un usuario", Ex);
-                throw ExcepcionManejada;
-            }
-            finally
-            {
-                this.CloseConnection();
+                usuarios usr = new usuarios();
+                usr.id_usuario = usuario.ID;
+                usr.nombre_usuario = usuario.NombreUsuario;
+                usr.clave = usuario.Clave;
+                usr.habilitado = usuario.Habilitado;
+                if (usuario.MiPersona != null) usr.id_persona = usuario.MiPersona.ID;
+                
+                db.usuarios.Add(usr);
+                db.SaveChanges();
             }
         }
     }
