@@ -18,8 +18,8 @@ namespace UI.Desktop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             formLogin login = new formLogin();
-            if(login.ShowDialog() != DialogResult.OK) Application.Exit();
-            Application.Run(new formMain());
+            if(login.ShowDialog() == DialogResult.OK) 
+                Application.Run(new formMain());
         }
     }
 }
