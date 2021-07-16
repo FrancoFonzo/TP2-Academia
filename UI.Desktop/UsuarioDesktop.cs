@@ -1,27 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
-
 
 namespace UI.Desktop
 {
     public partial class UsuarioDesktop : ApplicationForm
     {
-        public Usuario UsuarioActual { get; set; }
+        private Usuario UsuarioActual { get; set; }
 
         public UsuarioDesktop()
         {
-            InitializeComponent();
-            PersonaLogic perLogic = new PersonaLogic();            
-            this.cbxPersona.DataSource = perLogic.GetPersonasSinUsuario();
+            InitializeComponent();          
+            this.cbxPersona.DataSource = new PersonaLogic().GetPersonasSinUsuario();
         }
 
         public UsuarioDesktop(ModoForm modo) : this()
@@ -32,8 +24,7 @@ namespace UI.Desktop
         public UsuarioDesktop(int ID, ModoForm modo) : this()
         {
             this.Modo = modo;
-            UsuarioLogic usrLogic = new UsuarioLogic();
-            UsuarioActual = usrLogic.GetOne(ID);
+            this.UsuarioActual = new UsuarioLogic().GetOne(ID);
             MapearDeDatos();
         }
 
@@ -54,32 +45,25 @@ namespace UI.Desktop
         {
             if (Modo == ModoForm.Alta)
             {
-                UsuarioActual = new Usuario();
-                UsuarioActual.State = BusinessEntity.States.New;
+                this.UsuarioActual = new Usuario() { State = BusinessEntity.States.New };
             }
             if(Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
                 if (Modo == ModoForm.Modificacion)
                 {
                     this.UsuarioActual.ID = int.Parse(this.txtID.Text);
-                    UsuarioActual.State = BusinessEntity.States.Modified;
+                    this.UsuarioActual.State = BusinessEntity.States.Modified;
                 }
                 this.UsuarioActual.Habilitado = this.chkHabilitado.Checked;
                 this.UsuarioActual.NombreUsuario = this.txtUsuario.Text;
                 this.UsuarioActual.Clave = this.txtClave.Text;
-                // Esta bien?
-                try
+
+                var value = this.cbxPersona.SelectedValue;
+                if (value == null) return; //null -> no se asigna ninguna persona
+                if (int.TryParse(value.ToString(), out int id))
                 {
-                    int id;
-                    bool parsed = int.TryParse(this.cbxPersona.SelectedValue.ToString(), out id);
-                    //this.cbxPersona.SelectedValue == null -> no se asigna ninguna persona
-                    if (parsed)
-                    {
-                        PersonaLogic perLogic = new PersonaLogic();
-                        this.UsuarioActual.MiPersona = perLogic.GetOne(id);
-                    }
+                    this.UsuarioActual.MiPersona = new PersonaLogic().GetOne(id);
                 }
-                catch (NullReferenceException) { }  
             }
             else if (Modo == ModoForm.Baja) UsuarioActual.State = BusinessEntity.States.Deleted;
             else if (Modo == ModoForm.Consulta) UsuarioActual.State = BusinessEntity.States.Unmodified; 
@@ -88,18 +72,17 @@ namespace UI.Desktop
         public override void GuardarCambios() 
         {
             MapearADatos();
-            UsuarioLogic usrLogic = new UsuarioLogic();
-            usrLogic.Save(UsuarioActual);
+            new UsuarioLogic().Save(UsuarioActual);
         }
 
         public override bool Validar() 
         {
-            if (!Validaciones.FormularioCompleto(
-                    new List<string> {txtUsuario.Text, txtClave.Text, txtConfirmarClave.Text }))
+            if (!Validaciones.FormularioCompleto( new List<string>
+                        {txtUsuario.Text, txtClave.Text, txtConfirmarClave.Text})
+                )
             {
-                Notificar("Informacion invalida", "Complete todos los campos para continuar.",
+                Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
             /*
             if (!Validaciones.ValidarNyA(txtNombre.Text) || !Validaciones.ValidarNyA(txtApellido.Text))
@@ -116,21 +99,19 @@ namespace UI.Desktop
                 return false;
             }
             */
-            if (!Validaciones.ValidarRegexClave(txtClave.Text))
+            else if(!Validaciones.ValidarRegexClave(txtClave.Text))
             {
                 Notificar("Contraseña invalida", "La contraseñas debe tener entre 4 y 50 caracteres.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
 
-            if (!Validaciones.ValidarClaveConfirmada(txtClave.Text, txtConfirmarClave.Text))
+            else if (!Validaciones.ValidarClaveConfirmada(txtClave.Text, txtConfirmarClave.Text))
             {
                 Notificar("Contraseña invalida", "Las contraseñas no coinciden.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
-
-            return true;
+            else return true;
+            return false;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Business.Entities; 
-using System.Text;
-using System.Threading.Tasks;
+using Business.Entities;
 
 namespace Data.Database
 {
@@ -11,81 +8,54 @@ namespace Data.Database
     {
         public List<Persona> GetAll()
         {
-            List<Persona> personas = new List<Persona>();
             using (AcademiaEntities db = new AcademiaEntities())
             {
+                List<Persona> personas = new List<Persona>();
                 var lstPersonas = db.personas;
+                lstPersonas?.ToList().ForEach(p => personas.Add(nuevaPersona(p)));
+                return personas;
+            }   
+        }
 
-                foreach (var per in lstPersonas)
-                {
-                    Persona persona = new Persona()
-                    {
-                        ID = per.id_persona,
-                        Apellido = per.apellido,
-                        Nombre = per.nombre,
-                        EMail = per.email,
-                        FechaNacimiento = per.fecha_nac,
-                        Legajo = per.legajo,
-                        Direccion = per.direccion,
-                        Telefono = per.telefono,
-                        Tipo = (Persona.TiposPersonas) per.tipo_persona
-                    };
-
-                    personas.Add(persona);
-                }
-            }
-            return personas;
+        private Persona nuevaPersona(personas per)
+        {
+            Persona persona = new Persona()
+            {
+                ID = per.id_persona,
+                Apellido = per.apellido,
+                Nombre = per.nombre,
+                EMail = per.email,
+                FechaNacimiento = per.fecha_nac,
+                Legajo = per.legajo,
+                Direccion = per.direccion,
+                Telefono = per.telefono,
+                Tipo = (Persona.TiposPersonas)per.tipo_persona
+            };
+            return persona;
         }
 
         public List<Persona> GetPersonasSinUsuario()
         {
-            List<Persona> personas = new List<Persona>();
             using (AcademiaEntities db = new AcademiaEntities())
             {
+                List<Persona> personas = new List<Persona>();
                 var lstPersonas = from p in db.personas 
                                   where !(from u in db.usuarios select u.id_persona)
                                   .Contains(p.id_persona) select p;
-
-                foreach (var per in lstPersonas)
-                {
-                    Persona persona = new Persona()
-                    {
-                        ID = per.id_persona,
-                        Apellido = per.apellido,
-                        Nombre = per.nombre,
-                        EMail = per.email,
-                        FechaNacimiento = per.fecha_nac,
-                        Legajo = per.legajo,
-                        Direccion = per.direccion,
-                        Telefono = per.telefono,
-                        Tipo = (Persona.TiposPersonas)per.tipo_persona
-                    };
-
-                    personas.Add(persona);
-                }
+                lstPersonas?.ToList().ForEach(p => personas.Add(nuevaPersona(p)));
+                return personas;
             }
-            return personas;
         }
 
         public Persona GetOne(int ID)
         {
-            Persona persona = new Persona();
             using (var db = new AcademiaEntities())
             {
-                //Si persona con ese id no existe?
                 var per = db.personas.SingleOrDefault(p => p.id_persona == ID);
                 if (per == null) return null;
-                persona.ID = per.id_persona;
-                persona.Apellido = per.apellido;
-                persona.Nombre = per.nombre;
-                persona.EMail = per.email;
-                persona.FechaNacimiento = per.fecha_nac;
-                persona.Legajo = per.legajo;
-                persona.Direccion = per.direccion;
-                persona.Telefono = per.telefono;
-                persona.Tipo = (Persona.TiposPersonas)per.tipo_persona;
+                return nuevaPersona(per);
             }
-            return persona;
+            
         }
 
         public void Delete(int ID)
@@ -139,17 +109,18 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                personas per = new personas();
-                per.id_persona = persona.ID;
-                per.apellido = persona.Apellido;
-                per.nombre = persona.Nombre;
-                per.email = persona.EMail;
-                per.fecha_nac = persona.FechaNacimiento;
-                per.legajo = persona.Legajo;
-                per.direccion = persona.Direccion;
-                per.telefono = persona.Telefono;
-                per.tipo_persona = (int)persona.Tipo;
-
+                personas per = new personas()
+                {
+                    id_persona = persona.ID,
+                    apellido = persona.Apellido,
+                    nombre = persona.Nombre,
+                    email = persona.EMail,
+                    fecha_nac = persona.FechaNacimiento,
+                    legajo = persona.Legajo,
+                    direccion = persona.Direccion,
+                    telefono = persona.Telefono,
+                    tipo_persona = (int)persona.Tipo
+                };
                 db.personas.Add(per);
                 db.SaveChanges();
             }

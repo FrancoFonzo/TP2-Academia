@@ -43,37 +43,23 @@ namespace UI.Desktop
 
         private void txtUserPass_EnterLeave(object sender, EventArgs e)
         {
-            if (sender == txtUsuario) configTxtUsuario();
-            else configTxtClave();
+            if (sender == txtUsuario) configTxt(txtUsuario, "Usuario");
+            else configTxt(txtClave, "Contraseña");
         }
 
-        private void configTxtClave()
+        private void configTxt(TextBox txt, String cadena)
         {
-            if (txtClave.Text == "Contraseña")
+            if (txt.Text == cadena)
             {
-                txtClave.PasswordChar = (new TextBox() { UseSystemPasswordChar = true }).PasswordChar;
-                txtClave.Text = "";
-                txtClave.ForeColor = Color.Silver;    
+                txt.Text = "";
+                txt.ForeColor = Color.Silver;
+                if (txt.Equals(txtClave)) txt.PasswordChar = '*';
             }
-            else if (txtClave.Text == "")
+            else if (txt.Text == "")
             {
-                txtClave.PasswordChar = '\0';
-                txtClave.ForeColor = Color.DarkGray;
-                txtClave.Text = "Contraseña";
-            }
-        }
-
-        private void configTxtUsuario()
-        {
-            if (txtUsuario.Text == "Usuario")
-            {
-                txtUsuario.Text = "";
-                txtUsuario.ForeColor = Color.Silver;
-            }
-            else if (txtUsuario.Text == "")
-            {
-                txtUsuario.ForeColor = Color.DarkGray;
-                txtUsuario.Text = "Usuario";
+                txt.ForeColor = Color.DarkGray;
+                txt.Text = cadena;
+                if (txt.Equals(txtClave)) txt.PasswordChar = '\0';
             }
         }
 
@@ -95,19 +81,19 @@ namespace UI.Desktop
                 return false;
             }
 
-            UsuarioLogic usrLogic = new UsuarioLogic();
-            Usuario UsuarioActual = usrLogic.GetOneNombreUsuario(this.txtUsuario.Text);
-            if (UsuarioActual == null) ;
-            else if (Validaciones.ValidarClave(UsuarioActual.Clave, txtClave.Text))
+            Usuario UsuarioActual = new UsuarioLogic()
+                .GetOneNombreUsuario(this.txtUsuario.Text);
+            if (!Validaciones.ValidarClave(UsuarioActual?.Clave, txtClave.Text))
             {
-                Notificar("Login", "Usted ha ingresado al sistema correctamente.",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK;
-                return true;
-            }
-            Notificar("Login", "Usuario y/o contraseña incorrectos",
+                Notificar("Login", "Usuario y/o contraseña incorrectos",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return false;
+                return false;
+            }
+            Notificar("Login", "Usted ha ingresado al sistema correctamente.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.DialogResult = DialogResult.OK;
+            return true;
+
         }
     }
 

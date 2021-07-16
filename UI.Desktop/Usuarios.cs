@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Entities;
 using Business.Logic;
 
 namespace UI.Desktop
 {
-    public partial class Usuarios : Form
+    public partial class Usuarios : ApplicationForm
     {
         public Usuarios()
         {
@@ -24,14 +17,13 @@ namespace UI.Desktop
         {
             try
             {
-                UsuarioLogic ul = new UsuarioLogic();
-                this.dgvUsuarios.DataSource = ul.GetAll();
+                this.dgvUsuarios.DataSource = new UsuarioLogic().GetAll();
                 //dgvUsuarios.DataSource = ul.GetAll().FindAll(u => u.State != BusinessEntity.States.Deleted);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Error al recuperar los datos del usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw ex;
+                Notificar("Error", "Error al recuperar los datos del usuario",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -59,29 +51,33 @@ namespace UI.Desktop
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (this.dgvUsuarios.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Porfavor seleccione una fila.", "Acción invalida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            int ID = ((Usuario) this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-            UsuarioDesktop formUsuario = new UsuarioDesktop(ID, ApplicationForm.ModoForm.Modificacion);
-            formUsuario.ShowDialog();
-            this.Listar();
+            if (!isRowSelected()) return;
+            openUserForm(ApplicationForm.ModoForm.Modificacion);
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (this.dgvUsuarios.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Porfavor seleccione una fila.", "Acción invalida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            if (isRowSelected()) return;
+            openUserForm(ApplicationForm.ModoForm.Baja);
+        }
 
-            int ID = ((Business.Entities.Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-            UsuarioDesktop formUsuario = new UsuarioDesktop(ID, ApplicationForm.ModoForm.Baja);
+        private void openUserForm(ApplicationForm.ModoForm modo)
+        {
+            int ID = ((Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+            UsuarioDesktop formUsuario = new UsuarioDesktop(ID, modo);
             formUsuario.ShowDialog();
             this.Listar();
+        }
+
+        private bool isRowSelected()
+        {
+            if (this.dgvUsuarios.SelectedRows.Count != 1)
+            {
+                Notificar("Acción invalida", "Porfavor seleccione una fila.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
     }
 }
