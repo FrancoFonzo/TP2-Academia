@@ -57,7 +57,7 @@ namespace UI.Desktop
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected()) return;
+            if (!isRowSelected()) return;
             openUserForm(ApplicationForm.ModoForm.Baja);
         }
 
