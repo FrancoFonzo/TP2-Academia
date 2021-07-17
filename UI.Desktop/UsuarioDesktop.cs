@@ -58,12 +58,14 @@ namespace UI.Desktop
                 this.UsuarioActual.NombreUsuario = this.txtUsuario.Text;
                 this.UsuarioActual.Clave = this.txtClave.Text;
 
-                var value = this.cbxPersona.SelectedValue;
-                if (value == null) return; //null -> no se asigna ninguna persona
-                if (int.TryParse(value.ToString(), out int id))
+                var idPer = this.cbxPersona.SelectedValue;
+                if (idPer == null) this.UsuarioActual.MiPersona = null;
+                else this.UsuarioActual.MiPersona = new PersonaLogic().GetOne((int)idPer);
+                /*if (idPer == null) return;
+                if (int.TryParse(idPer.ToString(), out int id))
                 {
                     this.UsuarioActual.MiPersona = new PersonaLogic().GetOne(id);
-                }
+                }*/
             }
             else if (Modo == ModoForm.Baja) UsuarioActual.State = BusinessEntity.States.Deleted;
             else if (Modo == ModoForm.Consulta) UsuarioActual.State = BusinessEntity.States.Unmodified; 

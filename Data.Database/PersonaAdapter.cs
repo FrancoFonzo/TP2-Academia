@@ -42,6 +42,7 @@ namespace Data.Database
                 var lstPersonas = from p in db.personas 
                                   where !(from u in db.usuarios select u.id_persona)
                                   .Contains(p.id_persona) select p;
+                //db.personas.Where(p => !db.usuarios.Select(u=> u.id_persona).Contains(p.id_persona));
                 lstPersonas?.ToList().ForEach(p => personas.Add(nuevaPersona(p)));
                 return personas;
             }
