@@ -41,9 +41,15 @@ namespace UI.Desktop
             this.Notificar(this.Text, mensaje, botones, icono);
         }
 
-        private void ApplicationForm_Load(object sender, EventArgs e)
+        protected bool isRowSelected(DataGridView dgvSelected)
         {
-
+            if (dgvSelected.SelectedRows.Count != 1)
+            {
+                Notificar("Acción invalida", "Porfavor seleccione una fila.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
     }
 }

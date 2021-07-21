@@ -51,13 +51,13 @@ namespace UI.Desktop
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected()) return;
+            if (!isRowSelected(dgvUsuarios)) return;
             openUserForm(ApplicationForm.ModoForm.Modificacion);
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected()) return;
+            if (!isRowSelected(dgvUsuarios)) return;
             openUserForm(ApplicationForm.ModoForm.Baja);
         }
 
@@ -67,17 +67,6 @@ namespace UI.Desktop
             UsuarioDesktop formUsuario = new UsuarioDesktop(ID, modo);
             formUsuario.ShowDialog();
             this.Listar();
-        }
-
-        private bool isRowSelected()
-        {
-            if (this.dgvUsuarios.SelectedRows.Count != 1)
-            {
-                Notificar("Acción invalida", "Porfavor seleccione una fila.",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            return true;
         }
     }
 }
