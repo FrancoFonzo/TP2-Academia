@@ -30,10 +30,6 @@ namespace UI.Desktop
         {
             this.Listar();
         }
-        private void dgvEspecialidades_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -70,11 +66,6 @@ namespace UI.Desktop
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             this.Listar();
-        }
-
-        private void dgvEspecialidades_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
