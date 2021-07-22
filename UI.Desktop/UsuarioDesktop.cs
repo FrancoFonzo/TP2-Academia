@@ -86,21 +86,6 @@ namespace UI.Desktop
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            /*
-            if (!Validaciones.ValidarNyA(txtNombre.Text) || !Validaciones.ValidarNyA(txtApellido.Text))
-            {
-                Notificar("Nombre o Apellido invalido", "Porfavor ingrese su nombre y apellido correctamente.",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (!Validaciones.ValidarEmail(txtEmail.Text))
-            {
-                Notificar("Email invalido", "Porfavor ingrese un email valido.", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            */
             else if(!Validaciones.ValidarRegexClave(txtClave.Text))
             {
                 Notificar("Contraseña invalida", "La contraseñas debe tener entre 4 y 50 caracteres.",
