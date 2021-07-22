@@ -80,6 +80,7 @@
     <Compile Include="docentes_cursos.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="EspecialidadAdapter.cs" />
     <Compile Include="especialidades.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
