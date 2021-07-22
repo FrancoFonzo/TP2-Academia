@@ -60,22 +60,23 @@ namespace UI.Desktop
             this.tlEspecialidad.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tlEspecialidad.Size = new System.Drawing.Size(517, 146);
             this.tlEspecialidad.TabIndex = 0;
+            this.tlEspecialidad.Paint += new System.Windows.Forms.PaintEventHandler(this.tlEspecialidad_Paint);
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDescripcion.Location = new System.Drawing.Point(126, 58);
+            this.txtDescripcion.Location = new System.Drawing.Point(127, 58);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(388, 22);
+            this.txtDescripcion.Size = new System.Drawing.Size(387, 22);
             this.txtDescripcion.TabIndex = 0;
             // 
             // txtID
             // 
             this.txtID.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtID.Location = new System.Drawing.Point(126, 30);
+            this.txtID.Location = new System.Drawing.Point(127, 30);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(388, 22);
+            this.txtID.Size = new System.Drawing.Size(387, 22);
             this.txtID.TabIndex = 1;
             // 
             // lblID
@@ -84,7 +85,7 @@ namespace UI.Desktop
             this.lblID.Location = new System.Drawing.Point(3, 32);
             this.lblID.Name = "lblID";
             this.lblID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblID.Size = new System.Drawing.Size(117, 23);
+            this.lblID.Size = new System.Drawing.Size(118, 23);
             this.lblID.TabIndex = 0;
             this.lblID.Text = "ID";
             // 
@@ -92,7 +93,7 @@ namespace UI.Desktop
             // 
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblDescripcion.Location = new System.Drawing.Point(38, 55);
+            this.lblDescripcion.Location = new System.Drawing.Point(39, 55);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(82, 53);
             this.lblDescripcion.TabIndex = 3;
@@ -113,7 +114,7 @@ namespace UI.Desktop
             // 
             this.btnCancelar.Location = new System.Drawing.Point(3, 111);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 32);
+            this.btnCancelar.Size = new System.Drawing.Size(81, 32);
             this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -127,6 +128,7 @@ namespace UI.Desktop
             this.Controls.Add(this.tlEspecialidad);
             this.Name = "EspecialidadDesktop";
             this.Text = "Especialidad";
+            this.Load += new System.EventHandler(this.EspecialidadDesktop_Load);
             this.tlEspecialidad.ResumeLayout(false);
             this.tlEspecialidad.PerformLayout();
             this.ResumeLayout(false);

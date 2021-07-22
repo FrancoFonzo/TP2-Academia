@@ -84,7 +84,8 @@ namespace Data.Database
             {
                 especialidades esp = new especialidades()
                 {
-                    id_especialidad = especialidad.ID
+                    id_especialidad = especialidad.ID,
+                    desc_especialidad = especialidad.DescEspecialidad
                 };
                 db.especialidades.Add(esp);
                 db.SaveChanges();

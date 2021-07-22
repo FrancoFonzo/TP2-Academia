@@ -35,11 +35,6 @@ namespace UI.Desktop
 
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            this.Listar();
-        }
-
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -66,10 +61,20 @@ namespace UI.Desktop
 
         private void openEspForm(ApplicationForm.ModoForm modo)
         {
-            int ID = ((Usuario)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
+            int ID = ((Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
             EspecialidadDesktop formEspecialidad = new EspecialidadDesktop(ID, modo);
             formEspecialidad.ShowDialog();
             this.Listar();
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            this.Listar();
+        }
+
+        private void dgvEspecialidades_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

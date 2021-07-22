@@ -25,6 +25,17 @@ namespace UI.Desktop
             MapearDeDatos();
         }
 
+        public override void MapearDeDatos()
+        {
+            this.txtID.Text = this.EspecialidadActual.ID.ToString();
+            this.txtDescripcion.Text = this.EspecialidadActual.DescEspecialidad;
+
+            if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
+            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
+            else if (Modo == ModoForm.Baja) this.btnAceptar.Text = "Eliminar";
+
+        }
+
         public override void MapearADatos()
         {
             if (Modo == ModoForm.Alta)
@@ -59,6 +70,16 @@ namespace UI.Desktop
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void EspecialidadDesktop_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tlEspecialidad_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

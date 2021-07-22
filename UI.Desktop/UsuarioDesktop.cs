@@ -129,5 +129,10 @@ namespace UI.Desktop
         {
             this.Close();
         }
+
+        private void tlUsuario_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

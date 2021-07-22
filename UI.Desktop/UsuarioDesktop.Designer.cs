@@ -79,6 +79,7 @@ namespace UI.Desktop
             this.tlUsuario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlUsuario.Size = new System.Drawing.Size(682, 151);
             this.tlUsuario.TabIndex = 0;
+            this.tlUsuario.Paint += new System.Windows.Forms.PaintEventHandler(this.tlUsuario_Paint);
             // 
             // lblID
             // 
