@@ -18,11 +18,10 @@ namespace UI.Desktop
             try
             {
                 this.dgvPlanes.DataSource = new PlanLogic().GetAll();
-                //dgvUsuarios.DataSource = ul.GetAll().FindAll(u => u.State != BusinessEntity.States.Deleted);
             }
             catch (Exception)
             {
-                Notificar("Error", "Error al recuperar los datos del usuario",
+                Notificar("Error", "Error al recuperar los datos del plan",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -52,16 +51,16 @@ namespace UI.Desktop
         private void tsbEditar_Click(object sender, EventArgs e)
         {
             if (!isRowSelected(dgvPlanes)) return;
-            openUserForm(ApplicationForm.ModoForm.Modificacion);
+            openForm(ApplicationForm.ModoForm.Modificacion);
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
             if (!isRowSelected(dgvPlanes)) return;
-            openUserForm(ApplicationForm.ModoForm.Baja);
+            openForm(ApplicationForm.ModoForm.Baja);
         }
 
-        private void openUserForm(ApplicationForm.ModoForm modo)
+        private void openForm(ApplicationForm.ModoForm modo)
         {
             int ID = ((Plan)this.dgvPlanes.SelectedRows[0].DataBoundItem).ID;
             PlanDesktop formPlan = new PlanDesktop(ID, modo);

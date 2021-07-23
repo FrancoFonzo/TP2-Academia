@@ -14,7 +14,7 @@ namespace Data.Database
         //protected static CursoAdapter cursoData = new CursoAdapter();
         //protected static MateriaAdapter materiaData = new MateriaAdapter();
         //protected static ComisionAdapter comisionData = new ComisionAdapter();
-        //protected static PlanAdapter planData = new PlanAdapter();
+        protected static PlanAdapter planData = new PlanAdapter();
         //protected static ModuloAdapter moduloData = new ModuloAdapter();
         //protected static EspecialidadAdapter especialidadData = new EspecialidadAdapter();
         //protected static DocenteCursoAdapter dictadoAdapter = new DocenteCursoAdapter();

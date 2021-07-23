@@ -8,9 +8,12 @@ namespace UI.Desktop
 {
     public partial class PlanDesktop : ApplicationForm
     {
+        private Plan PlanActual { get; set; }
+
         public PlanDesktop()
         {
             InitializeComponent();
+            this.cbxEspecialidad.DataSource = new EspecialidadLogic().GetAll();
         }
 
         public PlanDesktop(ModoForm modo) : this()
@@ -29,7 +32,7 @@ namespace UI.Desktop
         {
             this.txtID.Text = this.PlanActual.ID.ToString();
             this.txtDescripcion.Text = this.PlanActual.Descripcion;
-            this.txtID_Especialidad.Text = this.PlanActual.ID_Especialidad;
+            this.cbxEspecialidad.Text = this.PlanActual.MiEspecialidad.Descripcion;
 
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
             else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
@@ -50,16 +53,9 @@ namespace UI.Desktop
                     this.PlanActual.ID = int.Parse(this.txtID.Text);
                     this.PlanActual.State = BusinessEntity.States.Modified;
                 }
-                this.PlanActual.Descripcion = this.chkHabilitado.Checked;
-
-                var idPlan = this.cbxPlan.SelectedValue;
-                if (idPlan == null) this.PlanActual.MiPersona = null;
-                else this.PlanActual.MiPlan = new PlanLogic().GetOne((int)idPlan);
-                /*if (idPer == null) return;
-                if (int.TryParse(idPer.ToString(), out int id))
-                {
-                    this.UsuarioActual.MiPersona = new PersonaLogic().GetOne(id);
-                }*/
+                this.PlanActual.Descripcion = this.txtDescripcion.Text;
+                var idEsp = this.cbxEspecialidad.SelectedValue;
+                this.PlanActual.MiEspecialidad = new EspecialidadLogic().GetOne((int)idEsp);
             }
             else if (Modo == ModoForm.Baja) PlanActual.State = BusinessEntity.States.Deleted;
             else if (Modo == ModoForm.Consulta) PlanActual.State = BusinessEntity.States.Unmodified;
@@ -73,7 +69,11 @@ namespace UI.Desktop
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
+            if (Validar())
+            {
+                GuardarCambios();
+                this.Close();
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -81,9 +81,22 @@ namespace UI.Desktop
             this.Close();
         }
 
-        private void lblUsuario_Click(object sender, EventArgs e)
+        public override bool Validar()
         {
-
+            if (!Validaciones.FormularioCompleto(new List<string>
+                        {txtDescripcion.Text, cbxEspecialidad.Text})
+                )
+            {
+                Notificar("Informacion invalida", "Complete los campos para continuar.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (this.cbxEspecialidad.SelectedValue == null)
+            {
+                Notificar("Informacion invalida", "La especialidad especificada no existe.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else return true;
+            return false;
         }
     }
 }

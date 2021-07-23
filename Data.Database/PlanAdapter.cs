@@ -7,7 +7,7 @@ using Business.Entities;
 
 namespace Data.Database
 {
-    class PlanAdapter : Adapter
+    public class PlanAdapter : Adapter
     {
         public List<Plan> GetAll()
         {
@@ -20,15 +20,14 @@ namespace Data.Database
             }
         }
 
-        private static Plan nuevoPlan(planes plan)
+        private static Plan nuevoPlan(planes p)
         {
             Plan plan = new Plan()
             {
-                ID_Plan = plan.ID_Plan,
-                Descripcion = plan.Descripcion,
-                ID_Especialidad = plan.ID_Especialidad,
+                ID = p.id_plan,
+                Descripcion = p.desc_plan,
+                MiEspecialidad =  especialidadData.GetOne(p.especialidades.id_especialidad)
             };
-            if (plan.ID_Plan != null) plan.MiPlan = planData.GetOne((int)plan.ID_Plan);
             return plan;
         }
 
@@ -36,9 +35,9 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                var pln = db.planes.SingleOrDefault(p => p.ID_Plan == ID);
-                if (pln == null) return null;
-                return nuevoPlan(pln);
+                var plan = db.planes.SingleOrDefault(p => p.id_plan == ID);
+                if (plan == null) return null;
+                return nuevoPlan(plan);
             }
         }
 
@@ -46,20 +45,20 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                var pln = db.planes.SingleOrDefault(p => p.Descripcion == desc_plan);
+                var pln = db.planes.SingleOrDefault(p => p.desc_plan == desc_plan);
                 if (pln == null) return null;
                 return nuevoPlan(pln);
             }
 
         }
 
-        public void Delete(int ID_Plan)
+        public void Delete(int ID)
         {
             using (var db = new AcademiaEntities())
             {
-                var pln = db.usuarios.SingleOrDefault(p => p.ID_Plan == ID_Plan);
-                if (pln == null) return;
-                db.planes.Remove(pln);
+                var plan = db.planes.SingleOrDefault(p => p.id_plan == ID);
+                if (plan == null) return;
+                db.planes.Remove(plan);
                 db.SaveChanges();
             }
         }
@@ -68,7 +67,7 @@ namespace Data.Database
         {
             if (plan.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(plan.ID_Plan);
+                this.Delete(plan.ID);
             }
             else if (plan.State == BusinessEntity.States.New)
             {
@@ -81,15 +80,14 @@ namespace Data.Database
             plan.State = BusinessEntity.States.Unmodified;
         }
 
-        protected void Update(Usuario usuario)
+        protected void Update(Plan plan)
         {
             using (var db = new AcademiaEntities())
             {
-                var pln = db.planes.SingleOrDefault(p => p.ID_Plan == planes.ID_Plan);
+                var pln = db.planes.SingleOrDefault(p => p.id_plan == plan.ID);
                 if (pln == null) return;
-                pln.Descripcion = planes.Descripcion;
-                pln.id_especialidad = planes.ID_Especialidad;
-                pln.id_plan = planes.MiPlan?.ID_Plan;
+                pln.desc_plan = plan.Descripcion;
+                pln.id_especialidad = plan.MiEspecialidad.ID;
                 db.SaveChanges();
             }
         }
@@ -98,14 +96,12 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                usuarios pln = new usuarios
+                planes pln = new planes
                 {
-                    id_plan = plan.ID_Plan,
-                    descripcion = plan.Descripcion,
-                    id_especialidad = plan.ID_Especialidad
+                    id_plan = plan.ID,
+                    desc_plan = plan.Descripcion,
+                    id_especialidad = plan.MiEspecialidad.ID
                 };
-                if (plan.MiPlan != null) pln.id_plan = plan.MiPlan.ID_Plan;
-
                 db.planes.Add(pln);
                 db.SaveChanges();
             }
