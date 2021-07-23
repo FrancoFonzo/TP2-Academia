@@ -20,11 +20,6 @@ namespace Business.Logic
             return PlanData.GetOne(id);
         }
 
-        public Plan GetOneNombreUsuario(string plan)
-        {
-            return PlanData.GetOneNombrePlan(plan);
-        }
-
         public List<Plan> GetAll()
         {
             return PlanData.GetAll();
