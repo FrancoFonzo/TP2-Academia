@@ -22,7 +22,7 @@ namespace Data.Database
             Especialidad especialidad = new Especialidad()
             {
                 ID = esp.id_especialidad,
-                DescEspecialidad = esp.desc_especialidad,
+                Descripcion = esp.desc_especialidad,
             };
             return especialidad;
         }
@@ -73,7 +73,7 @@ namespace Data.Database
             {
                 var esp = db.especialidades.SingleOrDefault(e => e.id_especialidad == especialidad.ID);
                 if (esp == null) return;
-                esp.desc_especialidad = especialidad.DescEspecialidad;
+                esp.desc_especialidad = especialidad.Descripcion;
                 db.SaveChanges();
             }
         }
@@ -85,7 +85,7 @@ namespace Data.Database
                 especialidades esp = new especialidades()
                 {
                     id_especialidad = especialidad.ID,
-                    desc_especialidad = especialidad.DescEspecialidad
+                    desc_especialidad = especialidad.Descripcion
                 };
                 db.especialidades.Add(esp);
                 db.SaveChanges();

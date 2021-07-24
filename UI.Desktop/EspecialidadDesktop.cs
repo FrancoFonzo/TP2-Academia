@@ -28,7 +28,7 @@ namespace UI.Desktop
         public override void MapearDeDatos()
         {
             this.txtID.Text = this.EspecialidadActual.ID.ToString();
-            this.txtDescripcion.Text = this.EspecialidadActual.DescEspecialidad;
+            this.txtDescripcion.Text = this.EspecialidadActual.Descripcion;
 
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
             else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
@@ -49,7 +49,7 @@ namespace UI.Desktop
                     this.EspecialidadActual.ID = int.Parse(this.txtID.Text);
                     this.EspecialidadActual.State = BusinessEntity.States.Modified;
                 }
-                this.EspecialidadActual.DescEspecialidad = this.txtDescripcion.Text;
+                this.EspecialidadActual.Descripcion = this.txtDescripcion.Text;
             }
             else if (Modo == ModoForm.Baja) EspecialidadActual.State = BusinessEntity.States.Deleted;
             else if (Modo == ModoForm.Consulta) EspecialidadActual.State = BusinessEntity.States.Unmodified;
