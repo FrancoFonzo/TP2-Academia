@@ -30,7 +30,7 @@ namespace UI.Desktop
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsuarioDesktop));
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlUsuario = new System.Windows.Forms.TableLayoutPanel();
             this.lblID = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.chkHabilitado = new System.Windows.Forms.CheckBox();
@@ -38,47 +38,48 @@ namespace UI.Desktop
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblClave = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
             this.lblConfirmarClave = new System.Windows.Forms.Label();
-            this.txtClave = new System.Windows.Forms.TextBox();
             this.txtConfirmarClave = new System.Windows.Forms.TextBox();
             this.lblPersona = new System.Windows.Forms.Label();
             this.cbxPersona = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.txtClave = new System.Windows.Forms.TextBox();
+            this.tlUsuario.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlUsuario
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.lblID, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtID, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.chkHabilitado, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnCancelar, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lblClave, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblUsuario, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblConfirmarClave, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtConfirmarClave, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblPersona, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.cbxPersona, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtUsuario, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtClave, 1, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(682, 151);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tlUsuario.AutoSize = true;
+            this.tlUsuario.ColumnCount = 4;
+            this.tlUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlUsuario.Controls.Add(this.lblID, 0, 0);
+            this.tlUsuario.Controls.Add(this.txtID, 1, 0);
+            this.tlUsuario.Controls.Add(this.chkHabilitado, 2, 0);
+            this.tlUsuario.Controls.Add(this.btnAceptar, 2, 4);
+            this.tlUsuario.Controls.Add(this.btnCancelar, 3, 4);
+            this.tlUsuario.Controls.Add(this.lblClave, 0, 2);
+            this.tlUsuario.Controls.Add(this.lblUsuario, 0, 1);
+            this.tlUsuario.Controls.Add(this.lblConfirmarClave, 2, 2);
+            this.tlUsuario.Controls.Add(this.txtConfirmarClave, 3, 2);
+            this.tlUsuario.Controls.Add(this.lblPersona, 2, 1);
+            this.tlUsuario.Controls.Add(this.cbxPersona, 3, 1);
+            this.tlUsuario.Controls.Add(this.txtUsuario, 1, 1);
+            this.tlUsuario.Controls.Add(this.txtClave, 1, 2);
+            this.tlUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlUsuario.Location = new System.Drawing.Point(0, 0);
+            this.tlUsuario.Name = "tlUsuario";
+            this.tlUsuario.RowCount = 5;
+            this.tlUsuario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlUsuario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlUsuario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlUsuario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlUsuario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlUsuario.Size = new System.Drawing.Size(682, 151);
+            this.tlUsuario.TabIndex = 0;
+            this.tlUsuario.Paint += new System.Windows.Forms.PaintEventHandler(this.tlUsuario_Paint);
             // 
             // lblID
             // 
@@ -156,14 +157,6 @@ namespace UI.Desktop
             this.lblUsuario.TabIndex = 3;
             this.lblUsuario.Text = "Usuario";
             // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUsuario.Location = new System.Drawing.Point(66, 34);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(247, 22);
-            this.txtUsuario.TabIndex = 8;
-            // 
             // lblConfirmarClave
             // 
             this.lblConfirmarClave.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -173,15 +166,6 @@ namespace UI.Desktop
             this.lblConfirmarClave.Size = new System.Drawing.Size(106, 17);
             this.lblConfirmarClave.TabIndex = 9;
             this.lblConfirmarClave.Text = "Confirmar clave";
-            // 
-            // txtClave
-            // 
-            this.txtClave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClave.Location = new System.Drawing.Point(66, 64);
-            this.txtClave.Name = "txtClave";
-            this.txtClave.PasswordChar = '*';
-            this.txtClave.Size = new System.Drawing.Size(247, 22);
-            this.txtClave.TabIndex = 4;
             // 
             // txtConfirmarClave
             // 
@@ -215,6 +199,23 @@ namespace UI.Desktop
             this.cbxPersona.TabIndex = 6;
             this.cbxPersona.ValueMember = "ID";
             // 
+            // txtUsuario
+            // 
+            this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUsuario.Location = new System.Drawing.Point(66, 34);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(247, 22);
+            this.txtUsuario.TabIndex = 8;
+            // 
+            // txtClave
+            // 
+            this.txtClave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtClave.Location = new System.Drawing.Point(66, 64);
+            this.txtClave.Name = "txtClave";
+            this.txtClave.PasswordChar = '*';
+            this.txtClave.Size = new System.Drawing.Size(247, 22);
+            this.txtClave.TabIndex = 4;
+            // 
             // UsuarioDesktop
             // 
             this.AcceptButton = this.btnAceptar;
@@ -223,14 +224,14 @@ namespace UI.Desktop
             this.AutoSize = true;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(682, 151);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlUsuario);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "UsuarioDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Usuario";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tlUsuario.ResumeLayout(false);
+            this.tlUsuario.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,7 +239,7 @@ namespace UI.Desktop
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlUsuario;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label lblClave;
