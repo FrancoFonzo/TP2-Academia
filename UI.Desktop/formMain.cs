@@ -46,8 +46,16 @@ namespace UI.Desktop
 
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
-            if (this.WindowState != FormWindowState.Maximized) this.WindowState = FormWindowState.Maximized;
-            else this.WindowState = FormWindowState.Normal;
+            if (this.WindowState != FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Maximized;
+                this.btnMaximizar.Image = Properties.Resources.restore_window_32;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.btnMaximizar.Image = Properties.Resources.maximize_window_32;
+            }
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)
