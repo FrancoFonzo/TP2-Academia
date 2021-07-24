@@ -19,7 +19,7 @@ namespace UI.Desktop
             Application.SetCompatibleTextRenderingDefault(false);
             formLogin login = new formLogin();
             if(login.ShowDialog() == DialogResult.OK) 
-                Application.Run(new formMain());
+                Application.Run(new formMain(login.UsuarioActual));
         }
     }
 }

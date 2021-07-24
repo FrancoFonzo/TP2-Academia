@@ -10,6 +10,8 @@ namespace UI.Desktop
 {
     public partial class formLogin : ApplicationForm
     {
+        public Usuario UsuarioActual { get; set; }
+
         public formLogin()
         {
             InitializeComponent();
@@ -81,8 +83,7 @@ namespace UI.Desktop
                 return false;
             }
 
-            Usuario UsuarioActual = new UsuarioLogic()
-                .GetOneNombreUsuario(this.txtUsuario.Text);
+            this.UsuarioActual = new UsuarioLogic().GetOneNombreUsuario(this.txtUsuario.Text);
             if (!Validaciones.ValidarClave(UsuarioActual?.Clave, txtClave.Text))
             {
                 Notificar("Login", "Usuario y/o contraseña incorrectos",
