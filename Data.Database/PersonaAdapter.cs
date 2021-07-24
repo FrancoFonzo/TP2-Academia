@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Business.Entities;
 
@@ -34,6 +35,16 @@ namespace Data.Database
             return persona;
         }
 
+        public List<string> getTipos()
+        {
+            List<string> tipos = new List<string>{
+                Persona.TiposPersonas.Administrador.ToString(),
+                Persona.TiposPersonas.Alumno.ToString(),
+                Persona.TiposPersonas.Docente.ToString()
+                };
+            return tipos;
+        }
+
         public List<Persona> GetPersonasSinUsuario()
         {
             using (AcademiaEntities db = new AcademiaEntities())
@@ -42,7 +53,6 @@ namespace Data.Database
                 var lstPersonas = from p in db.personas 
                                   where !(from u in db.usuarios select u.id_persona)
                                   .Contains(p.id_persona) select p;
-                //db.personas.Where(p => !db.usuarios.Select(u=> u.id_persona).Contains(p.id_persona));
                 lstPersonas?.ToList().ForEach(p => personas.Add(nuevaPersona(p)));
                 return personas;
             }

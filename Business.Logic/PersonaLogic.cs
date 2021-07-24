@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Business.Entities;
+﻿using Business.Entities;
 using Data.Database;
+using System;
+using System.Collections.Generic;
 
 namespace Business.Logic
 {
@@ -25,6 +22,11 @@ namespace Business.Logic
         public List<Persona> GetAll()
         {
             return PersonaData.GetAll();
+        }
+
+        public List<String> GetTipos()
+        {
+            return PersonaData.getTipos();
         }
 
         public List<Persona> GetPersonasSinUsuario()
