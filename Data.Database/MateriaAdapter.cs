@@ -7,34 +7,35 @@ using Business.Entities;
 
 namespace Data.Database
 {
-    public class MateriasAdapter : Adapter
+    public class MateriaAdapter : Adapter
     {
-        public List<Materias> GetAll()
+        public List<Materia> GetAll()
         {
             using (AcademiaEntities db = new AcademiaEntities())
             {
-                List<Materias> materias = new List<Materias>();
+                List<Materia> materias = new List<Materia>();
                 var lstMaterias = db.materias;
                 lstMaterias?.ToList().ForEach(m => materias.Add(nuevaMateria(m)));
                 return materias;
             }
         }
 
-        private Materias nuevaMateria(materias mat)
+        private Materia nuevaMateria(materias mat)
         {
-            Materias materias = new Materias()
+            Materia materia = new Materia()
             {
                 ID = mat.id_materia,
-                descMateria = mat.desc_materia,
-                hs_semanales = mat.hs_semanales,
-                hs_totales = mat.hs_totales,
+                Descripcion = mat.desc_materia,
+                HorasSemanales = mat.hs_semanales,
+                HorasTotales = mat.hs_totales,
+                MiPlan = planData.GetOne(mat.id_plan)
             };
-            return materias;
+            return materia;
         }
 
 
 
-        public Materias GetOne(int ID)
+        public Materia GetOne(int ID)
         {
             using (var db = new AcademiaEntities())
             {
@@ -56,47 +57,47 @@ namespace Data.Database
             }
         }
 
-        public void Save(Materias materias)
+        public void Save(Materia materia)
         {
-            if (materias.State == BusinessEntity.States.Deleted)
+            if (materia.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(materias.ID);
+                this.Delete(materia.ID);
             }
-            else if (materias.State == BusinessEntity.States.New)
+            else if (materia.State == BusinessEntity.States.New)
             {
-                this.Insert(materias);
+                this.Insert(materia);
             }
-            else if (materias.State == BusinessEntity.States.Modified)
+            else if (materia.State == BusinessEntity.States.Modified)
             {
-                this.Update(materias);
+                this.Update(materia);
             }
-            materias.State = BusinessEntity.States.Unmodified;
+            materia.State = BusinessEntity.States.Unmodified;
         }
 
-        protected void Update(Materias materias)
+        protected void Update(Materia materias)
         {
             using (var db = new AcademiaEntities())
             {
                 var mat = db.materias.SingleOrDefault(m => m.id_materia == materias.ID);
                 if (mat == null) return;
-                mat.desc_materia = materias.descMateria;
-                mat.hs_totales = materias.hs_totales;
-                mat.hs_semanales = materias.hs_semanales;
+                mat.desc_materia = materias.Descripcion;
+                mat.hs_totales = materias.HorasTotales;
+                mat.hs_semanales = materias.HorasSemanales;
 
                 db.SaveChanges();
             }
         }
 
-        protected void Insert(Materias materias)
+        protected void Insert(Materia materias)
         {
             using (var db = new AcademiaEntities())
             {
                 materias mat = new materias()
                 {
                     id_materia = materias.ID,
-                    desc_materia = materias.descMateria,
-                    hs_semanales = materias.hs_semanales,
-                    hs_totales = materias.hs_totales
+                    desc_materia = materias.Descripcion,
+                    hs_semanales = materias.HorasSemanales,
+                    hs_totales = materias.HorasTotales
                 };
                 db.materias.Add(mat);
                 db.SaveChanges();

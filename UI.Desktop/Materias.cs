@@ -1,13 +1,6 @@
 ﻿using Business.Entities;
 using Business.Logic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -15,8 +8,6 @@ namespace UI.Desktop
 {
     public partial class Materias : ApplicationForm
     {
-        
-
         public Materias()
         {
             InitializeComponent();
@@ -59,7 +50,7 @@ namespace UI.Desktop
 
         private void OpenForm(ApplicationForm.ModoForm modo)
         {
-            int ID = ((Materias)this.dgvMaterias.SelectedRows[0].DataBoundItem).ID;
+            int ID = ((Materia) this.dgvMaterias.SelectedRows[0].DataBoundItem).ID;
             MateriasDesktop formMaterias = new MateriasDesktop(ID, modo);
             formMaterias.ShowDialog();
             this.Listar();
@@ -73,7 +64,7 @@ namespace UI.Desktop
             }
             catch (Exception)
             {
-                Notificar("Error", "Error al recuperar los datos del usuario",
+                Notificar("Error", "Error al recuperar los datos de las materias",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

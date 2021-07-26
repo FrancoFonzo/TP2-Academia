@@ -30,9 +30,15 @@ namespace UI.Desktop
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
+            this.btnAcerdaDe = new System.Windows.Forms.Button();
+            this.btnConfiguracion = new System.Windows.Forms.Button();
             this.btnReportes = new System.Windows.Forms.Button();
+            this.btnNotas = new System.Windows.Forms.Button();
             this.btnInscripcion = new System.Windows.Forms.Button();
+            this.btnAdministracion = new System.Windows.Forms.Button();
             this.panelPerfil = new System.Windows.Forms.Panel();
+            this.picPerfil = new System.Windows.Forms.PictureBox();
             this.lblRol = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.panelTitulo = new System.Windows.Forms.Panel();
@@ -51,21 +57,15 @@ namespace UI.Desktop
             this.btnPersonas = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.btnCerrarSesion = new System.Windows.Forms.Button();
-            this.btnAcerdaDe = new System.Windows.Forms.Button();
-            this.btnConfiguracion = new System.Windows.Forms.Button();
-            this.btnNotas = new System.Windows.Forms.Button();
-            this.btnAdministracion = new System.Windows.Forms.Button();
-            this.picPerfil = new System.Windows.Forms.PictureBox();
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelPerfil.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             this.panelTitulo.SuspendLayout();
             this.panelAdministracion.SuspendLayout();
             this.panelTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -85,6 +85,72 @@ namespace UI.Desktop
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(250, 613);
             this.panelMenu.TabIndex = 3;
+            // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.AutoSize = true;
+            this.btnCerrarSesion.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
+            this.btnCerrarSesion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
+            this.btnCerrarSesion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
+            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarSesion.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
+            this.btnCerrarSesion.Image = global::UI.Desktop.Properties.Resources.sign_out_32;
+            this.btnCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 562);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Padding = new System.Windows.Forms.Padding(5);
+            this.btnCerrarSesion.Size = new System.Drawing.Size(250, 51);
+            this.btnCerrarSesion.TabIndex = 6;
+            this.btnCerrarSesion.Text = "Cerrar Sesion";
+            this.btnCerrarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            // 
+            // btnAcerdaDe
+            // 
+            this.btnAcerdaDe.AutoSize = true;
+            this.btnAcerdaDe.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAcerdaDe.FlatAppearance.BorderSize = 0;
+            this.btnAcerdaDe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
+            this.btnAcerdaDe.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
+            this.btnAcerdaDe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAcerdaDe.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAcerdaDe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
+            this.btnAcerdaDe.Image = global::UI.Desktop.Properties.Resources.info_32;
+            this.btnAcerdaDe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAcerdaDe.Location = new System.Drawing.Point(0, 455);
+            this.btnAcerdaDe.Name = "btnAcerdaDe";
+            this.btnAcerdaDe.Padding = new System.Windows.Forms.Padding(5);
+            this.btnAcerdaDe.Size = new System.Drawing.Size(250, 51);
+            this.btnAcerdaDe.TabIndex = 5;
+            this.btnAcerdaDe.Text = "Acerca De";
+            this.btnAcerdaDe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAcerdaDe.UseVisualStyleBackColor = true;
+            // 
+            // btnConfiguracion
+            // 
+            this.btnConfiguracion.AutoSize = true;
+            this.btnConfiguracion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConfiguracion.FlatAppearance.BorderSize = 0;
+            this.btnConfiguracion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
+            this.btnConfiguracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
+            this.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfiguracion.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfiguracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
+            this.btnConfiguracion.Image = global::UI.Desktop.Properties.Resources.settings_32;
+            this.btnConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConfiguracion.Location = new System.Drawing.Point(0, 404);
+            this.btnConfiguracion.Name = "btnConfiguracion";
+            this.btnConfiguracion.Padding = new System.Windows.Forms.Padding(5);
+            this.btnConfiguracion.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnConfiguracion.Size = new System.Drawing.Size(250, 51);
+            this.btnConfiguracion.TabIndex = 5;
+            this.btnConfiguracion.Text = "Configuracion";
+            this.btnConfiguracion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConfiguracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnConfiguracion.UseVisualStyleBackColor = true;
             // 
             // btnReportes
             // 
@@ -106,6 +172,27 @@ namespace UI.Desktop
             this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReportes.UseVisualStyleBackColor = true;
             // 
+            // btnNotas
+            // 
+            this.btnNotas.AutoSize = true;
+            this.btnNotas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNotas.FlatAppearance.BorderSize = 0;
+            this.btnNotas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
+            this.btnNotas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
+            this.btnNotas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNotas.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
+            this.btnNotas.Image = global::UI.Desktop.Properties.Resources.test_passed_32;
+            this.btnNotas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNotas.Location = new System.Drawing.Point(0, 302);
+            this.btnNotas.Name = "btnNotas";
+            this.btnNotas.Padding = new System.Windows.Forms.Padding(5);
+            this.btnNotas.Size = new System.Drawing.Size(250, 51);
+            this.btnNotas.TabIndex = 5;
+            this.btnNotas.Text = "Registrar Notas";
+            this.btnNotas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNotas.UseVisualStyleBackColor = true;
+            // 
             // btnInscripcion
             // 
             this.btnInscripcion.AutoSize = true;
@@ -126,6 +213,29 @@ namespace UI.Desktop
             this.btnInscripcion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnInscripcion.UseVisualStyleBackColor = true;
             // 
+            // btnAdministracion
+            // 
+            this.btnAdministracion.AutoSize = true;
+            this.btnAdministracion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAdministracion.FlatAppearance.BorderSize = 0;
+            this.btnAdministracion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
+            this.btnAdministracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
+            this.btnAdministracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdministracion.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdministracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
+            this.btnAdministracion.Image = global::UI.Desktop.Properties.Resources.microsoft_admin_32;
+            this.btnAdministracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdministracion.Location = new System.Drawing.Point(0, 200);
+            this.btnAdministracion.Name = "btnAdministracion";
+            this.btnAdministracion.Padding = new System.Windows.Forms.Padding(5);
+            this.btnAdministracion.Size = new System.Drawing.Size(250, 51);
+            this.btnAdministracion.TabIndex = 5;
+            this.btnAdministracion.Text = "Administracion";
+            this.btnAdministracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAdministracion.UseVisualStyleBackColor = true;
+            this.btnAdministracion.Click += new System.EventHandler(this.btnAdministracion_Click);
+            this.btnAdministracion.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            // 
             // panelPerfil
             // 
             this.panelPerfil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(73)))));
@@ -138,6 +248,18 @@ namespace UI.Desktop
             this.panelPerfil.Name = "panelPerfil";
             this.panelPerfil.Size = new System.Drawing.Size(250, 200);
             this.panelPerfil.TabIndex = 4;
+            // 
+            // picPerfil
+            // 
+            this.picPerfil.BackColor = System.Drawing.Color.Transparent;
+            this.picPerfil.Image = global::UI.Desktop.Properties.Resources.profile_128;
+            this.picPerfil.Location = new System.Drawing.Point(75, 15);
+            this.picPerfil.Margin = new System.Windows.Forms.Padding(15, 15, 15, 5);
+            this.picPerfil.Name = "picPerfil";
+            this.picPerfil.Size = new System.Drawing.Size(100, 100);
+            this.picPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picPerfil.TabIndex = 2;
+            this.picPerfil.TabStop = false;
             // 
             // lblRol
             // 
@@ -431,128 +553,6 @@ namespace UI.Desktop
             this.panelTop.Size = new System.Drawing.Size(1082, 40);
             this.panelTop.TabIndex = 10;
             // 
-            // btnCerrarSesion
-            // 
-            this.btnCerrarSesion.AutoSize = true;
-            this.btnCerrarSesion.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
-            this.btnCerrarSesion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnCerrarSesion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarSesion.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrarSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
-            this.btnCerrarSesion.Image = global::UI.Desktop.Properties.Resources.sign_out_32;
-            this.btnCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 562);
-            this.btnCerrarSesion.Name = "btnCerrarSesion";
-            this.btnCerrarSesion.Padding = new System.Windows.Forms.Padding(5);
-            this.btnCerrarSesion.Size = new System.Drawing.Size(250, 51);
-            this.btnCerrarSesion.TabIndex = 6;
-            this.btnCerrarSesion.Text = "Cerrar Sesion";
-            this.btnCerrarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCerrarSesion.UseVisualStyleBackColor = true;
-            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
-            // 
-            // btnAcerdaDe
-            // 
-            this.btnAcerdaDe.AutoSize = true;
-            this.btnAcerdaDe.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAcerdaDe.FlatAppearance.BorderSize = 0;
-            this.btnAcerdaDe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnAcerdaDe.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnAcerdaDe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAcerdaDe.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAcerdaDe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
-            this.btnAcerdaDe.Image = global::UI.Desktop.Properties.Resources.info_32;
-            this.btnAcerdaDe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAcerdaDe.Location = new System.Drawing.Point(0, 455);
-            this.btnAcerdaDe.Name = "btnAcerdaDe";
-            this.btnAcerdaDe.Padding = new System.Windows.Forms.Padding(5);
-            this.btnAcerdaDe.Size = new System.Drawing.Size(250, 51);
-            this.btnAcerdaDe.TabIndex = 5;
-            this.btnAcerdaDe.Text = "Acerca De";
-            this.btnAcerdaDe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAcerdaDe.UseVisualStyleBackColor = true;
-            // 
-            // btnConfiguracion
-            // 
-            this.btnConfiguracion.AutoSize = true;
-            this.btnConfiguracion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnConfiguracion.FlatAppearance.BorderSize = 0;
-            this.btnConfiguracion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnConfiguracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfiguracion.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfiguracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
-            this.btnConfiguracion.Image = global::UI.Desktop.Properties.Resources.settings_32;
-            this.btnConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfiguracion.Location = new System.Drawing.Point(0, 404);
-            this.btnConfiguracion.Name = "btnConfiguracion";
-            this.btnConfiguracion.Padding = new System.Windows.Forms.Padding(5);
-            this.btnConfiguracion.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnConfiguracion.Size = new System.Drawing.Size(250, 51);
-            this.btnConfiguracion.TabIndex = 5;
-            this.btnConfiguracion.Text = "Configuracion";
-            this.btnConfiguracion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfiguracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnConfiguracion.UseVisualStyleBackColor = true;
-            // 
-            // btnNotas
-            // 
-            this.btnNotas.AutoSize = true;
-            this.btnNotas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnNotas.FlatAppearance.BorderSize = 0;
-            this.btnNotas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnNotas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnNotas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNotas.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
-            this.btnNotas.Image = global::UI.Desktop.Properties.Resources.test_passed_32;
-            this.btnNotas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNotas.Location = new System.Drawing.Point(0, 302);
-            this.btnNotas.Name = "btnNotas";
-            this.btnNotas.Padding = new System.Windows.Forms.Padding(5);
-            this.btnNotas.Size = new System.Drawing.Size(250, 51);
-            this.btnNotas.TabIndex = 5;
-            this.btnNotas.Text = "Registrar Notas";
-            this.btnNotas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNotas.UseVisualStyleBackColor = true;
-            // 
-            // btnAdministracion
-            // 
-            this.btnAdministracion.AutoSize = true;
-            this.btnAdministracion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAdministracion.FlatAppearance.BorderSize = 0;
-            this.btnAdministracion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnAdministracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnAdministracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdministracion.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdministracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
-            this.btnAdministracion.Image = global::UI.Desktop.Properties.Resources.microsoft_admin_32;
-            this.btnAdministracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdministracion.Location = new System.Drawing.Point(0, 200);
-            this.btnAdministracion.Name = "btnAdministracion";
-            this.btnAdministracion.Padding = new System.Windows.Forms.Padding(5);
-            this.btnAdministracion.Size = new System.Drawing.Size(250, 51);
-            this.btnAdministracion.TabIndex = 5;
-            this.btnAdministracion.Text = "Administracion";
-            this.btnAdministracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAdministracion.UseVisualStyleBackColor = true;
-            this.btnAdministracion.Click += new System.EventHandler(this.btnAdministracion_Click);
-            this.btnAdministracion.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
-            // 
-            // picPerfil
-            // 
-            this.picPerfil.BackColor = System.Drawing.Color.Transparent;
-            this.picPerfil.Image = global::UI.Desktop.Properties.Resources.profile_128;
-            this.picPerfil.Location = new System.Drawing.Point(75, 15);
-            this.picPerfil.Margin = new System.Windows.Forms.Padding(15, 15, 15, 5);
-            this.picPerfil.Name = "picPerfil";
-            this.picPerfil.Size = new System.Drawing.Size(100, 100);
-            this.picPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picPerfil.TabIndex = 2;
-            this.picPerfil.TabStop = false;
-            // 
             // btnMinimizar
             // 
             this.btnMinimizar.Dock = System.Windows.Forms.DockStyle.Right;
@@ -624,12 +624,12 @@ namespace UI.Desktop
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.panelPerfil.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).EndInit();
             this.panelTitulo.ResumeLayout(false);
             this.panelTitulo.PerformLayout();
             this.panelAdministracion.ResumeLayout(false);
             this.panelAdministracion.PerformLayout();
             this.panelTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -8,33 +8,33 @@ namespace Business.Logic
 {
     public class MateriaLogic : BusinessLogic
     {
-        public MateriasAdapter MateriasData { get; set; }
+        public MateriaAdapter MateriaData { get; set; }
 
         public MateriaLogic()
         {
-            this.MateriasData = new MateriasAdapter();
+            this.MateriaData = new MateriaAdapter();
         }
 
-        public Materias GetOne(int id)
+        public Materia GetOne(int id)
         {
-            return MateriasData.GetOne(id);
+            return MateriaData.GetOne(id);
         }
 
-        public List<Materias> GetAll()
+        public List<Materia> GetAll()
         {
-            return MateriasData.GetAll();
+            return MateriaData.GetAll();
         }
 
 
 
-        public void Save(Materias  materia)
+        public void Save(Materia  materia)
         {
-            MateriasData.Save(materia);
+            MateriaData.Save(materia);
         }
 
         public void Delete(int id)
         {
-            MateriasData.Delete(id);
+            MateriaData.Delete(id);
         }
 
         

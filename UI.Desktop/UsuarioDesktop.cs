@@ -91,7 +91,11 @@ namespace UI.Desktop
                 Notificar("Contraseña invalida", "La contraseñas debe tener entre 4 y 50 caracteres.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            else if (!(txtUsuario.Text.Length < 16))
+            {
+                Notificar("Usuario invalido", "El usuario debe ser menor a 16 caracteres.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else if (!Validaciones.ValidarClaveConfirmada(txtClave.Text, txtConfirmarClave.Text))
             {
                 Notificar("Contraseña invalida", "Las contraseñas no coinciden.",

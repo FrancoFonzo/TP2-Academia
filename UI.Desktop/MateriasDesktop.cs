@@ -9,7 +9,7 @@ namespace UI.Desktop
 {
     public partial class MateriasDesktop : ApplicationForm
     {
-        private Materias MateriaActual { get; set; }
+        private Materia MateriaActual { get; set; }
         public MateriasDesktop()
         {
             InitializeComponent();
@@ -32,8 +32,8 @@ namespace UI.Desktop
         {
             this.txtID.Text = this.MateriaActual.ID.ToString();
            
-            this.txtDescripcion.Text = this.MateriaActual.descMaterias;
-            this.txtHsSemanales.Text = this.MateriaActual.Hs_Semanales;
+            this.txtDescripcion.Text = this.MateriaActual.Descripcion;
+            this.txtHsSemanales.Text = this.MateriaActual.HorasSemanales.ToString();
 
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
             else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
@@ -45,7 +45,7 @@ namespace UI.Desktop
         {
             if (Modo == ModoForm.Alta)
             {
-                this.MateriaActual = new Materias() { State = BusinessEntity.States.New };
+                this.MateriaActual = new Materia() { State = BusinessEntity.States.New };
             }
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
@@ -55,8 +55,8 @@ namespace UI.Desktop
                     this.MateriaActual.State = BusinessEntity.States.Modified;
                 }
                 
-                this.MateriaActual.descMateria = this.txtDescripcion.Text;
-                this.MateriaActual.hs_semanales = this.txtHsSemanales.Text;
+                this.MateriaActual.Descripcion = this.txtDescripcion.Text;
+                this.MateriaActual.HorasSemanales = int.Parse(this.txtHsSemanales.Text);
 
                 
             }
