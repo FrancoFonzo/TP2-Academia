@@ -19,16 +19,6 @@ namespace UI.Desktop
             this.Listar();
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            this.Listar();
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             MateriasDesktop formMaterias = new MateriasDesktop(ApplicationForm.ModoForm.Alta);
@@ -55,7 +45,7 @@ namespace UI.Desktop
             formMaterias.ShowDialog();
             this.Listar();
         }
-        public void Listar()
+        public override void Listar()
         {
             try
             {
@@ -68,6 +58,5 @@ namespace UI.Desktop
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }

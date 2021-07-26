@@ -45,7 +45,7 @@ namespace UI.Desktop
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panelFormLoader = new System.Windows.Forms.Panel();
-            this.panelAdministracion = new System.Windows.Forms.Panel();
+            this.panelAdminReportes = new System.Windows.Forms.Panel();
             this.btnReporteCursos = new System.Windows.Forms.Button();
             this.btnReportePlanes = new System.Windows.Forms.Button();
             this.btnCursos = new System.Windows.Forms.Button();
@@ -60,12 +60,16 @@ namespace UI.Desktop
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.panelBottom = new System.Windows.Forms.Panel();
+            this.btnActualizar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelPerfil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             this.panelTitulo.SuspendLayout();
-            this.panelAdministracion.SuspendLayout();
+            this.panelAdminReportes.SuspendLayout();
             this.panelTop.SuspendLayout();
+            this.panelBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -171,6 +175,8 @@ namespace UI.Desktop
             this.btnReportes.Text = "Reportes";
             this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
+            this.btnReportes.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnNotas
             // 
@@ -234,7 +240,7 @@ namespace UI.Desktop
             this.btnAdministracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdministracion.UseVisualStyleBackColor = true;
             this.btnAdministracion.Click += new System.EventHandler(this.btnAdministracion_Click);
-            this.btnAdministracion.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.btnAdministracion.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // panelPerfil
             // 
@@ -334,30 +340,32 @@ namespace UI.Desktop
             this.panelFormLoader.Location = new System.Drawing.Point(250, 140);
             this.panelFormLoader.Margin = new System.Windows.Forms.Padding(0);
             this.panelFormLoader.Name = "panelFormLoader";
-            this.panelFormLoader.Size = new System.Drawing.Size(832, 513);
+            this.panelFormLoader.Size = new System.Drawing.Size(832, 462);
             this.panelFormLoader.TabIndex = 8;
+            this.panelFormLoader.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.panelFormLoader_ControlAdded);
+            this.panelFormLoader.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.panelFormLoader_ControlRemoved);
             // 
-            // panelAdministracion
+            // panelAdminReportes
             // 
-            this.panelAdministracion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panelAdminReportes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.panelAdministracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(90)))));
-            this.panelAdministracion.Controls.Add(this.btnReporteCursos);
-            this.panelAdministracion.Controls.Add(this.btnReportePlanes);
-            this.panelAdministracion.Controls.Add(this.btnCursos);
-            this.panelAdministracion.Controls.Add(this.btnMaterias);
-            this.panelAdministracion.Controls.Add(this.btnPlanes);
-            this.panelAdministracion.Controls.Add(this.btnEspecialidades);
-            this.panelAdministracion.Controls.Add(this.btnDocentes);
-            this.panelAdministracion.Controls.Add(this.btnAlumnos);
-            this.panelAdministracion.Controls.Add(this.btnPersonas);
-            this.panelAdministracion.Controls.Add(this.btnUsuarios);
-            this.panelAdministracion.Location = new System.Drawing.Point(250, 40);
-            this.panelAdministracion.Margin = new System.Windows.Forms.Padding(0);
-            this.panelAdministracion.Name = "panelAdministracion";
-            this.panelAdministracion.Size = new System.Drawing.Size(250, 613);
-            this.panelAdministracion.TabIndex = 9;
-            this.panelAdministracion.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.panelAdminReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(90)))));
+            this.panelAdminReportes.Controls.Add(this.btnReporteCursos);
+            this.panelAdminReportes.Controls.Add(this.btnReportePlanes);
+            this.panelAdminReportes.Controls.Add(this.btnCursos);
+            this.panelAdminReportes.Controls.Add(this.btnMaterias);
+            this.panelAdminReportes.Controls.Add(this.btnPlanes);
+            this.panelAdminReportes.Controls.Add(this.btnEspecialidades);
+            this.panelAdminReportes.Controls.Add(this.btnDocentes);
+            this.panelAdminReportes.Controls.Add(this.btnAlumnos);
+            this.panelAdminReportes.Controls.Add(this.btnPersonas);
+            this.panelAdminReportes.Controls.Add(this.btnUsuarios);
+            this.panelAdminReportes.Location = new System.Drawing.Point(250, 40);
+            this.panelAdminReportes.Margin = new System.Windows.Forms.Padding(0);
+            this.panelAdminReportes.Name = "panelAdminReportes";
+            this.panelAdminReportes.Size = new System.Drawing.Size(250, 613);
+            this.panelAdminReportes.TabIndex = 9;
+            this.panelAdminReportes.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnReporteCursos
             // 
@@ -375,7 +383,7 @@ namespace UI.Desktop
             this.btnReporteCursos.Text = "Reportes Cursos";
             this.btnReporteCursos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReporteCursos.UseVisualStyleBackColor = true;
-            this.btnReporteCursos.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.btnReporteCursos.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnReportePlanes
             // 
@@ -393,7 +401,7 @@ namespace UI.Desktop
             this.btnReportePlanes.Text = "Reportes Planes";
             this.btnReportePlanes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReportePlanes.UseVisualStyleBackColor = true;
-            this.btnReportePlanes.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.btnReportePlanes.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnCursos
             // 
@@ -411,7 +419,7 @@ namespace UI.Desktop
             this.btnCursos.Text = "Cursos";
             this.btnCursos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCursos.UseVisualStyleBackColor = true;
-            this.btnCursos.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.btnCursos.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnMaterias
             // 
@@ -429,7 +437,8 @@ namespace UI.Desktop
             this.btnMaterias.Text = "Materias";
             this.btnMaterias.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnMaterias.UseVisualStyleBackColor = true;
-            this.btnMaterias.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.btnMaterias.Click += new System.EventHandler(this.btnMaterias_Click);
+            this.btnMaterias.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnPlanes
             // 
@@ -447,7 +456,8 @@ namespace UI.Desktop
             this.btnPlanes.Text = "Planes";
             this.btnPlanes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPlanes.UseVisualStyleBackColor = true;
-            this.btnPlanes.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.btnPlanes.Click += new System.EventHandler(this.btnPlanes_Click);
+            this.btnPlanes.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnEspecialidades
             // 
@@ -465,7 +475,8 @@ namespace UI.Desktop
             this.btnEspecialidades.Text = "Especialidades";
             this.btnEspecialidades.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEspecialidades.UseVisualStyleBackColor = true;
-            this.btnEspecialidades.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.btnEspecialidades.Click += new System.EventHandler(this.btnEspecialidades_Click);
+            this.btnEspecialidades.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnDocentes
             // 
@@ -483,7 +494,7 @@ namespace UI.Desktop
             this.btnDocentes.Text = "Docentes";
             this.btnDocentes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDocentes.UseVisualStyleBackColor = true;
-            this.btnDocentes.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.btnDocentes.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnAlumnos
             // 
@@ -501,7 +512,7 @@ namespace UI.Desktop
             this.btnAlumnos.Text = "Alumnos";
             this.btnAlumnos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAlumnos.UseVisualStyleBackColor = true;
-            this.btnAlumnos.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.btnAlumnos.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnPersonas
             // 
@@ -519,7 +530,8 @@ namespace UI.Desktop
             this.btnPersonas.Text = "Personas";
             this.btnPersonas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPersonas.UseVisualStyleBackColor = true;
-            this.btnPersonas.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.btnPersonas.Click += new System.EventHandler(this.btnPersonas_Click);
+            this.btnPersonas.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnUsuarios
             // 
@@ -538,7 +550,7 @@ namespace UI.Desktop
             this.btnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUsuarios.UseVisualStyleBackColor = true;
             this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
-            this.btnUsuarios.MouseLeave += new System.EventHandler(this.panelAdministracion_MouseLeave);
+            this.btnUsuarios.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // panelTop
             // 
@@ -552,6 +564,7 @@ namespace UI.Desktop
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1082, 40);
             this.panelTop.TabIndex = 10;
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
             // 
             // btnMinimizar
             // 
@@ -604,6 +617,45 @@ namespace UI.Desktop
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // panelBottom
+            // 
+            this.panelBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.panelBottom.Controls.Add(this.btnActualizar);
+            this.panelBottom.Controls.Add(this.btnSalir);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Location = new System.Drawing.Point(250, 602);
+            this.panelBottom.Margin = new System.Windows.Forms.Padding(0);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(832, 51);
+            this.panelBottom.TabIndex = 12;
+            this.panelBottom.Visible = false;
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnActualizar.AutoSize = true;
+            this.btnActualizar.Location = new System.Drawing.Point(657, 14);
+            this.btnActualizar.Margin = new System.Windows.Forms.Padding(10, 10, 0, 10);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(80, 27);
+            this.btnActualizar.TabIndex = 1;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalir.AutoSize = true;
+            this.btnSalir.Location = new System.Drawing.Point(747, 14);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(10);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 27);
+            this.btnSalir.TabIndex = 0;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -611,10 +663,11 @@ namespace UI.Desktop
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1082, 653);
             this.Controls.Add(this.panelFormLoader);
+            this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.panelTitulo);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelTop);
-            this.Controls.Add(this.panelAdministracion);
+            this.Controls.Add(this.panelAdminReportes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
             this.Name = "formMain";
@@ -627,9 +680,11 @@ namespace UI.Desktop
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).EndInit();
             this.panelTitulo.ResumeLayout(false);
             this.panelTitulo.PerformLayout();
-            this.panelAdministracion.ResumeLayout(false);
-            this.panelAdministracion.PerformLayout();
+            this.panelAdminReportes.ResumeLayout(false);
+            this.panelAdminReportes.PerformLayout();
             this.panelTop.ResumeLayout(false);
+            this.panelBottom.ResumeLayout(false);
+            this.panelBottom.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -651,7 +706,7 @@ namespace UI.Desktop
         private System.Windows.Forms.PictureBox picPerfil;
         private System.Windows.Forms.Label lblRol;
         private System.Windows.Forms.Panel panelFormLoader;
-        private System.Windows.Forms.Panel panelAdministracion;
+        private System.Windows.Forms.Panel panelAdminReportes;
         private System.Windows.Forms.Button btnCursos;
         private System.Windows.Forms.Button btnMaterias;
         private System.Windows.Forms.Button btnPlanes;
@@ -667,5 +722,8 @@ namespace UI.Desktop
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnMinimizar;
         private System.Windows.Forms.Button btnMaximizar;
+        private System.Windows.Forms.Panel panelBottom;
+        private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.Button btnSalir;
     }
 }

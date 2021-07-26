@@ -31,21 +31,17 @@ namespace UI.Desktop
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Materias));
             this.tsMaterias = new System.Windows.Forms.ToolStrip();
-            this.Nuevo = new System.Windows.Forms.ToolStripButton();
-            this.Editar = new System.Windows.Forms.ToolStripButton();
-            this.Eliminar = new System.Windows.Forms.ToolStripButton();
-            this.btnActualizar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
+            this.tsbAgregar = new System.Windows.Forms.ToolStripButton();
+            this.tsbEditar = new System.Windows.Forms.ToolStripButton();
+            this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.dgvMaterias = new System.Windows.Forms.DataGridView();
             this.ID_Materias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Desc_Materias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hs_semanales = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hs_totales = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_plan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelBottom = new System.Windows.Forms.Panel();
             this.tsMaterias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterias)).BeginInit();
-            this.panelBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsMaterias
@@ -53,67 +49,49 @@ namespace UI.Desktop
             this.tsMaterias.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsMaterias.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsMaterias.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Nuevo,
-            this.Editar,
-            this.Eliminar});
+            this.tsbAgregar,
+            this.tsbEditar,
+            this.tsbEliminar});
             this.tsMaterias.Location = new System.Drawing.Point(0, 0);
             this.tsMaterias.Name = "tsMaterias";
             this.tsMaterias.Size = new System.Drawing.Size(800, 28);
             this.tsMaterias.TabIndex = 8;
             // 
-            // Nuevo
+            // tsbAgregar
             // 
-            this.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Nuevo.Image = ((System.Drawing.Image)(resources.GetObject("Nuevo.Image")));
-            this.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Nuevo.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.Nuevo.Name = "Nuevo";
-            this.Nuevo.Size = new System.Drawing.Size(29, 24);
-            this.Nuevo.Text = "toolStripButton1";
-            this.Nuevo.ToolTipText = "Nuevo";
+            this.tsbAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tsbAgregar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAgregar.Image = global::UI.Desktop.Properties.Resources.plus_math_32;
+            this.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAgregar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tsbAgregar.Name = "tsbAgregar";
+            this.tsbAgregar.Size = new System.Drawing.Size(29, 24);
+            this.tsbAgregar.Text = "toolStripButton1";
+            this.tsbAgregar.ToolTipText = "Agregar";
             // 
-            // Editar
+            // tsbEditar
             // 
-            this.Editar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Editar.Image = ((System.Drawing.Image)(resources.GetObject("Editar.Image")));
-            this.Editar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Editar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.Editar.Name = "Editar";
-            this.Editar.Size = new System.Drawing.Size(29, 24);
-            this.Editar.Text = "toolStripButton2";
-            this.Editar.ToolTipText = "Editar";
+            this.tsbEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tsbEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbEditar.Image = global::UI.Desktop.Properties.Resources.edit_32;
+            this.tsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEditar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tsbEditar.Name = "tsbEditar";
+            this.tsbEditar.Size = new System.Drawing.Size(29, 24);
+            this.tsbEditar.Text = "toolStripButton2";
+            this.tsbEditar.ToolTipText = "Editar";
             // 
-            // Eliminar
+            // tsbEliminar
             // 
-            this.Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Eliminar.Image")));
-            this.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Eliminar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Size = new System.Drawing.Size(29, 24);
-            this.Eliminar.Text = "toolStripButton3";
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActualizar.Location = new System.Drawing.Point(622, 4);
-            this.btnActualizar.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(93, 23);
-            this.btnActualizar.TabIndex = 6;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = true;
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalir.Location = new System.Drawing.Point(720, 4);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(5);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 7;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
+            this.tsbEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tsbEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbEliminar.Image = global::UI.Desktop.Properties.Resources.delete_32;
+            this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEliminar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tsbEliminar.Name = "tsbEliminar";
+            this.tsbEliminar.Size = new System.Drawing.Size(29, 24);
+            this.tsbEliminar.Text = "toolStripButton3";
+            this.tsbEliminar.ToolTipText = "Eliminar";
             // 
             // dgvMaterias
             // 
@@ -174,24 +152,14 @@ namespace UI.Desktop
             this.ID_plan.Name = "ID_plan";
             this.ID_plan.ReadOnly = true;
             // 
-            // panelBottom
-            // 
-            this.panelBottom.Controls.Add(this.btnSalir);
-            this.panelBottom.Controls.Add(this.btnActualizar);
-            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Location = new System.Drawing.Point(0, 418);
-            this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(800, 32);
-            this.panelBottom.TabIndex = 9;
-            // 
             // Materias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.dgvMaterias);
             this.Controls.Add(this.tsMaterias);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Materias";
@@ -199,7 +167,6 @@ namespace UI.Desktop
             this.tsMaterias.ResumeLayout(false);
             this.tsMaterias.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterias)).EndInit();
-            this.panelBottom.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,17 +175,14 @@ namespace UI.Desktop
         #endregion
 
         private System.Windows.Forms.ToolStrip tsMaterias;
-        private System.Windows.Forms.ToolStripButton Nuevo;
-        private System.Windows.Forms.ToolStripButton Editar;
-        private System.Windows.Forms.ToolStripButton Eliminar;
-        private System.Windows.Forms.Button btnActualizar;
-        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.ToolStripButton tsbAgregar;
+        private System.Windows.Forms.ToolStripButton tsbEditar;
+        private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.DataGridView dgvMaterias;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Materias;
         private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Materias;
         private System.Windows.Forms.DataGridViewTextBoxColumn hs_semanales;
         private System.Windows.Forms.DataGridViewTextBoxColumn hs_totales;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_plan;
-        private System.Windows.Forms.Panel panelBottom;
     }
 }

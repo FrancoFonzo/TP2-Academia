@@ -12,8 +12,9 @@ namespace UI.Desktop
 
         public UsuarioDesktop()
         {
-            InitializeComponent();          
-            this.cbxPersona.DataSource = new PersonaLogic().GetPersonasSinUsuario();
+            InitializeComponent();
+            //this.cbxPersona.DataSource = new PersonaLogic().GetPersonasSinUsuario();
+            this.cbxPersona.DataSource = new PersonaLogic().GetAll();
         }
 
         public UsuarioDesktop(ModoForm modo) : this()
@@ -34,6 +35,8 @@ namespace UI.Desktop
             this.chkHabilitado.Checked = this.UsuarioActual.Habilitado;
             this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
             this.txtClave.Text = this.UsuarioActual.Clave;
+            this.cbxPersona.SelectedIndex = this.UsuarioActual.MiPersona.ID-1;
+            //this.cbxPersona.Text = this.UsuarioActual.NombrePersona;
 
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
             else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
@@ -117,11 +120,6 @@ namespace UI.Desktop
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void tlUsuario_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

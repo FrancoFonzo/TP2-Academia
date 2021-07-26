@@ -29,19 +29,14 @@ namespace UI.Desktop
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Especialidades));
             this.tsEspecialidades = new System.Windows.Forms.ToolStrip();
-            this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
+            this.tsbAgregar = new System.Windows.Forms.ToolStripButton();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
-            this.tlEspecialidades = new System.Windows.Forms.TableLayoutPanel();
-            this.btnActualizar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
             this.dgvEspecialidades = new System.Windows.Forms.DataGridView();
             this.id_especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.desc_especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsEspecialidades.SuspendLayout();
-            this.tlEspecialidades.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspecialidades)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,89 +45,53 @@ namespace UI.Desktop
             this.tsEspecialidades.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsEspecialidades.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsEspecialidades.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbNuevo,
+            this.tsbAgregar,
             this.tsbEditar,
             this.tsbEliminar});
             this.tsEspecialidades.Location = new System.Drawing.Point(0, 0);
             this.tsEspecialidades.Name = "tsEspecialidades";
-            this.tsEspecialidades.Size = new System.Drawing.Size(732, 27);
+            this.tsEspecialidades.Size = new System.Drawing.Size(732, 28);
             this.tsEspecialidades.TabIndex = 0;
             this.tsEspecialidades.Text = "toolStrip1";
             // 
-            // tsbNuevo
+            // tsbAgregar
             // 
-            this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevo.Image")));
-            this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNuevo.Name = "tsbNuevo";
-            this.tsbNuevo.Size = new System.Drawing.Size(29, 24);
-            this.tsbNuevo.Text = "toolStripButton1";
-            this.tsbNuevo.ToolTipText = "Nuevo";
-            this.tsbNuevo.Click += new System.EventHandler(this.tsbNuevo_Click);
+            this.tsbAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tsbAgregar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAgregar.Image = global::UI.Desktop.Properties.Resources.plus_math_32;
+            this.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAgregar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tsbAgregar.Name = "tsbAgregar";
+            this.tsbAgregar.Size = new System.Drawing.Size(29, 27);
+            this.tsbAgregar.Text = "Agregar";
+            this.tsbAgregar.ToolTipText = "Agregar";
+            this.tsbAgregar.Click += new System.EventHandler(this.tsbNuevo_Click);
             // 
             // tsbEditar
             // 
+            this.tsbEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.tsbEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbEditar.Image = ((System.Drawing.Image)(resources.GetObject("tsbEditar.Image")));
+            this.tsbEditar.Image = global::UI.Desktop.Properties.Resources.edit_32;
             this.tsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEditar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEditar.Name = "tsbEditar";
-            this.tsbEditar.Size = new System.Drawing.Size(29, 24);
-            this.tsbEditar.Text = "toolStripButton1";
+            this.tsbEditar.Size = new System.Drawing.Size(29, 27);
+            this.tsbEditar.Text = "Editar";
             this.tsbEditar.ToolTipText = "Editar";
             this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
             // 
             // tsbEliminar
             // 
+            this.tsbEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.tsbEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbEliminar.Image = ((System.Drawing.Image)(resources.GetObject("tsbEliminar.Image")));
+            this.tsbEliminar.Image = global::UI.Desktop.Properties.Resources.delete_32;
             this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEliminar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEliminar.Name = "tsbEliminar";
-            this.tsbEliminar.Size = new System.Drawing.Size(29, 24);
-            this.tsbEliminar.Text = "toolStripButton1";
+            this.tsbEliminar.Size = new System.Drawing.Size(29, 27);
+            this.tsbEliminar.Text = "Eliminar";
             this.tsbEliminar.ToolTipText = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
-            // 
-            // tlEspecialidades
-            // 
-            this.tlEspecialidades.ColumnCount = 2;
-            this.tlEspecialidades.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlEspecialidades.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlEspecialidades.Controls.Add(this.btnActualizar, 0, 0);
-            this.tlEspecialidades.Controls.Add(this.btnSalir, 1, 0);
-            this.tlEspecialidades.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tlEspecialidades.Location = new System.Drawing.Point(0, 365);
-            this.tlEspecialidades.Name = "tlEspecialidades";
-            this.tlEspecialidades.RowCount = 1;
-            this.tlEspecialidades.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlEspecialidades.Size = new System.Drawing.Size(732, 38);
-            this.tlEspecialidades.TabIndex = 1;
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActualizar.AutoSize = true;
-            this.btnActualizar.Location = new System.Drawing.Point(558, 6);
-            this.btnActualizar.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(80, 27);
-            this.btnActualizar.TabIndex = 1;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = true;
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalir.AutoSize = true;
-            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(643, 6);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(5);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(84, 27);
-            this.btnSalir.TabIndex = 0;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // dgvEspecialidades
             // 
@@ -143,16 +102,16 @@ namespace UI.Desktop
             this.dgvEspecialidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEspecialidades.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_especialidad,
-            this.desc_especialidad});
+            this.descripcion});
             this.dgvEspecialidades.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvEspecialidades.Location = new System.Drawing.Point(0, 27);
+            this.dgvEspecialidades.Location = new System.Drawing.Point(0, 28);
             this.dgvEspecialidades.MultiSelect = false;
             this.dgvEspecialidades.Name = "dgvEspecialidades";
             this.dgvEspecialidades.ReadOnly = true;
             this.dgvEspecialidades.RowHeadersWidth = 51;
             this.dgvEspecialidades.RowTemplate.Height = 24;
             this.dgvEspecialidades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEspecialidades.Size = new System.Drawing.Size(732, 338);
+            this.dgvEspecialidades.Size = new System.Drawing.Size(732, 375);
             this.dgvEspecialidades.TabIndex = 1;
             // 
             // id_especialidad
@@ -167,32 +126,28 @@ namespace UI.Desktop
             this.id_especialidad.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.id_especialidad.Width = 50;
             // 
-            // desc_especialidad
+            // descripcion
             // 
-            this.desc_especialidad.DataPropertyName = "DescEspecialidad";
-            this.desc_especialidad.HeaderText = "Descripcion";
-            this.desc_especialidad.MinimumWidth = 6;
-            this.desc_especialidad.Name = "desc_especialidad";
-            this.desc_especialidad.ReadOnly = true;
+            this.descripcion.DataPropertyName = "Descripcion";
+            this.descripcion.HeaderText = "Descripcion";
+            this.descripcion.MinimumWidth = 6;
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
             // 
             // Especialidades
             // 
-            this.AcceptButton = this.btnActualizar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnSalir;
             this.ClientSize = new System.Drawing.Size(732, 403);
             this.Controls.Add(this.dgvEspecialidades);
-            this.Controls.Add(this.tlEspecialidades);
             this.Controls.Add(this.tsEspecialidades);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Especialidades";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Especialidades";
             this.Load += new System.EventHandler(this.Especialidades_Load);
             this.tsEspecialidades.ResumeLayout(false);
             this.tsEspecialidades.PerformLayout();
-            this.tlEspecialidades.ResumeLayout(false);
-            this.tlEspecialidades.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspecialidades)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,14 +157,11 @@ namespace UI.Desktop
         #endregion
 
         private System.Windows.Forms.ToolStrip tsEspecialidades;
-        private System.Windows.Forms.TableLayoutPanel tlEspecialidades;
-        private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.DataGridView dgvEspecialidades;
-        private System.Windows.Forms.ToolStripButton tsbNuevo;
+        private System.Windows.Forms.ToolStripButton tsbAgregar;
         private System.Windows.Forms.ToolStripButton tsbEditar;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_especialidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn desc_especialidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
     }
 }

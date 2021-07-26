@@ -13,7 +13,7 @@ namespace UI.Desktop
             dgvEspecialidades.AutoGenerateColumns = false;
         }
 
-        public void Listar()
+        public override void Listar()
         {
             try
             {
@@ -29,11 +29,6 @@ namespace UI.Desktop
         private void Especialidades_Load(object sender, EventArgs e)
         {
             this.Listar();
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e)
@@ -60,11 +55,6 @@ namespace UI.Desktop
             int ID = ((Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
             EspecialidadDesktop formEspecialidad = new EspecialidadDesktop(ID, modo);
             formEspecialidad.ShowDialog();
-            this.Listar();
-        }
-
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
             this.Listar();
         }
     }

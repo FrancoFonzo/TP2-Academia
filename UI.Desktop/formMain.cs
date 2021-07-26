@@ -1,13 +1,9 @@
 ﻿using Business.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace UI.Desktop
 {
@@ -15,10 +11,15 @@ namespace UI.Desktop
     {
         public Usuario UsuarioActual { get; set; }
 
+        [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
+        private static extern void ReleaseCapture();
+        [DllImport("user32.dll", EntryPoint = "SendMessage")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
         public formMain()
         {
             InitializeComponent();
-            panelAdministracion.Visible = false;
+            panelAdminReportes.Visible = false;
             txtBusqueda.Visible = false;
         }
         public formMain(Usuario UsuarioActual) : this()
@@ -32,6 +33,12 @@ namespace UI.Desktop
             lblUsuario.Text = $"Usuario: {UsuarioActual.NombreUsuario}";
             lblRol.Text = $"Rol: {UsuarioActual.MiPersona.Tipo.ToString()}";
             // TODO: Segun permisos del usuario cargar x botones
+        }
+
+        private void panelTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -65,18 +72,33 @@ namespace UI.Desktop
 
         private void btnAdministracion_Click(object sender, EventArgs e)
         {
-            panelAdministracion.BringToFront();
-            panelAdministracion.Visible = true;
+            panelAdminReportes.BringToFront();
+            panelAdminReportes.Visible = true;
+            btnReporteCursos.Visible = false;
+            btnReportePlanes.Visible = false;
+            List<Button> btns = panelAdminReportes.Controls.OfType<Button>().Where(c=> !c.Text.Contains("Reportes")).ToList();
+            btns.ForEach(b=> b.Visible = true);
         }
 
-        private void panelAdministracion_MouseLeave(object sender, EventArgs e)
+        private void panelAdminReportes_MouseLeave(object sender, EventArgs e)
         {
-            if (!panelAdministracion.ClientRectangle.Contains(panelAdministracion.PointToClient(Cursor.Position))
-                && !btnAdministracion.ClientRectangle.Contains(btnAdministracion.PointToClient(Cursor.Position)))
+            if (panelAdminReportes.ClientRectangle.Contains(panelAdminReportes.PointToClient(Cursor.Position)))
             {
-                panelAdministracion.SendToBack();
-                panelAdministracion.Visible = false;
+                return;
             }
+            if (!btnReporteCursos.Visible)
+            {
+                if (btnAdministracion.ClientRectangle.Contains(btnAdministracion.PointToClient(Cursor.Position)))
+                {
+                    return;
+                }
+            }
+            else if (btnReportes.ClientRectangle.Contains(btnReportes.PointToClient(Cursor.Position)))
+            {
+                return;
+            }
+            panelAdminReportes.SendToBack();
+            panelAdminReportes.Visible = false;
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
@@ -92,6 +114,97 @@ namespace UI.Desktop
             this.panelFormLoader.Controls.Add(formUsuarios);
             lblTitulo.Text = formUsuarios.Text;
             formUsuarios.Show();
+        }
+
+        private void btnPersonas_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            Personas formPersonas = new Personas()
+            {
+                Dock = DockStyle.Fill,
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                TopMost = true
+            };
+            this.panelFormLoader.Controls.Add(formPersonas);
+            lblTitulo.Text = "Personas";
+            formPersonas.Show();
+        }
+
+        private void btnEspecialidades_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            Especialidades formEspecialidades = new Especialidades()
+            {
+                Dock = DockStyle.Fill,
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                TopMost = true
+            };
+            this.panelFormLoader.Controls.Add(formEspecialidades);
+            lblTitulo.Text = "Especialidades";
+            formEspecialidades.Show();
+        }
+
+        private void btnPlanes_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            Planes formPlanes = new Planes()
+            {
+                Dock = DockStyle.Fill,
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                TopMost = true
+            };
+            this.panelFormLoader.Controls.Add(formPlanes);
+            lblTitulo.Text = "Planes";
+            formPlanes.Show();
+        }
+
+        private void btnMaterias_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            Materias formMaterias = new Materias()
+            {
+                Dock = DockStyle.Fill,
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                TopMost = true
+            };
+            this.panelFormLoader.Controls.Add(formMaterias);
+            lblTitulo.Text = "Materias";
+            formMaterias.Show();
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            panelAdminReportes.BringToFront();
+            panelAdminReportes.Visible = true;
+            List<Button> btns = panelAdminReportes.Controls.OfType<Button>().Where(c => !c.Text.Contains("Reportes")).ToList();
+            btns.ForEach(b => b.Visible = false);
+            btnReporteCursos.Visible = true;
+            btnReportePlanes.Visible = true;
+        }
+
+        private void panelFormLoader_ControlAdded(object sender, ControlEventArgs e)
+        {
+            panelBottom.Visible = true;
+        }
+
+        private void panelFormLoader_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            panelBottom.Visible = false;
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            panelFormLoader.Controls.Clear();
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            ApplicationForm form = panelFormLoader.Controls.OfType<ApplicationForm>().SingleOrDefault();
+            form.Listar();
         }
     }
 }

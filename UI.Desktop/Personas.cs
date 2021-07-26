@@ -44,16 +44,6 @@ namespace UI.Desktop
             openForm(ApplicationForm.ModoForm.Baja);
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            this.Listar();
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void openForm(ApplicationForm.ModoForm modo)
         {
             int ID = ((Persona)this.dgvPersonas.SelectedRows[0].DataBoundItem).ID;
@@ -62,7 +52,7 @@ namespace UI.Desktop
             this.Listar();
         }
 
-        public void Listar()
+        public override void Listar()
         {
             try
             {

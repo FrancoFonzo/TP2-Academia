@@ -32,6 +32,8 @@ namespace UI.Desktop
         public virtual void GuardarCambios() { }
         public virtual bool Validar() { return false; }
 
+        public virtual void Listar() { }
+
         public void Notificar(string titulo, string mensaje, MessageBoxButtons botones, MessageBoxIcon icono)
         {
             MessageBox.Show(mensaje, titulo, botones, icono);
