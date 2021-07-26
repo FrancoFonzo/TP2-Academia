@@ -68,10 +68,5 @@ namespace UI.Desktop
             formUsuario.ShowDialog();
             this.Listar();
         }
-
-        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
