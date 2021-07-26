@@ -11,7 +11,7 @@ namespace Business.Entities
         public string descMateria { get; set; }
         public int hs_semanales { get; set; }
         public int hs_totales { get; set; }
-        public int ID_plan { get; set; }
+        
         
         
     }
