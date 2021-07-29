@@ -13,8 +13,6 @@ namespace UI.Desktop
         public UsuarioDesktop()
         {
             InitializeComponent();
-            //this.cbxPersona.DataSource = new PersonaLogic().GetPersonasSinUsuario();
-            this.cbxPersona.DataSource = new PersonaLogic().GetAll();
         }
 
         public UsuarioDesktop(ModoForm modo) : this()
@@ -31,11 +29,15 @@ namespace UI.Desktop
 
         public override void MapearDeDatos() 
         {
+            List<Persona> personas = new PersonaLogic().GetPersonasSinUsuario();
+            personas.Add(this.UsuarioActual.MiPersona);
+            this.cbxPersona.DataSource = personas;
+
             this.txtID.Text = this.UsuarioActual.ID.ToString();
             this.chkHabilitado.Checked = this.UsuarioActual.Habilitado;
             this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
             this.txtClave.Text = this.UsuarioActual.Clave;
-            this.cbxPersona.SelectedIndex = this.UsuarioActual.MiPersona.ID-1;
+            this.cbxPersona.SelectedValue = this.UsuarioActual.MiPersona.ID;
             //this.cbxPersona.Text = this.UsuarioActual.NombrePersona;
 
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
@@ -46,6 +48,8 @@ namespace UI.Desktop
 
         public override void MapearADatos() 
         {
+            this.cbxPersona.DataSource = new PersonaLogic().GetAll();
+
             if (Modo == ModoForm.Alta)
             {
                 this.UsuarioActual = new Usuario() { State = BusinessEntity.States.New };

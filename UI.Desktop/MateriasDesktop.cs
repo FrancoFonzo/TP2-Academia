@@ -13,7 +13,7 @@ namespace UI.Desktop
         public MateriasDesktop()
         {
             InitializeComponent();
-          
+            this.cbxPlan.DataSource = new PlanLogic().GetAll();
         }
       
         public MateriasDesktop(ModoForm modo) : this()
@@ -31,9 +31,10 @@ namespace UI.Desktop
         public override void MapearDeDatos()
         {
             this.txtID.Text = this.MateriaActual.ID.ToString();
-           
             this.txtDescripcion.Text = this.MateriaActual.Descripcion;
             this.txtHsSemanales.Text = this.MateriaActual.HorasSemanales.ToString();
+            this.txtHsTotales.Text = this.MateriaActual.HorasTotales.ToString();
+            this.cbxPlan.SelectedValue = this.MateriaActual.MiPlan.ID;
 
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
             else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";

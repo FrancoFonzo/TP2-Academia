@@ -46,7 +46,7 @@ namespace Business.Logic
 
         public static bool ValidarClave(string clave_usr, string txt_clave)
         {
-            if (!clave_usr.Equals(txt_clave)) return false;
+            if (clave_usr == null || !clave_usr.Equals(txt_clave)) return false;
             return true;
         }
     }

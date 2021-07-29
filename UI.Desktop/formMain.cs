@@ -30,8 +30,12 @@ namespace UI.Desktop
         private void formMain_Load(object sender, EventArgs e)
         {
             lblTitulo.Text = $"Bienvenido {UsuarioActual.NombreUsuario}";
-            lblUsuario.Text = $"Usuario: {UsuarioActual.NombreUsuario}";
-            lblRol.Text = $"Rol: {UsuarioActual.MiPersona.Tipo.ToString()}";
+            lblUsuario.Text = $"{lblUsuario.Text} {UsuarioActual.NombreUsuario}";
+            if (UsuarioActual.MiPersona != null)
+            {
+                lblLegajo.Text = $"{lblLegajo.Text} {UsuarioActual.MiPersona.Legajo}";
+                lblPersona.Text = $"{lblPersona.Text} {UsuarioActual.MiPersona.NombreCompleto}";
+            }
             // TODO: Segun permisos del usuario cargar x botones
         }
 
@@ -194,6 +198,7 @@ namespace UI.Desktop
         private void panelFormLoader_ControlRemoved(object sender, ControlEventArgs e)
         {
             panelBottom.Visible = false;
+            lblTitulo.Text = "";
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

@@ -32,7 +32,7 @@ namespace UI.Desktop
         {
             this.txtID.Text = this.PlanActual.ID.ToString();
             this.txtDescripcion.Text = this.PlanActual.Descripcion;
-            this.cbxEspecialidad.Text = this.PlanActual.MiEspecialidad.Descripcion;
+            this.cbxEspecialidad.SelectedValue = this.PlanActual.MiEspecialidad.ID;
 
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
             else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";

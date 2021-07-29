@@ -13,7 +13,7 @@ namespace Business.Entities
         public Persona MiPersona { get; set; }
         public bool Habilitado { get; set; }
 
-        // Propiedades para bindear a columnas de dgvUsuarios (alguna otra manera?)
+        // Para Bind a dgvUsuarios
         public string NombrePersona 
         { 
             get 

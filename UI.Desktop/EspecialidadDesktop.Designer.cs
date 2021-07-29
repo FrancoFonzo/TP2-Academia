@@ -65,10 +65,11 @@ namespace UI.Desktop
             // 
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtID.Cursor = System.Windows.Forms.Cursors.No;
-            this.txtID.Location = new System.Drawing.Point(91, 11);
+            this.txtID.Location = new System.Drawing.Point(93, 11);
+            this.txtID.Margin = new System.Windows.Forms.Padding(5);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(338, 22);
+            this.txtID.Size = new System.Drawing.Size(334, 22);
             this.txtID.TabIndex = 1;
             // 
             // lblID
@@ -95,9 +96,10 @@ namespace UI.Desktop
             // txtDescripcion
             // 
             this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescripcion.Location = new System.Drawing.Point(91, 56);
+            this.txtDescripcion.Location = new System.Drawing.Point(93, 56);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(5);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(338, 22);
+            this.txtDescripcion.Size = new System.Drawing.Size(334, 22);
             this.txtDescripcion.TabIndex = 3;
             // 
             // btnCancelar

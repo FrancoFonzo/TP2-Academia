@@ -50,7 +50,6 @@ namespace UI.Desktop
             try
             {
                 this.dgvMaterias.DataSource = new MateriaLogic().GetAll();
-                
             }
             catch (Exception)
             {

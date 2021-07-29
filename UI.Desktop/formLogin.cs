@@ -90,11 +90,8 @@ namespace UI.Desktop
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            Notificar("Login", "Usted ha ingresado al sistema correctamente.",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.DialogResult = DialogResult.OK;
             return true;
-
         }
     }
 

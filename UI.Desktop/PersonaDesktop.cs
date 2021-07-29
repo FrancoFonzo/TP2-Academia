@@ -38,6 +38,7 @@ namespace UI.Desktop
             this.txtDireccion.Text = this.PersonaActual.Direccion;
             this.txtTelefono.Text = this.PersonaActual.Telefono;
             this.dateNacimiento.Value = this.PersonaActual.FechaNacimiento;
+            this.cbxTipo.SelectedIndex = (int) this.PersonaActual.Tipo;
             
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
             else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";

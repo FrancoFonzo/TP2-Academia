@@ -50,20 +50,20 @@ namespace UI.Desktop
             // txtClave
             // 
             this.txtClave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClave.Location = new System.Drawing.Point(66, 64);
-            this.txtClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtClave.Location = new System.Drawing.Point(68, 81);
+            this.txtClave.Margin = new System.Windows.Forms.Padding(5);
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
-            this.txtClave.Size = new System.Drawing.Size(248, 22);
+            this.txtClave.Size = new System.Drawing.Size(350, 22);
             this.txtClave.TabIndex = 4;
             // 
             // txtUsuario
             // 
             this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUsuario.Location = new System.Drawing.Point(66, 34);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtUsuario.Location = new System.Drawing.Point(68, 44);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(5);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(248, 22);
+            this.txtUsuario.Size = new System.Drawing.Size(350, 22);
             this.txtUsuario.TabIndex = 8;
             // 
             // cbxPersona
@@ -73,10 +73,10 @@ namespace UI.Desktop
             this.cbxPersona.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxPersona.DisplayMember = "NombreCompleto";
             this.cbxPersona.FormattingEnabled = true;
-            this.cbxPersona.Location = new System.Drawing.Point(432, 33);
-            this.cbxPersona.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxPersona.Location = new System.Drawing.Point(555, 43);
+            this.cbxPersona.Margin = new System.Windows.Forms.Padding(5);
             this.cbxPersona.Name = "cbxPersona";
-            this.cbxPersona.Size = new System.Drawing.Size(248, 24);
+            this.cbxPersona.Size = new System.Drawing.Size(351, 24);
             this.cbxPersona.TabIndex = 6;
             this.cbxPersona.ValueMember = "ID";
             // 
@@ -84,7 +84,8 @@ namespace UI.Desktop
             // 
             this.lblPersona.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblPersona.AutoSize = true;
-            this.lblPersona.Location = new System.Drawing.Point(320, 36);
+            this.lblPersona.Location = new System.Drawing.Point(427, 47);
+            this.lblPersona.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPersona.Name = "lblPersona";
             this.lblPersona.Size = new System.Drawing.Size(61, 17);
             this.lblPersona.TabIndex = 5;
@@ -93,18 +94,19 @@ namespace UI.Desktop
             // txtConfirmarClave
             // 
             this.txtConfirmarClave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtConfirmarClave.Location = new System.Drawing.Point(432, 64);
-            this.txtConfirmarClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtConfirmarClave.Location = new System.Drawing.Point(555, 81);
+            this.txtConfirmarClave.Margin = new System.Windows.Forms.Padding(5);
             this.txtConfirmarClave.Name = "txtConfirmarClave";
             this.txtConfirmarClave.PasswordChar = '*';
-            this.txtConfirmarClave.Size = new System.Drawing.Size(248, 22);
+            this.txtConfirmarClave.Size = new System.Drawing.Size(351, 22);
             this.txtConfirmarClave.TabIndex = 10;
             // 
             // lblConfirmarClave
             // 
             this.lblConfirmarClave.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblConfirmarClave.AutoSize = true;
-            this.lblConfirmarClave.Location = new System.Drawing.Point(320, 66);
+            this.lblConfirmarClave.Location = new System.Drawing.Point(427, 84);
+            this.lblConfirmarClave.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConfirmarClave.Name = "lblConfirmarClave";
             this.lblConfirmarClave.Size = new System.Drawing.Size(106, 17);
             this.lblConfirmarClave.TabIndex = 9;
@@ -114,10 +116,9 @@ namespace UI.Desktop
             // 
             this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(2, 29);
-            this.lblUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsuario.Location = new System.Drawing.Point(3, 47);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(43, 13);
+            this.lblUsuario.Size = new System.Drawing.Size(57, 17);
             this.lblUsuario.TabIndex = 3;
             this.lblUsuario.Text = "Usuario";
             // 
@@ -125,7 +126,8 @@ namespace UI.Desktop
             // 
             this.lblClave.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblClave.AutoSize = true;
-            this.lblClave.Location = new System.Drawing.Point(3, 66);
+            this.lblClave.Location = new System.Drawing.Point(4, 84);
+            this.lblClave.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblClave.Name = "lblClave";
             this.lblClave.Size = new System.Drawing.Size(43, 17);
             this.lblClave.TabIndex = 7;
@@ -135,10 +137,10 @@ namespace UI.Desktop
             // 
             this.btnCancelar.AutoSize = true;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(432, 122);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCancelar.Location = new System.Drawing.Point(554, 150);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(99, 27);
+            this.btnCancelar.Size = new System.Drawing.Size(132, 33);
             this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -147,10 +149,10 @@ namespace UI.Desktop
             // btnAceptar
             // 
             this.btnAceptar.AutoSize = true;
-            this.btnAceptar.Location = new System.Drawing.Point(320, 122);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAceptar.Location = new System.Drawing.Point(427, 150);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(89, 27);
+            this.btnAceptar.Size = new System.Drawing.Size(119, 33);
             this.btnAceptar.TabIndex = 11;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -160,8 +162,8 @@ namespace UI.Desktop
             // 
             this.chkHabilitado.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.chkHabilitado.AutoSize = true;
-            this.chkHabilitado.Location = new System.Drawing.Point(320, 4);
-            this.chkHabilitado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkHabilitado.Location = new System.Drawing.Point(427, 8);
+            this.chkHabilitado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.chkHabilitado.Name = "chkHabilitado";
             this.chkHabilitado.Size = new System.Drawing.Size(93, 21);
             this.chkHabilitado.TabIndex = 2;
@@ -173,11 +175,11 @@ namespace UI.Desktop
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtID.Cursor = System.Windows.Forms.Cursors.No;
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(66, 4);
-            this.txtID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtID.Location = new System.Drawing.Point(68, 7);
+            this.txtID.Margin = new System.Windows.Forms.Padding(5);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(248, 22);
+            this.txtID.Size = new System.Drawing.Size(350, 22);
             this.txtID.TabIndex = 1;
             this.txtID.TabStop = false;
             // 
@@ -185,7 +187,8 @@ namespace UI.Desktop
             // 
             this.lblID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(3, 6);
+            this.lblID.Location = new System.Drawing.Point(4, 10);
+            this.lblID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(21, 17);
             this.lblID.TabIndex = 0;
@@ -214,7 +217,7 @@ namespace UI.Desktop
             this.tlUsuarios.Controls.Add(this.btnAceptar, 2, 4);
             this.tlUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlUsuarios.Location = new System.Drawing.Point(0, 0);
-            this.tlUsuarios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tlUsuarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tlUsuarios.Name = "tlUsuarios";
             this.tlUsuarios.RowCount = 5;
             this.tlUsuarios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -222,39 +225,20 @@ namespace UI.Desktop
             this.tlUsuarios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlUsuarios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlUsuarios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlUsuarios.Size = new System.Drawing.Size(683, 151);
+            this.tlUsuarios.Size = new System.Drawing.Size(911, 186);
             this.tlUsuarios.TabIndex = 0;
-            // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUsuario.Location = new System.Drawing.Point(49, 26);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(186, 20);
-            this.txtUsuario.TabIndex = 8;
-            // 
-            // txtClave
-            // 
-            this.txtClave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClave.Location = new System.Drawing.Point(49, 50);
-            this.txtClave.Margin = new System.Windows.Forms.Padding(2);
-            this.txtClave.Name = "txtClave";
-            this.txtClave.PasswordChar = '*';
-            this.txtClave.Size = new System.Drawing.Size(186, 20);
-            this.txtClave.TabIndex = 4;
             // 
             // UsuarioDesktop
             // 
             this.AcceptButton = this.btnAceptar;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(683, 151);
+            this.ClientSize = new System.Drawing.Size(911, 186);
             this.Controls.Add(this.tlUsuarios);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.MaximizeBox = false;
             this.Name = "UsuarioDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

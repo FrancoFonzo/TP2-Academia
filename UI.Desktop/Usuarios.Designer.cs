@@ -164,6 +164,7 @@ namespace UI.Desktop
             // 
             this.tsUsuarios.AutoSize = false;
             this.tsUsuarios.BackColor = System.Drawing.Color.Transparent;
+            this.tsUsuarios.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tsUsuarios.GripMargin = new System.Windows.Forms.Padding(0);
             this.tsUsuarios.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsUsuarios.ImageScalingSize = new System.Drawing.Size(20, 20);

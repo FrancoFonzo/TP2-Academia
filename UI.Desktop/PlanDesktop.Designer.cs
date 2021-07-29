@@ -104,6 +104,7 @@ namespace UI.Desktop
             this.cbxEspecialidad.Name = "cbxEspecialidad";
             this.cbxEspecialidad.Size = new System.Drawing.Size(354, 24);
             this.cbxEspecialidad.TabIndex = 5;
+            this.cbxEspecialidad.ValueMember = "ID";
             // 
             // lblDescripcion
             // 
