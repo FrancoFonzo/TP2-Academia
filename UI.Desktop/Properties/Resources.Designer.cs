@@ -83,6 +83,16 @@ namespace UI.Desktop.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap exam_32 {
+            get {
+                object obj = ResourceManager.GetObject("exam_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap graduation_cap_32 {
             get {
                 object obj = ResourceManager.GetObject("graduation_cap_32", resourceCulture);
@@ -146,6 +156,16 @@ namespace UI.Desktop.Properties {
         internal static System.Drawing.Bitmap profile_128 {
             get {
                 object obj = ResourceManager.GetObject("profile_128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap report_32 {
+            get {
+                object obj = ResourceManager.GetObject("report_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -142,6 +142,7 @@ namespace UI.Desktop
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReportes.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
+            this.btnReportes.Image = global::UI.Desktop.Properties.Resources.report_32;
             this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReportes.Location = new System.Drawing.Point(0, 403);
             this.btnReportes.Name = "btnReportes";
@@ -164,7 +165,7 @@ namespace UI.Desktop
             this.btnNotas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNotas.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
-            this.btnNotas.Image = global::UI.Desktop.Properties.Resources.test_passed_32;
+            this.btnNotas.Image = global::UI.Desktop.Properties.Resources.exam_32;
             this.btnNotas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNotas.Location = new System.Drawing.Point(0, 352);
             this.btnNotas.Name = "btnNotas";
@@ -185,6 +186,7 @@ namespace UI.Desktop
             this.btnInscripcion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInscripcion.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInscripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
+            this.btnInscripcion.Image = global::UI.Desktop.Properties.Resources.test_passed_32;
             this.btnInscripcion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInscripcion.Location = new System.Drawing.Point(0, 301);
             this.btnInscripcion.Name = "btnInscripcion";
@@ -330,6 +332,7 @@ namespace UI.Desktop
             this.panelFormLoader.Location = new System.Drawing.Point(250, 140);
             this.panelFormLoader.Margin = new System.Windows.Forms.Padding(0);
             this.panelFormLoader.Name = "panelFormLoader";
+            this.panelFormLoader.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.panelFormLoader.Size = new System.Drawing.Size(832, 462);
             this.panelFormLoader.TabIndex = 8;
             this.panelFormLoader.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.panelFormLoader_ControlAdded);
