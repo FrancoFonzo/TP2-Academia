@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapter.cs" />
+    <Compile Include="AlumnoInscripcionAdapter.cs" />
     <Compile Include="alumnos_inscripciones.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
