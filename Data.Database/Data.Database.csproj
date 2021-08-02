@@ -71,6 +71,7 @@
     <Compile Include="alumnos_inscripciones.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DocenteCursoAdapter.cs" />
     <Compile Include="MateriaAdapter.cs" />
     <Compile Include="PlanAdapter.cs" />
     <Compile Include="comisiones.cs">
@@ -143,6 +144,7 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="ModelDB.edmx.diagram">
       <DependentUpon>ModelDB.edmx</DependentUpon>
     </None>
