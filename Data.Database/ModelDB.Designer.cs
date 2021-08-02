@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\kechu\source\repos\FrancoFonzo\TP2-Academia\Data.Database\ModelDB.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\Operador\source\reposNET\TP2 ACADEMIA\TP2-Academia\Data.Database\ModelDB.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.
