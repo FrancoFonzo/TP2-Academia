@@ -25,8 +25,8 @@ namespace Data.Database
             Comision comision = new Comision()
             {
                 ID = com.id_comision,
-                DescComision = com.desc_comision,
-                AnioEspecialidad = com.anio_especialidad,
+                Descripcion = com.desc_comision,
+                AñoEspecialidad = com.anio_especialidad,
                 MiPlan = planData.GetOne(com.id_plan)
             };
             return comision;
@@ -79,8 +79,8 @@ namespace Data.Database
             {
                 var com = db.comisiones.SingleOrDefault(c => c.id_comision == comisiones.ID);
                 if (com == null) return;
-                com.desc_comision = comisiones.DescComision;
-                com.anio_especialidad = comisiones.AnioEspecialidad;
+                com.desc_comision = comisiones.Descripcion;
+                com.anio_especialidad = comisiones.AñoEspecialidad;
 
                 db.SaveChanges();
             }
@@ -93,8 +93,8 @@ namespace Data.Database
                 comisiones com = new comisiones()
                 {
                     id_comision = comisiones.ID,
-                    desc_comision = comisiones.DescComision,
-                    anio_especialidad = comisiones.AnioEspecialidad
+                    desc_comision = comisiones.Descripcion,
+                    anio_especialidad = comisiones.AñoEspecialidad
                 };
                 db.comisiones.Add(com);
                 db.SaveChanges();
