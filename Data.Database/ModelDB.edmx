@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AcademiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AcademiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="alumnos_inscripciones">
           <Key>
             <PropertyRef Name="id_inscripcion" />
@@ -59,26 +59,6 @@
           <Property Name="hs_semanales" Type="int" Nullable="false" />
           <Property Name="hs_totales" Type="int" Nullable="false" />
           <Property Name="id_plan" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="modulos">
-          <Key>
-            <PropertyRef Name="id_modulo" />
-          </Key>
-          <Property Name="id_modulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="desc_modulo" Type="varchar" MaxLength="50" />
-          <Property Name="ejecuta" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="modulos_usuarios">
-          <Key>
-            <PropertyRef Name="id_modulo_usuario" />
-          </Key>
-          <Property Name="id_modulo_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_modulo" Type="int" Nullable="false" />
-          <Property Name="id_usuario" Type="int" Nullable="false" />
-          <Property Name="alta" Type="bit" />
-          <Property Name="baja" Type="bit" />
-          <Property Name="modificacion" Type="bit" />
-          <Property Name="consulta" Type="bit" />
         </EntityType>
         <EntityType Name="personas">
           <Key>
@@ -210,30 +190,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_modulos_usuarios_modulos">
-          <End Role="modulos" Type="Self.modulos" Multiplicity="1" />
-          <End Role="modulos_usuarios" Type="Self.modulos_usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="modulos">
-              <PropertyRef Name="id_modulo" />
-            </Principal>
-            <Dependent Role="modulos_usuarios">
-              <PropertyRef Name="id_modulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_modulos_usuarios_usuarios">
-          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
-          <End Role="modulos_usuarios" Type="Self.modulos_usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuarios">
-              <PropertyRef Name="id_usuario" />
-            </Principal>
-            <Dependent Role="modulos_usuarios">
-              <PropertyRef Name="id_usuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_personas_planes">
           <End Role="planes" Type="Self.planes" Multiplicity="1" />
           <End Role="personas" Type="Self.personas" Multiplicity="*" />
@@ -277,8 +233,6 @@
           <EntitySet Name="docentes_cursos" EntityType="Self.docentes_cursos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="especialidades" EntityType="Self.especialidades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="materias" EntityType="Self.materias" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="modulos" EntityType="Self.modulos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="modulos_usuarios" EntityType="Self.modulos_usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="personas" EntityType="Self.personas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="planes" EntityType="Self.planes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
@@ -314,14 +268,6 @@
             <End Role="planes" EntitySet="planes" />
             <End Role="materias" EntitySet="materias" />
           </AssociationSet>
-          <AssociationSet Name="FK_modulos_usuarios_modulos" Association="Self.FK_modulos_usuarios_modulos">
-            <End Role="modulos" EntitySet="modulos" />
-            <End Role="modulos_usuarios" EntitySet="modulos_usuarios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_modulos_usuarios_usuarios" Association="Self.FK_modulos_usuarios_usuarios">
-            <End Role="usuarios" EntitySet="usuarios" />
-            <End Role="modulos_usuarios" EntitySet="modulos_usuarios" />
-          </AssociationSet>
           <AssociationSet Name="FK_personas_planes" Association="Self.FK_personas_planes">
             <End Role="planes" EntitySet="planes" />
             <End Role="personas" EntitySet="personas" />
@@ -335,8 +281,7 @@
             <End Role="usuarios" EntitySet="usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AcademiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -408,29 +353,6 @@
           <NavigationProperty Name="cursos" Relationship="Self.FK_cursos_materias" FromRole="materias" ToRole="cursos" />
           <NavigationProperty Name="planes" Relationship="Self.FK_materias_planes" FromRole="materias" ToRole="planes" />
         </EntityType>
-        <EntityType Name="modulos">
-          <Key>
-            <PropertyRef Name="id_modulo" />
-          </Key>
-          <Property Name="id_modulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="desc_modulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ejecuta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="modulos_usuarios" Relationship="Self.FK_modulos_usuarios_modulos" FromRole="modulos" ToRole="modulos_usuarios" />
-        </EntityType>
-        <EntityType Name="modulos_usuarios">
-          <Key>
-            <PropertyRef Name="id_modulo_usuario" />
-          </Key>
-          <Property Name="id_modulo_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_modulo" Type="Int32" Nullable="false" />
-          <Property Name="id_usuario" Type="Int32" Nullable="false" />
-          <Property Name="alta" Type="Boolean" />
-          <Property Name="baja" Type="Boolean" />
-          <Property Name="modificacion" Type="Boolean" />
-          <Property Name="consulta" Type="Boolean" />
-          <NavigationProperty Name="modulos" Relationship="Self.FK_modulos_usuarios_modulos" FromRole="modulos_usuarios" ToRole="modulos" />
-          <NavigationProperty Name="usuarios" Relationship="Self.FK_modulos_usuarios_usuarios" FromRole="modulos_usuarios" ToRole="usuarios" />
-        </EntityType>
         <EntityType Name="personas">
           <Key>
             <PropertyRef Name="id_persona" />
@@ -472,7 +394,6 @@
           <Property Name="habilitado" Type="Boolean" Nullable="false" />
           <Property Name="cambia_clave" Type="Boolean" />
           <Property Name="id_persona" Type="Int32" />
-          <NavigationProperty Name="modulos_usuarios" Relationship="Self.FK_modulos_usuarios_usuarios" FromRole="usuarios" ToRole="modulos_usuarios" />
           <NavigationProperty Name="personas" Relationship="Self.FK_usuarios_personas" FromRole="usuarios" ToRole="personas" />
         </EntityType>
         <Association Name="FK_alumnos_inscripciones_cursos">
@@ -583,30 +504,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_modulos_usuarios_modulos">
-          <End Role="modulos" Type="Self.modulos" Multiplicity="1" />
-          <End Role="modulos_usuarios" Type="Self.modulos_usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="modulos">
-              <PropertyRef Name="id_modulo" />
-            </Principal>
-            <Dependent Role="modulos_usuarios">
-              <PropertyRef Name="id_modulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_modulos_usuarios_usuarios">
-          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
-          <End Role="modulos_usuarios" Type="Self.modulos_usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuarios">
-              <PropertyRef Name="id_usuario" />
-            </Principal>
-            <Dependent Role="modulos_usuarios">
-              <PropertyRef Name="id_usuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_personas_planes">
           <End Role="planes" Type="Self.planes" Multiplicity="1" />
           <End Role="personas" Type="Self.personas" Multiplicity="*" />
@@ -638,8 +535,6 @@
           <EntitySet Name="docentes_cursos" EntityType="Self.docentes_cursos" />
           <EntitySet Name="especialidades" EntityType="Self.especialidades" />
           <EntitySet Name="materias" EntityType="Self.materias" />
-          <EntitySet Name="modulos" EntityType="Self.modulos" />
-          <EntitySet Name="modulos_usuarios" EntityType="Self.modulos_usuarios" />
           <EntitySet Name="personas" EntityType="Self.personas" />
           <EntitySet Name="planes" EntityType="Self.planes" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" />
@@ -678,14 +573,6 @@
           <AssociationSet Name="FK_materias_planes" Association="Self.FK_materias_planes">
             <End Role="planes" EntitySet="planes" />
             <End Role="materias" EntitySet="materias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_modulos_usuarios_modulos" Association="Self.FK_modulos_usuarios_modulos">
-            <End Role="modulos" EntitySet="modulos" />
-            <End Role="modulos_usuarios" EntitySet="modulos_usuarios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_modulos_usuarios_usuarios" Association="Self.FK_modulos_usuarios_usuarios">
-            <End Role="usuarios" EntitySet="usuarios" />
-            <End Role="modulos_usuarios" EntitySet="modulos_usuarios" />
           </AssociationSet>
           <AssociationSet Name="FK_personas_planes" Association="Self.FK_personas_planes">
             <End Role="planes" EntitySet="planes" />
@@ -760,28 +647,6 @@
                 <ScalarProperty Name="hs_semanales" ColumnName="hs_semanales" />
                 <ScalarProperty Name="hs_totales" ColumnName="hs_totales" />
                 <ScalarProperty Name="id_plan" ColumnName="id_plan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="modulos">
-            <EntityTypeMapping TypeName="AcademiaModel.modulos">
-              <MappingFragment StoreEntitySet="modulos">
-                <ScalarProperty Name="id_modulo" ColumnName="id_modulo" />
-                <ScalarProperty Name="desc_modulo" ColumnName="desc_modulo" />
-                <ScalarProperty Name="ejecuta" ColumnName="ejecuta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="modulos_usuarios">
-            <EntityTypeMapping TypeName="AcademiaModel.modulos_usuarios">
-              <MappingFragment StoreEntitySet="modulos_usuarios">
-                <ScalarProperty Name="id_modulo_usuario" ColumnName="id_modulo_usuario" />
-                <ScalarProperty Name="id_modulo" ColumnName="id_modulo" />
-                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-                <ScalarProperty Name="alta" ColumnName="alta" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="modificacion" ColumnName="modificacion" />
-                <ScalarProperty Name="consulta" ColumnName="consulta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

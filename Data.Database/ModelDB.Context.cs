@@ -31,8 +31,6 @@ namespace Data.Database
         public virtual DbSet<docentes_cursos> docentes_cursos { get; set; }
         public virtual DbSet<especialidades> especialidades { get; set; }
         public virtual DbSet<materias> materias { get; set; }
-        public virtual DbSet<modulos> modulos { get; set; }
-        public virtual DbSet<modulos_usuarios> modulos_usuarios { get; set; }
         public virtual DbSet<personas> personas { get; set; }
         public virtual DbSet<planes> planes { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }

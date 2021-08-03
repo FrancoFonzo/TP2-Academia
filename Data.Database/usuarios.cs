@@ -14,12 +14,6 @@ namespace Data.Database
     
     public partial class usuarios
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public usuarios()
-        {
-            this.modulos_usuarios = new HashSet<modulos_usuarios>();
-        }
-    
         public int id_usuario { get; set; }
         public string nombre_usuario { get; set; }
         public string clave { get; set; }
@@ -27,8 +21,6 @@ namespace Data.Database
         public Nullable<bool> cambia_clave { get; set; }
         public Nullable<int> id_persona { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<modulos_usuarios> modulos_usuarios { get; set; }
         public virtual personas personas { get; set; }
     }
 }

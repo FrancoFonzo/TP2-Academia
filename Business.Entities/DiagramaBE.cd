@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Business.Entitities.BusinessEntity">
+  <Class Name="Business.Entities.BusinessEntity">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <NestedTypes>
-      <Enum Name="Business.Entitities.BusinessEntity.States" Collapsed="true">
+      <Enum Name="Business.Entities.BusinessEntity.States" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>BusinessEntity.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -14,25 +14,53 @@
       <FileName>BusinessEntity.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Business.Entitities.Modulo">
-    <Position X="2.75" Y="3.25" Width="1.5" />
+  <Class Name="Business.Entities.Comision" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Modulo.cs</FileName>
+      <HashCode>AAAAAAAAAAAgAAAAAEAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Comision.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Business.Entitities.ModuloUsuario">
-    <Position X="0.5" Y="3.25" Width="1.5" />
+  <Class Name="Business.Entities.DocenteCurso" Collapsed="true">
+    <Position X="5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAQAwAACAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAA=</HashCode>
-      <FileName>ModuloUsuario.cs</FileName>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAQAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>DocenteCurso.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Business.Entitities.Usuario">
-    <Position X="5" Y="3.5" Width="1.5" />
+  <Class Name="Business.Entities.Especialidad" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAEAAAAgAAAAAAAABAAAIAAAAAAEAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Especialidad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business.Entities.Usuario" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAkAAAAAAAAAAAAAAAAAABAAAIAACAAAEAA=</HashCode>
       <FileName>Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business.Entities.Persona" Collapsed="true">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAEACAAhABAACAAAAAAAAAAAgAAAAQ=</HashCode>
+      <FileName>Persona.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business.Entities.Materia" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAQAAAAABgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Materia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business.Entities.Plan" Collapsed="true">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAEAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Plan.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
