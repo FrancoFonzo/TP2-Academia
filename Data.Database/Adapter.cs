@@ -12,7 +12,7 @@ namespace Data.Database
         protected static PersonaAdapter personaData = new PersonaAdapter();
         //protected static AlumnoInscripcionAdapter inscripcionData = new AlumnoInscripcionAdapter();
         //protected static CursoAdapter cursoData = new CursoAdapter();
-        //protected static MateriaAdapter materiaData = new MateriaAdapter();
+        protected static MateriaAdapter materiaData = new MateriaAdapter();
         //protected static ComisionAdapter comisionData = new ComisionAdapter();
         protected static PlanAdapter planData = new PlanAdapter();
         //protected static ModuloAdapter moduloData = new ModuloAdapter();
