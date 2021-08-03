@@ -19,7 +19,8 @@ namespace Data.Database
 
         private Especialidad nuevaEspecialidad(especialidades esp)
         {
-            Especialidad especialidad = new Especialidad()
+            if (esp == null) return null;
+            Especialidad especialidad = new Especialidad
             {
                 ID = esp.id_especialidad,
                 Descripcion = esp.desc_especialidad,
@@ -33,7 +34,6 @@ namespace Data.Database
             using (var db = new AcademiaEntities())
             {
                 var esp = db.especialidades.SingleOrDefault(e => e.id_especialidad == ID);
-                if (esp == null) return null;
                 return nuevaEspecialidad(esp);
             }
 
@@ -82,7 +82,7 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                especialidades esp = new especialidades()
+                especialidades esp = new especialidades
                 {
                     id_especialidad = especialidad.ID,
                     desc_especialidad = especialidad.Descripcion

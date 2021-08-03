@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace UI.Desktop
 {
-    public partial class formMain : ApplicationForm
+    public partial class Main : ApplicationForm
     {
         public Usuario UsuarioActual { get; set; }
 
@@ -16,13 +16,13 @@ namespace UI.Desktop
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
-        public formMain()
+        public Main()
         {
             InitializeComponent();
             panelAdminReportes.Visible = false;
             txtBusqueda.Visible = false;
         }
-        public formMain(Usuario UsuarioActual) : this()
+        public Main(Usuario UsuarioActual) : this()
         {
             this.UsuarioActual = UsuarioActual;
         }
@@ -80,8 +80,8 @@ namespace UI.Desktop
             panelAdminReportes.Visible = true;
             btnReporteCursos.Visible = false;
             btnReportePlanes.Visible = false;
-            List<Button> btns = panelAdminReportes.Controls.OfType<Button>().Where(c=> !c.Text.Contains("Reportes")).ToList();
-            btns.ForEach(b=> b.Visible = true);
+            List<Button> btns = panelAdminReportes.Controls.OfType<Button>().Where(c => !c.Text.Contains("Reportes")).ToList();
+            btns.ForEach(b => b.Visible = true);
         }
 
         private void panelAdminReportes_MouseLeave(object sender, EventArgs e)
@@ -108,7 +108,7 @@ namespace UI.Desktop
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             this.panelFormLoader.Controls.Clear();
-            Usuarios formUsuarios = new Usuarios()
+            Usuarios formUsuarios = new Usuarios
             {
                 Dock = DockStyle.Fill,
                 FormBorderStyle = FormBorderStyle.None,
@@ -123,7 +123,7 @@ namespace UI.Desktop
         private void btnPersonas_Click(object sender, EventArgs e)
         {
             this.panelFormLoader.Controls.Clear();
-            Personas formPersonas = new Personas()
+            Personas formPersonas = new Personas
             {
                 Dock = DockStyle.Fill,
                 FormBorderStyle = FormBorderStyle.None,
@@ -138,7 +138,7 @@ namespace UI.Desktop
         private void btnEspecialidades_Click(object sender, EventArgs e)
         {
             this.panelFormLoader.Controls.Clear();
-            Especialidades formEspecialidades = new Especialidades()
+            Especialidades formEspecialidades = new Especialidades
             {
                 Dock = DockStyle.Fill,
                 FormBorderStyle = FormBorderStyle.None,
@@ -153,7 +153,7 @@ namespace UI.Desktop
         private void btnPlanes_Click(object sender, EventArgs e)
         {
             this.panelFormLoader.Controls.Clear();
-            Planes formPlanes = new Planes()
+            Planes formPlanes = new Planes
             {
                 Dock = DockStyle.Fill,
                 FormBorderStyle = FormBorderStyle.None,
@@ -168,7 +168,7 @@ namespace UI.Desktop
         private void btnMaterias_Click(object sender, EventArgs e)
         {
             this.panelFormLoader.Controls.Clear();
-            Materias formMaterias = new Materias()
+            Materias formMaterias = new Materias
             {
                 Dock = DockStyle.Fill,
                 FormBorderStyle = FormBorderStyle.None,

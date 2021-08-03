@@ -38,8 +38,8 @@ namespace UI.Desktop
             this.txtDireccion.Text = this.PersonaActual.Direccion;
             this.txtTelefono.Text = this.PersonaActual.Telefono;
             this.dateNacimiento.Value = this.PersonaActual.FechaNacimiento;
-            this.cbxTipo.SelectedIndex = (int) this.PersonaActual.Tipo;
-            
+            this.cbxTipo.SelectedIndex = (int)this.PersonaActual.Tipo;
+
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
             else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
             else if (Modo == ModoForm.Baja) this.btnAceptar.Text = "Eliminar";
@@ -49,7 +49,7 @@ namespace UI.Desktop
         {
             if (Modo == ModoForm.Alta)
             {
-                this.PersonaActual = new Persona() { State = BusinessEntity.States.New };
+                this.PersonaActual = new Persona { State = BusinessEntity.States.New };
             }
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
@@ -64,7 +64,7 @@ namespace UI.Desktop
                 this.PersonaActual.EMail = this.txtEMail.Text;
                 this.PersonaActual.Direccion = this.txtDireccion.Text;
                 this.PersonaActual.Telefono = this.txtTelefono.Text;
-                this.PersonaActual.Tipo = (Persona.TiposPersonas) this.cbxTipo.SelectedIndex;
+                this.PersonaActual.Tipo = (Persona.TiposPersonas)this.cbxTipo.SelectedIndex;
             }
             else if (Modo == ModoForm.Baja) PersonaActual.State = BusinessEntity.States.Deleted;
             else if (Modo == ModoForm.Consulta) PersonaActual.State = BusinessEntity.States.Unmodified;
@@ -93,7 +93,7 @@ namespace UI.Desktop
 
             else if (!Validaciones.ValidarRegexEmail(txtEMail.Text))
             {
-                Notificar("Email invalido", "Porfavor ingrese un email valido.", 
+                Notificar("Email invalido", "Porfavor ingrese un email valido.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (cbxTipo.SelectedItem == null)

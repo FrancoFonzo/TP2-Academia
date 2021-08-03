@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Business.Entities;
 using Data.Database;
 
@@ -27,7 +26,7 @@ namespace Business.Logic
 
 
 
-        public void Save(Materia  materia)
+        public void Save(Materia materia)
         {
             MateriaData.Save(materia);
         }
@@ -37,6 +36,6 @@ namespace Business.Logic
             MateriaData.Delete(id);
         }
 
-        
+
     }
 }

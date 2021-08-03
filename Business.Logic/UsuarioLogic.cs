@@ -13,7 +13,7 @@ namespace Business.Logic
             this.UsuarioData = new UsuarioAdapter();
         }
 
-       public Usuario GetOne(int id)
+        public Usuario GetOne(int id)
         {
             return UsuarioData.GetOne(id);
         }

@@ -17,8 +17,7 @@ namespace UI.Desktop
         {
             try
             {
-                this.dgvUsuarios.DataSource = new UsuarioLogic().GetAll();
-                //dgvUsuarios.DataSource = ul.GetAll().FindAll(u => u.State != BusinessEntity.States.Deleted);
+                this.dgvUsuarios.DataSource = new UsuarioLogic().GetAll();               
             }
             catch (Exception)
             {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Business.Entities;
 
@@ -20,7 +19,8 @@ namespace Data.Database
 
         private static AlumnoInscripcion nuevaInscripcion(alumnos_inscripciones insc)
         {
-            AlumnoInscripcion inscripcion = new AlumnoInscripcion()
+            if (insc == null) return null;
+            AlumnoInscripcion inscripcion = new AlumnoInscripcion
             {
                 ID = insc.id_inscripcion,
                 MiAlumno = personaData.GetOne(insc.id_alumno),
@@ -36,7 +36,6 @@ namespace Data.Database
             using (var db = new AcademiaEntities())
             {
                 var insc = db.alumnos_inscripciones.SingleOrDefault(i => i.id_inscripcion == ID);
-                if (insc == null) return null;
                 return nuevaInscripcion(insc);
             }
         }
@@ -78,7 +77,7 @@ namespace Data.Database
                 insc.id_inscripcion = inscripcion.ID;
                 insc.id_alumno = inscripcion.MiAlumno.ID;
                 insc.id_curso = inscripcion.MiCurso.ID;
-                insc.nota = (int) inscripcion.Nota;
+                insc.nota = (int)inscripcion.Nota;
                 insc.condicion = inscripcion.Condicion;
                 db.SaveChanges();
             }
@@ -94,7 +93,7 @@ namespace Data.Database
                     id_alumno = inscripcion.MiAlumno.ID,
                     id_curso = inscripcion.MiCurso.ID,
                     condicion = inscripcion.Condicion,
-                    nota = (int) inscripcion.Nota
+                    nota = (int)inscripcion.Nota
                 };
                 db.alumnos_inscripciones.Add(insc);
                 db.SaveChanges();

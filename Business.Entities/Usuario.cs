@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Business.Entities
+﻿namespace Business.Entities
 {
     public class Usuario : BusinessEntity
     {
@@ -14,13 +8,13 @@ namespace Business.Entities
         public bool Habilitado { get; set; }
 
         // Para Bind a dgvUsuarios
-        public string NombrePersona 
-        { 
-            get 
+        public string NombrePersona
+        {
+            get
             {
-                if(MiPersona == null) return "";
+                if (MiPersona == null) return "";
                 return MiPersona.Nombre;
-            } 
+            }
         }
         public string ApellidoPersona
         {

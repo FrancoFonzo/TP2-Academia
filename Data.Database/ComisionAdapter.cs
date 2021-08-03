@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Business.Entities;
 
 namespace Data.Database
@@ -22,7 +19,8 @@ namespace Data.Database
 
         private Comision nuevaComision(comisiones com)
         {
-            Comision comision = new Comision()
+            if (com == null) return null;
+            Comision comision = new Comision
             {
                 ID = com.id_comision,
                 Descripcion = com.desc_comision,
@@ -39,7 +37,6 @@ namespace Data.Database
             using (var db = new AcademiaEntities())
             {
                 var com = db.comisiones.SingleOrDefault(c => c.id_comision == ID);
-                if (com == null) return null;
                 return nuevaComision(com);
             }
 
@@ -90,7 +87,7 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                comisiones com = new comisiones()
+                comisiones com = new comisiones
                 {
                     id_comision = comisiones.ID,
                     desc_comision = comisiones.Descripcion,

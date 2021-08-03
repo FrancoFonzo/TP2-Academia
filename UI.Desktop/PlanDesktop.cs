@@ -44,7 +44,7 @@ namespace UI.Desktop
         {
             if (Modo == ModoForm.Alta)
             {
-                this.PlanActual = new Plan() { State = BusinessEntity.States.New };
+                this.PlanActual = new Plan { State = BusinessEntity.States.New };
             }
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {

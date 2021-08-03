@@ -18,12 +18,13 @@ namespace Data.Database
 
         private static DocenteCurso nuevoDocenteCurso(docentes_cursos doCu)
         {
-            DocenteCurso docenteCurso = new DocenteCurso()
+            if (doCu == null) return null;
+            DocenteCurso docenteCurso = new DocenteCurso
             {
                 ID = doCu.id_dictado,
                 MiDocente = personaData.GetOne(doCu.id_docente),
                 MiCurso = cursoData.GetOne(doCu.id_curso)
-        };
+            };
             return docenteCurso;
         }
 
@@ -32,11 +33,9 @@ namespace Data.Database
             using (var db = new AcademiaEntities())
             {
                 var docCur = db.docentes_cursos.SingleOrDefault(dc => dc.id_dictado == ID);
-                if (docCur == null) return null;
                 return nuevoDocenteCurso(docCur);
             }
         }
-
 
         public void Delete(int ID)
         {
@@ -87,8 +86,7 @@ namespace Data.Database
                     id_dictado = docenteCurso.ID,
                     id_docente = docenteCurso.MiDocente.ID,
                     id_curso = docenteCurso.MiCurso.ID
-            };
-
+                };
                 db.docentes_cursos.Add(docCur);
                 db.SaveChanges();
             }

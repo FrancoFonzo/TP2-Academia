@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Business.Entities;
 
@@ -15,12 +14,13 @@ namespace Data.Database
                 var lstPersonas = db.personas;
                 lstPersonas?.ToList().ForEach(p => personas.Add(nuevaPersona(p)));
                 return personas;
-            }   
+            }
         }
 
         private Persona nuevaPersona(personas per)
         {
-            Persona persona = new Persona()
+            if (per == null) return null;
+            Persona persona = new Persona
             {
                 ID = per.id_persona,
                 Apellido = per.apellido,
@@ -50,9 +50,10 @@ namespace Data.Database
             using (AcademiaEntities db = new AcademiaEntities())
             {
                 List<Persona> personas = new List<Persona>();
-                var lstPersonas = from p in db.personas 
+                var lstPersonas = from p in db.personas
                                   where !(from u in db.usuarios select u.id_persona)
-                                  .Contains(p.id_persona) select p;
+                                  .Contains(p.id_persona)
+                                  select p;
                 lstPersonas?.ToList().ForEach(p => personas.Add(nuevaPersona(p)));
                 return personas;
             }
@@ -63,10 +64,9 @@ namespace Data.Database
             using (var db = new AcademiaEntities())
             {
                 var per = db.personas.SingleOrDefault(p => p.id_persona == ID);
-                if (per == null) return null;
                 return nuevaPersona(per);
             }
-            
+
         }
 
         public void Delete(int ID)
@@ -104,13 +104,13 @@ namespace Data.Database
                 var per = db.personas.SingleOrDefault(p => p.id_persona == persona.ID);
                 if (per == null) return;
                 per.apellido = persona.Apellido;
-                per.nombre = persona.Nombre; 
+                per.nombre = persona.Nombre;
                 per.email = persona.EMail;
                 per.fecha_nac = persona.FechaNacimiento;
                 per.legajo = persona.Legajo;
                 per.direccion = persona.Direccion;
                 per.telefono = persona.Telefono;
-                per.tipo_persona = (int) persona.Tipo;
+                per.tipo_persona = (int)persona.Tipo;
 
                 db.SaveChanges();
             }
@@ -120,7 +120,7 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                personas per = new personas()
+                personas per = new personas
                 {
                     id_persona = persona.ID,
                     apellido = persona.Apellido,

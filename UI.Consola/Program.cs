@@ -4,7 +4,7 @@ using Business.Entities;
 
 namespace UI.Consola
 {
-    class Program
+    public static class Program
     {
         static void Main(string[] args)
         {
@@ -18,10 +18,11 @@ namespace UI.Consola
         public Usuarios()
         {
             this.UsuarioNegocio = new UsuarioLogic();
+            this.PersonaNegocio = new PersonaLogic();
         }
 
         public UsuarioLogic UsuarioNegocio { get; set; }
-
+        public PersonaLogic PersonaNegocio { get; set; }
         public void Menu()
         {
             int opc = 0;
@@ -73,20 +74,19 @@ namespace UI.Consola
                     case 5:
                         Eliminar();
                         break;
-                    default:
-                        break;
+                    default: break;
                 }
             } while (opc != 6);
-              
+
         }
         private void MostrarDatos(Usuario usr)
         {
             Console.WriteLine($"\nUsuario: {usr.ID}");
-            Console.WriteLine($"\t\tNombre: {usr.Nombre}");
-            Console.WriteLine($"\t\tApellido: {usr.Apellido}");
+            Console.WriteLine($"\t\tNombre: {usr.MiPersona.Nombre}");
+            Console.WriteLine($"\t\tApellido: {usr.MiPersona.Apellido}");
             Console.WriteLine($"\t\tNombre de usuario: {usr.NombreUsuario}");
             Console.WriteLine($"\t\tClave: {usr.Clave}");
-            Console.WriteLine($"\t\tEmail: {usr.EMail}");
+            Console.WriteLine($"\t\tEmail: {usr.MiPersona.EMail}");
             Console.WriteLine($"\t\tHabilitado: {usr.Habilitado}");
         }
         private void Eliminar()
@@ -123,10 +123,10 @@ namespace UI.Consola
                 Usuario usuario = UsuarioNegocio.GetOne(id);
 
                 Console.Write("\nIngrese Nombre: ");
-                usuario.Nombre = Console.ReadLine();
+                usuario.MiPersona.Nombre = Console.ReadLine();
 
                 Console.Write("\nIngrese Apellido: ");
-                usuario.Apellido = Console.ReadLine();
+                usuario.MiPersona.Apellido = Console.ReadLine();
 
                 Console.Write("\nIngrese Nombre de Usuario: ");
                 usuario.NombreUsuario = Console.ReadLine();
@@ -135,7 +135,7 @@ namespace UI.Consola
                 usuario.Clave = Console.ReadLine();
 
                 Console.Write("\nIngrese Email: ");
-                usuario.EMail = Console.ReadLine();
+                usuario.MiPersona.EMail = Console.ReadLine();
 
                 Console.Write("\nIngrese Habilitacion de Usuario (1 = Si / Otro = No): ");
                 usuario.Habilitado = (Console.ReadLine() == "1");
@@ -164,12 +164,18 @@ namespace UI.Consola
         {
             Usuario usuario = new Usuario();
 
+
             Console.Clear();
+
+            Console.Write("Ingrese ID Persona: ");
+            Persona persona = PersonaNegocio.GetOne(int.Parse(Console.ReadLine()));
+            usuario.MiPersona = persona;
+
             Console.Write("Ingrese Nombre: ");
-            usuario.Nombre = Console.ReadLine();
+            usuario.MiPersona.Nombre = Console.ReadLine();
 
             Console.Write("\nIngrese Apellido: ");
-            usuario.Apellido = Console.ReadLine();
+            usuario.MiPersona.Apellido = Console.ReadLine();
 
             Console.Write("\nIngrese Nombre de Usuario: ");
             usuario.NombreUsuario = Console.ReadLine();
@@ -178,7 +184,7 @@ namespace UI.Consola
             usuario.Clave = Console.ReadLine();
 
             Console.Write("\nIngrese Email: ");
-            usuario.EMail = Console.ReadLine();
+            usuario.MiPersona.EMail = Console.ReadLine();
 
             Console.Write("\nIngrese Habilitacion de Usuario (1 = Si / Otro = No): ");
             usuario.Habilitado = (Console.ReadLine() == "1");

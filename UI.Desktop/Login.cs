@@ -8,11 +8,11 @@ using System.Collections.Generic;
 
 namespace UI.Desktop
 {
-    public partial class formLogin : ApplicationForm
+    public partial class Login : ApplicationForm
     {
         public Usuario UsuarioActual { get; set; }
 
-        public formLogin()
+        public Login()
         {
             InitializeComponent();
         }
@@ -24,7 +24,7 @@ namespace UI.Desktop
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            this.Validar();      
+            this.Validar();
         }
 
         private void lnkRecuperarClave_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

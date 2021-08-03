@@ -13,7 +13,7 @@ namespace UI.Desktop
             InitializeComponent();
             dgvMaterias.AutoGenerateColumns = false;
         }
-        
+
         private void Materias_Load(object sender, EventArgs e)
         {
             this.Listar();
@@ -40,7 +40,7 @@ namespace UI.Desktop
 
         private void OpenForm(ApplicationForm.ModoForm modo)
         {
-            int ID = ((Materia) this.dgvMaterias.SelectedRows[0].DataBoundItem).ID;
+            int ID = ((Materia)this.dgvMaterias.SelectedRows[0].DataBoundItem).ID;
             MateriasDesktop formMaterias = new MateriasDesktop(ID, modo);
             formMaterias.ShowDialog();
             this.Listar();

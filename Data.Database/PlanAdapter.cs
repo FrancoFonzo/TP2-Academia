@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Business.Entities;
 
 namespace Data.Database
@@ -22,11 +19,12 @@ namespace Data.Database
 
         private static Plan nuevoPlan(planes p)
         {
-            Plan plan = new Plan()
+            if (p == null) return null;
+            Plan plan = new Plan
             {
                 ID = p.id_plan,
                 Descripcion = p.desc_plan,
-                MiEspecialidad =  especialidadData.GetOne(p.especialidades.id_especialidad)
+                MiEspecialidad = especialidadData.GetOne(p.especialidades.id_especialidad)
             };
             return plan;
         }
@@ -36,7 +34,6 @@ namespace Data.Database
             using (var db = new AcademiaEntities())
             {
                 var plan = db.planes.SingleOrDefault(p => p.id_plan == ID);
-                if (plan == null) return null;
                 return nuevoPlan(plan);
             }
         }
@@ -46,7 +43,6 @@ namespace Data.Database
             using (var db = new AcademiaEntities())
             {
                 var pln = db.planes.SingleOrDefault(p => p.desc_plan == desc_plan);
-                if (pln == null) return null;
                 return nuevoPlan(pln);
             }
 

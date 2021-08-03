@@ -27,7 +27,7 @@ namespace UI.Desktop
             MapearDeDatos();
         }
 
-        public override void MapearDeDatos() 
+        public override void MapearDeDatos()
         {
             List<Persona> personas = new PersonaLogic().GetPersonasSinUsuario();
             personas.Add(this.UsuarioActual.MiPersona);
@@ -38,7 +38,6 @@ namespace UI.Desktop
             this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
             this.txtClave.Text = this.UsuarioActual.Clave;
             this.cbxPersona.SelectedValue = this.UsuarioActual.MiPersona.ID;
-            //this.cbxPersona.Text = this.UsuarioActual.NombrePersona;
 
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
             else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
@@ -46,15 +45,15 @@ namespace UI.Desktop
 
         }
 
-        public override void MapearADatos() 
+        public override void MapearADatos()
         {
             this.cbxPersona.DataSource = new PersonaLogic().GetAll();
 
             if (Modo == ModoForm.Alta)
             {
-                this.UsuarioActual = new Usuario() { State = BusinessEntity.States.New };
+                this.UsuarioActual = new Usuario { State = BusinessEntity.States.New };
             }
-            if(Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
+            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
                 if (Modo == ModoForm.Modificacion)
                 {
@@ -68,37 +67,32 @@ namespace UI.Desktop
                 var idPer = this.cbxPersona.SelectedValue;
                 if (idPer == null) this.UsuarioActual.MiPersona = null;
                 else this.UsuarioActual.MiPersona = new PersonaLogic().GetOne((int)idPer);
-                /*if (idPer == null) return;
-                if (int.TryParse(idPer.ToString(), out int id))
-                {
-                    this.UsuarioActual.MiPersona = new PersonaLogic().GetOne(id);
-                }*/
             }
             else if (Modo == ModoForm.Baja) UsuarioActual.State = BusinessEntity.States.Deleted;
-            else if (Modo == ModoForm.Consulta) UsuarioActual.State = BusinessEntity.States.Unmodified; 
+            else if (Modo == ModoForm.Consulta) UsuarioActual.State = BusinessEntity.States.Unmodified;
         }
-        
-        public override void GuardarCambios() 
+
+        public override void GuardarCambios()
         {
             MapearADatos();
             new UsuarioLogic().Save(UsuarioActual);
         }
 
-        public override bool Validar() 
+        public override bool Validar()
         {
-            if (!Validaciones.FormularioCompleto( new List<string>
+            if (!Validaciones.FormularioCompleto(new List<string>
                         {txtUsuario.Text, txtClave.Text, txtConfirmarClave.Text})
                 )
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if(!Validaciones.ValidarRegexClave(txtClave.Text))
+            else if (!Validaciones.ValidarRegexClave(txtClave.Text))
             {
                 Notificar("Contraseña invalida", "La contraseñas debe tener entre 4 y 50 caracteres.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (!(txtUsuario.Text.Length < 16))
+            else if (txtUsuario.Text.Length >= 16)
             {
                 Notificar("Usuario invalido", "El usuario debe ser menor a 16 caracteres.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

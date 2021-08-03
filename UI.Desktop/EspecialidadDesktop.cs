@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
 
@@ -40,7 +38,7 @@ namespace UI.Desktop
         {
             if (Modo == ModoForm.Alta)
             {
-                this.EspecialidadActual = new Especialidad() { State = BusinessEntity.States.New };
+                this.EspecialidadActual = new Especialidad { State = BusinessEntity.States.New };
             }
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
@@ -70,16 +68,6 @@ namespace UI.Desktop
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void EspecialidadDesktop_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tlEspecialidad_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

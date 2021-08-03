@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UI.Desktop
@@ -17,9 +14,9 @@ namespace UI.Desktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            formLogin login = new formLogin();
-            if(login.ShowDialog() == DialogResult.OK) 
-                Application.Run(new formMain(login.UsuarioActual));
+            Login login = new Login();
+            if (login.ShowDialog() == DialogResult.OK)
+                Application.Run(new Main(login.UsuarioActual));
         }
     }
 }

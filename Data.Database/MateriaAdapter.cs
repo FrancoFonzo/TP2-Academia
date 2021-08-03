@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Business.Entities;
 
 namespace Data.Database
@@ -22,7 +19,8 @@ namespace Data.Database
 
         private Materia nuevaMateria(materias mat)
         {
-            Materia materia = new Materia()
+            if (mat == null) return null;
+            Materia materia = new Materia
             {
                 ID = mat.id_materia,
                 Descripcion = mat.desc_materia,
@@ -33,14 +31,11 @@ namespace Data.Database
             return materia;
         }
 
-
-
         public Materia GetOne(int ID)
         {
             using (var db = new AcademiaEntities())
             {
                 var mat = db.materias.SingleOrDefault(m => m.id_materia == ID);
-                if (mat == null) return null;
                 return nuevaMateria(mat);
             }
 
@@ -92,7 +87,7 @@ namespace Data.Database
         {
             using (var db = new AcademiaEntities())
             {
-                materias mat = new materias()
+                materias mat = new materias
                 {
                     id_materia = materias.ID,
                     desc_materia = materias.Descripcion,

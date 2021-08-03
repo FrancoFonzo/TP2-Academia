@@ -19,7 +19,8 @@ namespace Data.Database
 
         private static Usuario nuevoUsuario(usuarios user)
         {
-            Usuario usuario = new Usuario()
+            if (user == null) return null;
+            Usuario usuario = new Usuario
             {
                 ID = user.id_usuario,
                 NombreUsuario = user.nombre_usuario,
@@ -35,7 +36,6 @@ namespace Data.Database
             using (var db = new AcademiaEntities())
             {
                 var usr = db.usuarios.SingleOrDefault(u => u.id_usuario == ID);
-                if (usr == null) return null;
                 return nuevoUsuario(usr);
             }
         }
@@ -45,10 +45,9 @@ namespace Data.Database
             using (var db = new AcademiaEntities())
             {
                 var usr = db.usuarios.SingleOrDefault(u => u.nombre_usuario == nom_usuario);
-                if (usr == null) return null;
                 return nuevoUsuario(usr);
             }
-            
+
         }
 
         public void Delete(int ID)
@@ -105,7 +104,7 @@ namespace Data.Database
                     habilitado = usuario.Habilitado
                 };
                 if (usuario.MiPersona != null) usr.id_persona = usuario.MiPersona.ID;
-                
+
                 db.usuarios.Add(usr);
                 db.SaveChanges();
             }

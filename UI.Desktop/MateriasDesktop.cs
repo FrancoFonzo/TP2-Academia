@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
 
@@ -15,7 +13,7 @@ namespace UI.Desktop
             InitializeComponent();
             this.cbxPlan.DataSource = new PlanLogic().GetAll();
         }
-      
+
         public MateriasDesktop(ModoForm modo) : this()
         {
             this.Modo = modo;
@@ -46,7 +44,7 @@ namespace UI.Desktop
         {
             if (Modo == ModoForm.Alta)
             {
-                this.MateriaActual = new Materia() { State = BusinessEntity.States.New };
+                this.MateriaActual = new Materia { State = BusinessEntity.States.New };
             }
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
@@ -55,11 +53,11 @@ namespace UI.Desktop
                     this.MateriaActual.ID = int.Parse(this.txtID.Text);
                     this.MateriaActual.State = BusinessEntity.States.Modified;
                 }
-                
+
                 this.MateriaActual.Descripcion = this.txtDescripcion.Text;
                 this.MateriaActual.HorasSemanales = int.Parse(this.txtHsSemanales.Text);
 
-                
+
             }
             else if (Modo == ModoForm.Baja) MateriaActual.State = BusinessEntity.States.Deleted;
             else if (Modo == ModoForm.Consulta) MateriaActual.State = BusinessEntity.States.Unmodified;
@@ -71,7 +69,7 @@ namespace UI.Desktop
             new MateriaLogic().Save(MateriaActual);
         }
 
-        
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (Validar())
@@ -85,14 +83,5 @@ namespace UI.Desktop
         {
             this.Close();
         }
-        private void tlMaterias_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-        private void MateriasDesktop_Load(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
