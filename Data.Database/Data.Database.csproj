@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="ComisionAdapter.cs" />
     <Compile Include="DocenteCursoAdapter.cs" />
+    <Compile Include="CursoAdapter.cs" />
     <Compile Include="MateriaAdapter.cs" />
     <Compile Include="PlanAdapter.cs" />
     <Compile Include="comisiones.cs">
