@@ -26,10 +26,10 @@ namespace Data.Database
             {
                 ID = cur.id_curso,
                 Descripcion = cur.descripcion,
-                AnioCalendario = cur.anio_calendario,
+                AñoCalendario = cur.anio_calendario,
                 Cupo = cur.cupo,
                 MiMateria = materiaData.GetOne(cur.id_materia),
-                //MiComision= comisionData.getOne(cur.id_comision)
+                MiComision= comisionData.getOne(cur.id_comision)
             };
             return cursos;
         }
@@ -82,9 +82,10 @@ namespace Data.Database
                 var cur = db.cursos.SingleOrDefault(c => c.id_curso == curso.ID);
                 if (cur == null) return;
                 cur.descripcion = curso.Descripcion;
-                cur.anio_calendario = curso.AnioCalendario;
+                cur.anio_calendario = curso.AñoCalendario;
                 cur.cupo = curso.Cupo;
-
+                cur.id_materia = curso.MiMateria.ID;
+                cur.id_comision = curso.MiComision.ID;
                 db.SaveChanges();
             }
         }
@@ -98,6 +99,9 @@ namespace Data.Database
                     id_curso = curso.ID,
                     descripcion = curso.Descripcion,
                     cupo = curso.Cupo,
+                    anio_calendario = curso.AñoCalendario,
+                    id_materia = curso.MiMateria.ID,
+                    id_comision = curso.MiComision.ID
                 };
                 db.cursos.Add(cur);
                 db.SaveChanges();
