@@ -29,7 +29,7 @@ namespace Data.Database
                 AñoCalendario = cur.anio_calendario,
                 Cupo = cur.cupo,
                 MiMateria = materiaData.GetOne(cur.id_materia),
-                MiComision= comisionData.getOne(cur.id_comision)
+                MiComision= comisionData.GetOne(cur.id_comision)
             };
             return cursos;
         }

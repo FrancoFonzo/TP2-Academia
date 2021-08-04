@@ -24,7 +24,7 @@ namespace Data.Database
             {
                 ID = insc.id_inscripcion,
                 MiAlumno = personaData.GetOne(insc.id_alumno),
-                MiCurso = personaData.GetOne(insc.id_curso),
+                MiCurso = cursoData.GetOne(insc.id_curso),
                 Condicion = insc.condicion,
                 Nota = insc.nota
             };

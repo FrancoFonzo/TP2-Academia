@@ -59,7 +59,6 @@ namespace UI.Desktop
             this.tlpEspecialidad.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpEspecialidad.Size = new System.Drawing.Size(432, 90);
             this.tlpEspecialidad.TabIndex = 0;
-            this.tlpEspecialidad.Paint += new System.Windows.Forms.PaintEventHandler(this.tlEspecialidad_Paint);
             // 
             // txtID
             // 
@@ -153,7 +152,6 @@ namespace UI.Desktop
             this.Name = "EspecialidadDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Especialidad";
-            this.Load += new System.EventHandler(this.EspecialidadDesktop_Load);
             this.tlpEspecialidad.ResumeLayout(false);
             this.tlpEspecialidad.PerformLayout();
             this.panelButtons.ResumeLayout(false);
