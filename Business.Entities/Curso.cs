@@ -8,10 +8,13 @@ namespace Business.Entities
 {
    public class Curso: BusinessEntity
     {
-        public string Descripcion { get; set; }
         public int AñoCalendario { get; set; }
         public int Cupo { get; set; }
         public Materia MiMateria { get; set; }
         public Comision MiComision { get; set; }
+        public override string ToString()
+        {
+            return $"{MiMateria.Descripcion} - {MiComision.Descripcion} - {AñoCalendario}";
+        }
     }
 }

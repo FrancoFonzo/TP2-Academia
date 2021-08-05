@@ -211,5 +211,20 @@ namespace UI.Desktop
             ApplicationForm form = panelFormLoader.Controls.OfType<ApplicationForm>().SingleOrDefault();
             form.Listar();
         }
+
+        private void btnInscripcion_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            AlumnoInscripcionDesktop AlumnoInscripcion = new AlumnoInscripcionDesktop(UsuarioActual.ID)
+            {
+                Dock = DockStyle.Fill,
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                TopMost = true
+            };
+            this.panelFormLoader.Controls.Add(AlumnoInscripcion);
+            lblTitulo.Text = "AlumnoInscripcion";
+            AlumnoInscripcion.Show();
+        }
     }
 }

@@ -9,5 +9,12 @@
         public string Condicion { get; set; }
 
         public float? Nota { get; set; }
+
+        public enum Condiciones
+        {
+            Inscripto,
+            Regular,
+            Aprobado,
+        }
     }
 }

@@ -25,7 +25,6 @@ namespace Data.Database
             Curso cursos = new Curso()
             {
                 ID = cur.id_curso,
-                Descripcion = cur.descripcion,
                 AñoCalendario = cur.anio_calendario,
                 Cupo = cur.cupo,
                 MiMateria = materiaData.GetOne(cur.id_materia),
@@ -81,7 +80,6 @@ namespace Data.Database
             {
                 var cur = db.cursos.SingleOrDefault(c => c.id_curso == curso.ID);
                 if (cur == null) return;
-                cur.descripcion = curso.Descripcion;
                 cur.anio_calendario = curso.AñoCalendario;
                 cur.cupo = curso.Cupo;
                 cur.id_materia = curso.MiMateria.ID;
@@ -97,7 +95,6 @@ namespace Data.Database
                 cursos cur = new cursos()
                 {
                     id_curso = curso.ID,
-                    descripcion = curso.Descripcion,
                     cupo = curso.Cupo,
                     anio_calendario = curso.AñoCalendario,
                     id_materia = curso.MiMateria.ID,
