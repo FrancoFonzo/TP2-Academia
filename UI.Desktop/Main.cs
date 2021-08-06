@@ -25,7 +25,7 @@ namespace UI.Desktop
         public Main(Usuario UsuarioActual) : this()
         {
             this.UsuarioActual = UsuarioActual;
-            titulo = $"Bienvenido {UsuarioActual.NombreUsuario}!";
+            titulo = $"Bienvenido/a {UsuarioActual.MiPersona.NombreCompleto}!";
         }
 
         private string titulo;
@@ -39,27 +39,21 @@ namespace UI.Desktop
                 lblLegajo.Text = $"{lblLegajo.Text} {UsuarioActual.MiPersona.Legajo}";
                 lblPersona.Text = $"{lblPersona.Text} {UsuarioActual.MiPersona.NombreCompleto}";
             }
-            // TODO: Segun permisos del usuario cargar x botones
-            /*switch (UsuarioActual.MiPersona.Tipo)
+            // Segun TipoPersona del usuario cargar/ocultar "X" botones
+            switch (UsuarioActual.MiPersona.Tipo)
             {
                 case Persona.TiposPersonas.Administrador:
+                    this.panelMenu.Controls.OfType<Button>().ToList().ForEach(b => b.Visible = true);
                     break;
                 case Persona.TiposPersonas.Alumno:
-                    btnAdministracion.Visible = false;
-                    btnNotas.Visible = false;
-                    btnReportes.Visible = false;
+                    btnInscripcion.Visible = true;
                     break;
                 case Persona.TiposPersonas.Docente:
-                    btnAdministracion.Visible = false;
-                    btnReportes.Visible = false;
+                    btnNotas.Visible = true;
                     break;
                 default:
-                    btnInscripcion.Visible = false;
-                    btnAdministracion.Visible = false;
-                    btnNotas.Visible = false;
-                    btnReportes.Visible = false;
                     break;
-            }*/
+            }
         }
 
         private void panelTop_MouseDown(object sender, MouseEventArgs e)

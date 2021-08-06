@@ -153,6 +153,7 @@ namespace UI.Desktop
             this.btnReportes.Text = "Reportes";
             this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Visible = false;
             this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             this.btnReportes.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
@@ -176,6 +177,7 @@ namespace UI.Desktop
             this.btnNotas.Text = "Registrar Notas";
             this.btnNotas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNotas.UseVisualStyleBackColor = true;
+            this.btnNotas.Visible = false;
             // 
             // btnInscripcion
             // 
@@ -197,6 +199,7 @@ namespace UI.Desktop
             this.btnInscripcion.Text = "Inscripcion";
             this.btnInscripcion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnInscripcion.UseVisualStyleBackColor = true;
+            this.btnInscripcion.Visible = false;
             // 
             // btnAdministracion
             // 
@@ -218,6 +221,7 @@ namespace UI.Desktop
             this.btnAdministracion.Text = "Administracion";
             this.btnAdministracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdministracion.UseVisualStyleBackColor = true;
+            this.btnAdministracion.Visible = false;
             this.btnAdministracion.Click += new System.EventHandler(this.btnAdministracion_Click);
             this.btnAdministracion.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
