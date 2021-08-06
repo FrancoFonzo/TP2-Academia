@@ -180,6 +180,7 @@ namespace UI.Desktop
             this.Controls.Add(this.tlpDatosPlanes);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PlanDesktop";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Plan";
             this.tlpDatosPlanes.ResumeLayout(false);
             this.tlpDatosPlanes.PerformLayout();

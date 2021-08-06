@@ -93,9 +93,19 @@ namespace UI.Desktop.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap graduation_cap_32 {
+        internal static System.Drawing.Bitmap graduation_cap_login {
             get {
-                object obj = ResourceManager.GetObject("graduation_cap_32", resourceCulture);
+                object obj = ResourceManager.GetObject("graduation_cap-login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap graduation_cap_main {
+            get {
+                object obj = ResourceManager.GetObject("graduation_cap_main", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

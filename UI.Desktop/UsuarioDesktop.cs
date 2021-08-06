@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
@@ -24,31 +25,29 @@ namespace UI.Desktop
         {
             this.Modo = modo;
             this.UsuarioActual = new UsuarioLogic().GetOne(ID);
+
+            List<Persona> personas = new PersonaLogic().GetPersonasSinUsuario();
+            personas.Add(this.UsuarioActual.MiPersona);
+            this.cbxPersona.DataSource = personas;
+
             MapearDeDatos();
         }
 
         public override void MapearDeDatos()
         {
-            List<Persona> personas = new PersonaLogic().GetPersonasSinUsuario();
-            personas.Add(this.UsuarioActual.MiPersona);
-            this.cbxPersona.DataSource = personas;
-
             this.txtID.Text = this.UsuarioActual.ID.ToString();
             this.chkHabilitado.Checked = this.UsuarioActual.Habilitado;
             this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
             this.txtClave.Text = this.UsuarioActual.Clave;
-            this.cbxPersona.SelectedValue = this.UsuarioActual.MiPersona.ID;
+            if (this.UsuarioActual.MiPersona != null) this.cbxPersona.SelectedValue = this.UsuarioActual.MiPersona.ID;
 
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
             else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
             else if (Modo == ModoForm.Baja) this.btnAceptar.Text = "Eliminar";
-
         }
 
         public override void MapearADatos()
         {
-            this.cbxPersona.DataSource = new PersonaLogic().GetAll();
-
             if (Modo == ModoForm.Alta)
             {
                 this.UsuarioActual = new Usuario { State = BusinessEntity.States.New };
@@ -66,7 +65,7 @@ namespace UI.Desktop
 
                 var idPer = this.cbxPersona.SelectedValue;
                 if (idPer == null) this.UsuarioActual.MiPersona = null;
-                else this.UsuarioActual.MiPersona = new PersonaLogic().GetOne((int)idPer);
+                else this.UsuarioActual.MiPersona = new PersonaLogic().GetOne((int) idPer);
             }
             else if (Modo == ModoForm.Baja) UsuarioActual.State = BusinessEntity.States.Deleted;
             else if (Modo == ModoForm.Consulta) UsuarioActual.State = BusinessEntity.States.Unmodified;

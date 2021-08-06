@@ -19,6 +19,7 @@ namespace Business.Entities
         public DateTime FechaNacimiento { get; set; }
         public int? Legajo { get; set; }
         public TiposPersonas Tipo { get; set; }
+        public Plan MiPlan { get; set; }
 
         public string NombreCompleto { get { return $"{Nombre} {Apellido}"; } }
     }

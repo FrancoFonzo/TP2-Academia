@@ -30,12 +30,13 @@ namespace Data.Database
                 Legajo = per.legajo,
                 Direccion = per.direccion,
                 Telefono = per.telefono,
-                Tipo = (Persona.TiposPersonas)per.tipo_persona
+                Tipo = (Persona.TiposPersonas)per.tipo_persona,
+                MiPlan = planData.GetOne(per.id_plan)
             };
             return persona;
         }
 
-        public List<string> getTipos()
+        public List<string> GetTipos()
         {
             List<string> tipos = new List<string>{
                 Persona.TiposPersonas.Administrador.ToString(),
@@ -111,6 +112,7 @@ namespace Data.Database
                 per.direccion = persona.Direccion;
                 per.telefono = persona.Telefono;
                 per.tipo_persona = (int)persona.Tipo;
+                per.id_plan = persona.MiPlan.ID;
 
                 db.SaveChanges();
             }
@@ -130,7 +132,8 @@ namespace Data.Database
                     legajo = persona.Legajo,
                     direccion = persona.Direccion,
                     telefono = persona.Telefono,
-                    tipo_persona = (int)persona.Tipo
+                    tipo_persona = (int)persona.Tipo,
+                    id_plan = persona.MiPlan.ID
                 };
                 db.personas.Add(per);
                 db.SaveChanges();

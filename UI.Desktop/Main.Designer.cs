@@ -29,6 +29,7 @@ namespace UI.Desktop
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.btnAcerdaDe = new System.Windows.Forms.Button();
@@ -328,6 +329,8 @@ namespace UI.Desktop
             // panelFormLoader
             // 
             this.panelFormLoader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.panelFormLoader.BackgroundImage = global::UI.Desktop.Properties.Resources.graduation_cap_main;
+            this.panelFormLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panelFormLoader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFormLoader.Location = new System.Drawing.Point(250, 140);
             this.panelFormLoader.Margin = new System.Windows.Forms.Padding(0);
@@ -649,7 +652,7 @@ namespace UI.Desktop
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // formMain
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -662,8 +665,9 @@ namespace UI.Desktop
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.panelAdminReportes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.Name = "formMain";
+            this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "";
             this.Load += new System.EventHandler(this.formMain_Load);

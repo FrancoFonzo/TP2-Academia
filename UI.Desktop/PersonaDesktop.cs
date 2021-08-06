@@ -14,6 +14,7 @@ namespace UI.Desktop
         {
             InitializeComponent();
             this.cbxTipo.DataSource = new PersonaLogic().GetTipos();
+            this.cbxPlan.DataSource = new PlanLogic().GetAll();
         }
 
         public PersonaDesktop(ModoForm modo) : this()
@@ -39,6 +40,7 @@ namespace UI.Desktop
             this.txtTelefono.Text = this.PersonaActual.Telefono;
             this.dateNacimiento.Value = this.PersonaActual.FechaNacimiento;
             this.cbxTipo.SelectedIndex = (int)this.PersonaActual.Tipo;
+            this.cbxPlan.SelectedValue = this.PersonaActual.MiPlan.ID;
 
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
             else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
@@ -65,6 +67,8 @@ namespace UI.Desktop
                 this.PersonaActual.Direccion = this.txtDireccion.Text;
                 this.PersonaActual.Telefono = this.txtTelefono.Text;
                 this.PersonaActual.Tipo = (Persona.TiposPersonas)this.cbxTipo.SelectedIndex;
+                this.PersonaActual.FechaNacimiento = this.dateNacimiento.Value;
+                this.PersonaActual.MiPlan = new PlanLogic().GetOne((int)this.cbxPlan.SelectedValue);
             }
             else if (Modo == ModoForm.Baja) PersonaActual.State = BusinessEntity.States.Deleted;
             else if (Modo == ModoForm.Consulta) PersonaActual.State = BusinessEntity.States.Unmodified;

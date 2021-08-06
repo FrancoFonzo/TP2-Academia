@@ -25,11 +25,14 @@ namespace UI.Desktop
         public Main(Usuario UsuarioActual) : this()
         {
             this.UsuarioActual = UsuarioActual;
+            titulo = $"Bienvenido {UsuarioActual.NombreUsuario}!";
         }
+
+        private string titulo;
 
         private void formMain_Load(object sender, EventArgs e)
         {
-            lblTitulo.Text = $"Bienvenido {UsuarioActual.NombreUsuario}";
+            lblTitulo.Text = titulo;
             lblUsuario.Text = $"{lblUsuario.Text} {UsuarioActual.NombreUsuario}";
             if (UsuarioActual.MiPersona != null)
             {
@@ -37,6 +40,26 @@ namespace UI.Desktop
                 lblPersona.Text = $"{lblPersona.Text} {UsuarioActual.MiPersona.NombreCompleto}";
             }
             // TODO: Segun permisos del usuario cargar x botones
+            /*switch (UsuarioActual.MiPersona.Tipo)
+            {
+                case Persona.TiposPersonas.Administrador:
+                    break;
+                case Persona.TiposPersonas.Alumno:
+                    btnAdministracion.Visible = false;
+                    btnNotas.Visible = false;
+                    btnReportes.Visible = false;
+                    break;
+                case Persona.TiposPersonas.Docente:
+                    btnAdministracion.Visible = false;
+                    btnReportes.Visible = false;
+                    break;
+                default:
+                    btnInscripcion.Visible = false;
+                    btnAdministracion.Visible = false;
+                    btnNotas.Visible = false;
+                    btnReportes.Visible = false;
+                    break;
+            }*/
         }
 
         private void panelTop_MouseDown(object sender, MouseEventArgs e)
@@ -198,7 +221,7 @@ namespace UI.Desktop
         private void panelFormLoader_ControlRemoved(object sender, ControlEventArgs e)
         {
             panelBottom.Visible = false;
-            lblTitulo.Text = "";
+            lblTitulo.Text = titulo;
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
