@@ -40,7 +40,7 @@ namespace UI.Desktop
             {
                 MiAlumno = this.UsuarioActual.MiPersona,
                 Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString(),
-                MiCurso = this.cbxCursos.SelectedValue
+                MiCurso = new CursoLogic().GetOne((int)this.cbxCursos.SelectedValue)
         };
             
             var idCur = this.cbxCursos.SelectedValue;
