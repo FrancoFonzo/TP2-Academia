@@ -57,7 +57,6 @@ namespace UI.Desktop
             {
                 if (Modo == ModoForm.Modificacion)
                 {
-                    this.PersonaActual.ID = int.Parse(this.txtID.Text);
                     this.PersonaActual.State = BusinessEntity.States.Modified;
                 }
                 this.PersonaActual.Legajo = int.Parse(this.txtLegajo.Text);
@@ -79,11 +78,26 @@ namespace UI.Desktop
             MapearADatos();
             new PersonaLogic().Save(PersonaActual);
         }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (Validar())
+            {
+                GuardarCambios();
+                this.Close();
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         public override bool Validar()
         {
             if (!Validaciones.FormularioCompleto(new List<string>
                         {txtNombre.Text, txtApellido.Text, txtEMail.Text, txtDireccion.Text,
-                txtTelefono.Text, dateNacimiento.Text, cbxTipo.Text})
+                txtTelefono.Text, dateNacimiento.Text})
                 )
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
@@ -105,23 +119,14 @@ namespace UI.Desktop
                 Notificar("Informacion invalida", "Porfavor ingrese un tipo de persona valido.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if (cbxPlan.SelectedItem == null)
+            {
+                Notificar("Informacion invalida", "Porfavor ingrese un plan valido.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else return true;
 
             return false;
-        }
-
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            if (Validar())
-            {
-                GuardarCambios();
-                this.Close();
-            }
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

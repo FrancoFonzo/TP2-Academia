@@ -46,12 +46,12 @@ namespace UI.Desktop
             this.txtEMail = new System.Windows.Forms.TextBox();
             this.lblTipo = new System.Windows.Forms.Label();
             this.cbxTipo = new System.Windows.Forms.ComboBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
             this.lblFechaNacimiento = new System.Windows.Forms.Label();
             this.dateNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.cbxPlan = new System.Windows.Forms.ComboBox();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.lblPlan = new System.Windows.Forms.Label();
+            this.cbxPlan = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,10 +81,10 @@ namespace UI.Desktop
             this.tableLayoutPanel1.Controls.Add(this.cbxTipo, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblFechaNacimiento, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.dateNacimiento, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 2, 6);
-            this.tableLayoutPanel1.Controls.Add(this.btnCancelar, 3, 6);
             this.tableLayoutPanel1.Controls.Add(this.lblPlan, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.cbxPlan, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 3, 6);
+            this.tableLayoutPanel1.Controls.Add(this.btnCancelar, 2, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -255,31 +255,6 @@ namespace UI.Desktop
             this.cbxTipo.TabIndex = 15;
             this.cbxTipo.ValueMember = "ID";
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.AutoSize = true;
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(479, 169);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(74, 27);
-            this.btnCancelar.TabIndex = 19;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.AutoSize = true;
-            this.btnAceptar.Location = new System.Drawing.Point(360, 169);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 27);
-            this.btnAceptar.TabIndex = 18;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
             // lblFechaNacimiento
             // 
             this.lblFechaNacimiento.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -301,6 +276,42 @@ namespace UI.Desktop
             this.dateNacimiento.Size = new System.Drawing.Size(202, 22);
             this.dateNacimiento.TabIndex = 17;
             // 
+            // btnAceptar
+            // 
+            this.btnAceptar.AutoSize = true;
+            this.btnAceptar.Location = new System.Drawing.Point(479, 169);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 27);
+            this.btnAceptar.TabIndex = 18;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.AutoSize = true;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(360, 169);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(74, 27);
+            this.btnCancelar.TabIndex = 19;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // lblPlan
+            // 
+            this.lblPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblPlan.AutoSize = true;
+            this.lblPlan.Location = new System.Drawing.Point(358, 120);
+            this.lblPlan.Name = "lblPlan";
+            this.lblPlan.Size = new System.Drawing.Size(36, 17);
+            this.lblPlan.TabIndex = 21;
+            this.lblPlan.Text = "Plan";
+            this.lblPlan.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // cbxPlan
             // 
             this.cbxPlan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -313,17 +324,6 @@ namespace UI.Desktop
             this.cbxPlan.Size = new System.Drawing.Size(202, 24);
             this.cbxPlan.TabIndex = 20;
             this.cbxPlan.ValueMember = "ID";
-            // 
-            // lblPlan
-            // 
-            this.lblPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblPlan.AutoSize = true;
-            this.lblPlan.Location = new System.Drawing.Point(358, 120);
-            this.lblPlan.Name = "lblPlan";
-            this.lblPlan.Size = new System.Drawing.Size(36, 17);
-            this.lblPlan.TabIndex = 21;
-            this.lblPlan.Text = "Plan";
-            this.lblPlan.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PersonaDesktop
             // 

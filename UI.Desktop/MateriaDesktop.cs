@@ -1,25 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using Business.Logic;
 using Business.Entities;
-
+using System.Windows.Forms;
 
 namespace UI.Desktop
 {
-    public partial class MateriasDesktop : ApplicationForm
+    public partial class MateriaDesktop : ApplicationForm
     {
         private Materia MateriaActual { get; set; }
-        public MateriasDesktop()
+        public MateriaDesktop()
         {
             InitializeComponent();
             this.cbxPlan.DataSource = new PlanLogic().GetAll();
         }
 
-        public MateriasDesktop(ModoForm modo) : this()
+        public MateriaDesktop(ModoForm modo) : this()
         {
             this.Modo = modo;
         }
 
-        public MateriasDesktop(int ID, ModoForm modo) : this()
+        public MateriaDesktop(int ID, ModoForm modo) : this()
         {
             this.Modo = modo;
             MateriaActual = new MateriaLogic().GetOne(ID);
@@ -35,7 +36,8 @@ namespace UI.Desktop
             this.cbxPlan.SelectedValue = this.MateriaActual.MiPlan.ID;
 
             if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
+            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) 
+                this.btnAceptar.Text = "Guardar";
             else if (Modo == ModoForm.Baja) this.btnAceptar.Text = "Eliminar";
 
         }
@@ -50,14 +52,12 @@ namespace UI.Desktop
             {
                 if (Modo == ModoForm.Modificacion)
                 {
-                    this.MateriaActual.ID = int.Parse(this.txtID.Text);
                     this.MateriaActual.State = BusinessEntity.States.Modified;
                 }
-
                 this.MateriaActual.Descripcion = this.txtDescripcion.Text;
                 this.MateriaActual.HorasSemanales = int.Parse(this.txtHsSemanales.Text);
-
-
+                this.MateriaActual.HorasTotales = int.Parse(this.txtHsTotales.Text);
+                this.MateriaActual.MiPlan = new PlanLogic().GetOne((int)this.cbxPlan.SelectedValue);
             }
             else if (Modo == ModoForm.Baja) MateriaActual.State = BusinessEntity.States.Deleted;
             else if (Modo == ModoForm.Consulta) MateriaActual.State = BusinessEntity.States.Unmodified;
@@ -82,6 +82,24 @@ namespace UI.Desktop
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        public override bool Validar()
+        {
+            if (!Validaciones.FormularioCompleto(new List<string>
+                        {txtDescripcion.Text, txtHsSemanales.Text, txtHsTotales.Text})
+                )
+            {
+                Notificar("Informacion invalida", "Complete los campos para continuar.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (this.cbxPlan.SelectedValue == null)
+            {
+                Notificar("Informacion invalida", "Porfavor seleccione una especialidad valida.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else return true;
+            return false;
         }
     }
 }

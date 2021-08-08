@@ -1,7 +1,7 @@
 ﻿
 namespace UI.Desktop
 {
-    partial class MateriasDesktop
+    partial class MateriaDesktop
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace UI.Desktop
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MateriasDesktop));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MateriaDesktop));
             this.tlMaterias = new System.Windows.Forms.TableLayoutPanel();
             this.lblID = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
@@ -59,13 +59,13 @@ namespace UI.Desktop
             this.tlMaterias.Controls.Add(this.lblHsSeman, 2, 0);
             this.tlMaterias.Controls.Add(this.lblHsTot, 2, 1);
             this.tlMaterias.Controls.Add(this.lblPlan, 0, 2);
-            this.tlMaterias.Controls.Add(this.btnAceptar, 2, 4);
-            this.tlMaterias.Controls.Add(this.btnCancelar, 3, 4);
             this.tlMaterias.Controls.Add(this.txtID, 1, 0);
             this.tlMaterias.Controls.Add(this.txtDescripcion, 1, 1);
             this.tlMaterias.Controls.Add(this.txtHsSemanales, 3, 0);
             this.tlMaterias.Controls.Add(this.txtHsTotales, 3, 1);
             this.tlMaterias.Controls.Add(this.cbxPlan, 1, 2);
+            this.tlMaterias.Controls.Add(this.btnAceptar, 3, 4);
+            this.tlMaterias.Controls.Add(this.btnCancelar, 2, 4);
             this.tlMaterias.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlMaterias.Location = new System.Drawing.Point(0, 0);
             this.tlMaterias.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -137,24 +137,26 @@ namespace UI.Desktop
             // btnAceptar
             // 
             this.btnAceptar.AutoSize = true;
-            this.btnAceptar.Location = new System.Drawing.Point(326, 102);
+            this.btnAceptar.Location = new System.Drawing.Point(454, 102);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(89, 27);
             this.btnAceptar.TabIndex = 10;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(454, 102);
+            this.btnCancelar.Location = new System.Drawing.Point(326, 102);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 26);
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // txtID
             // 
@@ -210,7 +212,7 @@ namespace UI.Desktop
             this.cbxPlan.TabIndex = 9;
             this.cbxPlan.ValueMember = "ID";
             // 
-            // MateriasDesktop
+            // MateriaDesktop
             // 
             this.AcceptButton = this.btnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -221,7 +223,7 @@ namespace UI.Desktop
             this.Controls.Add(this.tlMaterias);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "MateriasDesktop";
+            this.Name = "MateriaDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MateriasDesktop";
             this.tlMaterias.ResumeLayout(false);

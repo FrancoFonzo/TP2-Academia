@@ -1,6 +1,8 @@
 ﻿using System;
 using Business.Logic;
 using Business.Entities;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace UI.Desktop
 {
@@ -44,7 +46,6 @@ namespace UI.Desktop
             {
                 if (Modo == ModoForm.Modificacion)
                 {
-                    this.EspecialidadActual.ID = int.Parse(this.txtID.Text);
                     this.EspecialidadActual.State = BusinessEntity.States.Modified;
                 }
                 this.EspecialidadActual.Descripcion = this.txtDescripcion.Text;
@@ -68,6 +69,19 @@ namespace UI.Desktop
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        public override bool Validar()
+        {
+            if (!Validaciones.FormularioCompleto(new List<string>
+                        {txtDescripcion.Text})
+                )
+            {
+                Notificar("Informacion invalida", "Complete los campos para continuar.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else return true;
+            return false;
         }
     }
 }

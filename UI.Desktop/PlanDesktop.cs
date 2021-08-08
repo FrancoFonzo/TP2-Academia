@@ -50,7 +50,6 @@ namespace UI.Desktop
             {
                 if (Modo == ModoForm.Modificacion)
                 {
-                    this.PlanActual.ID = int.Parse(this.txtID.Text);
                     this.PlanActual.State = BusinessEntity.States.Modified;
                 }
                 this.PlanActual.Descripcion = this.txtDescripcion.Text;
@@ -84,7 +83,7 @@ namespace UI.Desktop
         public override bool Validar()
         {
             if (!Validaciones.FormularioCompleto(new List<string>
-                        {txtDescripcion.Text, cbxEspecialidad.Text})
+                        {txtDescripcion.Text})
                 )
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
@@ -92,7 +91,7 @@ namespace UI.Desktop
             }
             else if (this.cbxEspecialidad.SelectedValue == null)
             {
-                Notificar("Informacion invalida", "La especialidad especificada no existe.",
+                Notificar("Informacion invalida", "Porfavor seleccione una especialidad valida.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else return true;

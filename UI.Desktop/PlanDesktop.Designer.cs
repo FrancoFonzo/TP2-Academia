@@ -48,8 +48,8 @@ namespace UI.Desktop
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.AutoSize = true;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(358, 5);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCancelar.Location = new System.Drawing.Point(264, 5);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(99, 33);
             this.btnCancelar.TabIndex = 7;
@@ -61,8 +61,8 @@ namespace UI.Desktop
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAceptar.AutoSize = true;
-            this.btnAceptar.Location = new System.Drawing.Point(264, 5);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.btnAceptar.Location = new System.Drawing.Point(368, 5);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(89, 33);
             this.btnAceptar.TabIndex = 6;

@@ -56,7 +56,6 @@ namespace UI.Desktop
             {
                 if (Modo == ModoForm.Modificacion)
                 {
-                    this.UsuarioActual.ID = int.Parse(this.txtID.Text);
                     this.UsuarioActual.State = BusinessEntity.States.Modified;
                 }
                 this.UsuarioActual.Habilitado = this.chkHabilitado.Checked;
@@ -75,6 +74,20 @@ namespace UI.Desktop
         {
             MapearADatos();
             new UsuarioLogic().Save(UsuarioActual);
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (Validar())
+            {
+                GuardarCambios();
+                this.Close();
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         public override bool Validar()
@@ -103,20 +116,6 @@ namespace UI.Desktop
             }
             else return true;
             return false;
-        }
-
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            if (Validar())
-            {
-                GuardarCambios();
-                this.Close();
-            }
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace UI.Desktop
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            MateriasDesktop formMaterias = new MateriasDesktop(ApplicationForm.ModoForm.Alta);
+            MateriaDesktop formMaterias = new MateriaDesktop(ApplicationForm.ModoForm.Alta);
             formMaterias.ShowDialog();
             this.Listar();
         }
@@ -41,7 +41,7 @@ namespace UI.Desktop
         private void OpenForm(ApplicationForm.ModoForm modo)
         {
             int ID = ((Materia)this.dgvMaterias.SelectedRows[0].DataBoundItem).ID;
-            MateriasDesktop formMaterias = new MateriasDesktop(ID, modo);
+            MateriaDesktop formMaterias = new MateriaDesktop(ID, modo);
             formMaterias.ShowDialog();
             this.Listar();
         }
