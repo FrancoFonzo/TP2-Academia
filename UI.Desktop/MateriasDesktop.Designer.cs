@@ -76,7 +76,7 @@ namespace UI.Desktop
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlMaterias.Size = new System.Drawing.Size(683, 151);
+            this.tlMaterias.Size = new System.Drawing.Size(683, 136);
             this.tlMaterias.TabIndex = 0;
             // 
             // lblID
@@ -137,8 +137,8 @@ namespace UI.Desktop
             // btnAceptar
             // 
             this.btnAceptar.AutoSize = true;
-            this.btnAceptar.Location = new System.Drawing.Point(326, 102);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAceptar.Location = new System.Drawing.Point(327, 103);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(89, 27);
             this.btnAceptar.TabIndex = 10;
@@ -147,11 +147,12 @@ namespace UI.Desktop
             // 
             // btnCancelar
             // 
+            this.btnCancelar.AutoSize = true;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(454, 102);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelar.Location = new System.Drawing.Point(455, 103);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(100, 26);
+            this.btnCancelar.Size = new System.Drawing.Size(100, 27);
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -217,7 +218,7 @@ namespace UI.Desktop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(683, 151);
+            this.ClientSize = new System.Drawing.Size(683, 136);
             this.Controls.Add(this.tlMaterias);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
