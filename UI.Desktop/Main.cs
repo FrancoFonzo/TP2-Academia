@@ -124,77 +124,27 @@ namespace UI.Desktop
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            this.panelFormLoader.Controls.Clear();
-            Usuarios formUsuarios = new Usuarios
-            {
-                Dock = DockStyle.Fill,
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                TopMost = true
-            };
-            this.panelFormLoader.Controls.Add(formUsuarios);
-            lblTitulo.Text = formUsuarios.Text;
-            formUsuarios.Show();
+            openForm<Usuarios>();
         }
 
         private void btnPersonas_Click(object sender, EventArgs e)
         {
-            this.panelFormLoader.Controls.Clear();
-            Personas formPersonas = new Personas
-            {
-                Dock = DockStyle.Fill,
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                TopMost = true
-            };
-            this.panelFormLoader.Controls.Add(formPersonas);
-            lblTitulo.Text = "Personas";
-            formPersonas.Show();
+            openForm<Personas>();
         }
 
         private void btnEspecialidades_Click(object sender, EventArgs e)
         {
-            this.panelFormLoader.Controls.Clear();
-            Especialidades formEspecialidades = new Especialidades
-            {
-                Dock = DockStyle.Fill,
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                TopMost = true
-            };
-            this.panelFormLoader.Controls.Add(formEspecialidades);
-            lblTitulo.Text = "Especialidades";
-            formEspecialidades.Show();
+            openForm<Especialidades>();
         }
 
         private void btnPlanes_Click(object sender, EventArgs e)
         {
-            this.panelFormLoader.Controls.Clear();
-            Planes formPlanes = new Planes
-            {
-                Dock = DockStyle.Fill,
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                TopMost = true
-            };
-            this.panelFormLoader.Controls.Add(formPlanes);
-            lblTitulo.Text = "Planes";
-            formPlanes.Show();
+            openForm<Planes>();
         }
 
         private void btnMaterias_Click(object sender, EventArgs e)
         {
-            this.panelFormLoader.Controls.Clear();
-            Materias formMaterias = new Materias
-            {
-                Dock = DockStyle.Fill,
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                TopMost = true
-            };
-            this.panelFormLoader.Controls.Add(formMaterias);
-            lblTitulo.Text = "Materias";
-            formMaterias.Show();
+            openForm<Materias>();
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
@@ -209,17 +159,7 @@ namespace UI.Desktop
 
         private void btnCursos_Click(object sender, EventArgs e)
         {
-            this.panelFormLoader.Controls.Clear();
-            Cursos formCursos = new Cursos
-            {
-                Dock = DockStyle.Fill,
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                TopMost = true
-            };
-            this.panelFormLoader.Controls.Add(formCursos);
-            lblTitulo.Text = "Cursos";
-            formCursos.Show();
+            openForm<Cursos>();
         }
 
         private void panelFormLoader_ControlAdded(object sender, ControlEventArgs e)
@@ -242,6 +182,19 @@ namespace UI.Desktop
         {
             ApplicationForm form = panelFormLoader.Controls.OfType<ApplicationForm>().SingleOrDefault();
             form.Listar();
+        }
+
+        private void openForm<T>() where T : ApplicationForm
+        {
+            this.panelFormLoader.Controls.Clear();
+            T form = (T) Activator.CreateInstance(typeof(T));
+            form.Dock = DockStyle.Fill;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.TopLevel = false;
+            form.TopMost = true;
+            this.panelFormLoader.Controls.Add(form);
+            lblTitulo.Text = form.Text;
+            form.Show();
         }
     }
 }

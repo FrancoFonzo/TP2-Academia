@@ -137,13 +137,8 @@ namespace UI.Desktop
             // btnAceptar
             // 
             this.btnAceptar.AutoSize = true;
-<<<<<<< HEAD:UI.Desktop/MateriaDesktop.Designer.cs
-            this.btnAceptar.Location = new System.Drawing.Point(454, 102);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
-=======
             this.btnAceptar.Location = new System.Drawing.Point(327, 103);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(5);
->>>>>>> formCursos:UI.Desktop/MateriasDesktop.Designer.cs
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(89, 27);
             this.btnAceptar.TabIndex = 10;
@@ -155,13 +150,8 @@ namespace UI.Desktop
             // 
             this.btnCancelar.AutoSize = true;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-<<<<<<< HEAD:UI.Desktop/MateriaDesktop.Designer.cs
-            this.btnCancelar.Location = new System.Drawing.Point(326, 102);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
-=======
             this.btnCancelar.Location = new System.Drawing.Point(455, 103);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(5);
->>>>>>> formCursos:UI.Desktop/MateriasDesktop.Designer.cs
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 27);
             this.btnCancelar.TabIndex = 11;
