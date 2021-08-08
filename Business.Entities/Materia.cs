@@ -6,5 +6,10 @@
         public int HorasSemanales { get; set; }
         public int HorasTotales { get; set; }
         public Plan MiPlan { get; set; }
+
+        public override string ToString()
+        {
+            return Descripcion;
+        }
     }
 }

@@ -207,6 +207,21 @@ namespace UI.Desktop
             btnReportePlanes.Visible = true;
         }
 
+        private void btnCursos_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            Cursos formCursos = new Cursos
+            {
+                Dock = DockStyle.Fill,
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                TopMost = true
+            };
+            this.panelFormLoader.Controls.Add(formCursos);
+            lblTitulo.Text = "Cursos";
+            formCursos.Show();
+        }
+
         private void panelFormLoader_ControlAdded(object sender, ControlEventArgs e)
         {
             panelBottom.Visible = true;

@@ -419,6 +419,7 @@ namespace UI.Desktop
             this.btnCursos.Text = "Cursos";
             this.btnCursos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCursos.UseVisualStyleBackColor = true;
+            this.btnCursos.Click += new System.EventHandler(this.btnCursos_Click);
             this.btnCursos.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnMaterias
