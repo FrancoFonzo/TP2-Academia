@@ -54,7 +54,7 @@ namespace UI.Desktop
             if (txt.Text == cadena)
             {
                 txt.Text = "";
-                txt.ForeColor = Color.Silver;
+                txt.ForeColor = Color.LightGray;
                 if (txt.Equals(txtClave)) txt.PasswordChar = '*';
             }
             else if (txt.Text == "")
@@ -78,15 +78,22 @@ namespace UI.Desktop
                 !Validaciones.FormularioCompleto(
                     new List<string> { txtUsuario.Text, txtClave.Text }))
             {
-                Notificar("Informacion invalida", "Complete todos los campos para continuar.",
+                Notificar("Login", "Complete todos los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             this.UsuarioActual = new UsuarioLogic().GetOneNombreUsuario(this.txtUsuario.Text);
+
             if (!Validaciones.ValidarClave(UsuarioActual?.Clave, txtClave.Text))
             {
                 Notificar("Login", "Usuario y/o contraseña incorrectos",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!UsuarioActual.Habilitado)
+            {
+                Notificar("Login", "Usuario no habilitado",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

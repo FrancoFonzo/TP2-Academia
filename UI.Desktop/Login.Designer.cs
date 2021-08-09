@@ -54,9 +54,9 @@ namespace UI.Desktop
             this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUsuario.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.ForeColor = System.Drawing.Color.Gray;
-            this.txtUsuario.Location = new System.Drawing.Point(10, 99);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.txtUsuario.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtUsuario.Location = new System.Drawing.Point(10, 91);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(10, 15, 10, 15);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(502, 32);
             this.txtUsuario.TabIndex = 1;
@@ -70,9 +70,9 @@ namespace UI.Desktop
             this.txtClave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.txtClave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtClave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClave.ForeColor = System.Drawing.Color.Gray;
-            this.txtClave.Location = new System.Drawing.Point(10, 165);
-            this.txtClave.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.txtClave.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtClave.Location = new System.Drawing.Point(10, 153);
+            this.txtClave.Margin = new System.Windows.Forms.Padding(10, 15, 10, 15);
             this.txtClave.Name = "txtClave";
             this.txtClave.Size = new System.Drawing.Size(502, 32);
             this.txtClave.TabIndex = 2;
@@ -86,7 +86,7 @@ namespace UI.Desktop
             this.lnkRecuperarClave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lnkRecuperarClave.AutoSize = true;
             this.lnkRecuperarClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkRecuperarClave.LinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkRecuperarClave.LinkColor = System.Drawing.Color.SteelBlue;
             this.lnkRecuperarClave.Location = new System.Drawing.Point(10, 302);
             this.lnkRecuperarClave.Margin = new System.Windows.Forms.Padding(10);
             this.lnkRecuperarClave.Name = "lnkRecuperarClave";
@@ -98,18 +98,19 @@ namespace UI.Desktop
             // 
             // btnIniciarSesion
             // 
-            this.btnIniciarSesion.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnIniciarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnIniciarSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnIniciarSesion.AutoSize = true;
+            this.btnIniciarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
             this.btnIniciarSesion.FlatAppearance.BorderSize = 0;
-            this.btnIniciarSesion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.btnIniciarSesion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnIniciarSesion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(100)))), ((int)(((byte)(190)))));
+            this.btnIniciarSesion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(100)))), ((int)(((byte)(190)))));
             this.btnIniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIniciarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciarSesion.ForeColor = System.Drawing.Color.LightGray;
-            this.btnIniciarSesion.Location = new System.Drawing.Point(392, 224);
-            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(10);
+            this.btnIniciarSesion.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.btnIniciarSesion.ForeColor = System.Drawing.Color.Black;
+            this.btnIniciarSesion.Location = new System.Drawing.Point(10, 215);
+            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(10, 15, 10, 15);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
-            this.btnIniciarSesion.Size = new System.Drawing.Size(120, 29);
+            this.btnIniciarSesion.Size = new System.Drawing.Size(502, 38);
             this.btnIniciarSesion.TabIndex = 3;
             this.btnIniciarSesion.Text = "Iniciar sesión";
             this.btnIniciarSesion.UseVisualStyleBackColor = false;
@@ -117,6 +118,7 @@ namespace UI.Desktop
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.txtUsuario, 0, 1);
@@ -129,11 +131,11 @@ namespace UI.Desktop
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55.55556F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.44444F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(522, 330);
             this.tableLayoutPanel1.TabIndex = 5;
             this.tableLayoutPanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.appLogin_MouseDown);
@@ -153,7 +155,7 @@ namespace UI.Desktop
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(522, 82);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(522, 76);
             this.tableLayoutPanel3.TabIndex = 7;
             this.tableLayoutPanel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.appLogin_MouseDown);
             // 
@@ -162,8 +164,8 @@ namespace UI.Desktop
             this.lblTitulo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = System.Drawing.Color.LightGray;
-            this.lblTitulo.Location = new System.Drawing.Point(10, 21);
+            this.lblTitulo.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblTitulo.Location = new System.Drawing.Point(10, 18);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(10);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(122, 40);
