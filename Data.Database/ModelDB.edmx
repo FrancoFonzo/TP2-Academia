@@ -31,6 +31,7 @@
           <Property Name="id_curso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_materia" Type="int" Nullable="false" />
           <Property Name="id_comision" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="anio_calendario" Type="int" Nullable="false" />
           <Property Name="cupo" Type="int" Nullable="false" />
         </EntityType>
@@ -73,7 +74,7 @@
           <Property Name="fecha_nac" Type="datetime" Nullable="false" />
           <Property Name="legajo" Type="int" />
           <Property Name="tipo_persona" Type="int" Nullable="false" />
-          <Property Name="id_plan" Type="int" Nullable="false" />
+          <Property Name="id_plan" Type="int" />
         </EntityType>
         <EntityType Name="planes">
           <Key>
@@ -191,7 +192,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_personas_planes">
-          <End Role="planes" Type="Self.planes" Multiplicity="1" />
+          <End Role="planes" Type="Self.planes" Multiplicity="0..1" />
           <End Role="personas" Type="Self.personas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="planes">
@@ -321,6 +322,7 @@
           <NavigationProperty Name="comisiones" Relationship="Self.FK_cursos_comisiones" FromRole="cursos" ToRole="comisiones" />
           <NavigationProperty Name="materias" Relationship="Self.FK_cursos_materias" FromRole="cursos" ToRole="materias" />
           <NavigationProperty Name="docentes_cursos" Relationship="Self.FK_docentes_cursos_cursos" FromRole="cursos" ToRole="docentes_cursos" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="docentes_cursos">
           <Key>
@@ -366,7 +368,7 @@
           <Property Name="fecha_nac" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="legajo" Type="Int32" />
           <Property Name="tipo_persona" Type="Int32" Nullable="false" />
-          <Property Name="id_plan" Type="Int32" Nullable="false" />
+          <Property Name="id_plan" Type="Int32" />
           <NavigationProperty Name="alumnos_inscripciones" Relationship="Self.FK_alumnos_inscripciones_personas" FromRole="personas" ToRole="alumnos_inscripciones" />
           <NavigationProperty Name="docentes_cursos" Relationship="Self.FK_docentes_cursos_personas" FromRole="personas" ToRole="docentes_cursos" />
           <NavigationProperty Name="planes" Relationship="Self.FK_personas_planes" FromRole="personas" ToRole="planes" />
@@ -505,7 +507,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_personas_planes">
-          <End Role="planes" Type="Self.planes" Multiplicity="1" />
+          <End Role="planes" Type="Self.planes" Multiplicity="0..1" />
           <End Role="personas" Type="Self.personas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="planes">
@@ -613,6 +615,7 @@
           <EntitySetMapping Name="cursos">
             <EntityTypeMapping TypeName="AcademiaModel.cursos">
               <MappingFragment StoreEntitySet="cursos">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="id_curso" ColumnName="id_curso" />
                 <ScalarProperty Name="id_materia" ColumnName="id_materia" />
                 <ScalarProperty Name="id_comision" ColumnName="id_comision" />

@@ -73,23 +73,21 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ComisionAdapter.cs" />
-    <Compile Include="DocenteCursoAdapter.cs" />
-    <Compile Include="CursoAdapter.cs" />
-    <Compile Include="MateriaAdapter.cs" />
-    <Compile Include="PlanAdapter.cs" />
     <Compile Include="comisiones.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="cursos.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DocenteCursoAdapter.cs" />
+    <Compile Include="CursoAdapter.cs" />
     <Compile Include="docentes_cursos.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="EspecialidadAdapter.cs" />
     <Compile Include="especialidades.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="MateriaAdapter.cs" />
     <Compile Include="materias.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -108,10 +106,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PersonaAdapter.cs" />
     <Compile Include="personas.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="PlanAdapter.cs" />
+    <Compile Include="EspecialidadAdapter.cs" />
+    <Compile Include="PersonaAdapter.cs" />
     <Compile Include="planes.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -135,32 +135,30 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="ModelDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="ModelDB.edmx.diagram">
       <DependentUpon>ModelDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelDB.Context.cs</LastGenOutput>
       <DependentUpon>ModelDB.edmx</DependentUpon>
+      <LastGenOutput>ModelDB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="ModelDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelDB.edmx</DependentUpon>
       <LastGenOutput>ModelDB.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

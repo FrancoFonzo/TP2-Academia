@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1b0d40d4a2094d2fb762cf1a1b328082" Name="Diagram1" ZoomLevel="91">
-        <EntityTypeShape EntityType="AcademiaModel.alumnos_inscripciones" Width="1.5" PointX="9.75" PointY="6.375" IsExpanded="true" />
+      <Diagram DiagramId="f1acfa5d199b4f3fa965dc40ffa38fde" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="AcademiaModel.alumnos_inscripciones" Width="1.5" PointX="9.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="AcademiaModel.comisiones" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="AcademiaModel.cursos" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AcademiaModel.docentes_cursos" Width="1.5" PointX="12.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.docentes_cursos" Width="1.5" PointX="9.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AcademiaModel.especialidades" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AcademiaModel.materias" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="AcademiaModel.personas" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.personas" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AcademiaModel.planes" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AcademiaModel.usuarios" Width="1.5" PointX="9.125" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademiaModel.usuarios" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
         <AssociationConnector Association="AcademiaModel.FK_alumnos_inscripciones_cursos" ManuallyRouted="false" />
         <AssociationConnector Association="AcademiaModel.FK_alumnos_inscripciones_personas" ManuallyRouted="false" />
         <AssociationConnector Association="AcademiaModel.FK_comisiones_planes" ManuallyRouted="false" />

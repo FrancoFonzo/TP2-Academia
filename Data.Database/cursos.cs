@@ -26,7 +26,6 @@ namespace Data.Database
         public int id_comision { get; set; }
         public int anio_calendario { get; set; }
         public int cupo { get; set; }
-
         public string descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

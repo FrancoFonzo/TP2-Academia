@@ -31,7 +31,7 @@ namespace Data.Database
         public System.DateTime fecha_nac { get; set; }
         public Nullable<int> legajo { get; set; }
         public int tipo_persona { get; set; }
-        public int id_plan { get; set; }
+        public Nullable<int> id_plan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumnos_inscripciones> alumnos_inscripciones { get; set; }

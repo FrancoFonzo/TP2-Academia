@@ -30,9 +30,9 @@ namespace Data.Database
                 Legajo = per.legajo,
                 Direccion = per.direccion,
                 Telefono = per.telefono,
-                Tipo = (Persona.TiposPersonas)per.tipo_persona,
-                MiPlan = planData.GetOne(per.id_plan)
+                Tipo = (Persona.TiposPersonas)per.tipo_persona
             };
+            if (per.id_plan != null) persona.MiPlan = planData.GetOne((int)per.id_plan);
             return persona;
         }
 
