@@ -22,18 +22,18 @@ namespace Data.Database
 
         private Curso nuevoCurso(cursos cur)
         {
-            Curso cursos = new Curso()
+            Curso curso = new Curso()
             {
                 ID = cur.id_curso,
                 AñoCalendario = cur.anio_calendario,
                 Cupo = cur.cupo,
                 MiMateria = materiaData.GetOne(cur.id_materia),
-                MiComision= comisionData.GetOne(cur.id_comision)
+                MiComision = comisionData.GetOne(cur.id_comision)
             };
-            return cursos;
+            curso.Descripcion = $"{curso.MiMateria.Descripcion}" +
+                $" - {curso.MiComision.Descripcion} - {curso.AñoCalendario}";
+            return curso;
         }
-
-
 
         public Curso GetOne(int ID)
         {

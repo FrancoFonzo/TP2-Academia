@@ -93,7 +93,7 @@ namespace Data.Database
                     id_alumno = inscripcion.MiAlumno.ID,
                     id_curso = inscripcion.MiCurso.ID,
                     condicion = inscripcion.Condicion,
-                    nota = (int)inscripcion.Nota
+                    nota = inscripcion.Nota
                 };
                 db.alumnos_inscripciones.Add(insc);
                 db.SaveChanges();

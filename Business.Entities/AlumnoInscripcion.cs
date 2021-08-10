@@ -8,7 +8,7 @@
 
         public string Condicion { get; set; }
 
-        public float? Nota { get; set; }
+        public int? Nota { get; set; }
 
         public enum Condiciones
         {

@@ -214,17 +214,7 @@ namespace UI.Desktop
 
         private void btnInscripcion_Click(object sender, EventArgs e)
         {
-            this.panelFormLoader.Controls.Clear();
-            AlumnoInscripcionDesktop AlumnoInscripcion = new AlumnoInscripcionDesktop(UsuarioActual.ID)
-            {
-                Dock = DockStyle.Fill,
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                TopMost = true
-            };
-            this.panelFormLoader.Controls.Add(AlumnoInscripcion);
-            lblTitulo.Text = "AlumnoInscripcion";
-            AlumnoInscripcion.Show();
+            // TODO: Listado Inscripciones alumnos
         }
     }
 }
