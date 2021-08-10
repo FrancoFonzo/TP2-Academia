@@ -71,26 +71,25 @@ namespace UI.Desktop
             this.tlMaterias.Controls.Add(this.btnAceptar, 3, 5);
             this.tlMaterias.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlMaterias.Location = new System.Drawing.Point(0, 0);
-            this.tlMaterias.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tlMaterias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tlMaterias.Name = "tlMaterias";
             this.tlMaterias.RowCount = 6;
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlMaterias.Size = new System.Drawing.Size(782, 158);
+            this.tlMaterias.Size = new System.Drawing.Size(586, 128);
             this.tlMaterias.TabIndex = 1;
             // 
             // lblID
             // 
             this.lblID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(4, 7);
-            this.lblID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblID.Location = new System.Drawing.Point(3, 7);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(21, 17);
+            this.lblID.Size = new System.Drawing.Size(18, 13);
             this.lblID.TabIndex = 0;
             this.lblID.Text = "ID";
             // 
@@ -98,10 +97,9 @@ namespace UI.Desktop
             // 
             this.lblDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(4, 39);
-            this.lblDescripcion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDescripcion.Location = new System.Drawing.Point(3, 35);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(82, 17);
+            this.lblDescripcion.Size = new System.Drawing.Size(63, 13);
             this.lblDescripcion.TabIndex = 2;
             this.lblDescripcion.Text = "Descripcion";
             // 
@@ -109,10 +107,9 @@ namespace UI.Desktop
             // 
             this.lblAñoCalendario.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAñoCalendario.AutoSize = true;
-            this.lblAñoCalendario.Location = new System.Drawing.Point(383, 7);
-            this.lblAñoCalendario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAñoCalendario.Location = new System.Drawing.Point(288, 7);
             this.lblAñoCalendario.Name = "lblAñoCalendario";
-            this.lblAñoCalendario.Size = new System.Drawing.Size(105, 17);
+            this.lblAñoCalendario.Size = new System.Drawing.Size(79, 13);
             this.lblAñoCalendario.TabIndex = 4;
             this.lblAñoCalendario.Text = "Año Calendario";
             // 
@@ -120,10 +117,9 @@ namespace UI.Desktop
             // 
             this.lblCupo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCupo.AutoSize = true;
-            this.lblCupo.Location = new System.Drawing.Point(383, 39);
-            this.lblCupo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCupo.Location = new System.Drawing.Point(288, 35);
             this.lblCupo.Name = "lblCupo";
-            this.lblCupo.Size = new System.Drawing.Size(41, 17);
+            this.lblCupo.Size = new System.Drawing.Size(32, 13);
             this.lblCupo.TabIndex = 6;
             this.lblCupo.Text = "Cupo";
             // 
@@ -131,10 +127,9 @@ namespace UI.Desktop
             // 
             this.lblMateria.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMateria.AutoSize = true;
-            this.lblMateria.Location = new System.Drawing.Point(4, 72);
-            this.lblMateria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMateria.Location = new System.Drawing.Point(3, 64);
             this.lblMateria.Name = "lblMateria";
-            this.lblMateria.Size = new System.Drawing.Size(55, 17);
+            this.lblMateria.Size = new System.Drawing.Size(42, 13);
             this.lblMateria.TabIndex = 8;
             this.lblMateria.Text = "Materia";
             // 
@@ -143,39 +138,39 @@ namespace UI.Desktop
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtID.Cursor = System.Windows.Forms.Cursors.No;
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(95, 5);
-            this.txtID.Margin = new System.Windows.Forms.Padding(5);
+            this.txtID.Location = new System.Drawing.Point(73, 4);
+            this.txtID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(279, 22);
+            this.txtID.Size = new System.Drawing.Size(208, 20);
             this.txtID.TabIndex = 1;
             this.txtID.TabStop = false;
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescripcion.Location = new System.Drawing.Point(95, 37);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(5);
+            this.txtDescripcion.Location = new System.Drawing.Point(73, 32);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(279, 22);
+            this.txtDescripcion.Size = new System.Drawing.Size(208, 20);
             this.txtDescripcion.TabIndex = 3;
             // 
             // txtAñoCalendario
             // 
             this.txtAñoCalendario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAñoCalendario.Location = new System.Drawing.Point(497, 5);
-            this.txtAñoCalendario.Margin = new System.Windows.Forms.Padding(5);
+            this.txtAñoCalendario.Location = new System.Drawing.Point(374, 4);
+            this.txtAñoCalendario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtAñoCalendario.Name = "txtAñoCalendario";
-            this.txtAñoCalendario.Size = new System.Drawing.Size(280, 22);
+            this.txtAñoCalendario.Size = new System.Drawing.Size(208, 20);
             this.txtAñoCalendario.TabIndex = 5;
             // 
             // txtCupo
             // 
             this.txtCupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCupo.Location = new System.Drawing.Point(497, 37);
-            this.txtCupo.Margin = new System.Windows.Forms.Padding(5);
+            this.txtCupo.Location = new System.Drawing.Point(374, 32);
+            this.txtCupo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCupo.Name = "txtCupo";
-            this.txtCupo.Size = new System.Drawing.Size(280, 22);
+            this.txtCupo.Size = new System.Drawing.Size(208, 20);
             this.txtCupo.TabIndex = 7;
             // 
             // cbxMateria
@@ -185,10 +180,10 @@ namespace UI.Desktop
             this.cbxMateria.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxMateria.DisplayMember = "Descripcion";
             this.cbxMateria.FormattingEnabled = true;
-            this.cbxMateria.Location = new System.Drawing.Point(95, 69);
-            this.cbxMateria.Margin = new System.Windows.Forms.Padding(5);
+            this.cbxMateria.Location = new System.Drawing.Point(73, 60);
+            this.cbxMateria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxMateria.Name = "cbxMateria";
-            this.cbxMateria.Size = new System.Drawing.Size(279, 24);
+            this.cbxMateria.Size = new System.Drawing.Size(208, 21);
             this.cbxMateria.TabIndex = 9;
             this.cbxMateria.ValueMember = "ID";
             // 
@@ -196,10 +191,9 @@ namespace UI.Desktop
             // 
             this.lblComision.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblComision.AutoSize = true;
-            this.lblComision.Location = new System.Drawing.Point(383, 72);
-            this.lblComision.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblComision.Location = new System.Drawing.Point(288, 64);
             this.lblComision.Name = "lblComision";
-            this.lblComision.Size = new System.Drawing.Size(65, 17);
+            this.lblComision.Size = new System.Drawing.Size(49, 13);
             this.lblComision.TabIndex = 12;
             this.lblComision.Text = "Comision";
             // 
@@ -210,10 +204,10 @@ namespace UI.Desktop
             this.cbxComision.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxComision.DisplayMember = "Descripcion";
             this.cbxComision.FormattingEnabled = true;
-            this.cbxComision.Location = new System.Drawing.Point(497, 69);
-            this.cbxComision.Margin = new System.Windows.Forms.Padding(5);
+            this.cbxComision.Location = new System.Drawing.Point(374, 60);
+            this.cbxComision.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxComision.Name = "cbxComision";
-            this.cbxComision.Size = new System.Drawing.Size(280, 24);
+            this.cbxComision.Size = new System.Drawing.Size(208, 21);
             this.cbxComision.TabIndex = 13;
             this.cbxComision.ValueMember = "ID";
             // 
@@ -221,10 +215,10 @@ namespace UI.Desktop
             // 
             this.btnCancelar.AutoSize = true;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(384, 123);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCancelar.Location = new System.Drawing.Point(289, 105);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(100, 27);
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -233,10 +227,10 @@ namespace UI.Desktop
             // btnAceptar
             // 
             this.btnAceptar.AutoSize = true;
-            this.btnAceptar.Location = new System.Drawing.Point(497, 123);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAceptar.Location = new System.Drawing.Point(374, 105);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(89, 27);
+            this.btnAceptar.Size = new System.Drawing.Size(67, 23);
             this.btnAceptar.TabIndex = 10;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -244,10 +238,10 @@ namespace UI.Desktop
             // 
             // CursoDesktop
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(782, 158);
+            this.ClientSize = new System.Drawing.Size(586, 128);
             this.Controls.Add(this.tlMaterias);
             this.Name = "CursoDesktop";
             this.Text = "CursoDesktop";
