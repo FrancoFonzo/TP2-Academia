@@ -215,7 +215,7 @@ namespace UI.Desktop
         private void btnInscripcion_Click(object sender, EventArgs e)
         {
             this.panelFormLoader.Controls.Clear();
-            AlumnoInscripcionDesktop AlumnoInscripcion = new AlumnoInscripcionDesktop(UsuarioActual.ID)
+            Inscripciones AlumnoInscripcion = new Inscripciones(UsuarioActual)
             {
                 Dock = DockStyle.Fill,
                 FormBorderStyle = FormBorderStyle.None,

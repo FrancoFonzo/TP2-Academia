@@ -46,21 +46,21 @@ namespace UI.Desktop
             // txtID
             // 
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtID.Location = new System.Drawing.Point(87, 10);
-            this.txtID.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.txtID.Location = new System.Drawing.Point(67, 8);
+            this.txtID.Margin = new System.Windows.Forms.Padding(4, 8, 4, 8);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(207, 22);
+            this.txtID.Size = new System.Drawing.Size(216, 20);
             this.txtID.TabIndex = 0;
             // 
             // txtUsuario
             // 
             this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUsuario.Location = new System.Drawing.Point(369, 10);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.txtUsuario.Location = new System.Drawing.Point(340, 8);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 8, 4, 8);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.ReadOnly = true;
-            this.txtUsuario.Size = new System.Drawing.Size(208, 22);
+            this.txtUsuario.Size = new System.Drawing.Size(217, 20);
             this.txtUsuario.TabIndex = 1;
             // 
             // cbxCursos
@@ -68,10 +68,10 @@ namespace UI.Desktop
             this.cbxCursos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxCursos.DisplayMember = "ToString";
             this.cbxCursos.FormattingEnabled = true;
-            this.cbxCursos.Location = new System.Drawing.Point(87, 52);
-            this.cbxCursos.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.cbxCursos.Location = new System.Drawing.Point(67, 44);
+            this.cbxCursos.Margin = new System.Windows.Forms.Padding(4, 8, 4, 8);
             this.cbxCursos.Name = "cbxCursos";
-            this.cbxCursos.Size = new System.Drawing.Size(207, 24);
+            this.cbxCursos.Size = new System.Drawing.Size(216, 21);
             this.cbxCursos.TabIndex = 2;
             this.cbxCursos.ValueMember = "ID";
             // 
@@ -79,10 +79,9 @@ namespace UI.Desktop
             // 
             this.lblID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(4, 12);
-            this.lblID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblID.Location = new System.Drawing.Point(3, 11);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(74, 17);
+            this.lblID.Size = new System.Drawing.Size(57, 13);
             this.lblID.TabIndex = 3;
             this.lblID.Text = "ID Usuario";
             // 
@@ -90,10 +89,9 @@ namespace UI.Desktop
             // 
             this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(303, 12);
-            this.lblUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUsuario.Location = new System.Drawing.Point(290, 11);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(57, 17);
+            this.lblUsuario.Size = new System.Drawing.Size(43, 13);
             this.lblUsuario.TabIndex = 4;
             this.lblUsuario.Text = "Usuario";
             // 
@@ -101,10 +99,10 @@ namespace UI.Desktop
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAceptar.AutoSize = true;
-            this.btnAceptar.Location = new System.Drawing.Point(510, 6);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAceptar.Location = new System.Drawing.Point(503, 4);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(67, 27);
+            this.btnAceptar.Size = new System.Drawing.Size(54, 23);
             this.btnAceptar.TabIndex = 5;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -114,10 +112,10 @@ namespace UI.Desktop
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.AutoSize = true;
-            this.btnCancelar.Location = new System.Drawing.Point(431, 6);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.btnCancelar.Location = new System.Drawing.Point(445, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(74, 27);
+            this.btnCancelar.Size = new System.Drawing.Size(59, 23);
             this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -139,21 +137,21 @@ namespace UI.Desktop
             this.tlpInscripcion.Controls.Add(this.cbxCursos, 1, 1);
             this.tlpInscripcion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpInscripcion.Location = new System.Drawing.Point(0, 0);
+            this.tlpInscripcion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tlpInscripcion.Name = "tlpInscripcion";
             this.tlpInscripcion.RowCount = 2;
             this.tlpInscripcion.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpInscripcion.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpInscripcion.Size = new System.Drawing.Size(582, 85);
+            this.tlpInscripcion.Size = new System.Drawing.Size(561, 74);
             this.tlpInscripcion.TabIndex = 7;
             // 
             // lblCurso
             // 
             this.lblCurso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCurso.AutoSize = true;
-            this.lblCurso.Location = new System.Drawing.Point(4, 55);
-            this.lblCurso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCurso.Location = new System.Drawing.Point(3, 48);
             this.lblCurso.Name = "lblCurso";
-            this.lblCurso.Size = new System.Drawing.Size(74, 17);
+            this.lblCurso.Size = new System.Drawing.Size(57, 13);
             this.lblCurso.TabIndex = 5;
             this.lblCurso.Text = "Curso";
             // 
@@ -162,21 +160,21 @@ namespace UI.Desktop
             this.panel1.Controls.Add(this.btnAceptar);
             this.panel1.Controls.Add(this.btnCancelar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 85);
+            this.panel1.Location = new System.Drawing.Point(0, 74);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(582, 38);
+            this.panel1.Size = new System.Drawing.Size(561, 31);
             this.panel1.TabIndex = 8;
             // 
             // AlumnoInscripcionDesktop
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(582, 123);
+            this.ClientSize = new System.Drawing.Size(561, 105);
             this.Controls.Add(this.tlpInscripcion);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Name = "AlumnoInscripcionDesktop";
             this.Text = "Inscripcion";
             this.tlpInscripcion.ResumeLayout(false);

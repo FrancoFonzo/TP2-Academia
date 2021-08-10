@@ -16,9 +16,9 @@ namespace UI.Desktop
         {
             InitializeComponent();
         }
-        public AlumnoInscripcionDesktop(int ID) : this()
+        public AlumnoInscripcionDesktop(Usuario UsuarioActual) : this()
         {
-            this.UsuarioActual = new UsuarioLogic().GetOne(ID);
+            this.UsuarioActual = UsuarioActual;
             MapearDeDatos();
         }
 
@@ -41,11 +41,16 @@ namespace UI.Desktop
                 MiAlumno = this.UsuarioActual.MiPersona,
                 Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString(),
                 MiCurso = new CursoLogic().GetOne((int)this.cbxCursos.SelectedValue)
-        };
+            };
             
             var idCur = this.cbxCursos.SelectedValue;
             this.CursoActual = new CursoLogic().GetOne((int)idCur);
             
+        }
+
+        public void ListarInscripciones()
+        {
+
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -62,6 +67,11 @@ namespace UI.Desktop
         {
             MapearADatos();
             new AlumnoInscripcionLogic().Save(InscripcionActual);
+        }
+
+        private void btnListarInscripciones_Click(object sender, EventArgs e)
+        {
+            ListarInscripciones();
         }
     }
 }
