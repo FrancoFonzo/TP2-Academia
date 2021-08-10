@@ -13,8 +13,9 @@ namespace UI.Desktop
         public UsuarioDesktop()
         {
             InitializeComponent();
-            cbxPersona.DataSource = new PersonaLogic().GetPersonasSinUsuario();
-            cbxPersona.Items.Add(UsuarioActual?.MiPersona);
+            List<Persona> personas = new PersonaLogic().GetPersonasSinUsuario();
+            personas.Add(UsuarioActual?.MiPersona);
+            cbxPersona.DataSource = personas;
         }
 
         public UsuarioDesktop(ModoForm modo) : this()
@@ -26,6 +27,20 @@ namespace UI.Desktop
         {
             UsuarioActual = new UsuarioLogic().GetOne(ID);
             MapearDeDatos();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (Validar())
+            {
+                GuardarCambios();
+                Close();
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         public override void MapearDeDatos()
@@ -87,20 +102,6 @@ namespace UI.Desktop
         {
             MapearADatos();
             new UsuarioLogic().Save(UsuarioActual);
-        }
-
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            if (Validar())
-            {
-                GuardarCambios();
-                Close();
-            }
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         public override bool Validar()

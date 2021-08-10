@@ -121,8 +121,7 @@ namespace Data.Database
                     per.direccion = persona.Direccion;
                     per.telefono = persona.Telefono;
                     per.tipo_persona = (int)persona.Tipo;
-                    per.id_plan = persona.MiPlan.ID;
-
+                    per.id_plan = persona.MiPlan?.ID;
                     context.SaveChanges();
                 }
             }
@@ -143,7 +142,7 @@ namespace Data.Database
                     direccion = persona.Direccion,
                     telefono = persona.Telefono,
                     tipo_persona = (int)persona.Tipo,
-                    id_plan = persona.MiPlan.ID
+                    id_plan = persona.MiPlan?.ID
                 };
                 context.personas.Add(per);
                 context.SaveChanges();

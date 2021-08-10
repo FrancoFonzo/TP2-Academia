@@ -211,6 +211,7 @@ namespace UI.Desktop
             this.Name = "Personas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Personas";
+            this.Load += new System.EventHandler(this.Personas_Load);
             this.tsPersonas.ResumeLayout(false);
             this.tsPersonas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).EndInit();

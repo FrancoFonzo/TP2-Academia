@@ -18,6 +18,10 @@ namespace UI.Desktop
         {
             InitializeComponent();
             dgvCursos.AutoGenerateColumns = false;
+        }
+
+        private void Cursos_Load(object sender, EventArgs e)
+        {
             this.Listar();
         }
 

@@ -9,6 +9,7 @@ namespace UI.Desktop
     public partial class EspecialidadDesktop : ApplicationForm
     {
         private Especialidad EspecialidadActual { get; set; }
+
         public EspecialidadDesktop()
         {
             InitializeComponent();
@@ -26,8 +27,11 @@ namespace UI.Desktop
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            GuardarCambios();
-            Close();
+            if (Validar())
+            {
+                GuardarCambios();
+                Close();
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

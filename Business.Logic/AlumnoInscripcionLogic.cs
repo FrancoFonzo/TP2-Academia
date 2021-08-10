@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Business.Entities;
 using Data.Database;
 
@@ -31,6 +32,11 @@ namespace Business.Logic
         public void Delete(int id)
         {
             InscripcionData.Delete(id);
+        }
+
+        public List<AlumnoInscripcion> GetAllUsuario(int id)
+        {
+            return InscripcionData.GetAllUsuario(id);
         }
     }
 }

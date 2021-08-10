@@ -12,6 +12,10 @@ namespace UI.Desktop
         {
             InitializeComponent();
             dgvMaterias.AutoGenerateColumns = false;
+        }
+
+        private void Materias_Load(object sender, EventArgs e)
+        {
             this.Listar();
         }
 

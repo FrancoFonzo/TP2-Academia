@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Business.Entities;
 
@@ -17,21 +18,15 @@ namespace Data.Database
             }
         }
 
-        private static AlumnoInscripcion nuevaInscripcion(alumnos_inscripciones insc)
+        public List<AlumnoInscripcion> GetAllUsuario(int ID)
         {
-            if (insc == null)
+            using (var context = new AcademiaEntities())
             {
-                return null;
+                List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
+                var lstInscripciones = context.alumnos_inscripciones.Where(i => i.id_alumno == ID);
+                lstInscripciones?.ToList().ForEach(i => inscripciones.Add(nuevaInscripcion(i)));
+                return inscripciones;
             }
-            AlumnoInscripcion inscripcion = new AlumnoInscripcion
-            {
-                ID = insc.id_inscripcion,
-                MiAlumno = personaData.GetOne(insc.id_alumno),
-                MiCurso = cursoData.GetOne(insc.id_curso),
-                Condicion = insc.condicion,
-                Nota = insc.nota
-            };
-            return inscripcion;
         }
 
         public AlumnoInscripcion GetOne(int ID)
@@ -105,6 +100,23 @@ namespace Data.Database
                 context.alumnos_inscripciones.Add(insc);
                 context.SaveChanges();
             }
+        }
+
+        private static AlumnoInscripcion nuevaInscripcion(alumnos_inscripciones insc)
+        {
+            if (insc == null)
+            {
+                return null;
+            }
+            AlumnoInscripcion inscripcion = new AlumnoInscripcion
+            {
+                ID = insc.id_inscripcion,
+                MiAlumno = personaData.GetOne(insc.id_alumno),
+                MiCurso = cursoData.GetOne(insc.id_curso),
+                Condicion = insc.condicion,
+                Nota = insc.nota
+            };
+            return inscripcion;
         }
     }
 }

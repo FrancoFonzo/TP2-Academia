@@ -7,7 +7,7 @@ namespace UI.Desktop
 {
     public partial class InscripcionDesktop : ApplicationForm
     {
-        private Usuario UsuarioActual { get; set; }
+        private Usuario UsuarioActual { get;}
         private AlumnoInscripcion InscripcionActual { get; set; }
 
         public InscripcionDesktop()
@@ -27,10 +27,20 @@ namespace UI.Desktop
             MapearDeDatos();
         }
 
+        public InscripcionDesktop(AlumnoInscripcion inscripcion, ModoForm modo) : this(modo)
+        {
+            this.InscripcionActual = inscripcion;
+            cbxCursos.DataSource = new CursoLogic().GetAll();
+            MapearDeDatos();
+        }
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            GuardarCambios();
-            Close();
+            if (Validar())
+            {
+                GuardarCambios();
+                Close();
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -42,6 +52,27 @@ namespace UI.Desktop
         {
             txtID.Text = UsuarioActual.ID.ToString();
             txtUsuario.Text = UsuarioActual.NombreUsuario;
+            if (InscripcionActual?.MiCurso != null)
+            {
+                cbxCursos.SelectedValue = InscripcionActual.MiCurso.ID;
+            }
+            else
+            {
+                cbxCursos.Text = "Ninguno";
+            }
+            
+            if (Modo == ModoForm.Consulta)
+            {
+                btnAceptar.Text = "Aceptar";
+            }
+            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
+            {
+                btnAceptar.Text = "Guardar";
+            }
+            else if (Modo == ModoForm.Baja)
+            {
+                btnAceptar.Text = "Eliminar";
+            }
         }
 
         public override void MapearADatos()
@@ -58,7 +89,10 @@ namespace UI.Desktop
                 }
                 InscripcionActual.MiAlumno = UsuarioActual.MiPersona;
                 InscripcionActual.Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString();
-                InscripcionActual.MiCurso = new CursoLogic().GetOne((int)cbxCursos.SelectedValue);
+
+                var idCur = cbxCursos.SelectedValue;
+                InscripcionActual.MiCurso = idCur == null ?
+                    null : new CursoLogic().GetOne((int)idCur);
             }
             else if (Modo == ModoForm.Baja)
             {
@@ -80,7 +114,7 @@ namespace UI.Desktop
         {
             if (cbxCursos.SelectedValue == null)
             {
-                Notificar("Informacion invalida", "Complete los campos para continuar.",
+                Notificar("Informacion invalida", "Porfavor ingrese un curso valido.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

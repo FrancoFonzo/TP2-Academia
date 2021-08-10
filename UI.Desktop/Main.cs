@@ -9,8 +9,9 @@ namespace UI.Desktop
 {
     public partial class Main : ApplicationForm
     {
-        public Usuario UsuarioActual { get; set; }
-
+        private Usuario UsuarioActual { get; }
+        private readonly string titulo;
+        
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private static extern void ReleaseCapture();
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
@@ -20,15 +21,13 @@ namespace UI.Desktop
         {
             InitializeComponent();
             panelAdminReportes.Visible = false;
-            txtBusqueda.Visible = false;
-        }
-        public Main(Usuario UsuarioActual) : this()
-        {
-            this.UsuarioActual = UsuarioActual;
-            titulo = $"Bienvenido/a {UsuarioActual.MiPersona.NombreCompleto}!";
         }
 
-        private string titulo;
+        public Main(Usuario usuarioActual) : this()
+        {
+            this.UsuarioActual = usuarioActual;
+            titulo = $"Bienvenido/a {UsuarioActual.MiPersona?.NombreCompleto}!";
+        }
 
         private void formMain_Load(object sender, EventArgs e)
         {
@@ -40,7 +39,7 @@ namespace UI.Desktop
                 lblPersona.Text = $"{lblPersona.Text} {UsuarioActual.MiPersona.NombreCompleto}";
             }
             // Segun TipoPersona del usuario visibilizar botones
-            switch (UsuarioActual.MiPersona.Tipo)
+            switch (UsuarioActual.MiPersona?.Tipo)
             {
                 case Persona.TiposPersonas.Administrador:
                     panelMenu.Controls.OfType<Button>().ToList().ForEach(b => b.Visible = true);
@@ -149,7 +148,7 @@ namespace UI.Desktop
 
         private void btnInscripcion_Click(object sender, EventArgs e)
         {
-            openForm<Inscripciones>();
+            openForm();
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
@@ -189,9 +188,20 @@ namespace UI.Desktop
             form.Listar();
         }
 
-        private void openForm<T>() where T : ApplicationForm
+        private void openForm<T>(bool user = false) where T : ApplicationForm
         {
             panelFormLoader.Controls.Clear();
+
+            /*T form;
+
+            if (user)
+            {
+                form = (T)Activator.CreateInstance(typeof(T), UsuarioActual);
+            }
+            else
+            {
+                form = (T)Activator.CreateInstance(typeof(T));
+            }*/
             T form = (T)Activator.CreateInstance(typeof(T));
             form.Dock = DockStyle.Fill;
             form.FormBorderStyle = FormBorderStyle.None;
@@ -200,6 +210,21 @@ namespace UI.Desktop
             panelFormLoader.Controls.Add(form);
             lblTitulo.Text = form.Text;
             form.Show();
+        }
+
+        private void openForm()
+        {
+            panelFormLoader.Controls.Clear();
+            Inscripciones inscripciones = new Inscripciones(UsuarioActual)
+            {
+                Dock = DockStyle.Fill,
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                TopMost = true
+            };
+            panelFormLoader.Controls.Add(inscripciones);
+            lblTitulo.Text = inscripciones.Text;
+            inscripciones.Show();
         }
     }
 }

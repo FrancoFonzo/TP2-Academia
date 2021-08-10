@@ -11,6 +11,10 @@ namespace UI.Desktop
         {
             InitializeComponent();
             dgvEspecialidades.AutoGenerateColumns = false;
+        }
+
+        private void Especialidades_Load(object sender, EventArgs e)
+        {
             this.Listar();
         }
 

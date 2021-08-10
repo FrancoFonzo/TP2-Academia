@@ -11,6 +11,10 @@ namespace UI.Desktop
         {
             InitializeComponent();
             dgvPlanes.AutoGenerateColumns = false;
+        }
+
+        private void Planes_Load(object sender, EventArgs e)
+        {
             this.Listar();
         }
 

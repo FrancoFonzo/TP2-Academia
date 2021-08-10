@@ -62,7 +62,7 @@ namespace UI.Desktop
             this.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAgregar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbAgregar.Name = "tsbAgregar";
-            this.tsbAgregar.Size = new System.Drawing.Size(29, 27);
+            this.tsbAgregar.Size = new System.Drawing.Size(29, 24);
             this.tsbAgregar.Text = "Agregar";
             this.tsbAgregar.ToolTipText = "Agregar";
             this.tsbAgregar.Click += new System.EventHandler(this.tsbNuevo_Click);
@@ -75,7 +75,7 @@ namespace UI.Desktop
             this.tsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEditar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEditar.Name = "tsbEditar";
-            this.tsbEditar.Size = new System.Drawing.Size(29, 27);
+            this.tsbEditar.Size = new System.Drawing.Size(29, 24);
             this.tsbEditar.Text = "Editar";
             this.tsbEditar.ToolTipText = "Editar";
             this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
@@ -88,7 +88,7 @@ namespace UI.Desktop
             this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEliminar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEliminar.Name = "tsbEliminar";
-            this.tsbEliminar.Size = new System.Drawing.Size(29, 27);
+            this.tsbEliminar.Size = new System.Drawing.Size(29, 24);
             this.tsbEliminar.Text = "Eliminar";
             this.tsbEliminar.ToolTipText = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
@@ -145,6 +145,7 @@ namespace UI.Desktop
             this.Name = "Especialidades";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Especialidades";
+            this.Load += new System.EventHandler(this.Especialidades_Load);
             this.tsEspecialidades.ResumeLayout(false);
             this.tsEspecialidades.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspecialidades)).EndInit();

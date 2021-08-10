@@ -53,7 +53,10 @@ namespace UI.Desktop
             txtTelefono.Text = PersonaActual.Telefono;
             dateNacimiento.Value = PersonaActual.FechaNacimiento;
             cbxTipo.SelectedIndex = (int)PersonaActual.Tipo;
-            cbxPlan.SelectedValue = PersonaActual.MiPlan.ID;
+            if (PersonaActual.MiPlan != null)
+            {
+                cbxPlan.SelectedValue = PersonaActual.MiPlan.ID;
+            }
 
             if (Modo == ModoForm.Consulta)
             {
@@ -89,7 +92,10 @@ namespace UI.Desktop
                 PersonaActual.Telefono = txtTelefono.Text;
                 PersonaActual.Tipo = (Persona.TiposPersonas)cbxTipo.SelectedIndex;
                 PersonaActual.FechaNacimiento = dateNacimiento.Value;
-                PersonaActual.MiPlan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
+
+                var idPlan = cbxPlan.SelectedValue;
+                PersonaActual.MiPlan = idPlan == null ?
+                    null : new PlanLogic().GetOne((int)idPlan);
             }
             else if (Modo == ModoForm.Baja)
             {

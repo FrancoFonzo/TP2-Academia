@@ -16,5 +16,22 @@
             Regular,
             Aprobado,
         }
+
+        // Bind a dgvInscripciones
+        public string DescripcionMateria
+        {
+            get
+            {
+                return MiCurso.MiMateria.Descripcion;
+            }
+        }
+
+        public string DescripcionComision
+        {
+            get
+            {
+                return MiCurso.MiComision.Descripcion;
+            }
+        }
     }
 }

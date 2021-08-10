@@ -30,12 +30,12 @@ namespace UI.Desktop
         private void InitializeComponent()
         {
             this.dgvInscripciones = new System.Windows.Forms.DataGridView();
-            this.tsInscripciones = new System.Windows.Forms.ToolStrip();
-            this.tsbAgregar = new System.Windows.Forms.ToolStripButton();
-            this.curso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.condicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tsInscripciones = new System.Windows.Forms.ToolStrip();
+            this.tsbAgregar = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripciones)).BeginInit();
             this.tsInscripciones.SuspendLayout();
             this.SuspendLayout();
@@ -48,8 +48,8 @@ namespace UI.Desktop
             this.dgvInscripciones.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvInscripciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInscripciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.curso,
             this.materia,
+            this.comision,
             this.condicion,
             this.nota});
             this.dgvInscripciones.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -62,6 +62,38 @@ namespace UI.Desktop
             this.dgvInscripciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvInscripciones.Size = new System.Drawing.Size(800, 415);
             this.dgvInscripciones.TabIndex = 0;
+            // 
+            // materia
+            // 
+            this.materia.DataPropertyName = "DescripcionMateria";
+            this.materia.HeaderText = "Materia";
+            this.materia.MinimumWidth = 6;
+            this.materia.Name = "materia";
+            this.materia.ReadOnly = true;
+            // 
+            // comision
+            // 
+            this.comision.DataPropertyName = "DescripcionComision";
+            this.comision.HeaderText = "Comision";
+            this.comision.MinimumWidth = 6;
+            this.comision.Name = "comision";
+            this.comision.ReadOnly = true;
+            // 
+            // condicion
+            // 
+            this.condicion.DataPropertyName = "Condicion";
+            this.condicion.HeaderText = "Condicion";
+            this.condicion.MinimumWidth = 6;
+            this.condicion.Name = "condicion";
+            this.condicion.ReadOnly = true;
+            // 
+            // nota
+            // 
+            this.nota.DataPropertyName = "Nota";
+            this.nota.HeaderText = "Nota";
+            this.nota.MinimumWidth = 6;
+            this.nota.Name = "nota";
+            this.nota.ReadOnly = true;
             // 
             // tsInscripciones
             // 
@@ -86,42 +118,10 @@ namespace UI.Desktop
             this.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAgregar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbAgregar.Name = "tsbAgregar";
-            this.tsbAgregar.Size = new System.Drawing.Size(29, 27);
+            this.tsbAgregar.Size = new System.Drawing.Size(29, 31);
             this.tsbAgregar.Text = "Agregar";
             this.tsbAgregar.ToolTipText = "Agregar";
             this.tsbAgregar.Click += new System.EventHandler(this.tsbAgregar_Click);
-            // 
-            // curso
-            // 
-            this.curso.DataPropertyName = "MiCurso";
-            this.curso.HeaderText = "Curso";
-            this.curso.MinimumWidth = 6;
-            this.curso.Name = "curso";
-            this.curso.ReadOnly = true;
-            // 
-            // materia
-            // 
-            this.materia.DataPropertyName = "MiMateria";
-            this.materia.HeaderText = "Materia";
-            this.materia.MinimumWidth = 6;
-            this.materia.Name = "materia";
-            this.materia.ReadOnly = true;
-            // 
-            // condicion
-            // 
-            this.condicion.DataPropertyName = "Condicion";
-            this.condicion.HeaderText = "Condicion";
-            this.condicion.MinimumWidth = 6;
-            this.condicion.Name = "condicion";
-            this.condicion.ReadOnly = true;
-            // 
-            // nota
-            // 
-            this.nota.DataPropertyName = "Nota";
-            this.nota.HeaderText = "Nota";
-            this.nota.MinimumWidth = 6;
-            this.nota.Name = "nota";
-            this.nota.ReadOnly = true;
             // 
             // Inscripciones
             // 
@@ -131,9 +131,10 @@ namespace UI.Desktop
             this.Controls.Add(this.dgvInscripciones);
             this.Controls.Add(this.tsInscripciones);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Inscripciones";
             this.Text = "Inscripciones";
+            this.Load += new System.EventHandler(this.Inscripciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripciones)).EndInit();
             this.tsInscripciones.ResumeLayout(false);
             this.tsInscripciones.PerformLayout();
@@ -146,8 +147,8 @@ namespace UI.Desktop
         private System.Windows.Forms.DataGridView dgvInscripciones;
         private System.Windows.Forms.ToolStrip tsInscripciones;
         private System.Windows.Forms.ToolStripButton tsbAgregar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn curso;
         private System.Windows.Forms.DataGridViewTextBoxColumn materia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comision;
         private System.Windows.Forms.DataGridViewTextBoxColumn condicion;
         private System.Windows.Forms.DataGridViewTextBoxColumn nota;
     }

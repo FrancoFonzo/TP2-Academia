@@ -7,18 +7,22 @@ namespace UI.Desktop
 {
     public partial class Inscripciones : ApplicationForm
     {
-        public Usuario UsuarioActual { get; set; }
+        private Usuario UsuarioActual { get; }
 
         public Inscripciones()
         {
             InitializeComponent();
             dgvInscripciones.AutoGenerateColumns = false;
-            this.Listar();
         }
 
-        public Inscripciones(Usuario UsuarioActual) : this()
+        public Inscripciones(Usuario usuarioActual) : this()
         {
-            this.UsuarioActual = UsuarioActual;
+            UsuarioActual = usuarioActual;
+        }
+
+        private void Inscripciones_Load(object sender, EventArgs e)
+        {
+            this.Listar();
         }
 
         private void tsbAgregar_Click(object sender, EventArgs e)
@@ -32,7 +36,7 @@ namespace UI.Desktop
         {
             try
             {
-                this.dgvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAll();
+                this.dgvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllUsuario(UsuarioActual.ID);
             }
             catch (Exception)
             {

@@ -11,6 +11,10 @@ namespace UI.Desktop
         {
             InitializeComponent();
             dgvPersonas.AutoGenerateColumns = false;
+        }
+
+        private void Personas_Load(object sender, EventArgs e)
+        {
             this.Listar();
         }
 
