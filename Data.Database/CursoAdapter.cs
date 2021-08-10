@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Business.Entities;
 
 namespace Data.Database
@@ -22,6 +19,10 @@ namespace Data.Database
 
         private Curso nuevoCurso(cursos cur)
         {
+            if (cur == null)
+            {
+                return null;
+            }
             Curso curso = new Curso()
             {
                 ID = cur.id_curso,
@@ -40,10 +41,8 @@ namespace Data.Database
             using (var context = new AcademiaEntities())
             {
                 var cur = context.cursos.SingleOrDefault(c => c.id_curso == ID);
-                if (cur == null) return null;
                 return nuevoCurso(cur);
             }
-
         }
 
         public void Delete(int ID)
@@ -63,15 +62,15 @@ namespace Data.Database
         {
             if (curso.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(curso.ID);
+                Delete(curso.ID);
             }
             else if (curso.State == BusinessEntity.States.New)
             {
-                this.Insert(curso);
+                Insert(curso);
             }
             else if (curso.State == BusinessEntity.States.Modified)
             {
-                this.Update(curso);
+                Update(curso);
             }
             curso.State = BusinessEntity.States.Unmodified;
         }

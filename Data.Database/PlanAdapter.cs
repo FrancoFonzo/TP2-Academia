@@ -19,7 +19,10 @@ namespace Data.Database
 
         private static Plan nuevoPlan(planes p)
         {
-            if (p == null) return null;
+            if (p == null)
+            {
+                return null;
+            }
             Plan plan = new Plan
             {
                 ID = p.id_plan,
@@ -65,15 +68,15 @@ namespace Data.Database
         {
             if (plan.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(plan.ID);
+                Delete(plan.ID);
             }
             else if (plan.State == BusinessEntity.States.New)
             {
-                this.Insert(plan);
+                Insert(plan);
             }
             else if (plan.State == BusinessEntity.States.Modified)
             {
-                this.Update(plan);
+                Update(plan);
             }
             plan.State = BusinessEntity.States.Unmodified;
         }

@@ -19,7 +19,10 @@ namespace Data.Database
 
         private static AlumnoInscripcion nuevaInscripcion(alumnos_inscripciones insc)
         {
-            if (insc == null) return null;
+            if (insc == null)
+            {
+                return null;
+            }
             AlumnoInscripcion inscripcion = new AlumnoInscripcion
             {
                 ID = insc.id_inscripcion,
@@ -57,15 +60,15 @@ namespace Data.Database
         {
             if (insc.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(insc.ID);
+                Delete(insc.ID);
             }
             else if (insc.State == BusinessEntity.States.New)
             {
-                this.Insert(insc);
+                Insert(insc);
             }
             else if (insc.State == BusinessEntity.States.Modified)
             {
-                this.Update(insc);
+                Update(insc);
             }
             insc.State = BusinessEntity.States.Unmodified;
         }

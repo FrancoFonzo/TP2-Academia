@@ -18,7 +18,10 @@ namespace Data.Database
 
         private static DocenteCurso nuevoDocenteCurso(docentes_cursos doCu)
         {
-            if (doCu == null) return null;
+            if (doCu == null)
+            {
+                return null;
+            }
             DocenteCurso docenteCurso = new DocenteCurso
             {
                 ID = doCu.id_dictado,
@@ -54,15 +57,15 @@ namespace Data.Database
         {
             if (docenteCurso.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(docenteCurso.ID);
+                Delete(docenteCurso.ID);
             }
             else if (docenteCurso.State == BusinessEntity.States.New)
             {
-                this.Insert(docenteCurso);
+                Insert(docenteCurso);
             }
             else if (docenteCurso.State == BusinessEntity.States.Modified)
             {
-                this.Update(docenteCurso);
+                Update(docenteCurso);
             }
             docenteCurso.State = BusinessEntity.States.Unmodified;
         }

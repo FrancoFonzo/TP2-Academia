@@ -11,7 +11,7 @@ namespace Business.Logic
 
         public MateriaLogic()
         {
-            this.MateriaData = new MateriaAdapter();
+            MateriaData = new MateriaAdapter();
         }
 
         public Materia GetOne(int id)
@@ -24,8 +24,6 @@ namespace Business.Logic
             return MateriaData.GetAll();
         }
 
-
-
         public void Save(Materia materia)
         {
             MateriaData.Save(materia);
@@ -35,7 +33,5 @@ namespace Business.Logic
         {
             MateriaData.Delete(id);
         }
-
-
     }
 }

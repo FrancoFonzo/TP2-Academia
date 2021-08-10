@@ -10,7 +10,7 @@ namespace Business.Logic
 
         public ComisionLogic()
         {
-            this.ComisionData = new ComisionAdapter();
+            ComisionData = new ComisionAdapter();
         }
 
         public Comision GetOne(int id)
@@ -22,8 +22,6 @@ namespace Business.Logic
         {
             return ComisionData.GetAll();
         }
-
-
 
         public void Save(Comision comision)
         {

@@ -13,7 +13,7 @@ namespace UI.Desktop
         public PlanDesktop()
         {
             InitializeComponent();
-            this.cbxEspecialidad.DataSource = new EspecialidadLogic().GetAll();
+            cbxEspecialidad.DataSource = new EspecialidadLogic().GetAll();
         }
 
         public PlanDesktop(ModoForm modo) : this()
@@ -21,43 +21,70 @@ namespace UI.Desktop
             this.Modo = modo;
         }
 
-        public PlanDesktop(int ID, ModoForm modo) : this()
+        public PlanDesktop(int ID, ModoForm modo) : this(modo)
         {
-            this.Modo = modo;
-            this.PlanActual = new PlanLogic().GetOne(ID);
+            PlanActual = new PlanLogic().GetOne(ID);
             MapearDeDatos();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (Validar())
+            {
+                GuardarCambios();
+                Close();
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         public override void MapearDeDatos()
         {
-            this.txtID.Text = this.PlanActual.ID.ToString();
-            this.txtDescripcion.Text = this.PlanActual.Descripcion;
-            this.cbxEspecialidad.SelectedValue = this.PlanActual.MiEspecialidad.ID;
+            txtID.Text = PlanActual.ID.ToString();
+            txtDescripcion.Text = PlanActual.Descripcion;
+            cbxEspecialidad.SelectedValue = PlanActual.MiEspecialidad.ID;
 
-            if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
-            else if (Modo == ModoForm.Baja) this.btnAceptar.Text = "Eliminar";
-
+            if (Modo == ModoForm.Consulta)
+            {
+                btnAceptar.Text = "Aceptar";
+            }
+            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
+            {
+                btnAceptar.Text = "Guardar";
+            }
+            else if (Modo == ModoForm.Baja)
+            {
+                btnAceptar.Text = "Eliminar";
+            }
         }
 
         public override void MapearADatos()
         {
             if (Modo == ModoForm.Alta)
             {
-                this.PlanActual = new Plan { State = BusinessEntity.States.New };
+                PlanActual = new Plan { State = BusinessEntity.States.New };
             }
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
                 if (Modo == ModoForm.Modificacion)
                 {
-                    this.PlanActual.State = BusinessEntity.States.Modified;
+                    PlanActual.State = BusinessEntity.States.Modified;
                 }
-                this.PlanActual.Descripcion = this.txtDescripcion.Text;
-                var idEsp = this.cbxEspecialidad.SelectedValue;
-                this.PlanActual.MiEspecialidad = new EspecialidadLogic().GetOne((int)idEsp);
+                PlanActual.Descripcion = txtDescripcion.Text;
+                var idEsp = cbxEspecialidad.SelectedValue;
+                PlanActual.MiEspecialidad = new EspecialidadLogic().GetOne((int)idEsp);
             }
-            else if (Modo == ModoForm.Baja) PlanActual.State = BusinessEntity.States.Deleted;
-            else if (Modo == ModoForm.Consulta) PlanActual.State = BusinessEntity.States.Unmodified;
+            else if (Modo == ModoForm.Baja)
+            {
+                PlanActual.State = BusinessEntity.States.Deleted;
+            }
+            else if (Modo == ModoForm.Consulta)
+            {
+                PlanActual.State = BusinessEntity.States.Unmodified;
+            }
         }
 
         public override void GuardarCambios()
@@ -66,35 +93,22 @@ namespace UI.Desktop
             new PlanLogic().Save(PlanActual);
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            if (Validar())
-            {
-                GuardarCambios();
-                this.Close();
-            }
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         public override bool Validar()
         {
-            if (!Validaciones.FormularioCompleto(new List<string>
-                        {txtDescripcion.Text})
-                )
+            if (!Validaciones.FormularioCompleto(new List<string> {txtDescripcion.Text}))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (this.cbxEspecialidad.SelectedValue == null)
+            else if (cbxEspecialidad.SelectedValue == null)
             {
                 Notificar("Informacion invalida", "Porfavor seleccione una especialidad valida.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else return true;
+            else
+            {
+                return true;
+            }
             return false;
         }
     }

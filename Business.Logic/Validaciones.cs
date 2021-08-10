@@ -33,15 +33,22 @@ namespace Business.Logic
         public static bool FormularioCompleto(List<string> txts)
         {
             bool rta = true;
-            txts.ForEach(t => { 
-                if (string.IsNullOrEmpty(t)) { rta = false; } 
+            txts.ForEach(t =>
+            {
+                if (string.IsNullOrEmpty(t)) 
+                {
+                    rta = false; 
+                }
             });
             return rta;
         }
 
         public static bool ValidarClave(string clave_usr, string txt_clave)
         {
-            if (clave_usr == null || !clave_usr.Equals(txt_clave)) return false;
+            if (string.IsNullOrEmpty(clave_usr) || !clave_usr.Equals(txt_clave))
+            {
+                return false;
+            }
             return true;
         }
     }

@@ -12,7 +12,7 @@ namespace UI.Desktop
         public MateriaDesktop()
         {
             InitializeComponent();
-            this.cbxPlan.DataSource = new PlanLogic().GetAll();
+            cbxPlan.DataSource = new PlanLogic().GetAll();
         }
 
         public MateriaDesktop(ModoForm modo) : this()
@@ -20,47 +20,73 @@ namespace UI.Desktop
             this.Modo = modo;
         }
 
-        public MateriaDesktop(int ID, ModoForm modo) : this()
+        public MateriaDesktop(int ID, ModoForm modo) : this(modo)
         {
-            this.Modo = modo;
             MateriaActual = new MateriaLogic().GetOne(ID);
             MapearDeDatos();
         }
 
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (Validar())
+            {
+                GuardarCambios();
+                Close();
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         public override void MapearDeDatos()
         {
-            this.txtID.Text = this.MateriaActual.ID.ToString();
-            this.txtDescripcion.Text = this.MateriaActual.Descripcion;
-            this.txtHsSemanales.Text = this.MateriaActual.HorasSemanales.ToString();
-            this.txtHsTotales.Text = this.MateriaActual.HorasTotales.ToString();
-            this.cbxPlan.SelectedValue = this.MateriaActual.MiPlan.ID;
+            txtID.Text = MateriaActual.ID.ToString();
+            txtDescripcion.Text = MateriaActual.Descripcion;
+            txtHsSemanales.Text = MateriaActual.HorasSemanales.ToString();
+            txtHsTotales.Text = MateriaActual.HorasTotales.ToString();
+            cbxPlan.SelectedValue = MateriaActual.MiPlan.ID;
 
-            if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) 
-                this.btnAceptar.Text = "Guardar";
-            else if (Modo == ModoForm.Baja) this.btnAceptar.Text = "Eliminar";
-
+            if (Modo == ModoForm.Consulta)
+            {
+                btnAceptar.Text = "Aceptar";
+            }
+            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
+            {
+                btnAceptar.Text = "Guardar";
+            }
+            else if (Modo == ModoForm.Baja)
+            {
+                btnAceptar.Text = "Eliminar";
+            }
         }
 
         public override void MapearADatos()
         {
             if (Modo == ModoForm.Alta)
             {
-                this.MateriaActual = new Materia { State = BusinessEntity.States.New };
+                MateriaActual = new Materia { State = BusinessEntity.States.New };
             }
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
                 if (Modo == ModoForm.Modificacion)
                 {
-                    this.MateriaActual.State = BusinessEntity.States.Modified;
+                    MateriaActual.State = BusinessEntity.States.Modified;
                 }
-                this.MateriaActual.Descripcion = this.txtDescripcion.Text;
-                this.MateriaActual.HorasSemanales = int.Parse(this.txtHsSemanales.Text);
-                this.MateriaActual.HorasTotales = int.Parse(this.txtHsTotales.Text);
-                this.MateriaActual.MiPlan = new PlanLogic().GetOne((int)this.cbxPlan.SelectedValue);
+                MateriaActual.Descripcion = txtDescripcion.Text;
+                MateriaActual.HorasSemanales = int.Parse(txtHsSemanales.Text);
+                MateriaActual.HorasTotales = int.Parse(txtHsTotales.Text);
+                MateriaActual.MiPlan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
             }
-            else if (Modo == ModoForm.Baja) MateriaActual.State = BusinessEntity.States.Deleted;
-            else if (Modo == ModoForm.Consulta) MateriaActual.State = BusinessEntity.States.Unmodified;
+            else if (Modo == ModoForm.Baja)
+            {
+                MateriaActual.State = BusinessEntity.States.Deleted;
+            }
+            else if (Modo == ModoForm.Consulta)
+            {
+                MateriaActual.State = BusinessEntity.States.Unmodified;
+            }
         }
 
         public override void GuardarCambios()
@@ -69,36 +95,23 @@ namespace UI.Desktop
             new MateriaLogic().Save(MateriaActual);
         }
 
-
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            if (Validar())
-            {
-                GuardarCambios();
-                this.Close();
-            }
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         public override bool Validar()
         {
-            if (!Validaciones.FormularioCompleto(new List<string>
-                        {txtDescripcion.Text, txtHsSemanales.Text, txtHsTotales.Text})
-                )
+            if (!Validaciones.FormularioCompleto
+                (new List<string> {txtDescripcion.Text, txtHsSemanales.Text, txtHsTotales.Text}))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (this.cbxPlan.SelectedValue == null)
+            else if (cbxPlan.SelectedValue == null)
             {
                 Notificar("Informacion invalida", "Porfavor seleccione una especialidad valida.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else return true;
+            else
+            {
+                return true;
+            }
             return false;
         }
     }

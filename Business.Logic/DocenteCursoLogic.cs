@@ -10,7 +10,7 @@ namespace Business.Logic
 
         public DocenteCursoLogic()
         {
-            this.DocenteCursoData = new DocenteCursoAdapter();
+            DocenteCursoData = new DocenteCursoAdapter();
         }
 
         public DocenteCurso GetOne(int id)

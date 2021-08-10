@@ -10,7 +10,7 @@ namespace Business.Logic
 
         public EspecialidadLogic()
         {
-            this.EspecialidadData = new EspecialidadAdapter();
+            EspecialidadData = new EspecialidadAdapter();
         }
 
         public Especialidad GetOne(int id)

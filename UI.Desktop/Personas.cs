@@ -11,10 +11,6 @@ namespace UI.Desktop
         {
             InitializeComponent();
             dgvPersonas.AutoGenerateColumns = false;
-        }
-
-        private void Personas_Load(object sender, EventArgs e)
-        {
             this.Listar();
         }
 
@@ -27,14 +23,18 @@ namespace UI.Desktop
 
         private void tsbEditarP_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected(dgvPersonas)) return;
-            openForm(ApplicationForm.ModoForm.Modificacion);
+            if (isRowSelected(dgvPersonas))
+            {
+                openForm(ApplicationForm.ModoForm.Modificacion);
+            }
         }
 
         private void tsbEliminarP_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected(dgvPersonas)) return;
-            openForm(ApplicationForm.ModoForm.Baja);
+            if (isRowSelected(dgvPersonas))
+            {
+                openForm(ApplicationForm.ModoForm.Baja);
+            }
         }
 
         private void openForm(ApplicationForm.ModoForm modo)

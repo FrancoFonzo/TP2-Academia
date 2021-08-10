@@ -10,7 +10,7 @@ namespace Business.Logic
 
         public PlanLogic()
         {
-            this.PlanData = new PlanAdapter();
+            PlanData = new PlanAdapter();
         }
 
         public Plan GetOne(int id)

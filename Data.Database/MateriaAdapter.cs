@@ -19,7 +19,10 @@ namespace Data.Database
 
         private Materia nuevaMateria(materias mat)
         {
-            if (mat == null) return null;
+            if (mat == null)
+            {
+                return null;
+            }
             Materia materia = new Materia
             {
                 ID = mat.id_materia,
@@ -38,7 +41,6 @@ namespace Data.Database
                 var mat = context.materias.SingleOrDefault(m => m.id_materia == ID);
                 return nuevaMateria(mat);
             }
-
         }
 
         public void Delete(int ID)
@@ -58,15 +60,15 @@ namespace Data.Database
         {
             if (materia.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(materia.ID);
+                Delete(materia.ID);
             }
             else if (materia.State == BusinessEntity.States.New)
             {
-                this.Insert(materia);
+                Insert(materia);
             }
             else if (materia.State == BusinessEntity.States.Modified)
             {
-                this.Update(materia);
+                Update(materia);
             }
             materia.State = BusinessEntity.States.Unmodified;
         }

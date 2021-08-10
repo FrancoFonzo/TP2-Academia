@@ -43,7 +43,7 @@ namespace UI.Desktop
             switch (UsuarioActual.MiPersona.Tipo)
             {
                 case Persona.TiposPersonas.Administrador:
-                    this.panelMenu.Controls.OfType<Button>().ToList().ForEach(b => b.Visible = true);
+                    panelMenu.Controls.OfType<Button>().ToList().ForEach(b => b.Visible = true);
                     break;
                 case Persona.TiposPersonas.Alumno:
                     btnInscripcion.Visible = true;
@@ -59,7 +59,7 @@ namespace UI.Desktop
         private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -74,21 +74,21 @@ namespace UI.Desktop
 
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
-            if (this.WindowState != FormWindowState.Maximized)
+            if (WindowState != FormWindowState.Maximized)
             {
-                this.WindowState = FormWindowState.Maximized;
-                this.btnMaximizar.Image = Properties.Resources.restore_window_32;
+                WindowState = FormWindowState.Maximized;
+                btnMaximizar.Image = Properties.Resources.restore_window_32;
             }
             else
             {
-                this.WindowState = FormWindowState.Normal;
-                this.btnMaximizar.Image = Properties.Resources.maximize_window_32;
+                WindowState = FormWindowState.Normal;
+                btnMaximizar.Image = Properties.Resources.maximize_window_32;
             }
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
         }
 
         private void btnAdministracion_Click(object sender, EventArgs e)
@@ -191,13 +191,13 @@ namespace UI.Desktop
 
         private void openForm<T>() where T : ApplicationForm
         {
-            this.panelFormLoader.Controls.Clear();
+            panelFormLoader.Controls.Clear();
             T form = (T)Activator.CreateInstance(typeof(T));
             form.Dock = DockStyle.Fill;
             form.FormBorderStyle = FormBorderStyle.None;
             form.TopLevel = false;
             form.TopMost = true;
-            this.panelFormLoader.Controls.Add(form);
+            panelFormLoader.Controls.Add(form);
             lblTitulo.Text = form.Text;
             form.Show();
         }

@@ -18,6 +18,7 @@ namespace UI.Desktop
         {
             InitializeComponent();
             dgvCursos.AutoGenerateColumns = false;
+            this.Listar();
         }
 
         private void tsbAgregar_Click(object sender, EventArgs e)
@@ -29,14 +30,18 @@ namespace UI.Desktop
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected(dgvCursos)) return;
-            OpenForm(ApplicationForm.ModoForm.Modificacion);
+            if (isRowSelected(dgvCursos))
+            {
+                OpenForm(ApplicationForm.ModoForm.Modificacion);
+            }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected(dgvCursos)) return;
-            OpenForm(ApplicationForm.ModoForm.Baja);
+            if (isRowSelected(dgvCursos))
+            {
+                OpenForm(ApplicationForm.ModoForm.Baja);
+            }
         }
         private void OpenForm(ApplicationForm.ModoForm modo)
         {

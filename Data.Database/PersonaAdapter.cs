@@ -19,7 +19,10 @@ namespace Data.Database
 
         private Persona nuevaPersona(personas per)
         {
-            if (per == null) return null;
+            if (per == null)
+            {
+                return null;
+            }
             Persona persona = new Persona
             {
                 ID = per.id_persona,
@@ -32,7 +35,10 @@ namespace Data.Database
                 Telefono = per.telefono,
                 Tipo = (Persona.TiposPersonas)per.tipo_persona
             };
-            if (per.id_plan != null) persona.MiPlan = planData.GetOne((int)per.id_plan);
+            if (per.id_plan != null)
+            {
+                persona.MiPlan = planData.GetOne((int)per.id_plan);
+            }
             return persona;
         }
 
@@ -87,15 +93,15 @@ namespace Data.Database
         {
             if (persona.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(persona.ID);
+                Delete(persona.ID);
             }
             else if (persona.State == BusinessEntity.States.New)
             {
-                this.Insert(persona);
+                Insert(persona);
             }
             else if (persona.State == BusinessEntity.States.Modified)
             {
-                this.Update(persona);
+                Update(persona);
             }
             persona.State = BusinessEntity.States.Unmodified;
         }

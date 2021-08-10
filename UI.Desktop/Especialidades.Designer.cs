@@ -145,7 +145,6 @@ namespace UI.Desktop
             this.Name = "Especialidades";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Especialidades";
-            this.Load += new System.EventHandler(this.Especialidades_Load);
             this.tsEspecialidades.ResumeLayout(false);
             this.tsEspecialidades.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspecialidades)).EndInit();

@@ -11,6 +11,38 @@ namespace UI.Desktop
         {
             InitializeComponent();
             dgvEspecialidades.AutoGenerateColumns = false;
+            this.Listar();
+        }
+
+        private void tsbNuevo_Click(object sender, EventArgs e)
+        {
+            EspecialidadDesktop formEspecialidad = new EspecialidadDesktop(ApplicationForm.ModoForm.Alta);
+            formEspecialidad.ShowDialog();
+            this.Listar();
+        }
+
+        private void tsbEditar_Click(object sender, EventArgs e)
+        {
+            if (isRowSelected(dgvEspecialidades))
+            {
+                openForm(ApplicationForm.ModoForm.Modificacion);
+            }
+        }
+
+        private void tsbEliminar_Click(object sender, EventArgs e)
+        {
+            if (isRowSelected(dgvEspecialidades))
+            {
+                openForm(ApplicationForm.ModoForm.Baja);
+            }
+        }
+
+        private void openForm(ApplicationForm.ModoForm modo)
+        {
+            int ID = ((Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
+            EspecialidadDesktop formEspecialidad = new EspecialidadDesktop(ID, modo);
+            formEspecialidad.ShowDialog();
+            this.Listar();
         }
 
         public override void Listar()
@@ -24,38 +56,6 @@ namespace UI.Desktop
                 Notificar("Error", "Error al recuperar los datos del usuario",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void Especialidades_Load(object sender, EventArgs e)
-        {
-            this.Listar();
-        }
-
-        private void tsbNuevo_Click(object sender, EventArgs e)
-        {
-            EspecialidadDesktop formEspecialidad = new EspecialidadDesktop(ApplicationForm.ModoForm.Alta);
-            formEspecialidad.ShowDialog();
-            this.Listar();
-        }
-
-        private void tsbEditar_Click(object sender, EventArgs e)
-        {
-            if (!isRowSelected(dgvEspecialidades)) return;
-            openEspForm(ApplicationForm.ModoForm.Modificacion);
-        }
-
-        private void tsbEliminar_Click(object sender, EventArgs e)
-        {
-            if (!isRowSelected(dgvEspecialidades)) return;
-            openEspForm(ApplicationForm.ModoForm.Baja);
-        }
-
-        private void openEspForm(ApplicationForm.ModoForm modo)
-        {
-            int ID = ((Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
-            EspecialidadDesktop formEspecialidad = new EspecialidadDesktop(ID, modo);
-            formEspecialidad.ShowDialog();
-            this.Listar();
         }
     }
 }

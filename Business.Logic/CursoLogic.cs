@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Business.Entities;
 using Data.Database;
 
 namespace Business.Logic
 {
-    public class CursoLogic: BusinessLogic
+    public class CursoLogic : BusinessLogic
     {
         public CursoAdapter CursoData { get; set; }
 
         public CursoLogic()
         {
-            this.CursoData = new CursoAdapter();
+            CursoData = new CursoAdapter();
         }
 
         public Curso GetOne(int id)

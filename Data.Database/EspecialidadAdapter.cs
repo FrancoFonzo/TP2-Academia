@@ -19,7 +19,10 @@ namespace Data.Database
 
         private Especialidad nuevaEspecialidad(especialidades esp)
         {
-            if (esp == null) return null;
+            if (esp == null)
+            {
+                return null;
+            }
             Especialidad especialidad = new Especialidad
             {
                 ID = esp.id_especialidad,
@@ -36,7 +39,6 @@ namespace Data.Database
                 var esp = context.especialidades.SingleOrDefault(e => e.id_especialidad == ID);
                 return nuevaEspecialidad(esp);
             }
-
         }
 
         public void Delete(int ID)
@@ -56,15 +58,15 @@ namespace Data.Database
         {
             if (especialidad.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(especialidad.ID);
+                Delete(especialidad.ID);
             }
             else if (especialidad.State == BusinessEntity.States.New)
             {
-                this.Insert(especialidad);
+                Insert(especialidad);
             }
             else if (especialidad.State == BusinessEntity.States.Modified)
             {
-                this.Update(especialidad);
+                Update(especialidad);
             }
             especialidad.State = BusinessEntity.States.Unmodified;
         }

@@ -13,8 +13,8 @@ namespace UI.Desktop
         public PersonaDesktop()
         {
             InitializeComponent();
-            this.cbxTipo.DataSource = new PersonaLogic().GetTipos();
-            this.cbxPlan.DataSource = new PlanLogic().GetAll();
+            cbxTipo.DataSource = new PersonaLogic().GetTipos();
+            cbxPlan.DataSource = new PlanLogic().GetAll();
         }
 
         public PersonaDesktop(ModoForm modo) : this()
@@ -22,55 +22,83 @@ namespace UI.Desktop
             this.Modo = modo;
         }
 
-        public PersonaDesktop(int ID, ModoForm modo) : this()
+        public PersonaDesktop(int ID, ModoForm modo) : this(modo)
         {
-            this.Modo = modo;
-            this.PersonaActual = new PersonaLogic().GetOne(ID);
+            PersonaActual = new PersonaLogic().GetOne(ID);
             MapearDeDatos();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (Validar())
+            {
+                GuardarCambios();
+                Close();
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         public override void MapearDeDatos()
         {
-            this.txtID.Text = this.PersonaActual.ID.ToString();
-            this.txtLegajo.Text = this.PersonaActual.Legajo.ToString();
-            this.txtNombre.Text = this.PersonaActual.Nombre;
-            this.txtApellido.Text = this.PersonaActual.Apellido;
-            this.txtEMail.Text = this.PersonaActual.EMail;
-            this.txtDireccion.Text = this.PersonaActual.Direccion;
-            this.txtTelefono.Text = this.PersonaActual.Telefono;
-            this.dateNacimiento.Value = this.PersonaActual.FechaNacimiento;
-            this.cbxTipo.SelectedIndex = (int)this.PersonaActual.Tipo;
-            this.cbxPlan.SelectedValue = this.PersonaActual.MiPlan.ID;
+            txtID.Text = PersonaActual.ID.ToString();
+            txtLegajo.Text = PersonaActual.Legajo.ToString();
+            txtNombre.Text = PersonaActual.Nombre;
+            txtApellido.Text = PersonaActual.Apellido;
+            txtEMail.Text = PersonaActual.EMail;
+            txtDireccion.Text = PersonaActual.Direccion;
+            txtTelefono.Text = PersonaActual.Telefono;
+            dateNacimiento.Value = PersonaActual.FechaNacimiento;
+            cbxTipo.SelectedIndex = (int)PersonaActual.Tipo;
+            cbxPlan.SelectedValue = PersonaActual.MiPlan.ID;
 
-            if (Modo == ModoForm.Consulta) this.btnAceptar.Text = "Aceptar";
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) this.btnAceptar.Text = "Guardar";
-            else if (Modo == ModoForm.Baja) this.btnAceptar.Text = "Eliminar";
+            if (Modo == ModoForm.Consulta)
+            {
+                btnAceptar.Text = "Aceptar";
+            }
+            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
+            {
+                btnAceptar.Text = "Guardar";
+            }
+            else if (Modo == ModoForm.Baja)
+            {
+                btnAceptar.Text = "Eliminar";
+            }
         }
 
         public override void MapearADatos()
         {
             if (Modo == ModoForm.Alta)
             {
-                this.PersonaActual = new Persona { State = BusinessEntity.States.New };
+                PersonaActual = new Persona { State = BusinessEntity.States.New };
             }
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
                 if (Modo == ModoForm.Modificacion)
                 {
-                    this.PersonaActual.State = BusinessEntity.States.Modified;
+                    PersonaActual.State = BusinessEntity.States.Modified;
                 }
-                this.PersonaActual.Legajo = int.Parse(this.txtLegajo.Text);
-                this.PersonaActual.Nombre = this.txtNombre.Text;
-                this.PersonaActual.Apellido = this.txtApellido.Text;
-                this.PersonaActual.EMail = this.txtEMail.Text;
-                this.PersonaActual.Direccion = this.txtDireccion.Text;
-                this.PersonaActual.Telefono = this.txtTelefono.Text;
-                this.PersonaActual.Tipo = (Persona.TiposPersonas)this.cbxTipo.SelectedIndex;
-                this.PersonaActual.FechaNacimiento = this.dateNacimiento.Value;
-                this.PersonaActual.MiPlan = new PlanLogic().GetOne((int)this.cbxPlan.SelectedValue);
+                PersonaActual.Legajo = int.Parse(txtLegajo.Text);
+                PersonaActual.Nombre = txtNombre.Text;
+                PersonaActual.Apellido = txtApellido.Text;
+                PersonaActual.EMail = txtEMail.Text;
+                PersonaActual.Direccion = txtDireccion.Text;
+                PersonaActual.Telefono = txtTelefono.Text;
+                PersonaActual.Tipo = (Persona.TiposPersonas)cbxTipo.SelectedIndex;
+                PersonaActual.FechaNacimiento = dateNacimiento.Value;
+                PersonaActual.MiPlan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
             }
-            else if (Modo == ModoForm.Baja) PersonaActual.State = BusinessEntity.States.Deleted;
-            else if (Modo == ModoForm.Consulta) PersonaActual.State = BusinessEntity.States.Unmodified;
+            else if (Modo == ModoForm.Baja)
+            {
+                PersonaActual.State = BusinessEntity.States.Deleted;
+            }
+            else if (Modo == ModoForm.Consulta)
+            {
+                PersonaActual.State = BusinessEntity.States.Unmodified;
+            }
         }
 
         public override void GuardarCambios()
@@ -79,39 +107,23 @@ namespace UI.Desktop
             new PersonaLogic().Save(PersonaActual);
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            if (Validar())
-            {
-                GuardarCambios();
-                this.Close();
-            }
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         public override bool Validar()
         {
-            if (!Validaciones.FormularioCompleto(new List<string>
-                        {txtNombre.Text, txtApellido.Text, txtEMail.Text, txtDireccion.Text,
-                txtTelefono.Text, dateNacimiento.Text})
-                )
+            if (!Validaciones.FormularioCompleto
+                (new List<string> {txtNombre.Text, txtApellido.Text, txtEMail.Text,
+                    txtDireccion.Text, txtTelefono.Text, dateNacimiento.Text}))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (!Validaciones.ValidarRegexNyA(txtNombre.Text) || !Validaciones.ValidarRegexNyA(txtApellido.Text))
             {
-                Notificar("Nombre o Apellido invalido", "Porfavor ingrese su nombre y apellido correctamente.",
+                Notificar("Informacion invalida", "Porfavor ingrese su nombre y apellido correctamente.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             else if (!Validaciones.ValidarRegexEmail(txtEMail.Text))
             {
-                Notificar("Email invalido", "Porfavor ingrese un email valido.",
+                Notificar("Informacion invalida", "Porfavor ingrese un email valido.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (cbxTipo.SelectedItem == null)
@@ -119,13 +131,10 @@ namespace UI.Desktop
                 Notificar("Informacion invalida", "Porfavor ingrese un tipo de persona valido.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (cbxPlan.SelectedItem == null)
+            else
             {
-                Notificar("Informacion invalida", "Porfavor ingrese un plan valido.",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
             }
-            else return true;
-
             return false;
         }
     }

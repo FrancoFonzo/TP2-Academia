@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
@@ -24,51 +23,68 @@ namespace UI.Desktop
         public InscripcionDesktop(Usuario UsuarioActual, ModoForm modo) : this(modo)
         {
             this.UsuarioActual = UsuarioActual;
-            this.cbxCursos.DataSource = new CursoLogic().GetAll();
+            cbxCursos.DataSource = new CursoLogic().GetAll();
             MapearDeDatos();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             GuardarCambios();
-            this.Close();
+            Close();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         public override void MapearDeDatos()
         {
-            this.txtID.Text = this.UsuarioActual.ID.ToString();
-            this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
+            txtID.Text = UsuarioActual.ID.ToString();
+            txtUsuario.Text = UsuarioActual.NombreUsuario;
         }
 
         public override void MapearADatos()
         {
             if (Modo == ModoForm.Alta)
             {
-                this.InscripcionActual = new AlumnoInscripcion { State = BusinessEntity.States.New };
+                InscripcionActual = new AlumnoInscripcion { State = BusinessEntity.States.New };
             }
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
             {
                 if (Modo == ModoForm.Modificacion)
                 {
-                    this.InscripcionActual.State = BusinessEntity.States.Modified;
+                    InscripcionActual.State = BusinessEntity.States.Modified;
                 }
-                this.InscripcionActual.MiAlumno = this.UsuarioActual.MiPersona;
-                this.InscripcionActual.Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString();
-                this.InscripcionActual.MiCurso = new CursoLogic().GetOne((int)this.cbxCursos.SelectedValue);
+                InscripcionActual.MiAlumno = UsuarioActual.MiPersona;
+                InscripcionActual.Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString();
+                InscripcionActual.MiCurso = new CursoLogic().GetOne((int)cbxCursos.SelectedValue);
             }
-            else if (Modo == ModoForm.Baja) InscripcionActual.State = BusinessEntity.States.Deleted;
-            else if (Modo == ModoForm.Consulta) InscripcionActual.State = BusinessEntity.States.Unmodified;      
+            else if (Modo == ModoForm.Baja)
+            {
+                InscripcionActual.State = BusinessEntity.States.Deleted;
+            }
+            else if (Modo == ModoForm.Consulta)
+            {
+                InscripcionActual.State = BusinessEntity.States.Unmodified;
+            }
         }
 
         public override void GuardarCambios()
         {
             MapearADatos();
             new AlumnoInscripcionLogic().Save(InscripcionActual);
+        }
+
+        public override bool Validar()
+        {
+            if (cbxCursos.SelectedValue == null)
+            {
+                Notificar("Informacion invalida", "Complete los campos para continuar.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
     }
 }

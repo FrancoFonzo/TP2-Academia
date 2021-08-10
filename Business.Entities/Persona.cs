@@ -4,12 +4,6 @@ namespace Business.Entities
 {
     public class Persona : BusinessEntity
     {
-        public enum TiposPersonas
-        {
-            Administrador,
-            Alumno,
-            Docente
-        }
 
         public string Nombre { get; set; }
         public string Apellido { get; set; }
@@ -21,6 +15,19 @@ namespace Business.Entities
         public TiposPersonas Tipo { get; set; }
         public Plan MiPlan { get; set; }
 
-        public string NombreCompleto { get { return $"{Nombre} {Apellido}"; } }
+        public enum TiposPersonas
+        {
+            Administrador,
+            Alumno,
+            Docente
+        }
+
+        public string NombreCompleto 
+        { 
+            get 
+            { 
+                return $"{Nombre} {Apellido}"; 
+            } 
+        }
     }
 }

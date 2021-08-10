@@ -24,7 +24,7 @@ namespace UI.Desktop
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            this.Validar();
+            Validar();
         }
 
         private void lnkRecuperarClave_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -40,13 +40,19 @@ namespace UI.Desktop
 
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
         }
 
         private void txtUserPass_EnterLeave(object sender, EventArgs e)
         {
-            if (sender == txtUsuario) configTxt(txtUsuario, "Usuario");
-            else configTxt(txtClave, "Contraseña");
+            if (sender == txtUsuario)
+            {
+                configTxt(txtUsuario, "Usuario");
+            }
+            else
+            {
+                configTxt(txtClave, "Contraseña");
+            }
         }
 
         private void configTxt(TextBox txt, String cadena)
@@ -55,13 +61,19 @@ namespace UI.Desktop
             {
                 txt.Text = "";
                 txt.ForeColor = Color.LightGray;
-                if (txt.Equals(txtClave)) txt.PasswordChar = '*';
+                if (txt.Equals(txtClave))
+                {
+                    txt.PasswordChar = '*';
+                }
             }
             else if (txt.Text == "")
             {
                 txt.ForeColor = Color.DarkGray;
                 txt.Text = cadena;
-                if (txt.Equals(txtClave)) txt.PasswordChar = '\0';
+                if (txt.Equals(txtClave))
+                {
+                    txt.PasswordChar = '\0';
+                }
             }
         }
 
@@ -69,7 +81,7 @@ namespace UI.Desktop
         private void appLogin_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
         public override bool Validar()
@@ -83,22 +95,24 @@ namespace UI.Desktop
                 return false;
             }
 
-            this.UsuarioActual = new UsuarioLogic().GetOneNombreUsuario(this.txtUsuario.Text);
+            UsuarioActual = new UsuarioLogic().GetOneNombreUsuario(txtUsuario.Text);
 
             if (!Validaciones.ValidarClave(UsuarioActual?.Clave, txtClave.Text))
             {
                 Notificar("Login", "Usuario y/o contraseña incorrectos",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
-            if (!UsuarioActual.Habilitado)
+            else if (!UsuarioActual.Habilitado)
             {
                 Notificar("Login", "Usuario no habilitado",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
-            this.DialogResult = DialogResult.OK;
-            return true;
+            else
+            {
+                DialogResult = DialogResult.OK;
+                return true;
+            }
+            return false;
         }
     }
 

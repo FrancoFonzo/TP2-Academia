@@ -12,24 +12,21 @@
         {
             get
             {
-                if (MiPersona == null) return "";
-                return MiPersona.Nombre;
+                return MiPersona == null ? "" : MiPersona.Nombre;
             }
         }
         public string ApellidoPersona
         {
             get
             {
-                if (MiPersona == null) return "";
-                return MiPersona.Apellido;
+                return MiPersona == null ? "" : MiPersona.Apellido;
             }
         }
         public string EMailPersona
         {
             get
             {
-                if (MiPersona == null) return "";
-                return MiPersona.EMail;
+                return MiPersona == null ? "" : MiPersona.EMail;
             }
         }
 

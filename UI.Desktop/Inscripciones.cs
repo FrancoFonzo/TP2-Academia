@@ -15,9 +15,17 @@ namespace UI.Desktop
             dgvInscripciones.AutoGenerateColumns = false;
             this.Listar();
         }
+
         public Inscripciones(Usuario UsuarioActual) : this()
         {
             this.UsuarioActual = UsuarioActual;
+        }
+
+        private void tsbAgregar_Click(object sender, EventArgs e)
+        {
+            InscripcionDesktop formInscripciones = new InscripcionDesktop(UsuarioActual, ModoForm.Alta);
+            formInscripciones.ShowDialog();
+            this.Listar();
         }
 
         public override void Listar()
@@ -31,13 +39,6 @@ namespace UI.Desktop
                 Notificar("Error", "Error al recuperar los datos del usuario",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void tsbAgregar_Click(object sender, EventArgs e)
-        {
-            InscripcionDesktop formInscripciones = new InscripcionDesktop(UsuarioActual, ModoForm.Alta);
-            formInscripciones.ShowDialog();
-            this.Listar();
         }
     }
 }

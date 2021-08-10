@@ -11,7 +11,7 @@ namespace Business.Logic
 
         public PersonaLogic()
         {
-            this.PersonaData = new PersonaAdapter();
+            PersonaData = new PersonaAdapter();
         }
 
         public Persona GetOne(int id)

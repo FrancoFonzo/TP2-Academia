@@ -173,7 +173,6 @@ namespace UI.Desktop
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Materias";
             this.Text = "Materias";
-            this.Load += new System.EventHandler(this.Materias_Load);
             this.tsMaterias.ResumeLayout(false);
             this.tsMaterias.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterias)).EndInit();

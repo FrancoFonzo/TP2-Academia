@@ -19,7 +19,10 @@ namespace Data.Database
 
         private Comision nuevaComision(comisiones com)
         {
-            if (com == null) return null;
+            if (com == null)
+            {
+                return null;
+            }
             Comision comision = new Comision
             {
                 ID = com.id_comision,
@@ -39,7 +42,6 @@ namespace Data.Database
                 var com = context.comisiones.SingleOrDefault(c => c.id_comision == ID);
                 return nuevaComision(com);
             }
-
         }
 
         public void Delete(int ID)
@@ -59,15 +61,15 @@ namespace Data.Database
         {
             if (comision.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(comision.ID);
+                Delete(comision.ID);
             }
             else if (comision.State == BusinessEntity.States.New)
             {
-                this.Insert(comision);
+                Insert(comision);
             }
             else if (comision.State == BusinessEntity.States.Modified)
             {
-                this.Update(comision);
+                Update(comision);
             }
             comision.State = BusinessEntity.States.Unmodified;
         }

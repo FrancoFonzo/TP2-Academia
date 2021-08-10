@@ -156,7 +156,6 @@ namespace UI.Desktop
             this.Name = "Planes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Planes";
-            this.Load += new System.EventHandler(this.Planes_Load);
             this.tsPlanes.ResumeLayout(false);
             this.tsPlanes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).EndInit();

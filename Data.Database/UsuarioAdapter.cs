@@ -19,7 +19,10 @@ namespace Data.Database
 
         private static Usuario nuevoUsuario(usuarios user)
         {
-            if (user == null) return null;
+            if (user == null)
+            {
+                return null;
+            }
             Usuario usuario = new Usuario
             {
                 ID = user.id_usuario,
@@ -27,7 +30,10 @@ namespace Data.Database
                 Clave = user.clave,
                 Habilitado = user.habilitado,
             };
-            if (user.id_persona != null) usuario.MiPersona = personaData.GetOne((int)user.id_persona);
+            if (user.id_persona != null)
+            {
+                usuario.MiPersona = personaData.GetOne((int)user.id_persona);
+            }
             return usuario;
         }
 
@@ -47,7 +53,6 @@ namespace Data.Database
                 var usr = context.usuarios.SingleOrDefault(u => u.nombre_usuario == nom_usuario);
                 return nuevoUsuario(usr);
             }
-
         }
 
         public void Delete(int ID)
@@ -67,15 +72,15 @@ namespace Data.Database
         {
             if (usuario.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(usuario.ID);
+                Delete(usuario.ID);
             }
             else if (usuario.State == BusinessEntity.States.New)
             {
-                this.Insert(usuario);
+                Insert(usuario);
             }
             else if (usuario.State == BusinessEntity.States.Modified)
             {
-                this.Update(usuario);
+                Update(usuario);
             }
             usuario.State = BusinessEntity.States.Unmodified;
         }
@@ -107,7 +112,10 @@ namespace Data.Database
                     clave = usuario.Clave,
                     habilitado = usuario.Habilitado
                 };
-                if (usuario.MiPersona != null) usr.id_persona = usuario.MiPersona.ID;
+                if (usuario.MiPersona != null)
+                {
+                    usr.id_persona = usuario.MiPersona.ID;
+                }
                 context.usuarios.Add(usr);
                 context.SaveChanges();
             }

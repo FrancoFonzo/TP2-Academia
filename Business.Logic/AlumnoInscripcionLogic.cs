@@ -10,7 +10,7 @@ namespace Business.Logic
 
         public AlumnoInscripcionLogic()
         {
-            this.InscripcionData = new AlumnoInscripcionAdapter();
+            InscripcionData = new AlumnoInscripcionAdapter();
         }
 
         public AlumnoInscripcion GetOne(int id)
@@ -32,6 +32,5 @@ namespace Business.Logic
         {
             InscripcionData.Delete(id);
         }
-
     }
 }

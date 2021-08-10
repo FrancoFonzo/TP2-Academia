@@ -11,23 +11,6 @@ namespace UI.Desktop
         {
             InitializeComponent();
             dgvUsuarios.AutoGenerateColumns = false;
-        }
-
-        public override void Listar()
-        {
-            try
-            {
-                this.dgvUsuarios.DataSource = new UsuarioLogic().GetAll();               
-            }
-            catch (Exception)
-            {
-                Notificar("Error", "Error al recuperar los datos del usuario",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void Usuarios_Load(object sender, EventArgs e)
-        {
             this.Listar();
         }
 
@@ -40,22 +23,39 @@ namespace UI.Desktop
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected(dgvUsuarios)) return;
-            openUserForm(ApplicationForm.ModoForm.Modificacion);
+            if (isRowSelected(dgvUsuarios))
+            {
+                openForm(ModoForm.Modificacion);
+            }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected(dgvUsuarios)) return;
-            openUserForm(ApplicationForm.ModoForm.Baja);
+            if (isRowSelected(dgvUsuarios))
+            {
+                openForm(ApplicationForm.ModoForm.Baja);
+            }
         }
 
-        private void openUserForm(ApplicationForm.ModoForm modo)
+        private void openForm(ApplicationForm.ModoForm modo)
         {
             int ID = ((Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
             UsuarioDesktop formUsuario = new UsuarioDesktop(ID, modo);
             formUsuario.ShowDialog();
             this.Listar();
+        }
+
+        public override void Listar()
+        {
+            try
+            {
+                this.dgvUsuarios.DataSource = new UsuarioLogic().GetAll();
+            }
+            catch (Exception)
+            {
+                Notificar("Error", "Error al recuperar los datos del usuario",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -5,7 +5,6 @@ namespace UI.Desktop
 {
     static class Program
     {
-
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -16,7 +15,9 @@ namespace UI.Desktop
             Application.SetCompatibleTextRenderingDefault(false);
             Login login = new Login();
             if (login.ShowDialog() == DialogResult.OK)
+            {
                 Application.Run(new Main(login.UsuarioActual));
+            }
         }
     }
 }

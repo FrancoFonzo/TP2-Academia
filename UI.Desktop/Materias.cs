@@ -12,10 +12,6 @@ namespace UI.Desktop
         {
             InitializeComponent();
             dgvMaterias.AutoGenerateColumns = false;
-        }
-
-        private void Materias_Load(object sender, EventArgs e)
-        {
             this.Listar();
         }
 
@@ -28,14 +24,18 @@ namespace UI.Desktop
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected(dgvMaterias)) return;
-            OpenForm(ApplicationForm.ModoForm.Modificacion);
+            if (isRowSelected(dgvMaterias))
+            {
+                OpenForm(ApplicationForm.ModoForm.Modificacion);
+            }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected(dgvMaterias)) return;
-            OpenForm(ApplicationForm.ModoForm.Baja);
+            if (isRowSelected(dgvMaterias))
+            {
+                OpenForm(ApplicationForm.ModoForm.Baja);
+            }
         }
 
         private void OpenForm(ApplicationForm.ModoForm modo)
@@ -45,6 +45,7 @@ namespace UI.Desktop
             formMaterias.ShowDialog();
             this.Listar();
         }
+
         public override void Listar()
         {
             try
