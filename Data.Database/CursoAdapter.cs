@@ -25,14 +25,13 @@ namespace Data.Database
             Curso curso = new Curso()
             {
                 ID = cur.id_curso,
-                Descripcion = cur.descripcion,
                 AnioCalendario = cur.anio_calendario,
                 Cupo = cur.cupo,
                 MiMateria = materiaData.GetOne(cur.id_materia),
                 MiComision = comisionData.GetOne(cur.id_comision)
             };
             curso.Descripcion = $"{curso.MiMateria.Descripcion}" +
-                $" - {curso.MiComision.Descripcion} - {curso.AñoCalendario}";
+                $" - {curso.MiComision.Descripcion} - {curso.AnioCalendario}";
             return curso;
         }
 
@@ -84,7 +83,6 @@ namespace Data.Database
                 var cur = context.cursos.SingleOrDefault(c => c.id_curso == curso.ID);
                 if (cur != null)
                 {
-                    cur.descripcion = curso.Descripcion;
                     cur.anio_calendario = curso.AnioCalendario;
                     cur.cupo = curso.Cupo;
                     cur.id_materia = curso.MiMateria.ID;

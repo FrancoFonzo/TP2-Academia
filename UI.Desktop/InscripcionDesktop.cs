@@ -10,47 +10,22 @@ namespace UI.Desktop
     {
         private Usuario UsuarioActual { get; set; }
         private AlumnoInscripcion InscripcionActual { get; set; }
-        private Curso CursoActual { get; set; }
 
         public InscripcionDesktop()
         {
             InitializeComponent();
         }
-        public InscripcionDesktop(Usuario UsuarioActual) : this()
+
+        public InscripcionDesktop(ModoForm modo) : this()
+        {
+            this.Modo = modo;
+        }
+
+        public InscripcionDesktop(Usuario UsuarioActual, ModoForm modo) : this(modo)
         {
             this.UsuarioActual = UsuarioActual;
-            MapearDeDatos();
-        }
-
-        public override void MapearDeDatos()
-        {
-            List<Curso> cursos = new CursoLogic().GetAll();
-            cursos.Add(this.CursoActual);
-            this.cbxCursos.DataSource = cursos;
-
-            this.txtID.Text = this.UsuarioActual.ID.ToString();
-            this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
-        }
-
-        public override void MapearADatos()
-        {
             this.cbxCursos.DataSource = new CursoLogic().GetAll();
-
-            this.InscripcionActual = new AlumnoInscripcion
-            {
-                MiAlumno = this.UsuarioActual.MiPersona,
-                Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString(),
-                MiCurso = new CursoLogic().GetOne((int)this.cbxCursos.SelectedValue)
-            };
-            
-            var idCur = this.cbxCursos.SelectedValue;
-            this.CursoActual = new CursoLogic().GetOne((int)idCur);
-            
-        }
-
-        public void ListarInscripciones()
-        {
-
+            MapearDeDatos();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -63,15 +38,37 @@ namespace UI.Desktop
         {
             this.Close();
         }
+
+        public override void MapearDeDatos()
+        {
+            this.txtID.Text = this.UsuarioActual.ID.ToString();
+            this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
+        }
+
+        public override void MapearADatos()
+        {
+            if (Modo == ModoForm.Alta)
+            {
+                this.InscripcionActual = new AlumnoInscripcion { State = BusinessEntity.States.New };
+            }
+            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
+            {
+                if (Modo == ModoForm.Modificacion)
+                {
+                    this.InscripcionActual.State = BusinessEntity.States.Modified;
+                }
+                this.InscripcionActual.MiAlumno = this.UsuarioActual.MiPersona;
+                this.InscripcionActual.Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString();
+                this.InscripcionActual.MiCurso = new CursoLogic().GetOne((int)this.cbxCursos.SelectedValue);
+            }
+            else if (Modo == ModoForm.Baja) InscripcionActual.State = BusinessEntity.States.Deleted;
+            else if (Modo == ModoForm.Consulta) InscripcionActual.State = BusinessEntity.States.Unmodified;      
+        }
+
         public override void GuardarCambios()
         {
             MapearADatos();
             new AlumnoInscripcionLogic().Save(InscripcionActual);
-        }
-
-        private void btnListarInscripciones_Click(object sender, EventArgs e)
-        {
-            ListarInscripciones();
         }
     }
 }

@@ -147,6 +147,11 @@ namespace UI.Desktop
             openForm<Materias>();
         }
 
+        private void btnInscripcion_Click(object sender, EventArgs e)
+        {
+            openForm<Inscripciones>();
+        }
+
         private void btnReportes_Click(object sender, EventArgs e)
         {
             panelAdminReportes.BringToFront();
@@ -187,7 +192,7 @@ namespace UI.Desktop
         private void openForm<T>() where T : ApplicationForm
         {
             this.panelFormLoader.Controls.Clear();
-            T form = (T) Activator.CreateInstance(typeof(T));
+            T form = (T)Activator.CreateInstance(typeof(T));
             form.Dock = DockStyle.Fill;
             form.FormBorderStyle = FormBorderStyle.None;
             form.TopLevel = false;
@@ -195,20 +200,6 @@ namespace UI.Desktop
             this.panelFormLoader.Controls.Add(form);
             lblTitulo.Text = form.Text;
             form.Show();
-
-        private void btnInscripcion_Click(object sender, EventArgs e)
-        {
-            this.panelFormLoader.Controls.Clear();
-            Inscripciones inscripciones = new Inscripciones(UsuarioActual)
-            {
-                Dock = DockStyle.Fill,
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                TopMost = true
-            };
-            this.panelFormLoader.Controls.Add(inscripciones);
-            lblTitulo.Text = "Inscripciones";
-            inscripciones.Show();
         }
     }
 }

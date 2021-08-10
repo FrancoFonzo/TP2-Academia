@@ -7,17 +7,18 @@ namespace UI.Desktop
 {
     public partial class Inscripciones : ApplicationForm
     {
+        public Usuario UsuarioActual { get; set; }
+
         public Inscripciones()
         {
             InitializeComponent();
             dgvInscripciones.AutoGenerateColumns = false;
+            this.Listar();
         }
         public Inscripciones(Usuario UsuarioActual) : this()
         {
             this.UsuarioActual = UsuarioActual;
         }
-
-        public Usuario UsuarioActual{get; set;}
 
         public override void Listar()
         {
@@ -34,7 +35,7 @@ namespace UI.Desktop
 
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
-            InscripcionDesktop formInscripciones = new InscripcionDesktop(UsuarioActual);
+            InscripcionDesktop formInscripciones = new InscripcionDesktop(UsuarioActual, ModoForm.Alta);
             formInscripciones.ShowDialog();
             this.Listar();
         }

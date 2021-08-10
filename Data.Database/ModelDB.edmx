@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AcademiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="AcademiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="alumnos_inscripciones">
           <Key>
             <PropertyRef Name="id_inscripcion" />
@@ -31,7 +31,6 @@
           <Property Name="id_curso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_materia" Type="int" Nullable="false" />
           <Property Name="id_comision" Type="int" Nullable="false" />
-          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="anio_calendario" Type="int" Nullable="false" />
           <Property Name="cupo" Type="int" Nullable="false" />
         </EntityType>
@@ -282,7 +281,8 @@
             <End Role="usuarios" EntitySet="usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AcademiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -322,7 +322,6 @@
           <NavigationProperty Name="comisiones" Relationship="Self.FK_cursos_comisiones" FromRole="cursos" ToRole="comisiones" />
           <NavigationProperty Name="materias" Relationship="Self.FK_cursos_materias" FromRole="cursos" ToRole="materias" />
           <NavigationProperty Name="docentes_cursos" Relationship="Self.FK_docentes_cursos_cursos" FromRole="cursos" ToRole="docentes_cursos" />
-          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="docentes_cursos">
           <Key>
@@ -615,7 +614,6 @@
           <EntitySetMapping Name="cursos">
             <EntityTypeMapping TypeName="AcademiaModel.cursos">
               <MappingFragment StoreEntitySet="cursos">
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="id_curso" ColumnName="id_curso" />
                 <ScalarProperty Name="id_materia" ColumnName="id_materia" />
                 <ScalarProperty Name="id_comision" ColumnName="id_comision" />
