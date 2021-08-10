@@ -77,11 +77,11 @@
     <Compile Include="Especialidades.Designer.cs">
       <DependentUpon>Especialidades.cs</DependentUpon>
     </Compile>
-    <Compile Include="AlumnoInscripcionDesktop.cs">
+    <Compile Include="InscripcionDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AlumnoInscripcionDesktop.Designer.cs">
-      <DependentUpon>AlumnoInscripcionDesktop.cs</DependentUpon>
+    <Compile Include="InscripcionDesktop.Designer.cs">
+      <DependentUpon>InscripcionDesktop.cs</DependentUpon>
     </Compile>
     <Compile Include="Inscripciones.cs">
       <SubType>Form</SubType>
@@ -151,8 +151,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AlumnoInscripcionDesktop.resx">
-      <DependentUpon>AlumnoInscripcionDesktop.cs</DependentUpon>
+    <EmbeddedResource Include="InscripcionDesktop.resx">
+      <DependentUpon>InscripcionDesktop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationForm.resx">
       <DependentUpon>ApplicationForm.cs</DependentUpon>

@@ -34,7 +34,7 @@ namespace UI.Desktop
 
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
-            AlumnoInscripcionDesktop formInscripciones = new AlumnoInscripcionDesktop(UsuarioActual);
+            InscripcionDesktop formInscripciones = new InscripcionDesktop(UsuarioActual);
             formInscripciones.ShowDialog();
             this.Listar();
         }

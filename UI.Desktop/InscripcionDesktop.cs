@@ -6,17 +6,17 @@ using Business.Entities;
 
 namespace UI.Desktop
 {
-    public partial class AlumnoInscripcionDesktop : ApplicationForm
+    public partial class InscripcionDesktop : ApplicationForm
     {
         private Usuario UsuarioActual { get; set; }
         private AlumnoInscripcion InscripcionActual { get; set; }
         private Curso CursoActual { get; set; }
 
-        public AlumnoInscripcionDesktop()
+        public InscripcionDesktop()
         {
             InitializeComponent();
         }
-        public AlumnoInscripcionDesktop(Usuario UsuarioActual) : this()
+        public InscripcionDesktop(Usuario UsuarioActual) : this()
         {
             this.UsuarioActual = UsuarioActual;
             MapearDeDatos();
