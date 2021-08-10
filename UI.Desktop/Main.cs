@@ -195,6 +195,20 @@ namespace UI.Desktop
             this.panelFormLoader.Controls.Add(form);
             lblTitulo.Text = form.Text;
             form.Show();
+
+        private void btnInscripcion_Click(object sender, EventArgs e)
+        {
+            this.panelFormLoader.Controls.Clear();
+            Inscripciones inscripciones = new Inscripciones(UsuarioActual)
+            {
+                Dock = DockStyle.Fill,
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                TopMost = true
+            };
+            this.panelFormLoader.Controls.Add(inscripciones);
+            lblTitulo.Text = "Inscripciones";
+            inscripciones.Show();
         }
     }
 }

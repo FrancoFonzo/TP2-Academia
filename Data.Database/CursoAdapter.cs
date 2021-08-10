@@ -34,8 +34,6 @@ namespace Data.Database
             return cursos;
         }
 
-
-
         public Curso GetOne(int ID)
         {
             using (var context = new AcademiaEntities())
@@ -101,7 +99,6 @@ namespace Data.Database
                 cursos cur = new cursos()
                 {
                     id_curso = curso.ID,
-                    descripcion = curso.Descripcion,
                     cupo = curso.Cupo,
                     anio_calendario = curso.AnioCalendario,
                     id_materia = curso.MiMateria.ID,

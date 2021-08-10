@@ -89,6 +89,18 @@
     <Compile Include="Especialidades.Designer.cs">
       <DependentUpon>Especialidades.cs</DependentUpon>
     </Compile>
+    <Compile Include="InscripcionDesktop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InscripcionDesktop.Designer.cs">
+      <DependentUpon>InscripcionDesktop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inscripciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inscripciones.Designer.cs">
+      <DependentUpon>Inscripciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlanDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +163,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="InscripcionDesktop.resx">
+      <DependentUpon>InscripcionDesktop.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ApplicationForm.resx">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Especialidades.resx">
       <DependentUpon>Especialidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inscripciones.resx">
+      <DependentUpon>Inscripciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -207,6 +225,26 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Data.Database.AcademiaEntities.datasource" />
+    <None Include="Properties\DataSources\Data.Database.Adapter.datasource" />
+    <None Include="Properties\DataSources\Data.Database.AlumnoInscripcionAdapter.datasource" />
+    <None Include="Properties\DataSources\Data.Database.alumnos_inscripciones.datasource" />
+    <None Include="Properties\DataSources\Data.Database.ComisionAdapter.datasource" />
+    <None Include="Properties\DataSources\Data.Database.comisiones.datasource" />
+    <None Include="Properties\DataSources\Data.Database.CursoAdapter.datasource" />
+    <None Include="Properties\DataSources\Data.Database.cursos.datasource" />
+    <None Include="Properties\DataSources\Data.Database.DocenteCursoAdapter.datasource" />
+    <None Include="Properties\DataSources\Data.Database.docentes_cursos.datasource" />
+    <None Include="Properties\DataSources\Data.Database.EspecialidadAdapter.datasource" />
+    <None Include="Properties\DataSources\Data.Database.especialidades.datasource" />
+    <None Include="Properties\DataSources\Data.Database.MateriaAdapter.datasource" />
+    <None Include="Properties\DataSources\Data.Database.materias.datasource" />
+    <None Include="Properties\DataSources\Data.Database.PersonaAdapter.datasource" />
+    <None Include="Properties\DataSources\Data.Database.personas.datasource" />
+    <None Include="Properties\DataSources\Data.Database.PlanAdapter.datasource" />
+    <None Include="Properties\DataSources\Data.Database.planes.datasource" />
+    <None Include="Properties\DataSources\Data.Database.UsuarioAdapter.datasource" />
+    <None Include="Properties\DataSources\Data.Database.usuarios.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

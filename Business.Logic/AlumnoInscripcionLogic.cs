@@ -4,7 +4,7 @@ using Data.Database;
 
 namespace Business.Logic
 {
-    class AlumnoInscripcionLogic : BusinessLogic
+    public class AlumnoInscripcionLogic : BusinessLogic
     {
         public AlumnoInscripcionAdapter InscripcionData { get; set; }
 
