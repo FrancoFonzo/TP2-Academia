@@ -8,10 +8,10 @@ namespace Data.Database
     {
         public List<Persona> GetAll()
         {
-            using (AcademiaEntities db = new AcademiaEntities())
+            using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Persona> personas = new List<Persona>();
-                var lstPersonas = db.personas;
+                var lstPersonas = context.personas;
                 lstPersonas?.ToList().ForEach(p => personas.Add(nuevaPersona(p)));
                 return personas;
             }
@@ -48,11 +48,11 @@ namespace Data.Database
 
         public List<Persona> GetPersonasSinUsuario()
         {
-            using (AcademiaEntities db = new AcademiaEntities())
+            using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Persona> personas = new List<Persona>();
-                var lstPersonas = from p in db.personas
-                                  where !(from u in db.usuarios select u.id_persona)
+                var lstPersonas = from p in context.personas
+                                  where !(from u in context.usuarios select u.id_persona)
                                   .Contains(p.id_persona)
                                   select p;
                 lstPersonas?.ToList().ForEach(p => personas.Add(nuevaPersona(p)));
@@ -62,9 +62,9 @@ namespace Data.Database
 
         public Persona GetOne(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var per = db.personas.SingleOrDefault(p => p.id_persona == ID);
+                var per = context.personas.SingleOrDefault(p => p.id_persona == ID);
                 return nuevaPersona(per);
             }
 
@@ -72,12 +72,14 @@ namespace Data.Database
 
         public void Delete(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var per = db.personas.SingleOrDefault(p => p.id_persona == ID);
-                if (per == null) return;
-                db.Entry(per).State = System.Data.Entity.EntityState.Deleted;
-                db.SaveChanges();
+                var per = context.personas.SingleOrDefault(p => p.id_persona == ID);
+                if (per != null)
+                {
+                    context.Entry(per).State = System.Data.Entity.EntityState.Deleted;
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -100,27 +102,29 @@ namespace Data.Database
 
         protected void Update(Persona persona)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var per = db.personas.SingleOrDefault(p => p.id_persona == persona.ID);
-                if (per == null) return;
-                per.apellido = persona.Apellido;
-                per.nombre = persona.Nombre;
-                per.email = persona.EMail;
-                per.fecha_nac = persona.FechaNacimiento;
-                per.legajo = persona.Legajo;
-                per.direccion = persona.Direccion;
-                per.telefono = persona.Telefono;
-                per.tipo_persona = (int)persona.Tipo;
-                per.id_plan = persona.MiPlan.ID;
+                var per = context.personas.SingleOrDefault(p => p.id_persona == persona.ID);
+                if (per != null)
+                {
+                    per.apellido = persona.Apellido;
+                    per.nombre = persona.Nombre;
+                    per.email = persona.EMail;
+                    per.fecha_nac = persona.FechaNacimiento;
+                    per.legajo = persona.Legajo;
+                    per.direccion = persona.Direccion;
+                    per.telefono = persona.Telefono;
+                    per.tipo_persona = (int)persona.Tipo;
+                    per.id_plan = persona.MiPlan.ID;
 
-                db.SaveChanges();
+                    context.SaveChanges();
+                }
             }
         }
 
         protected void Insert(Persona persona)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
                 personas per = new personas
                 {
@@ -135,8 +139,8 @@ namespace Data.Database
                     tipo_persona = (int)persona.Tipo,
                     id_plan = persona.MiPlan.ID
                 };
-                db.personas.Add(per);
-                db.SaveChanges();
+                context.personas.Add(per);
+                context.SaveChanges();
             }
         }
     }

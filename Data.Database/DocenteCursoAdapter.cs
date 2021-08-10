@@ -7,10 +7,10 @@ namespace Data.Database
     {
         public List<DocenteCurso> GetAll()
         {
-            using (AcademiaEntities db = new AcademiaEntities())
+            using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<DocenteCurso> docentesCursos = new List<DocenteCurso>();
-                var lstDocentesCursos = db.docentes_cursos;
+                var lstDocentesCursos = context.docentes_cursos;
                 lstDocentesCursos?.ToList().ForEach(dc => docentesCursos.Add(nuevoDocenteCurso(dc)));
                 return docentesCursos;
             }
@@ -30,21 +30,23 @@ namespace Data.Database
 
         public DocenteCurso GetOne(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var docCur = db.docentes_cursos.SingleOrDefault(dc => dc.id_dictado == ID);
+                var docCur = context.docentes_cursos.SingleOrDefault(dc => dc.id_dictado == ID);
                 return nuevoDocenteCurso(docCur);
             }
         }
 
         public void Delete(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var docCur = db.docentes_cursos.SingleOrDefault(dc => dc.id_dictado == ID);
-                if (docCur == null) return;
-                db.docentes_cursos.Remove(docCur);
-                db.SaveChanges();
+                var docCur = context.docentes_cursos.SingleOrDefault(dc => dc.id_dictado == ID);
+                if (docCur != null)
+                {
+                    context.docentes_cursos.Remove(docCur);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -67,19 +69,21 @@ namespace Data.Database
 
         protected void Update(DocenteCurso docenteCurso)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var docCur = db.docentes_cursos.SingleOrDefault(dc => dc.id_dictado == docenteCurso.ID);
-                if (docCur == null) return;
-                docCur.id_docente = docenteCurso.MiDocente.ID;
-                docCur.id_curso = docenteCurso.MiCurso.ID;
-                db.SaveChanges();
+                var docCur = context.docentes_cursos.SingleOrDefault(dc => dc.id_dictado == docenteCurso.ID);
+                if (docCur != null)
+                {
+                    docCur.id_docente = docenteCurso.MiDocente.ID;
+                    docCur.id_curso = docenteCurso.MiCurso.ID;
+                    context.SaveChanges();
+                }
             }
         }
 
         protected void Insert(DocenteCurso docenteCurso)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
                 docentes_cursos docCur = new docentes_cursos
                 {
@@ -87,8 +91,8 @@ namespace Data.Database
                     id_docente = docenteCurso.MiDocente.ID,
                     id_curso = docenteCurso.MiCurso.ID
                 };
-                db.docentes_cursos.Add(docCur);
-                db.SaveChanges();
+                context.docentes_cursos.Add(docCur);
+                context.SaveChanges();
             }
         }
     }

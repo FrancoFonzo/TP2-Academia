@@ -8,10 +8,10 @@ namespace Data.Database
     {
         public List<Comision> GetAll()
         {
-            using (AcademiaEntities db = new AcademiaEntities())
+            using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Comision> comisiones = new List<Comision>();
-                var lstComisiones = db.comisiones;
+                var lstComisiones = context.comisiones;
                 lstComisiones?.ToList().ForEach(c => comisiones.Add(nuevaComision(c)));
                 return comisiones;
             }
@@ -24,7 +24,7 @@ namespace Data.Database
             {
                 ID = com.id_comision,
                 Descripcion = com.desc_comision,
-                AñoEspecialidad = com.anio_especialidad,
+                AnioEspecialidad = com.anio_especialidad,
                 MiPlan = planData.GetOne(com.id_plan)
             };
             return comision;
@@ -34,9 +34,9 @@ namespace Data.Database
 
         public Comision GetOne(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var com = db.comisiones.SingleOrDefault(c => c.id_comision == ID);
+                var com = context.comisiones.SingleOrDefault(c => c.id_comision == ID);
                 return nuevaComision(com);
             }
 
@@ -44,12 +44,14 @@ namespace Data.Database
 
         public void Delete(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var com = db.comisiones.SingleOrDefault(c => c.id_comision == ID);
-                if (com == null) return;
-                db.Entry(com).State = System.Data.Entity.EntityState.Deleted;
-                db.SaveChanges();
+                var com = context.comisiones.SingleOrDefault(c => c.id_comision == ID);
+                if (com != null)
+                {
+                    context.Entry(com).State = System.Data.Entity.EntityState.Deleted;
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -72,29 +74,31 @@ namespace Data.Database
 
         protected void Update(Comision comisiones)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var com = db.comisiones.SingleOrDefault(c => c.id_comision == comisiones.ID);
-                if (com == null) return;
-                com.desc_comision = comisiones.Descripcion;
-                com.anio_especialidad = comisiones.AñoEspecialidad;
+                var com = context.comisiones.SingleOrDefault(c => c.id_comision == comisiones.ID);
+                if (com != null)
+                {
+                    com.desc_comision = comisiones.Descripcion;
+                    com.anio_especialidad = comisiones.AnioEspecialidad;
 
-                db.SaveChanges();
+                    context.SaveChanges();
+                }
             }
         }
 
         protected void Insert(Comision comisiones)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
                 comisiones com = new comisiones
                 {
                     id_comision = comisiones.ID,
                     desc_comision = comisiones.Descripcion,
-                    anio_especialidad = comisiones.AñoEspecialidad
+                    anio_especialidad = comisiones.AnioEspecialidad
                 };
-                db.comisiones.Add(com);
-                db.SaveChanges();
+                context.comisiones.Add(com);
+                context.SaveChanges();
             }
         }
     }

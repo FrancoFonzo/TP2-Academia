@@ -8,10 +8,10 @@ namespace Data.Database
     {
         public List<AlumnoInscripcion> GetAll()
         {
-            using (AcademiaEntities db = new AcademiaEntities())
+            using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
-                var lstInscripciones = db.alumnos_inscripciones;
+                var lstInscripciones = context.alumnos_inscripciones;
                 lstInscripciones?.ToList().ForEach(i => inscripciones.Add(nuevaInscripcion(i)));
                 return inscripciones;
             }
@@ -33,21 +33,23 @@ namespace Data.Database
 
         public AlumnoInscripcion GetOne(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var insc = db.alumnos_inscripciones.SingleOrDefault(i => i.id_inscripcion == ID);
+                var insc = context.alumnos_inscripciones.SingleOrDefault(i => i.id_inscripcion == ID);
                 return nuevaInscripcion(insc);
             }
         }
 
         public void Delete(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var insc = db.alumnos_inscripciones.SingleOrDefault(i => i.id_inscripcion == ID);
-                if (insc == null) return;
-                db.alumnos_inscripciones.Remove(insc);
-                db.SaveChanges();
+                var insc = context.alumnos_inscripciones.SingleOrDefault(i => i.id_inscripcion == ID);
+                if (insc != null)
+                {
+                    context.alumnos_inscripciones.Remove(insc);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -70,22 +72,24 @@ namespace Data.Database
 
         protected void Update(AlumnoInscripcion inscripcion)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var insc = db.alumnos_inscripciones.SingleOrDefault(i => i.id_inscripcion == inscripcion.ID);
-                if (insc == null) return;
-                insc.id_inscripcion = inscripcion.ID;
-                insc.id_alumno = inscripcion.MiAlumno.ID;
-                insc.id_curso = inscripcion.MiCurso.ID;
-                insc.nota = (int)inscripcion.Nota;
-                insc.condicion = inscripcion.Condicion;
-                db.SaveChanges();
+                var insc = context.alumnos_inscripciones.SingleOrDefault(i => i.id_inscripcion == inscripcion.ID);
+                if (insc != null)
+                {
+                    insc.id_inscripcion = inscripcion.ID;
+                    insc.id_alumno = inscripcion.MiAlumno.ID;
+                    insc.id_curso = inscripcion.MiCurso.ID;
+                    insc.nota = (int)inscripcion.Nota;
+                    insc.condicion = inscripcion.Condicion;
+                    context.SaveChanges();
+                }
             }
         }
 
         protected void Insert(AlumnoInscripcion inscripcion)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
                 alumnos_inscripciones insc = new alumnos_inscripciones
                 {
@@ -95,8 +99,8 @@ namespace Data.Database
                     condicion = inscripcion.Condicion,
                     nota = (int)inscripcion.Nota
                 };
-                db.alumnos_inscripciones.Add(insc);
-                db.SaveChanges();
+                context.alumnos_inscripciones.Add(insc);
+                context.SaveChanges();
             }
         }
     }

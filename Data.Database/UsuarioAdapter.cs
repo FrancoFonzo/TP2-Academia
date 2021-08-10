@@ -8,10 +8,10 @@ namespace Data.Database
     {
         public List<Usuario> GetAll()
         {
-            using (AcademiaEntities db = new AcademiaEntities())
+            using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Usuario> usuarios = new List<Usuario>();
-                var lstUsuarios = db.usuarios;
+                var lstUsuarios = context.usuarios;
                 lstUsuarios?.ToList().ForEach(u => usuarios.Add(nuevoUsuario(u)));
                 return usuarios;
             }
@@ -33,18 +33,18 @@ namespace Data.Database
 
         public Usuario GetOne(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var usr = db.usuarios.SingleOrDefault(u => u.id_usuario == ID);
+                var usr = context.usuarios.SingleOrDefault(u => u.id_usuario == ID);
                 return nuevoUsuario(usr);
             }
         }
 
         public Usuario GetOneNombreUsuario(string nom_usuario)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var usr = db.usuarios.SingleOrDefault(u => u.nombre_usuario == nom_usuario);
+                var usr = context.usuarios.SingleOrDefault(u => u.nombre_usuario == nom_usuario);
                 return nuevoUsuario(usr);
             }
 
@@ -52,12 +52,14 @@ namespace Data.Database
 
         public void Delete(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var usr = db.usuarios.SingleOrDefault(u => u.id_usuario == ID);
-                if (usr == null) return;
-                db.usuarios.Remove(usr);
-                db.SaveChanges();
+                var usr = context.usuarios.SingleOrDefault(u => u.id_usuario == ID);
+                if (usr != null)
+                {
+                    context.usuarios.Remove(usr);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -80,21 +82,23 @@ namespace Data.Database
 
         protected void Update(Usuario usuario)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var usr = db.usuarios.SingleOrDefault(u => u.id_usuario == usuario.ID);
-                if (usr == null) return;
-                usr.nombre_usuario = usuario.NombreUsuario;
-                usr.clave = usuario.Clave;
-                usr.habilitado = usuario.Habilitado;
-                usr.id_persona = usuario.MiPersona?.ID;
-                db.SaveChanges();
+                var usr = context.usuarios.SingleOrDefault(u => u.id_usuario == usuario.ID);
+                if (usr != null)
+                {
+                    usr.nombre_usuario = usuario.NombreUsuario;
+                    usr.clave = usuario.Clave;
+                    usr.habilitado = usuario.Habilitado;
+                    usr.id_persona = usuario.MiPersona?.ID;
+                    context.SaveChanges();
+                }
             }
         }
 
         protected void Insert(Usuario usuario)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
                 usuarios usr = new usuarios
                 {
@@ -104,9 +108,8 @@ namespace Data.Database
                     habilitado = usuario.Habilitado
                 };
                 if (usuario.MiPersona != null) usr.id_persona = usuario.MiPersona.ID;
-
-                db.usuarios.Add(usr);
-                db.SaveChanges();
+                context.usuarios.Add(usr);
+                context.SaveChanges();
             }
         }
     }

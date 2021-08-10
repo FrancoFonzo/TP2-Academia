@@ -8,10 +8,10 @@ namespace Data.Database
     {
         public List<Materia> GetAll()
         {
-            using (AcademiaEntities db = new AcademiaEntities())
+            using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Materia> materias = new List<Materia>();
-                var lstMaterias = db.materias;
+                var lstMaterias = context.materias;
                 lstMaterias?.ToList().ForEach(m => materias.Add(nuevaMateria(m)));
                 return materias;
             }
@@ -33,9 +33,9 @@ namespace Data.Database
 
         public Materia GetOne(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var mat = db.materias.SingleOrDefault(m => m.id_materia == ID);
+                var mat = context.materias.SingleOrDefault(m => m.id_materia == ID);
                 return nuevaMateria(mat);
             }
 
@@ -43,12 +43,14 @@ namespace Data.Database
 
         public void Delete(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var mat = db.materias.SingleOrDefault(m => m.id_materia == ID);
-                if (mat == null) return;
-                db.Entry(mat).State = System.Data.Entity.EntityState.Deleted;
-                db.SaveChanges();
+                var mat = context.materias.SingleOrDefault(m => m.id_materia == ID);
+                if (mat != null)
+                {
+                    context.Entry(mat).State = System.Data.Entity.EntityState.Deleted;
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -71,21 +73,23 @@ namespace Data.Database
 
         protected void Update(Materia materias)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var mat = db.materias.SingleOrDefault(m => m.id_materia == materias.ID);
-                if (mat == null) return;
-                mat.desc_materia = materias.Descripcion;
-                mat.hs_totales = materias.HorasTotales;
-                mat.hs_semanales = materias.HorasSemanales;
+                var mat = context.materias.SingleOrDefault(m => m.id_materia == materias.ID);
+                if (mat != null)
+                {
+                    mat.desc_materia = materias.Descripcion;
+                    mat.hs_totales = materias.HorasTotales;
+                    mat.hs_semanales = materias.HorasSemanales;
 
-                db.SaveChanges();
+                    context.SaveChanges();
+                }
             }
         }
 
         protected void Insert(Materia materias)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
                 materias mat = new materias
                 {
@@ -94,8 +98,8 @@ namespace Data.Database
                     hs_semanales = materias.HorasSemanales,
                     hs_totales = materias.HorasTotales
                 };
-                db.materias.Add(mat);
-                db.SaveChanges();
+                context.materias.Add(mat);
+                context.SaveChanges();
             }
         }
     }

@@ -8,10 +8,10 @@ namespace Data.Database
     {
         public List<Especialidad> GetAll()
         {
-            using (AcademiaEntities db = new AcademiaEntities())
+            using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Especialidad> especialidades = new List<Especialidad>();
-                var lstEspecialidades = db.especialidades;
+                var lstEspecialidades = context.especialidades;
                 lstEspecialidades?.ToList().ForEach(e => especialidades.Add(nuevaEspecialidad(e)));
                 return especialidades;
             }
@@ -31,9 +31,9 @@ namespace Data.Database
 
         public Especialidad GetOne(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var esp = db.especialidades.SingleOrDefault(e => e.id_especialidad == ID);
+                var esp = context.especialidades.SingleOrDefault(e => e.id_especialidad == ID);
                 return nuevaEspecialidad(esp);
             }
 
@@ -41,12 +41,14 @@ namespace Data.Database
 
         public void Delete(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var esp = db.especialidades.SingleOrDefault(p => p.id_especialidad == ID);
-                if (esp == null) return;
-                db.Entry(esp).State = System.Data.Entity.EntityState.Deleted;
-                db.SaveChanges();
+                var esp = context.especialidades.SingleOrDefault(p => p.id_especialidad == ID);
+                if (esp != null)
+                {
+                    context.Entry(esp).State = System.Data.Entity.EntityState.Deleted;
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -69,26 +71,28 @@ namespace Data.Database
 
         protected void Update(Especialidad especialidad)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var esp = db.especialidades.SingleOrDefault(e => e.id_especialidad == especialidad.ID);
-                if (esp == null) return;
-                esp.desc_especialidad = especialidad.Descripcion;
-                db.SaveChanges();
+                var esp = context.especialidades.SingleOrDefault(e => e.id_especialidad == especialidad.ID);
+                if (esp != null)
+                {
+                    esp.desc_especialidad = especialidad.Descripcion;
+                    context.SaveChanges();
+                }
             }
         }
 
         protected void Insert(Especialidad especialidad)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
                 especialidades esp = new especialidades
                 {
                     id_especialidad = especialidad.ID,
                     desc_especialidad = especialidad.Descripcion
                 };
-                db.especialidades.Add(esp);
-                db.SaveChanges();
+                context.especialidades.Add(esp);
+                context.SaveChanges();
             }
         }
     }

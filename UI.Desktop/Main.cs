@@ -39,7 +39,7 @@ namespace UI.Desktop
                 lblLegajo.Text = $"{lblLegajo.Text} {UsuarioActual.MiPersona.Legajo}";
                 lblPersona.Text = $"{lblPersona.Text} {UsuarioActual.MiPersona.NombreCompleto}";
             }
-            // Segun TipoPersona del usuario cargar/ocultar "X" botones
+            // Segun TipoPersona del usuario visibilizar botones
             switch (UsuarioActual.MiPersona.Tipo)
             {
                 case Persona.TiposPersonas.Administrador:

@@ -11,10 +11,10 @@ namespace Data.Database
     {
         public List<Curso> GetAll()
         {
-            using (AcademiaEntities db = new AcademiaEntities())
+            using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Curso> cursos = new List<Curso>();
-                var lstCursos = db.cursos;
+                var lstCursos = context.cursos;
                 lstCursos?.ToList().ForEach(c => cursos.Add(nuevoCurso(c)));
                 return cursos;
             }
@@ -26,7 +26,7 @@ namespace Data.Database
             {
                 ID = cur.id_curso,
                 Descripcion = cur.descripcion,
-                AñoCalendario = cur.anio_calendario,
+                AnioCalendario = cur.anio_calendario,
                 Cupo = cur.cupo,
                 MiMateria = materiaData.GetOne(cur.id_materia),
                 MiComision= comisionData.GetOne(cur.id_comision)
@@ -38,9 +38,9 @@ namespace Data.Database
 
         public Curso GetOne(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var cur = db.cursos.SingleOrDefault(c => c.id_curso == ID);
+                var cur = context.cursos.SingleOrDefault(c => c.id_curso == ID);
                 if (cur == null) return null;
                 return nuevoCurso(cur);
             }
@@ -49,12 +49,14 @@ namespace Data.Database
 
         public void Delete(int ID)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var cur = db.cursos.SingleOrDefault(c => c.id_curso == ID);
-                if (cur == null) return;
-                db.Entry(cur).State = System.Data.Entity.EntityState.Deleted;
-                db.SaveChanges();
+                var cur = context.cursos.SingleOrDefault(c => c.id_curso == ID);
+                if (cur != null)
+                {
+                    context.Entry(cur).State = System.Data.Entity.EntityState.Deleted;
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -77,34 +79,36 @@ namespace Data.Database
 
         protected void Update(Curso curso)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
-                var cur = db.cursos.SingleOrDefault(c => c.id_curso == curso.ID);
-                if (cur == null) return;
-                cur.descripcion = curso.Descripcion;
-                cur.anio_calendario = curso.AñoCalendario;
-                cur.cupo = curso.Cupo;
-                cur.id_materia = curso.MiMateria.ID;
-                cur.id_comision = curso.MiComision.ID;
-                db.SaveChanges();
+                var cur = context.cursos.SingleOrDefault(c => c.id_curso == curso.ID);
+                if (cur != null)
+                {
+                    cur.descripcion = curso.Descripcion;
+                    cur.anio_calendario = curso.AnioCalendario;
+                    cur.cupo = curso.Cupo;
+                    cur.id_materia = curso.MiMateria.ID;
+                    cur.id_comision = curso.MiComision.ID;
+                    context.SaveChanges();
+                }
             }
         }
 
         protected void Insert(Curso curso)
         {
-            using (var db = new AcademiaEntities())
+            using (var context = new AcademiaEntities())
             {
                 cursos cur = new cursos()
                 {
                     id_curso = curso.ID,
                     descripcion = curso.Descripcion,
                     cupo = curso.Cupo,
-                    anio_calendario = curso.AñoCalendario,
+                    anio_calendario = curso.AnioCalendario,
                     id_materia = curso.MiMateria.ID,
                     id_comision = curso.MiComision.ID
                 };
-                db.cursos.Add(cur);
-                db.SaveChanges();
+                context.cursos.Add(cur);
+                context.SaveChanges();
             }
         }
     }

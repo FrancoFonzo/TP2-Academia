@@ -39,7 +39,7 @@ namespace UI.Desktop
         {
             this.txtID.Text = this.CursoActual.ID.ToString();
             this.txtDescripcion.Text = this.CursoActual.Descripcion;
-            this.txtAñoCalendario.Text = this.CursoActual.AñoCalendario.ToString();
+            this.txtAñoCalendario.Text = this.CursoActual.AnioCalendario.ToString();
             this.txtCupo.Text = this.CursoActual.Cupo.ToString();
             this.cbxMateria.SelectedValue = this.CursoActual.MiMateria.ID;
             this.cbxComision.SelectedValue = this.CursoActual.MiComision.ID;
@@ -64,7 +64,7 @@ namespace UI.Desktop
                 }
 
                 this.CursoActual.Descripcion = this.txtDescripcion.Text;
-                this.CursoActual.AñoCalendario = int.Parse(this.txtAñoCalendario.Text);
+                this.CursoActual.AnioCalendario = int.Parse(this.txtAñoCalendario.Text);
                 this.CursoActual.Cupo = int.Parse(this.txtCupo.Text);
                 this.CursoActual.MiMateria = new MateriaLogic().GetOne((int)this.cbxMateria.SelectedValue);
                 this.CursoActual.MiComision = new ComisionLogic().GetOne((int)this.cbxComision.SelectedValue);
