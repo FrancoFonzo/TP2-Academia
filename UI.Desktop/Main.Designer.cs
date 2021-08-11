@@ -654,12 +654,12 @@ namespace UI.Desktop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.panelAdminReportes);
             this.Controls.Add(this.panelFormLoader);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.panelTitulo);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelTop);
+            this.Controls.Add(this.panelAdminReportes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;

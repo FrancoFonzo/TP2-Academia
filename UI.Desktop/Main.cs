@@ -62,7 +62,7 @@ namespace UI.Desktop
 
         private void btnComisiones_Click(object sender, EventArgs e)
         {
-            //openForm<Comisiones>();
+           openForm<Comisiones>();
         }
 
         private void btnAdministracion_Click(object sender, EventArgs e)

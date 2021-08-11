@@ -67,6 +67,7 @@ namespace UI.Desktop
             this.tsbAgregar.Size = new System.Drawing.Size(29, 24);
             this.tsbAgregar.Text = "toolStripButton1";
             this.tsbAgregar.ToolTipText = "Agregar\r\n";
+            this.tsbAgregar.Click += new System.EventHandler(this.tsbAgregar_Click);
             // 
             // tsbEditar
             // 
@@ -79,6 +80,7 @@ namespace UI.Desktop
             this.tsbEditar.Size = new System.Drawing.Size(29, 24);
             this.tsbEditar.Text = "toolStripButton2";
             this.tsbEditar.ToolTipText = "Editar";
+            this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
             // 
             // tsbEliminar
             // 
@@ -91,6 +93,7 @@ namespace UI.Desktop
             this.tsbEliminar.Size = new System.Drawing.Size(29, 24);
             this.tsbEliminar.Text = "toolStripButton3";
             this.tsbEliminar.ToolTipText = "Eliminar";
+            this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
             // dgvComisiones
             // 
@@ -111,6 +114,7 @@ namespace UI.Desktop
             this.dgvComisiones.Name = "dgvComisiones";
             this.dgvComisiones.ReadOnly = true;
             this.dgvComisiones.RowHeadersWidth = 51;
+            this.dgvComisiones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvComisiones.Size = new System.Drawing.Size(800, 422);
             this.dgvComisiones.TabIndex = 9;
             // 
@@ -159,9 +163,10 @@ namespace UI.Desktop
             this.Controls.Add(this.tsComision);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Comisiones";
             this.Text = "Comisiones";
+            this.Load += new System.EventHandler(this.Comisiones_Load);
             this.tsComision.ResumeLayout(false);
             this.tsComision.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComisiones)).EndInit();

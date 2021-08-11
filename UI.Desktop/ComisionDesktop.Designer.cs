@@ -32,12 +32,12 @@ namespace UI.Desktop
             this.tlComision = new System.Windows.Forms.TableLayoutPanel();
             this.lblID = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
-            this.lblAnioEspecialidad = new System.Windows.Forms.Label();
             this.lblPlan = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
-            this.txtAnioEspecialidad = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.cbxPlan = new System.Windows.Forms.ComboBox();
+            this.lblAnioEspecialidad = new System.Windows.Forms.Label();
+            this.txtAnioEspecialidad = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.panelBottom = new System.Windows.Forms.Panel();
@@ -93,17 +93,6 @@ namespace UI.Desktop
             this.lblDescripcion.TabIndex = 1;
             this.lblDescripcion.Text = "Descripcion";
             // 
-            // lblAnioEspecialidad
-            // 
-            this.lblAnioEspecialidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblAnioEspecialidad.AutoSize = true;
-            this.lblAnioEspecialidad.Location = new System.Drawing.Point(4, 78);
-            this.lblAnioEspecialidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblAnioEspecialidad.Name = "lblAnioEspecialidad";
-            this.lblAnioEspecialidad.Size = new System.Drawing.Size(117, 17);
-            this.lblAnioEspecialidad.TabIndex = 2;
-            this.lblAnioEspecialidad.Text = "Año Especialidad";
-            // 
             // lblPlan
             // 
             this.lblPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -128,15 +117,6 @@ namespace UI.Desktop
             this.txtID.TabIndex = 4;
             this.txtID.TabStop = false;
             // 
-            // txtAnioEspecialidad
-            // 
-            this.txtAnioEspecialidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAnioEspecialidad.Location = new System.Drawing.Point(129, 76);
-            this.txtAnioEspecialidad.Margin = new System.Windows.Forms.Padding(4);
-            this.txtAnioEspecialidad.Name = "txtAnioEspecialidad";
-            this.txtAnioEspecialidad.Size = new System.Drawing.Size(147, 22);
-            this.txtAnioEspecialidad.TabIndex = 5;
-            // 
             // txtDescripcion
             // 
             this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -158,6 +138,27 @@ namespace UI.Desktop
             this.cbxPlan.Name = "cbxPlan";
             this.cbxPlan.Size = new System.Drawing.Size(354, 24);
             this.cbxPlan.TabIndex = 13;
+            this.cbxPlan.ValueMember = "ID";
+            // 
+            // lblAnioEspecialidad
+            // 
+            this.lblAnioEspecialidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblAnioEspecialidad.AutoSize = true;
+            this.lblAnioEspecialidad.Location = new System.Drawing.Point(4, 78);
+            this.lblAnioEspecialidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAnioEspecialidad.Name = "lblAnioEspecialidad";
+            this.lblAnioEspecialidad.Size = new System.Drawing.Size(117, 17);
+            this.lblAnioEspecialidad.TabIndex = 2;
+            this.lblAnioEspecialidad.Text = "Año Especialidad";
+            // 
+            // txtAnioEspecialidad
+            // 
+            this.txtAnioEspecialidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAnioEspecialidad.Location = new System.Drawing.Point(129, 76);
+            this.txtAnioEspecialidad.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAnioEspecialidad.Name = "txtAnioEspecialidad";
+            this.txtAnioEspecialidad.Size = new System.Drawing.Size(147, 22);
+            this.txtAnioEspecialidad.TabIndex = 5;
             // 
             // btnCancelar
             // 
@@ -206,6 +207,7 @@ namespace UI.Desktop
             this.Controls.Add(this.panelBottom);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ComisionDesktop";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Comision";
             this.tlComision.ResumeLayout(false);
             this.tlComision.PerformLayout();

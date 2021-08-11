@@ -12,6 +12,12 @@ namespace UI.Desktop
             InitializeComponent();
             dgvComisiones.AutoGenerateColumns = false;
         }
+
+        private void Comisiones_Load(object sender, EventArgs e)
+        {
+            Listar();
+        }
+
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
             ComisionDesktop formComision = new ComisionDesktop(ModoForm.Alta);
@@ -34,6 +40,7 @@ namespace UI.Desktop
                 OpenForm(ModoForm.Baja);
             }
         }
+
         private void OpenForm(ModoForm modo)
         {
             int ID = ((Comision)dgvComisiones.SelectedRows[0].DataBoundItem).ID;
