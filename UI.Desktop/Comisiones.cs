@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Entities;
 using Business.Logic;
@@ -21,35 +14,39 @@ namespace UI.Desktop
         }
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
-            ComisionDesktop formComision = new ComisionDesktop(ApplicationForm.ModoForm.Alta);
+            ComisionDesktop formComision = new ComisionDesktop(ModoForm.Alta);
             formComision.ShowDialog();
-            this.Listar();
+            Listar();
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected(dgvComisiones)) return;
-            OpenForm(ApplicationForm.ModoForm.Modificacion);
+            if (isRowSelected(dgvComisiones))
+            {
+                OpenForm(ModoForm.Modificacion);
+            }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (!isRowSelected(dgvComisiones)) return;
-            OpenForm(ApplicationForm.ModoForm.Baja);
+            if (isRowSelected(dgvComisiones))
+            {
+                OpenForm(ModoForm.Baja);
+            }
         }
-        private void OpenForm(ApplicationForm.ModoForm modo)
+        private void OpenForm(ModoForm modo)
         {
-            int ID = ((Comision)this.dgvComisiones.SelectedRows[0].DataBoundItem).ID;
+            int ID = ((Comision)dgvComisiones.SelectedRows[0].DataBoundItem).ID;
             ComisionDesktop formComision = new ComisionDesktop(ID, modo);
             formComision.ShowDialog();
-            this.Listar();
+            Listar();
         }
 
         public override void Listar()
         {
             try
             {
-                this.dgvComisiones.DataSource = new ComisionLogic().GetAll();
+                dgvComisiones.DataSource = new ComisionLogic().GetAll();
             }
             catch (Exception)
             {
