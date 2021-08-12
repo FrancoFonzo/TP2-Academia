@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Business.Entities;
 
@@ -40,6 +41,15 @@ namespace Data.Database
                 persona.MiPlan = planData.GetOne((int)per.id_plan);
             }
             return persona;
+        }
+
+        public Persona GetPersonaXLegajo(int legajo)
+        {
+            using (var context = new AcademiaEntities())
+            {
+                var per = context.personas.SingleOrDefault(p => p.legajo == legajo);
+                return nuevaPersona(per);
+            }
         }
 
         public List<string> GetTipos()

@@ -43,5 +43,10 @@ namespace Business.Logic
         {
             PersonaData.Delete(id);
         }
+
+        public Persona GetPersonaXLegajo(int legajo)
+        {
+            return PersonaData.GetPersonaXLegajo(legajo);
+        }
     }
 }

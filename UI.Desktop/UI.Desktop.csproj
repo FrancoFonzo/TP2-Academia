@@ -113,6 +113,12 @@
     <Compile Include="Inscripciones.Designer.cs">
       <DependentUpon>Inscripciones.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModalLegajo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModalLegajo.Designer.cs">
+      <DependentUpon>ModalLegajo.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlanDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +214,9 @@
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModalLegajo.resx">
+      <DependentUpon>ModalLegajo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PersonaDesktop.resx">
       <DependentUpon>PersonaDesktop.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,6 +251,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Data.Database.AcademiaEntities.datasource" />
     <None Include="Properties\DataSources\Data.Database.Adapter.datasource" />

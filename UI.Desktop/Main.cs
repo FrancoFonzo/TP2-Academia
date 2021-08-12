@@ -3,6 +3,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Linq;
+using Business.Logic;
 
 namespace UI.Desktop
 {
@@ -124,7 +125,14 @@ namespace UI.Desktop
 
         private void btnInscripcion_Click(object sender, EventArgs e)
         {
-            openForm();
+            if( UsuarioActual.MiPersona.Tipo == Persona.TiposPersonas.Administrador)
+            {
+                panelFormLoader.Controls.Clear();
+                ModalLegajo ModalLegajo = new ModalLegajo();
+                ModalLegajo.ShowDialog();
+                int legajo = ModalLegajo.Legajo;
+                openForm(legajo);
+            }
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
@@ -217,10 +225,10 @@ namespace UI.Desktop
             form.Show();
         }
 
-        private void openForm()
+        private void openForm(int legajo)
         {
             panelFormLoader.Controls.Clear();
-            Inscripciones inscripciones = new Inscripciones(UsuarioActual)
+            Inscripciones inscripciones = new Inscripciones(new PersonaLogic().GetPersonaXLegajo(legajo))
             {
                 Dock = DockStyle.Fill,
                 FormBorderStyle = FormBorderStyle.None,
