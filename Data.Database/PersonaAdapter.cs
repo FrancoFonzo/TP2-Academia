@@ -43,12 +43,16 @@ namespace Data.Database
             return persona;
         }
 
-        public Persona GetPersonaXLegajo(int legajo)
+        public List<Persona> GetAllTipos(Persona.TiposPersonas tipo)
         {
             using (var context = new AcademiaEntities())
             {
-                var per = context.personas.SingleOrDefault(p => p.legajo == legajo);
-                return nuevaPersona(per);
+                List<Persona> personas = new List<Persona>();
+                context.personas
+                    .Where(p => p.tipo_persona == (int)tipo)
+                    .ToList()
+                    .ForEach(p => personas.Add(nuevaPersona(p)));
+                return personas;
             }
         }
 

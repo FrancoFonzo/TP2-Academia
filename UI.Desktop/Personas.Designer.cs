@@ -43,6 +43,7 @@ namespace UI.Desktop
             this.fechaNacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoPerson = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tsbSeleccionar = new System.Windows.Forms.ToolStripButton();
             this.tsPersonas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).BeginInit();
             this.SuspendLayout();
@@ -54,10 +55,11 @@ namespace UI.Desktop
             this.tsPersonas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbAgregar,
             this.tsbEditar,
-            this.tsbEliminar});
+            this.tsbEliminar,
+            this.tsbSeleccionar});
             this.tsPersonas.Location = new System.Drawing.Point(0, 0);
             this.tsPersonas.Name = "tsPersonas";
-            this.tsPersonas.Size = new System.Drawing.Size(982, 28);
+            this.tsPersonas.Size = new System.Drawing.Size(982, 31);
             this.tsPersonas.TabIndex = 3;
             // 
             // tsbAgregar
@@ -117,14 +119,14 @@ namespace UI.Desktop
             this.legajo,
             this.tipoPerson});
             this.dgvPersonas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPersonas.Location = new System.Drawing.Point(0, 28);
+            this.dgvPersonas.Location = new System.Drawing.Point(0, 31);
             this.dgvPersonas.MultiSelect = false;
             this.dgvPersonas.Name = "dgvPersonas";
             this.dgvPersonas.ReadOnly = true;
             this.dgvPersonas.RowHeadersWidth = 51;
             this.dgvPersonas.RowTemplate.Height = 24;
             this.dgvPersonas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPersonas.Size = new System.Drawing.Size(982, 425);
+            this.dgvPersonas.Size = new System.Drawing.Size(982, 422);
             this.dgvPersonas.TabIndex = 5;
             // 
             // id
@@ -199,6 +201,20 @@ namespace UI.Desktop
             this.tipoPerson.Name = "tipoPerson";
             this.tipoPerson.ReadOnly = true;
             // 
+            // tsbSeleccionar
+            // 
+            this.tsbSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tsbSeleccionar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSeleccionar.Image = global::UI.Desktop.Properties.Resources.plus_math_32;
+            this.tsbSeleccionar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSeleccionar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tsbSeleccionar.Name = "tsbSeleccionar";
+            this.tsbSeleccionar.Size = new System.Drawing.Size(29, 27);
+            this.tsbSeleccionar.Text = "Seleccionar";
+            this.tsbSeleccionar.ToolTipText = "Seleccionar";
+            this.tsbSeleccionar.Visible = false;
+            this.tsbSeleccionar.Click += new System.EventHandler(this.tsbSeleccionar_Click);
+            // 
             // Personas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -235,5 +251,6 @@ namespace UI.Desktop
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaNacimiento;
         private System.Windows.Forms.DataGridViewTextBoxColumn legajo;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoPerson;
+        private System.Windows.Forms.ToolStripButton tsbSeleccionar;
     }
 }

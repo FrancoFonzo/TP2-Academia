@@ -128,10 +128,15 @@ namespace UI.Desktop
             if( UsuarioActual.MiPersona.Tipo == Persona.TiposPersonas.Administrador)
             {
                 panelFormLoader.Controls.Clear();
-                ModalLegajo ModalLegajo = new ModalLegajo();
+                /*ModalLegajo ModalLegajo = new ModalLegajo();
                 ModalLegajo.ShowDialog();
-                int legajo = ModalLegajo.Legajo;
-                openForm(legajo);
+                int legajo = ModalLegajo.Legajo;*/
+                openForm("Alumnos");
+            }
+            else
+            {
+                panelFormLoader.Controls.Clear();
+                openForm("Inscripciones");
             }
         }
 
@@ -201,21 +206,10 @@ namespace UI.Desktop
             WindowState = FormWindowState.Minimized;
         }
 
-        private void openForm<T>(bool user = false) where T : ApplicationForm
+        private void openForm<T>() where T : ApplicationForm
         {
             panelFormLoader.Controls.Clear();
-
-            /*T form;
-
-            if (user)
-            {
-                form = (T)Activator.CreateInstance(typeof(T), UsuarioActual);
-            }
-            else
-            {
-                form = (T)Activator.CreateInstance(typeof(T));
-            }*/
-            T form = (T)Activator.CreateInstance(typeof(T));
+            T form = Activator.CreateInstance<T>();
             form.Dock = DockStyle.Fill;
             form.FormBorderStyle = FormBorderStyle.None;
             form.TopLevel = false;
@@ -225,19 +219,43 @@ namespace UI.Desktop
             form.Show();
         }
 
-        private void openForm(int legajo)
+        private void openForm(string tipoForm)
         {
             panelFormLoader.Controls.Clear();
-            Inscripciones inscripciones = new Inscripciones(new PersonaLogic().GetPersonaXLegajo(legajo))
+            ApplicationForm form;
+            switch (tipoForm)
             {
-                Dock = DockStyle.Fill,
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                TopMost = true
-            };
-            panelFormLoader.Controls.Add(inscripciones);
-            lblTitulo.Text = inscripciones.Text;
-            inscripciones.Show();
+                case "Inscripciones":
+                    form = new Inscripciones(UsuarioActual.MiPersona);
+                    lblTitulo.Text = form.Text;
+                    break;
+                case "Alumnos":
+                    form = new Personas(Persona.TiposPersonas.Alumno);
+                    lblTitulo.Text = "Inscripcion Alumnos";
+                    break;
+                case "Docentes":
+                    throw new NotImplementedException();
+                default:
+                    throw new InvalidOperationException("Tipo de formulario desconocido");
+            }
+            form.Dock = DockStyle.Fill;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.TopLevel = false;
+            form.TopMost = true;
+            panelFormLoader.Controls.Add(form);
+            form.Show();
+        }
+
+        internal void openForm(ApplicationForm form)
+        {
+            panelFormLoader.Controls.Clear();
+            form.Dock = DockStyle.Fill;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.TopLevel = false;
+            form.TopMost = true;
+            panelFormLoader.Controls.Add(form);
+            lblTitulo.Text = form.Text;
+            form.Show();
         }
     }
 }

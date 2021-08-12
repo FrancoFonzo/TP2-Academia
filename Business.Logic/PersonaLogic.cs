@@ -44,9 +44,9 @@ namespace Business.Logic
             PersonaData.Delete(id);
         }
 
-        public Persona GetPersonaXLegajo(int legajo)
+        public List<Persona> GetAllTipos(Persona.TiposPersonas tipo)
         {
-            return PersonaData.GetPersonaXLegajo(legajo);
+            return PersonaData.GetAllTipos(tipo);
         }
     }
 }
