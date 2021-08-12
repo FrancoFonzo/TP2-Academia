@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Business.Entities;
 using System.Linq;
+using System;
+
 namespace Data.Database
 {
     public class DocenteCursoAdapter : Adapter
@@ -11,24 +13,20 @@ namespace Data.Database
             {
                 List<DocenteCurso> docentesCursos = new List<DocenteCurso>();
                 var lstDocentesCursos = context.docentes_cursos;
-                lstDocentesCursos?.ToList().ForEach(dc => docentesCursos.Add(nuevoDocenteCurso(dc)));
+                lstDocentesCursos?.ToList().ForEach(dc => docentesCursos.Add(nuevoDictado(dc)));
                 return docentesCursos;
             }
         }
 
-        private static DocenteCurso nuevoDocenteCurso(docentes_cursos doCu)
+        internal IList<DocenteCurso> GetAllDocente(Persona docente)
         {
-            if (doCu == null)
+            using (var context = new AcademiaEntities())
             {
-                return null;
+                IList<DocenteCurso> dictados = new List<DocenteCurso>();
+                var lstDictados = context.docentes_cursos.Where(i => i.id_docente == docente.ID);
+                lstDictados?.ToList().ForEach(i => dictados.Add(nuevoDictado(i, docente)));
+                return dictados;
             }
-            DocenteCurso docenteCurso = new DocenteCurso
-            {
-                ID = doCu.id_dictado,
-                MiDocente = personaData.GetOne(doCu.id_docente),
-                MiCurso = cursoData.GetOne(doCu.id_curso)
-            };
-            return docenteCurso;
         }
 
         public DocenteCurso GetOne(int ID)
@@ -36,7 +34,7 @@ namespace Data.Database
             using (var context = new AcademiaEntities())
             {
                 var docCur = context.docentes_cursos.SingleOrDefault(dc => dc.id_dictado == ID);
-                return nuevoDocenteCurso(docCur);
+                return nuevoDictado(docCur);
             }
         }
 
@@ -97,6 +95,21 @@ namespace Data.Database
                 context.docentes_cursos.Add(docCur);
                 context.SaveChanges();
             }
+        }
+
+        private static DocenteCurso nuevoDictado(docentes_cursos dc, Persona docente = null)
+        {
+            if (dc == null)
+            {
+                return null;
+            }
+            DocenteCurso dictado = new DocenteCurso
+            {
+                ID = dc.id_dictado,
+                MiDocente = docente ?? personaData.GetOne(dc.id_docente),
+                MiCurso = cursoData.GetOne(dc.id_curso)
+            };
+            return dictado;
         }
     }
 }

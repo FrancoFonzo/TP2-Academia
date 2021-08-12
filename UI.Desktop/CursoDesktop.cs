@@ -77,14 +77,11 @@ namespace UI.Desktop
                 {
                     CursoActual.State = BusinessEntity.States.Modified;
                 }
-
                 CursoActual.Descripcion = txtDescripcion.Text;
                 CursoActual.AnioCalendario = int.Parse(txtAñoCalendario.Text);
                 CursoActual.Cupo = int.Parse(txtCupo.Text);
                 CursoActual.MiMateria = new MateriaLogic().GetOne((int)cbxMateria.SelectedValue);
                 CursoActual.MiComision = new ComisionLogic().GetOne((int)cbxComision.SelectedValue);
-
-
             }
             else if (Modo == ModoForm.Baja)
             {
@@ -105,8 +102,7 @@ namespace UI.Desktop
         public override bool Validar()
         {
             if (!Validaciones.FormularioCompleto
-                (new List<string> {txtDescripcion.Text, txtCupo.Text, txtAñoCalendario.Text})
-                )
+                (new List<string> {txtDescripcion.Text, txtCupo.Text, txtAñoCalendario.Text}))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -125,7 +121,6 @@ namespace UI.Desktop
             {
                 return true;
             }
-
             return false;
         }
     }

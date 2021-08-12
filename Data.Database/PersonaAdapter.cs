@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Business.Entities;
 
@@ -15,41 +16,6 @@ namespace Data.Database
                 lstPersonas?.ToList().ForEach(p => personas.Add(nuevaPersona(p)));
                 return personas;
             }
-        }
-
-        private Persona nuevaPersona(personas per)
-        {
-            if (per == null)
-            {
-                return null;
-            }
-            Persona persona = new Persona
-            {
-                ID = per.id_persona,
-                Apellido = per.apellido,
-                Nombre = per.nombre,
-                EMail = per.email,
-                FechaNacimiento = per.fecha_nac,
-                Legajo = per.legajo,
-                Direccion = per.direccion,
-                Telefono = per.telefono,
-                Tipo = (Persona.TiposPersonas)per.tipo_persona
-            };
-            if (per.id_plan != null)
-            {
-                persona.MiPlan = planData.GetOne((int)per.id_plan);
-            }
-            return persona;
-        }
-
-        public List<string> GetTipos()
-        {
-            List<string> tipos = new List<string>{
-                Persona.TiposPersonas.Administrador.ToString(),
-                Persona.TiposPersonas.Alumno.ToString(),
-                Persona.TiposPersonas.Docente.ToString()
-                };
-            return tipos;
         }
 
         public List<Persona> GetPersonasSinUsuario()
@@ -147,6 +113,54 @@ namespace Data.Database
                 context.personas.Add(per);
                 context.SaveChanges();
             }
+        }
+
+        private Persona nuevaPersona(personas per)
+        {
+            if (per == null)
+            {
+                return null;
+            }
+            Persona persona = new Persona
+            {
+                ID = per.id_persona,
+                Apellido = per.apellido,
+                Nombre = per.nombre,
+                EMail = per.email,
+                FechaNacimiento = per.fecha_nac,
+                Legajo = per.legajo,
+                Direccion = per.direccion,
+                Telefono = per.telefono,
+                Tipo = (Persona.TiposPersonas)per.tipo_persona
+            };
+            if (per.id_plan != null)
+            {
+                persona.MiPlan = planData.GetOne((int)per.id_plan);
+            }
+            switch (persona.Tipo)
+            {
+                case Persona.TiposPersonas.Administrador:
+                    break;
+                case Persona.TiposPersonas.Alumno:
+                    persona.MisInscripciones = inscripcionData.GetAllAlumno(persona);
+                    break;
+                case Persona.TiposPersonas.Docente:
+                    persona.MisDictados = dictadoAdapter.GetAllDocente(persona);
+                    break;
+                default:
+                    throw new Exception("Tipo de persona desconocido");
+            }
+            return persona;
+        }
+
+        public List<string> GetTipos()
+        {
+            List<string> tipos = new List<string>{
+                Persona.TiposPersonas.Administrador.ToString(),
+                Persona.TiposPersonas.Alumno.ToString(),
+                Persona.TiposPersonas.Docente.ToString()
+                };
+            return tipos;
         }
     }
 }

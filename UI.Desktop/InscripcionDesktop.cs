@@ -52,19 +52,6 @@ namespace UI.Desktop
             Close();
         }
 
-        public override void Listar()
-        {
-            try
-            {
-                dgvCursos.DataSource = new CursoLogic().GetCursosSinInscripciones(UsuarioActual.MiPersona.ID);
-            }
-            catch (Exception)
-            {
-                Notificar("Error", "Error al recuperar los datos de los cursos",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         public override void MapearDeDatos()
         {
             txtID.Text = UsuarioActual.ID.ToString();
@@ -110,7 +97,7 @@ namespace UI.Desktop
                 }
                 InscripcionActual.MiAlumno = UsuarioActual.MiPersona;
                 InscripcionActual.Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString();
-                InscripcionActual.MiCurso = (Curso)dgvCursos.SelectedRows[0].DataBoundItem;
+                InscripcionActual.MiCurso = (Curso) dgvCursos.SelectedRows[0].DataBoundItem;
             }
             else if (Modo == ModoForm.Baja)
             {
@@ -128,11 +115,24 @@ namespace UI.Desktop
             new AlumnoInscripcionLogic().Save(InscripcionActual);
         }
 
+        public override void Listar()
+        {
+            try
+            {
+                dgvCursos.DataSource = new CursoLogic().GetCursosNoInscripto(UsuarioActual.MiPersona.ID);
+            }
+            catch (Exception)
+            {
+                Notificar("Error", "Error al recuperar los datos de los cursos",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         public override bool Validar()
         {
             if (!isRowSelected(dgvCursos))
             {
-                Notificar("Informacion invalida", "Porfavor seleccione una fila.",
+                Notificar("Accion invalida", "Porfavor seleccione una fila.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

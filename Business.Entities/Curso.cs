@@ -11,8 +11,13 @@ namespace Business.Entities
         public string Descripcion { get; set; }
         public int AnioCalendario { get; set; }
         public int Cupo { get; set; }
+
+        #region Propiedades de Navegacion
         public Materia MiMateria { get; set; }
         public Comision MiComision { get; set; }
+        /*public IList<AlumnoInscripcion> MisInscripciones { get; set; }
+        public IList<DocenteCurso> MisDictados { get; set; } */
+        #endregion
 
         public override string ToString()
         {

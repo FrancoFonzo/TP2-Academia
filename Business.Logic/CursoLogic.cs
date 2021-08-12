@@ -23,9 +23,9 @@ namespace Business.Logic
             return CursoData.GetAll();
         }
 
-        public List<Curso> GetCursosSinInscripciones(int id_persona)
+        public List<Curso> GetCursosNoInscripto(int id_persona)
         {
-            return CursoData.GetCursosSinInscripciones(id_persona);
+            return CursoData.GetCursosNoInscripto(id_persona);
         }
 
         public void Save(Curso curso)

@@ -4,10 +4,13 @@
     {
         public string NombreUsuario { get; set; }
         public string Clave { get; set; }
-        public Persona MiPersona { get; set; }
         public bool Habilitado { get; set; }
 
-        // Para Bind a dgvUsuarios
+        #region Propiedades de Navegacion
+        public Persona MiPersona { get; set; } 
+        #endregion
+
+        #region Propiedades Auxiliares/DataPropertyName
         public string NombrePersona
         {
             get
@@ -28,7 +31,8 @@
             {
                 return MiPersona == null ? "" : MiPersona.EMail;
             }
-        }
+        } 
+        #endregion
 
     }
 }

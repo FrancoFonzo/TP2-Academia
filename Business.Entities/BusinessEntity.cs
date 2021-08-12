@@ -9,6 +9,7 @@
         {
             this.State = States.New;
         }
+
         public enum States
         {
             Deleted,

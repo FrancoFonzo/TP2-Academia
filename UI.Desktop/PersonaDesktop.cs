@@ -13,7 +13,8 @@ namespace UI.Desktop
         public PersonaDesktop()
         {
             InitializeComponent();
-            cbxTipo.DataSource = new PersonaLogic().GetTipos();
+            
+            cbxTipo.DataSource = Enum.GetValues(typeof(Persona.TiposPersonas));
             cbxPlan.DataSource = new PlanLogic().GetAll();
         }
 

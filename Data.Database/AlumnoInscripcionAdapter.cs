@@ -18,14 +18,13 @@ namespace Data.Database
             }
         }
 
-
-        public List<AlumnoInscripcion> GetAllUsuario(int ID)
+        internal IList<AlumnoInscripcion> GetAllAlumno(Persona alumno)
         {
             using (var context = new AcademiaEntities())
             {
-                List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
-                var lstInscripciones = context.alumnos_inscripciones.Where(i => i.id_alumno == ID);
-                lstInscripciones?.ToList().ForEach(i => inscripciones.Add(nuevaInscripcion(i)));
+                IList<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
+                var lstInscripciones = context.alumnos_inscripciones.Where(i => i.id_alumno == alumno.ID);
+                lstInscripciones?.ToList().ForEach(i => inscripciones.Add(nuevaInscripcion(i, alumno)));
                 return inscripciones;
             }
         }
@@ -103,7 +102,7 @@ namespace Data.Database
             }
         }
 
-        private static AlumnoInscripcion nuevaInscripcion(alumnos_inscripciones insc)
+        private static AlumnoInscripcion nuevaInscripcion(alumnos_inscripciones insc, Persona alumno = null)
         {
             if (insc == null)
             {
@@ -112,10 +111,10 @@ namespace Data.Database
             AlumnoInscripcion inscripcion = new AlumnoInscripcion
             {
                 ID = insc.id_inscripcion,
-                MiAlumno = personaData.GetOne(insc.id_alumno),
-                MiCurso = cursoData.GetOne(insc.id_curso),
                 Condicion = insc.condicion,
-                Nota = insc.nota
+                Nota = insc.nota,
+                MiAlumno = alumno ?? personaData.GetOne(insc.id_alumno),
+                MiCurso = cursoData.GetOne(insc.id_curso)
             };
             return inscripcion;
         }

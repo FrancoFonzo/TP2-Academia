@@ -36,7 +36,7 @@ namespace UI.Desktop
         {
             try
             {
-                this.dgvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllUsuario(UsuarioActual.ID);
+                this.dgvInscripciones.DataSource = UsuarioActual.MiPersona.MisInscripciones;
             }
             catch (Exception)
             {

@@ -33,10 +33,5 @@ namespace Business.Logic
         {
             InscripcionData.Delete(id);
         }
-
-        public List<AlumnoInscripcion> GetAllUsuario(int id)
-        {
-            return InscripcionData.GetAllUsuario(id);
-        }
     }
 }
