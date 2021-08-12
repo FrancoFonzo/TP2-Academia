@@ -17,6 +17,19 @@ namespace Data.Database
             }
         }
 
+        public List<Curso> GetCursosSinInscripciones(int id_persona)
+        {
+            using (AcademiaEntities context = new AcademiaEntities())
+            {
+                List<Curso> cursos = new List<Curso>();
+                var lstCursos = from c in context.cursos
+                                where !(from i in context.alumnos_inscripciones where i.id_alumno.Equals(id_persona) select i.id_curso)
+                                .Contains(c.id_curso)
+                                select c;
+                return cursos;
+            }
+        }
+
         private Curso nuevoCurso(cursos cur)
         {
             if (cur == null)

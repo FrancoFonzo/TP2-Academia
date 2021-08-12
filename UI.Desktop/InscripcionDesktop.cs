@@ -13,6 +13,12 @@ namespace UI.Desktop
         public InscripcionDesktop()
         {
             InitializeComponent();
+            dgvCursos.AutoGenerateColumns = false;
+        }
+
+        private void Cursos_Load(object sender, EventArgs e)
+        {
+            Listar();
         }
 
         public InscripcionDesktop(ModoForm modo) : this()
@@ -23,14 +29,12 @@ namespace UI.Desktop
         public InscripcionDesktop(Usuario UsuarioActual, ModoForm modo) : this(modo)
         {
             this.UsuarioActual = UsuarioActual;
-            cbxCursos.DataSource = new CursoLogic().GetAll();
             MapearDeDatos();
         }
 
         public InscripcionDesktop(AlumnoInscripcion inscripcion, ModoForm modo) : this(modo)
         {
             this.InscripcionActual = inscripcion;
-            cbxCursos.DataSource = new CursoLogic().GetAll();
             MapearDeDatos();
         }
 
@@ -48,30 +52,47 @@ namespace UI.Desktop
             Close();
         }
 
+        public override void Listar()
+        {
+            try
+            {
+                dgvCursos.DataSource = new CursoLogic().GetCursosSinInscripciones(UsuarioActual.MiPersona.ID);
+            }
+            catch (Exception)
+            {
+                Notificar("Error", "Error al recuperar los datos de los cursos",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         public override void MapearDeDatos()
         {
             txtID.Text = UsuarioActual.ID.ToString();
             txtUsuario.Text = UsuarioActual.NombreUsuario;
             if (InscripcionActual?.MiCurso != null)
             {
-                cbxCursos.SelectedValue = InscripcionActual.MiCurso.ID;
+                //cbxCursos.SelectedValue = InscripcionActual.MiCurso.ID;
             }
             else
             {
-                cbxCursos.Text = "Ninguno";
+                //cbxCursos.Text = "Ninguno";
             }
             
             if (Modo == ModoForm.Consulta)
             {
                 btnAceptar.Text = "Aceptar";
             }
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
+            else if (Modo == ModoForm.Modificacion)
             {
                 btnAceptar.Text = "Guardar";
             }
             else if (Modo == ModoForm.Baja)
             {
                 btnAceptar.Text = "Eliminar";
+            }
+            else if (Modo == ModoForm.Alta)
+            {
+                btnAceptar.Text = "Inscribir";
             }
         }
 
@@ -89,10 +110,7 @@ namespace UI.Desktop
                 }
                 InscripcionActual.MiAlumno = UsuarioActual.MiPersona;
                 InscripcionActual.Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString();
-
-                var idCur = cbxCursos.SelectedValue;
-                InscripcionActual.MiCurso = idCur == null ?
-                    null : new CursoLogic().GetOne((int)idCur);
+                InscripcionActual.MiCurso = (Curso)dgvCursos.SelectedRows[0].DataBoundItem;
             }
             else if (Modo == ModoForm.Baja)
             {
@@ -112,13 +130,14 @@ namespace UI.Desktop
 
         public override bool Validar()
         {
-            if (cbxCursos.SelectedValue == null)
+            if (!isRowSelected(dgvCursos))
             {
-                Notificar("Informacion invalida", "Porfavor ingrese un curso valido.",
+                Notificar("Informacion invalida", "Porfavor seleccione una fila.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
         }
+
     }
 }

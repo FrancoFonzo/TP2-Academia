@@ -18,6 +18,7 @@ namespace Data.Database
             }
         }
 
+
         public List<AlumnoInscripcion> GetAllUsuario(int ID)
         {
             using (var context = new AcademiaEntities())
