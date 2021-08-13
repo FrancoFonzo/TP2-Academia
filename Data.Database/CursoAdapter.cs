@@ -11,8 +11,9 @@ namespace Data.Database
             using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Curso> cursos = new List<Curso>();
-                var lstCursos = context.cursos;
-                lstCursos?.ToList().ForEach(c => cursos.Add(nuevoCurso(c)));
+                context.cursos
+                    .ToList()
+                    .ForEach(c => cursos.Add(NuevoCurso(c)));
                 return cursos;
             }
         }
@@ -29,42 +30,25 @@ namespace Data.Database
                         .Select(i => i.id_curso)
                         .Contains(c.id_curso))
                     .ToList()
-                    .ForEach(c => cursos.Add(nuevoCurso(c)));
+                    .ForEach(c => cursos.Add(NuevoCurso(c)));
                 return cursos;
             }
         }
 
-        private Curso nuevoCurso(cursos cur)
-        {
-            if (cur == null)
-            {
-                return null;
-            }
-            Curso curso = new Curso()
-            {
-                ID = cur.id_curso,
-                AnioCalendario = cur.anio_calendario,
-                Cupo = cur.cupo,
-                MiMateria = materiaData.GetOne(cur.id_materia),
-                MiComision = comisionData.GetOne(cur.id_comision)
-            };
-            return curso;
-        }
-
-        public Curso GetOne(int ID)
+        public Curso GetOne(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var cur = context.cursos.SingleOrDefault(c => c.id_curso == ID);
-                return nuevoCurso(cur);
+                var cur = context.cursos.FirstOrDefault(c => c.id_curso == id);
+                return NuevoCurso(cur);
             }
         }
 
-        public void Delete(int ID)
+        public void Delete(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var cur = context.cursos.SingleOrDefault(c => c.id_curso == ID);
+                var cur = context.cursos.FirstOrDefault(c => c.id_curso == id);
                 if (cur != null)
                 {
                     context.Entry(cur).State = System.Data.Entity.EntityState.Deleted;
@@ -94,7 +78,7 @@ namespace Data.Database
         {
             using (var context = new AcademiaEntities())
             {
-                var cur = context.cursos.SingleOrDefault(c => c.id_curso == curso.ID);
+                var cur = context.cursos.FirstOrDefault(c => c.id_curso == curso.ID);
                 if (cur != null)
                 {
                     cur.anio_calendario = curso.AnioCalendario;
@@ -110,7 +94,7 @@ namespace Data.Database
         {
             using (var context = new AcademiaEntities())
             {
-                cursos cur = new cursos()
+                cursos cur = new cursos
                 {
                     id_curso = curso.ID,
                     cupo = curso.Cupo,
@@ -121,6 +105,23 @@ namespace Data.Database
                 context.cursos.Add(cur);
                 context.SaveChanges();
             }
+        }
+
+        private Curso NuevoCurso(cursos cur)
+        {
+            if (cur == null)
+            {
+                return null;
+            }
+            Curso curso = new Curso
+            {
+                ID = cur.id_curso,
+                AnioCalendario = cur.anio_calendario,
+                Cupo = cur.cupo,
+                MiMateria = materiaData.GetOne(cur.id_materia),
+                MiComision = comisionData.GetOne(cur.id_comision)
+            };
+            return curso;
         }
     }
 }

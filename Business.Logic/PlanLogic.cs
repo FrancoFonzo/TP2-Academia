@@ -13,14 +13,14 @@ namespace Business.Logic
             PlanData = new PlanAdapter();
         }
 
-        public Plan GetOne(int id)
-        {
-            return PlanData.GetOne(id);
-        }
-
         public List<Plan> GetAll()
         {
             return PlanData.GetAll();
+        }
+
+        public Plan GetOne(int id)
+        {
+            return PlanData.GetOne(id);
         }
 
         public void Save(Plan plan)
@@ -28,9 +28,9 @@ namespace Business.Logic
             PlanData.Save(plan);
         }
 
-        public void Delete(int id)
+        public void Delete(Plan plan)
         {
-            PlanData.Delete(id);
+            PlanData.Delete(plan);
         }
     }
 }

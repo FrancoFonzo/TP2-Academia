@@ -8,22 +8,22 @@ namespace UI.Desktop
 {
     public partial class EspecialidadDesktop : ApplicationForm
     {
-        private Especialidad EspecialidadActual { get; set; }
-
         public EspecialidadDesktop()
         {
             InitializeComponent();
         }
         public EspecialidadDesktop(ModoForm modo) : this()
         {
-            this.Modo = modo;
+            Modo = modo;
         }
 
-        public EspecialidadDesktop(int ID, ModoForm modo) : this(modo)
+        public EspecialidadDesktop(int id, ModoForm modo) : this(modo)
         {
-            EspecialidadActual = new EspecialidadLogic().GetOne(ID);
+            EspecialidadActual = new EspecialidadLogic().GetOne(id);
             MapearDeDatos();
         }
+
+        private Especialidad EspecialidadActual { get; set; }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -60,26 +60,22 @@ namespace UI.Desktop
 
         public override void MapearADatos()
         {
-            if (Modo == ModoForm.Alta)
+            switch (Modo)
             {
-                EspecialidadActual = new Especialidad { State = BusinessEntity.States.New };
-            }
-            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                if (Modo == ModoForm.Modificacion)
-                {
+                case ModoForm.Baja:
+                    EspecialidadActual.State = BusinessEntity.States.Deleted;
+                    return;
+                case ModoForm.Consulta:
+                    EspecialidadActual.State = BusinessEntity.States.Unmodified;
+                    return;
+                case ModoForm.Alta:
+                    EspecialidadActual = new Especialidad { State = BusinessEntity.States.New };
+                    break;
+                case ModoForm.Modificacion:
                     EspecialidadActual.State = BusinessEntity.States.Modified;
-                }
-                EspecialidadActual.Descripcion = txtDescripcion.Text;
+                    break;
             }
-            else if (Modo == ModoForm.Baja)
-            {
-                EspecialidadActual.State = BusinessEntity.States.Deleted;
-            }
-            else if (Modo == ModoForm.Consulta)
-            {
-                EspecialidadActual.State = BusinessEntity.States.Unmodified;
-            }
+            EspecialidadActual.Descripcion = txtDescripcion.Text;
         }
 
         public override void GuardarCambios()
@@ -90,16 +86,13 @@ namespace UI.Desktop
 
         public override bool Validar()
         {
-            if (!Validaciones.FormularioCompleto(new List<string> {txtDescripcion.Text}))
+            if (!Validaciones.FormularioCompleto(new List<string> { txtDescripcion.Text }))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }

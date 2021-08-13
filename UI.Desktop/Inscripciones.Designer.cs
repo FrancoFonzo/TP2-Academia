@@ -165,7 +165,7 @@ namespace UI.Desktop
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Inscripciones";
-            this.Text = "Inscripciones";
+            this.Text = "Estado Academico";
             this.Load += new System.EventHandler(this.Inscripciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripciones)).EndInit();
             this.tsInscripciones.ResumeLayout(false);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Business.Entities;
 using Data.Database;
 
@@ -7,26 +6,26 @@ namespace Business.Logic
 {
     public class AlumnoInscripcionLogic : BusinessLogic
     {
-        public AlumnoInscripcionAdapter InscripcionData { get; set; }
-
         public AlumnoInscripcionLogic()
         {
             InscripcionData = new AlumnoInscripcionAdapter();
         }
 
-        public AlumnoInscripcion GetOne(int id)
-        {
-            return InscripcionData.GetOne(id);
-        }
+        private AlumnoInscripcionAdapter InscripcionData { get; set; }
 
         public List<AlumnoInscripcion> GetAll()
         {
             return InscripcionData.GetAll();
         }
 
-        public List<AlumnoInscripcion> GetAllAlumno(Persona alumno)
+        public List<AlumnoInscripcion> GetAllAlumno(int id)
         {
-            return InscripcionData.GetAllAlumno(alumno);
+            return InscripcionData.GetAllAlumno(id);
+        }
+
+        public AlumnoInscripcion GetOne(int id)
+        {
+            return InscripcionData.GetOne(id);
         }
 
         public void Save(AlumnoInscripcion inscripcion)

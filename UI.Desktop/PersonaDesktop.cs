@@ -13,19 +13,18 @@ namespace UI.Desktop
         public PersonaDesktop()
         {
             InitializeComponent();
-            
             cbxTipo.DataSource = Enum.GetValues(typeof(Persona.TiposPersonas));
             cbxPlan.DataSource = new PlanLogic().GetAll();
         }
 
         public PersonaDesktop(ModoForm modo) : this()
         {
-            this.Modo = modo;
+            Modo = modo;
         }
 
-        public PersonaDesktop(int ID, ModoForm modo) : this(modo)
+        public PersonaDesktop(int id, ModoForm modo) : this(modo)
         {
-            PersonaActual = new PersonaLogic().GetOne(ID);
+            PersonaActual = new PersonaLogic().GetOne(id);
             MapearDeDatos();
         }
 
@@ -54,6 +53,7 @@ namespace UI.Desktop
             txtTelefono.Text = PersonaActual.Telefono;
             dateNacimiento.Value = PersonaActual.FechaNacimiento;
             cbxTipo.SelectedIndex = (int)PersonaActual.Tipo;
+
             if (PersonaActual.MiPlan != null)
             {
                 cbxPlan.SelectedValue = PersonaActual.MiPlan.ID;
@@ -75,37 +75,33 @@ namespace UI.Desktop
 
         public override void MapearADatos()
         {
-            if (Modo == ModoForm.Alta)
+            switch (Modo)
             {
-                PersonaActual = new Persona { State = BusinessEntity.States.New };
-            }
-            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                if (Modo == ModoForm.Modificacion)
-                {
+                case ModoForm.Baja:
+                    PersonaActual.State = BusinessEntity.States.Deleted;
+                    return;
+                case ModoForm.Consulta:
+                    PersonaActual.State = BusinessEntity.States.Unmodified;
+                    return;
+                case ModoForm.Alta:
+                    PersonaActual = new Persona { State = BusinessEntity.States.New };
+                    break;
+                case ModoForm.Modificacion:
                     PersonaActual.State = BusinessEntity.States.Modified;
-                }
-                PersonaActual.Legajo = int.Parse(txtLegajo.Text);
-                PersonaActual.Nombre = txtNombre.Text;
-                PersonaActual.Apellido = txtApellido.Text;
-                PersonaActual.EMail = txtEMail.Text;
-                PersonaActual.Direccion = txtDireccion.Text;
-                PersonaActual.Telefono = txtTelefono.Text;
-                PersonaActual.Tipo = (Persona.TiposPersonas)cbxTipo.SelectedIndex;
-                PersonaActual.FechaNacimiento = dateNacimiento.Value;
+                    break;
+            }
+            PersonaActual.Legajo = int.Parse(txtLegajo.Text);
+            PersonaActual.Nombre = txtNombre.Text;
+            PersonaActual.Apellido = txtApellido.Text;
+            PersonaActual.EMail = txtEMail.Text;
+            PersonaActual.Direccion = txtDireccion.Text;
+            PersonaActual.Telefono = txtTelefono.Text;
+            PersonaActual.Tipo = (Persona.TiposPersonas)cbxTipo.SelectedIndex;
+            PersonaActual.FechaNacimiento = dateNacimiento.Value;
 
-                var idPlan = cbxPlan.SelectedValue;
-                PersonaActual.MiPlan = idPlan == null ?
-                    null : new PlanLogic().GetOne((int)idPlan);
-            }
-            else if (Modo == ModoForm.Baja)
-            {
-                PersonaActual.State = BusinessEntity.States.Deleted;
-            }
-            else if (Modo == ModoForm.Consulta)
-            {
-                PersonaActual.State = BusinessEntity.States.Unmodified;
-            }
+            var idPlan = cbxPlan.SelectedValue;
+            PersonaActual.MiPlan = idPlan == null ?
+                null : new PlanLogic().GetOne((int)idPlan);
         }
 
         public override void GuardarCambios()

@@ -43,7 +43,7 @@ namespace UI.Desktop
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvInscripciones))
+            if (IsRowSelected(dgvInscripciones))
             {
                 OpenForm(ModoForm.Modificacion);
             }
@@ -51,7 +51,7 @@ namespace UI.Desktop
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvInscripciones))
+            if (IsRowSelected(dgvInscripciones))
             {
                 OpenForm(ModoForm.Baja);
             }
@@ -69,7 +69,7 @@ namespace UI.Desktop
         {
             try
             {
-                this.dgvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllAlumno(PersonaActual);
+                this.dgvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllAlumno(PersonaActual.ID);
             }
             catch (Exception)
             {

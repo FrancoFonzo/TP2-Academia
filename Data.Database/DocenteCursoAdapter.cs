@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Business.Entities;
 using System.Linq;
-using System;
 
 namespace Data.Database
 {
@@ -12,37 +11,40 @@ namespace Data.Database
             using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<DocenteCurso> docentesCursos = new List<DocenteCurso>();
-                var lstDocentesCursos = context.docentes_cursos;
-                lstDocentesCursos?.ToList().ForEach(dc => docentesCursos.Add(nuevoDictado(dc)));
+                context.docentes_cursos
+                    .ToList()
+                    .ForEach(dc => docentesCursos.Add(NuevoDictado(dc)));
                 return docentesCursos;
             }
         }
 
-        internal IList<DocenteCurso> GetAllDocente(Persona docente)
+        //TODO: Se usara para Registro Notas
+        public List<DocenteCurso> GetAllDocente(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                IList<DocenteCurso> dictados = new List<DocenteCurso>();
-                var lstDictados = context.docentes_cursos.Where(i => i.id_docente == docente.ID);
-                lstDictados?.ToList().ForEach(i => dictados.Add(nuevoDictado(i, docente)));
+                List<DocenteCurso> dictados = new List<DocenteCurso>();
+                context.docentes_cursos.Where(i => i.id_docente == id)
+                    .ToList()
+                    .ForEach(i => dictados.Add(NuevoDictado(i)));
                 return dictados;
             }
         }
 
-        public DocenteCurso GetOne(int ID)
+        public DocenteCurso GetOne(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var docCur = context.docentes_cursos.SingleOrDefault(dc => dc.id_dictado == ID);
-                return nuevoDictado(docCur);
+                var docCur = context.docentes_cursos.FirstOrDefault(dc => dc.id_dictado == id);
+                return NuevoDictado(docCur);
             }
         }
 
-        public void Delete(int ID)
+        public void Delete(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var docCur = context.docentes_cursos.SingleOrDefault(dc => dc.id_dictado == ID);
+                var docCur = context.docentes_cursos.FirstOrDefault(dc => dc.id_dictado == id);
                 if (docCur != null)
                 {
                     context.docentes_cursos.Remove(docCur);
@@ -72,7 +74,7 @@ namespace Data.Database
         {
             using (var context = new AcademiaEntities())
             {
-                var docCur = context.docentes_cursos.SingleOrDefault(dc => dc.id_dictado == docenteCurso.ID);
+                var docCur = context.docentes_cursos.FirstOrDefault(dc => dc.id_dictado == docenteCurso.ID);
                 if (docCur != null)
                 {
                     docCur.id_docente = docenteCurso.MiDocente.ID;
@@ -97,7 +99,7 @@ namespace Data.Database
             }
         }
 
-        private static DocenteCurso nuevoDictado(docentes_cursos dc, Persona docente = null)
+        private static DocenteCurso NuevoDictado(docentes_cursos dc)
         {
             if (dc == null)
             {
@@ -106,7 +108,7 @@ namespace Data.Database
             DocenteCurso dictado = new DocenteCurso
             {
                 ID = dc.id_dictado,
-                MiDocente = docente ?? personaData.GetOne(dc.id_docente),
+                MiDocente = personaData.GetOne(dc.id_docente),
                 MiCurso = cursoData.GetOne(dc.id_curso)
             };
             return dictado;

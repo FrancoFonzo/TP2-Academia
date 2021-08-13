@@ -11,56 +11,19 @@ namespace Data.Database
             using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Plan> planes = new List<Plan>();
-                var lstPlanes = context.planes;
-                lstPlanes?.ToList().ForEach(p => planes.Add(nuevoPlan(p)));
+                context.planes
+                    .ToList()
+                    .ForEach(p => planes.Add(NuevoPlan(p)));
                 return planes;
             }
         }
 
-        private static Plan nuevoPlan(planes p)
-        {
-            if (p == null)
-            {
-                return null;
-            }
-            Plan plan = new Plan
-            {
-                ID = p.id_plan,
-                Descripcion = p.desc_plan,
-                MiEspecialidad = especialidadData.GetOne(p.especialidades.id_especialidad)
-            };
-            return plan;
-        }
-
-        public Plan GetOne(int ID)
+        public Plan GetOne(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var plan = context.planes.SingleOrDefault(p => p.id_plan == ID);
-                return nuevoPlan(plan);
-            }
-        }
-
-        public Plan GetOneNombreUsuario(string desc_plan)
-        {
-            using (var context = new AcademiaEntities())
-            {
-                var pln = context.planes.SingleOrDefault(p => p.desc_plan == desc_plan);
-                return nuevoPlan(pln);
-            }
-
-        }
-
-        public void Delete(int ID)
-        {
-            using (var context = new AcademiaEntities())
-            {
-                var plan = context.planes.SingleOrDefault(p => p.id_plan == ID);
-                if (plan != null)
-                {
-                    context.planes.Remove(plan);
-                    context.SaveChanges();
-                }
+                var plan = context.planes.FirstOrDefault(p => p.id_plan == id);
+                return NuevoPlan(plan);
             }
         }
 
@@ -68,7 +31,7 @@ namespace Data.Database
         {
             if (plan.State == BusinessEntity.States.Deleted)
             {
-                Delete(plan.ID);
+                Delete(plan);
             }
             else if (plan.State == BusinessEntity.States.New)
             {
@@ -81,11 +44,24 @@ namespace Data.Database
             plan.State = BusinessEntity.States.Unmodified;
         }
 
+        public void Delete(Plan plan)
+        {
+            using (var context = new AcademiaEntities())
+            {
+                var pln = context.planes.FirstOrDefault(p => p.id_plan == plan.ID);
+                if (pln != null)
+                {
+                    context.planes.Remove(pln);
+                    context.SaveChanges();
+                }
+            }
+        }
+
         protected void Update(Plan plan)
         {
             using (var context = new AcademiaEntities())
             {
-                var pln = context.planes.SingleOrDefault(p => p.id_plan == plan.ID);
+                var pln = context.planes.FirstOrDefault(p => p.id_plan == plan.ID);
                 if (pln != null)
                 {
                     pln.desc_plan = plan.Descripcion;
@@ -108,6 +84,21 @@ namespace Data.Database
                 context.planes.Add(pln);
                 context.SaveChanges();
             }
+        }
+
+        private static Plan NuevoPlan(planes p)
+        {
+            if (p == null)
+            {
+                return null;
+            }
+            Plan plan = new Plan
+            {
+                ID = p.id_plan,
+                Descripcion = p.desc_plan,
+                MiEspecialidad = especialidadData.GetOne(p.especialidades.id_especialidad)
+            };
+            return plan;
         }
     }
 }

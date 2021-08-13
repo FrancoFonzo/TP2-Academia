@@ -15,45 +15,43 @@ namespace UI.Desktop
 
         private void Especialidades_Load(object sender, EventArgs e)
         {
-            this.Listar();
+            Listar();
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            EspecialidadDesktop formEspecialidad = new EspecialidadDesktop(ApplicationForm.ModoForm.Alta);
-            formEspecialidad.ShowDialog();
-            this.Listar();
+            new EspecialidadDesktop(ModoForm.Alta).ShowDialog();
+            Listar();
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvEspecialidades))
+            if (IsRowSelected(dgvEspecialidades))
             {
-                openForm(ApplicationForm.ModoForm.Modificacion);
+                OpenForm(ModoForm.Modificacion);
             }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvEspecialidades))
+            if (IsRowSelected(dgvEspecialidades))
             {
-                openForm(ApplicationForm.ModoForm.Baja);
+                OpenForm(ModoForm.Baja);
             }
         }
 
-        private void openForm(ApplicationForm.ModoForm modo)
+        private void OpenForm(ModoForm modo)
         {
-            int ID = ((Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
-            EspecialidadDesktop formEspecialidad = new EspecialidadDesktop(ID, modo);
-            formEspecialidad.ShowDialog();
-            this.Listar();
+            int ID = ((Especialidad)dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
+            new EspecialidadDesktop(ID, modo).ShowDialog();
+            Listar();
         }
 
         public override void Listar()
         {
             try
             {
-                this.dgvEspecialidades.DataSource = new EspecialidadLogic().GetAll();
+                dgvEspecialidades.DataSource = new EspecialidadLogic().GetAll();
             }
             catch (Exception)
             {

@@ -8,24 +8,24 @@ namespace UI.Desktop
 {
     public partial class UsuarioDesktop : ApplicationForm
     {
-        private Usuario UsuarioActual { get; set; }
+        private Usuario Usuario { get; set; }
 
         public UsuarioDesktop()
         {
             InitializeComponent();
             List<Persona> personas = new PersonaLogic().GetPersonasSinUsuario();
-            personas.Add(UsuarioActual?.MiPersona);
+            personas.Add(Usuario?.MiPersona);
             cbxPersona.DataSource = personas;
         }
 
         public UsuarioDesktop(ModoForm modo) : this()
         {
-            this.Modo = modo;
+            Modo = modo;
         }
 
-        public UsuarioDesktop(int ID, ModoForm modo) : this(modo)
+        public UsuarioDesktop(int id, ModoForm modo) : this(modo)
         {
-            UsuarioActual = new UsuarioLogic().GetOne(ID);
+            Usuario = new UsuarioLogic().GetOne(id);
             MapearDeDatos();
         }
 
@@ -45,13 +45,13 @@ namespace UI.Desktop
 
         public override void MapearDeDatos()
         {
-            txtID.Text = UsuarioActual.ID.ToString();
-            chkHabilitado.Checked = UsuarioActual.Habilitado;
-            txtUsuario.Text = UsuarioActual.NombreUsuario;
-            txtClave.Text = UsuarioActual.Clave;
-            if (UsuarioActual.MiPersona != null)
+            txtID.Text = Usuario.ID.ToString();
+            chkHabilitado.Checked = Usuario.Habilitado;
+            txtUsuario.Text = Usuario.NombreUsuario;
+            txtClave.Text = Usuario.Clave;
+            if (Usuario.MiPersona != null)
             {
-                cbxPersona.SelectedValue = UsuarioActual.MiPersona.ID;
+                cbxPersona.SelectedValue = Usuario.MiPersona.ID;
             }
 
             if (Modo == ModoForm.Consulta)
@@ -70,38 +70,34 @@ namespace UI.Desktop
 
         public override void MapearADatos()
         {
-            if (Modo == ModoForm.Alta)
+            switch (Modo)
             {
-                UsuarioActual = new Usuario { State = BusinessEntity.States.New };
+                case ModoForm.Baja:
+                    Usuario.State = BusinessEntity.States.Deleted;
+                    return;
+                case ModoForm.Consulta:
+                    Usuario.State = BusinessEntity.States.Unmodified;
+                    return;
+                case ModoForm.Alta:
+                    Usuario = new Usuario { State = BusinessEntity.States.New };
+                    break;
+                case ModoForm.Modificacion:
+                    Usuario.State = BusinessEntity.States.Modified;
+                    break;
             }
-            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                if (Modo == ModoForm.Modificacion)
-                {
-                    UsuarioActual.State = BusinessEntity.States.Modified;
-                }
-                UsuarioActual.Habilitado = chkHabilitado.Checked;
-                UsuarioActual.NombreUsuario = txtUsuario.Text;
-                UsuarioActual.Clave = txtClave.Text;
+            Usuario.Habilitado = chkHabilitado.Checked;
+            Usuario.NombreUsuario = txtUsuario.Text;
+            Usuario.Clave = txtClave.Text;
 
-                var idPer = cbxPersona.SelectedValue;
-                UsuarioActual.MiPersona = idPer == null ?
-                    null : new PersonaLogic().GetOne((int)idPer);
-            }
-            else if (Modo == ModoForm.Baja)
-            {
-                UsuarioActual.State = BusinessEntity.States.Deleted;
-            }
-            else if (Modo == ModoForm.Consulta)
-            {
-                UsuarioActual.State = BusinessEntity.States.Unmodified;
-            }
+            var idPer = cbxPersona.SelectedValue;
+            Usuario.MiPersona = idPer == null ?
+                null : new PersonaLogic().GetOne((int)idPer);
         }
 
         public override void GuardarCambios()
         {
             MapearADatos();
-            new UsuarioLogic().Save(UsuarioActual);
+            new UsuarioLogic().Save(Usuario);
         }
 
         public override bool Validar()

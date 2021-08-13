@@ -18,6 +18,7 @@ namespace UI.Desktop
         public Personas(Persona.TiposPersonas tipo) : this()
         {
             TipoPersona = tipo;
+            Text = "Alumnos";
             tsbAgregar.Visible = false;
             tsbEditar.Visible = false;
             tsbEliminar.Visible = false;
@@ -26,53 +27,51 @@ namespace UI.Desktop
 
         private void Personas_Load(object sender, EventArgs e)
         {
-            this.Listar();
+            Listar();
         }
 
         private void tsbAgregarP_Click(object sender, EventArgs e)
         {
             PersonaDesktop formPersona = new PersonaDesktop(ApplicationForm.ModoForm.Alta);
             formPersona.ShowDialog();
-            this.Listar();
+            Listar();
         }
 
         private void tsbEditarP_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvPersonas))
+            if (IsRowSelected(dgvPersonas))
             {
-                openForm(ApplicationForm.ModoForm.Modificacion);
+                OpenForm(ModoForm.Modificacion);
             }
         }
 
         private void tsbEliminarP_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvPersonas))
+            if (IsRowSelected(dgvPersonas))
             {
-                openForm(ApplicationForm.ModoForm.Baja);
+                OpenForm(ModoForm.Baja);
             }
         }
 
         private void tsbSeleccionar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvPersonas))
+            if (IsRowSelected(dgvPersonas))
             {
                 openFormInscripcion();
             }
         }
 
-        private void openForm(ApplicationForm.ModoForm modo)
+        private void OpenForm(ModoForm modo)
         {
-            int ID = ((Persona)this.dgvPersonas.SelectedRows[0].DataBoundItem).ID;
-            var formPersona = new PersonaDesktop(ID, modo);
-            formPersona.ShowDialog();
-            this.Listar();
+            int ID = ((Persona)dgvPersonas.SelectedRows[0].DataBoundItem).ID;
+            new PersonaDesktop(ID, modo).ShowDialog();
+            Listar();
         }
 
         private void openFormInscripcion()
         {
             Persona persona = (Persona)dgvPersonas.SelectedRows[0].DataBoundItem;
-            var form = new Inscripciones(persona, true);
-            Program.MainUI.openForm(form);
+            Program.MainUI.OpenForm(new Inscripciones(persona, true));
         }
 
         public override void Listar()
@@ -80,7 +79,7 @@ namespace UI.Desktop
             try
             {
                 dgvPersonas.DataSource = TipoPersona == Persona.TiposPersonas.Administrador ?
-                    new PersonaLogic().GetAll() : new PersonaLogic().GetAllTipos(TipoPersona);
+                    new PersonaLogic().GetAll() : new PersonaLogic().GetAllTipo(TipoPersona);
             }
             catch (Exception)
             {

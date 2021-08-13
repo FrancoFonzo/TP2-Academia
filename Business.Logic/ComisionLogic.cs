@@ -13,14 +13,14 @@ namespace Business.Logic
             ComisionData = new ComisionAdapter();
         }
 
-        public Comision GetOne(int id)
-        {
-            return ComisionData.GetOne(id);
-        }
-
         public List<Comision> GetAll()
         {
             return ComisionData.GetAll();
+        }
+
+        public Comision GetOne(int id)
+        {
+            return ComisionData.GetOne(id);
         }
 
         public void Save(Comision comision)

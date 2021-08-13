@@ -38,7 +38,7 @@ namespace Data.Database
         {
             using (var context = new AcademiaEntities())
             {
-                var mat = context.materias.SingleOrDefault(m => m.id_materia == ID);
+                var mat = context.materias.FirstOrDefault(m => m.id_materia == ID);
                 return nuevaMateria(mat);
             }
         }
@@ -47,7 +47,7 @@ namespace Data.Database
         {
             using (var context = new AcademiaEntities())
             {
-                var mat = context.materias.SingleOrDefault(m => m.id_materia == ID);
+                var mat = context.materias.FirstOrDefault(m => m.id_materia == ID);
                 if (mat != null)
                 {
                     context.Entry(mat).State = System.Data.Entity.EntityState.Deleted;
@@ -77,7 +77,7 @@ namespace Data.Database
         {
             using (var context = new AcademiaEntities())
             {
-                var mat = context.materias.SingleOrDefault(m => m.id_materia == materias.ID);
+                var mat = context.materias.FirstOrDefault(m => m.id_materia == materias.ID);
                 if (mat != null)
                 {
                     mat.desc_materia = materias.Descripcion;

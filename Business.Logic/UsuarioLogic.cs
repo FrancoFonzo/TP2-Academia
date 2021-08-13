@@ -13,6 +13,11 @@ namespace Business.Logic
             UsuarioData = new UsuarioAdapter();
         }
 
+        public List<Usuario> GetAll()
+        {
+            return UsuarioData.GetAll();
+        }
+
         public Usuario GetOne(int id)
         {
             return UsuarioData.GetOne(id);
@@ -21,11 +26,6 @@ namespace Business.Logic
         public Usuario GetOneNombreUsuario(string user)
         {
             return UsuarioData.GetOneNombreUsuario(user);
-        }
-
-        public List<Usuario> GetAll()
-        {
-            return UsuarioData.GetAll();
         }
 
         public void Save(Usuario usuario)

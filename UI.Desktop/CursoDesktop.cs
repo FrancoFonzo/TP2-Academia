@@ -19,12 +19,12 @@ namespace UI.Desktop
 
         public CursoDesktop(ModoForm modo) : this()
         {
-            this.Modo = modo;
+            Modo = modo;
         }
 
-        public CursoDesktop(int ID, ModoForm modo) : this(modo)
+        public CursoDesktop(int id, ModoForm modo) : this(modo)
         {
-            CursoActual = new CursoLogic().GetOne(ID);
+            CursoActual = new CursoLogic().GetOne(id);
             MapearDeDatos();
         }
 
@@ -67,29 +67,25 @@ namespace UI.Desktop
 
         public override void MapearADatos()
         {
-            if (Modo == ModoForm.Alta)
+            switch (Modo)
             {
-                CursoActual = new Curso { State = BusinessEntity.States.New };
-            }
-            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                if (Modo == ModoForm.Modificacion)
-                {
+                case ModoForm.Baja:
+                    CursoActual.State = BusinessEntity.States.Deleted;
+                    return;
+                case ModoForm.Consulta:
+                    CursoActual.State = BusinessEntity.States.Unmodified;
+                    return;
+                case ModoForm.Alta:
+                    CursoActual = new Curso { State = BusinessEntity.States.New };
+                    break;
+                case ModoForm.Modificacion:
                     CursoActual.State = BusinessEntity.States.Modified;
-                }
-                CursoActual.AnioCalendario = int.Parse(txtAñoCalendario.Text);
-                CursoActual.Cupo = int.Parse(txtCupo.Text);
-                CursoActual.MiMateria = new MateriaLogic().GetOne((int)cbxMateria.SelectedValue);
-                CursoActual.MiComision = new ComisionLogic().GetOne((int)cbxComision.SelectedValue);
+                    break;
             }
-            else if (Modo == ModoForm.Baja)
-            {
-                CursoActual.State = BusinessEntity.States.Deleted;
-            }
-            else if (Modo == ModoForm.Consulta)
-            {
-                CursoActual.State = BusinessEntity.States.Unmodified;
-            }
+            CursoActual.AnioCalendario = int.Parse(txtAñoCalendario.Text);
+            CursoActual.Cupo = int.Parse(txtCupo.Text);
+            CursoActual.MiMateria = new MateriaLogic().GetOne((int)cbxMateria.SelectedValue);
+            CursoActual.MiComision = new ComisionLogic().GetOne((int)cbxComision.SelectedValue);
         }
 
         public override void GuardarCambios()
@@ -101,7 +97,7 @@ namespace UI.Desktop
         public override bool Validar()
         {
             if (!Validaciones.FormularioCompleto
-                (new List<string> {txtDescripcion.Text, txtCupo.Text, txtAñoCalendario.Text}))
+                (new List<string> { txtDescripcion.Text, txtCupo.Text, txtAñoCalendario.Text }))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

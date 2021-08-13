@@ -4,7 +4,7 @@
     {
         public AlumnoInscripcion()
         {
-            this.Condicion = Condiciones.Inscripto;
+            Condicion = Condiciones.Inscripto;
         }
 
         public Condiciones Condicion { get; set; }
@@ -30,7 +30,7 @@
             {
                 return MiCurso.MiComision.Descripcion;
             }
-        } 
+        }
         #endregion
 
         public enum Condiciones

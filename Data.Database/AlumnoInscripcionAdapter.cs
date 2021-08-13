@@ -12,37 +12,40 @@ namespace Data.Database
             using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
-                var lstInscripciones = context.alumnos_inscripciones;
-                lstInscripciones?.ToList().ForEach(i => inscripciones.Add(nuevaInscripcion(i)));
+                context.alumnos_inscripciones
+                    .ToList()
+                    .ForEach(i => inscripciones.Add(NuevaInscripcion(i)));
                 return inscripciones;
             }
         }
 
-        public List<AlumnoInscripcion> GetAllAlumno(Persona alumno)
+        public List<AlumnoInscripcion> GetAllAlumno(int id)
         {
             using (var context = new AcademiaEntities())
             {
                 List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
-                var lstInscripciones = context.alumnos_inscripciones.Where(i => i.id_alumno == alumno.ID);
-                lstInscripciones?.ToList().ForEach(i => inscripciones.Add(nuevaInscripcion(i)));
+                context.alumnos_inscripciones
+                    .Where(i => i.id_alumno == id)
+                    .ToList()
+                    .ForEach(i => inscripciones.Add(NuevaInscripcion(i)));
                 return inscripciones;
             }
         }
 
-        public AlumnoInscripcion GetOne(int ID)
+        public AlumnoInscripcion GetOne(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var insc = context.alumnos_inscripciones.SingleOrDefault(i => i.id_inscripcion == ID);
-                return nuevaInscripcion(insc);
+                var insc = context.alumnos_inscripciones.FirstOrDefault(i => i.id_inscripcion == id);
+                return NuevaInscripcion(insc);
             }
         }
 
-        public void Delete(int ID)
+        public void Delete(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var insc = context.alumnos_inscripciones.SingleOrDefault(i => i.id_inscripcion == ID);
+                var insc = context.alumnos_inscripciones.FirstOrDefault(i => i.id_inscripcion == id);
                 if (insc != null)
                 {
                     context.alumnos_inscripciones.Remove(insc);
@@ -72,7 +75,7 @@ namespace Data.Database
         {
             using (var context = new AcademiaEntities())
             {
-                var insc = context.alumnos_inscripciones.SingleOrDefault(i => i.id_inscripcion == inscripcion.ID);
+                var insc = context.alumnos_inscripciones.FirstOrDefault(i => i.id_inscripcion == inscripcion.ID);
                 if (insc != null)
                 {
                     insc.id_inscripcion = inscripcion.ID;
@@ -102,7 +105,7 @@ namespace Data.Database
             }
         }
 
-        private static AlumnoInscripcion nuevaInscripcion(alumnos_inscripciones insc)
+        private static AlumnoInscripcion NuevaInscripcion(alumnos_inscripciones insc)
         {
             if (insc == null)
             {
@@ -111,7 +114,7 @@ namespace Data.Database
             AlumnoInscripcion inscripcion = new AlumnoInscripcion
             {
                 ID = insc.id_inscripcion,
-                Condicion = (AlumnoInscripcion.Condiciones) 
+                Condicion = (AlumnoInscripcion.Condiciones)
                     Enum.Parse(typeof(AlumnoInscripcion.Condiciones), insc.condicion),
                 Nota = insc.nota,
                 MiAlumno = personaData.GetOne(insc.id_alumno),

@@ -7,7 +7,7 @@
         public bool Habilitado { get; set; }
 
         #region Propiedades de Navegacion
-        public Persona MiPersona { get; set; } 
+        public Persona MiPersona { get; set; }
         #endregion
 
         #region Propiedades Auxiliares/DataPropertyName
@@ -18,6 +18,7 @@
                 return MiPersona == null ? "" : MiPersona.Nombre;
             }
         }
+
         public string ApellidoPersona
         {
             get
@@ -31,7 +32,7 @@
             {
                 return MiPersona == null ? "" : MiPersona.EMail;
             }
-        } 
+        }
         #endregion
 
     }

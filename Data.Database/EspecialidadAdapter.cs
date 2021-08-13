@@ -11,41 +11,27 @@ namespace Data.Database
             using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Especialidad> especialidades = new List<Especialidad>();
-                var lstEspecialidades = context.especialidades;
-                lstEspecialidades?.ToList().ForEach(e => especialidades.Add(nuevaEspecialidad(e)));
+                context.especialidades
+                    .ToList()
+                    .ForEach(e => especialidades.Add(NuevaEspecialidad(e)));
                 return especialidades;
             }
         }
 
-        private Especialidad nuevaEspecialidad(especialidades esp)
-        {
-            if (esp == null)
-            {
-                return null;
-            }
-            Especialidad especialidad = new Especialidad
-            {
-                ID = esp.id_especialidad,
-                Descripcion = esp.desc_especialidad,
-            };
-            return especialidad;
-        }
-
-
-        public Especialidad GetOne(int ID)
+        public Especialidad GetOne(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var esp = context.especialidades.SingleOrDefault(e => e.id_especialidad == ID);
-                return nuevaEspecialidad(esp);
+                var esp = context.especialidades.FirstOrDefault(e => e.id_especialidad == id);
+                return NuevaEspecialidad(esp);
             }
         }
 
-        public void Delete(int ID)
+        public void Delete(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var esp = context.especialidades.SingleOrDefault(p => p.id_especialidad == ID);
+                var esp = context.especialidades.FirstOrDefault(p => p.id_especialidad == id);
                 if (esp != null)
                 {
                     context.Entry(esp).State = System.Data.Entity.EntityState.Deleted;
@@ -75,7 +61,7 @@ namespace Data.Database
         {
             using (var context = new AcademiaEntities())
             {
-                var esp = context.especialidades.SingleOrDefault(e => e.id_especialidad == especialidad.ID);
+                var esp = context.especialidades.FirstOrDefault(e => e.id_especialidad == especialidad.ID);
                 if (esp != null)
                 {
                     esp.desc_especialidad = especialidad.Descripcion;
@@ -96,6 +82,20 @@ namespace Data.Database
                 context.especialidades.Add(esp);
                 context.SaveChanges();
             }
+        }
+
+        private Especialidad NuevaEspecialidad(especialidades esp)
+        {
+            if (esp == null)
+            {
+                return null;
+            }
+            Especialidad especialidad = new Especialidad
+            {
+                ID = esp.id_especialidad,
+                Descripcion = esp.desc_especialidad,
+            };
+            return especialidad;
         }
     }
 

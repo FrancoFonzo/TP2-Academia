@@ -13,19 +13,19 @@ namespace Business.Logic
             CursoData = new CursoAdapter();
         }
 
-        public Curso GetOne(int id)
-        {
-            return CursoData.GetOne(id);
-        }
-
         public List<Curso> GetAll()
         {
             return CursoData.GetAll();
         }
 
-        public List<Curso> GetCursosNoInscripto(int id_persona)
+        public Curso GetOne(int id)
         {
-            return CursoData.GetCursosNoInscripto(id_persona);
+            return CursoData.GetOne(id);
+        }
+
+        public List<Curso> GetCursosNoInscripto(int id)
+        {
+            return CursoData.GetCursosNoInscripto(id);
         }
 
         public void Save(Curso curso)

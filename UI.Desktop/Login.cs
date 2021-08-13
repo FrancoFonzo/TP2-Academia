@@ -10,8 +10,6 @@ namespace UI.Desktop
 {
     public partial class Login : ApplicationForm
     {
-        public Usuario UsuarioActual { get; set; }
-
         public Login()
         {
             InitializeComponent();
@@ -22,6 +20,8 @@ namespace UI.Desktop
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
+        public static Usuario UsuarioActual { get; private set; }
+
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
             Validar();
@@ -29,8 +29,7 @@ namespace UI.Desktop
 
         private void lnkRecuperarClave_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Notificar("Login", "Funcion no implementada",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Notificar("Funcion no implementada", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -47,15 +46,15 @@ namespace UI.Desktop
         {
             if (sender == txtUsuario)
             {
-                configTxt(txtUsuario, "Usuario");
+                UpdateTxt(txtUsuario, "Usuario");
             }
             else
             {
-                configTxt(txtClave, "Contraseña");
+                UpdateTxt(txtClave, "Contraseña");
             }
         }
 
-        private void configTxt(TextBox txt, String cadena)
+        private void UpdateTxt(TextBox txt, string cadena)
         {
             if (txt.Text == cadena)
             {
@@ -63,7 +62,7 @@ namespace UI.Desktop
                 txt.ForeColor = Color.LightGray;
                 if (txt.Equals(txtClave))
                 {
-                    txt.PasswordChar = '*';
+                    txt.PasswordChar = new TextBox { UseSystemPasswordChar = true }.PasswordChar;
                 }
             }
             else if (txt.Text == "")
@@ -87,10 +86,9 @@ namespace UI.Desktop
         public override bool Validar()
         {
             if (txtUsuario.Text.Equals("Usuario") || txtClave.Text.Equals("Contraseña") ||
-                !Validaciones.FormularioCompleto(
-                    new List<string> { txtUsuario.Text, txtClave.Text }))
+                !Validaciones.FormularioCompleto(new List<string> { txtUsuario.Text, txtClave.Text }))
             {
-                Notificar("Login", "Complete todos los campos para continuar.",
+                Notificar("Complete todos los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -99,12 +97,12 @@ namespace UI.Desktop
 
             if (!Validaciones.ValidarClave(UsuarioActual?.Clave, txtClave.Text))
             {
-                Notificar("Login", "Usuario y/o contraseña incorrectos",
+                Notificar("Usuario y/o contraseña incorrectos",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (!UsuarioActual.Habilitado)
             {
-                Notificar("Login", "Usuario no habilitado",
+                Notificar("Usuario no habilitado",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else

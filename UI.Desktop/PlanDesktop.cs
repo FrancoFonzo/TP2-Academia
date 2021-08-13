@@ -18,12 +18,12 @@ namespace UI.Desktop
 
         public PlanDesktop(ModoForm modo) : this()
         {
-            this.Modo = modo;
+            Modo = modo;
         }
 
-        public PlanDesktop(int ID, ModoForm modo) : this(modo)
+        public PlanDesktop(int id, ModoForm modo) : this(modo)
         {
-            PlanActual = new PlanLogic().GetOne(ID);
+            PlanActual = new PlanLogic().GetOne(id);
             MapearDeDatos();
         }
 
@@ -63,28 +63,24 @@ namespace UI.Desktop
 
         public override void MapearADatos()
         {
-            if (Modo == ModoForm.Alta)
+            switch (Modo)
             {
-                PlanActual = new Plan { State = BusinessEntity.States.New };
-            }
-            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                if (Modo == ModoForm.Modificacion)
-                {
+                case ModoForm.Baja:
+                    PlanActual.State = BusinessEntity.States.Deleted;
+                    return;
+                case ModoForm.Consulta:
+                    PlanActual.State = BusinessEntity.States.Unmodified;
+                    return;
+                case ModoForm.Alta:
+                    PlanActual = new Plan { State = BusinessEntity.States.New };
+                    break;
+                case ModoForm.Modificacion:
                     PlanActual.State = BusinessEntity.States.Modified;
-                }
-                PlanActual.Descripcion = txtDescripcion.Text;
-                var idEsp = cbxEspecialidad.SelectedValue;
-                PlanActual.MiEspecialidad = new EspecialidadLogic().GetOne((int)idEsp);
+                    break;
             }
-            else if (Modo == ModoForm.Baja)
-            {
-                PlanActual.State = BusinessEntity.States.Deleted;
-            }
-            else if (Modo == ModoForm.Consulta)
-            {
-                PlanActual.State = BusinessEntity.States.Unmodified;
-            }
+            PlanActual.Descripcion = txtDescripcion.Text;
+            var idEsp = cbxEspecialidad.SelectedValue;
+            PlanActual.MiEspecialidad = new EspecialidadLogic().GetOne((int)idEsp);
         }
 
         public override void GuardarCambios()
@@ -95,7 +91,7 @@ namespace UI.Desktop
 
         public override bool Validar()
         {
-            if (!Validaciones.FormularioCompleto(new List<string> {txtDescripcion.Text}))
+            if (!Validaciones.FormularioCompleto(new List<string> { txtDescripcion.Text }))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

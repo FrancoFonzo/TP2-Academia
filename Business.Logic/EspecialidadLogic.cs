@@ -13,14 +13,14 @@ namespace Business.Logic
             EspecialidadData = new EspecialidadAdapter();
         }
 
-        public Especialidad GetOne(int id)
-        {
-            return EspecialidadData.GetOne(id);
-        }
-
         public List<Especialidad> GetAll()
         {
             return EspecialidadData.GetAll();
+        }
+
+        public Especialidad GetOne(int id)
+        {
+            return EspecialidadData.GetOne(id);
         }
 
         public void Save(Especialidad especialidad)

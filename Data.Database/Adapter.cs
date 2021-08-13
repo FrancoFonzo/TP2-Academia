@@ -3,6 +3,7 @@
     public class Adapter
     {
         protected Adapter() { }
+
         protected static readonly PersonaAdapter personaData = new PersonaAdapter();
         protected static readonly AlumnoInscripcionAdapter inscripcionData = new AlumnoInscripcionAdapter();
         protected static readonly CursoAdapter cursoData = new CursoAdapter();

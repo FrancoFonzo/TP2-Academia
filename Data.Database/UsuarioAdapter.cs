@@ -11,38 +11,19 @@ namespace Data.Database
             using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Usuario> usuarios = new List<Usuario>();
-                var lstUsuarios = context.usuarios;
-                lstUsuarios?.ToList().ForEach(u => usuarios.Add(nuevoUsuario(u)));
+                context.usuarios
+                    .ToList()
+                    .ForEach(u => usuarios.Add(NuevoUsuario(u)));
                 return usuarios;
             }
         }
 
-        private static Usuario nuevoUsuario(usuarios user)
-        {
-            if (user == null)
-            {
-                return null;
-            }
-            Usuario usuario = new Usuario
-            {
-                ID = user.id_usuario,
-                NombreUsuario = user.nombre_usuario,
-                Clave = user.clave,
-                Habilitado = user.habilitado,
-            };
-            if (user.id_persona != null)
-            {
-                usuario.MiPersona = personaData.GetOne((int)user.id_persona);
-            }
-            return usuario;
-        }
-
-        public Usuario GetOne(int ID)
+        public Usuario GetOne(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var usr = context.usuarios.SingleOrDefault(u => u.id_usuario == ID);
-                return nuevoUsuario(usr);
+                var usr = context.usuarios.FirstOrDefault(u => u.id_usuario == id);
+                return NuevoUsuario(usr);
             }
         }
 
@@ -50,21 +31,8 @@ namespace Data.Database
         {
             using (var context = new AcademiaEntities())
             {
-                var usr = context.usuarios.SingleOrDefault(u => u.nombre_usuario == nom_usuario);
-                return nuevoUsuario(usr);
-            }
-        }
-
-        public void Delete(int ID)
-        {
-            using (var context = new AcademiaEntities())
-            {
-                var usr = context.usuarios.SingleOrDefault(u => u.id_usuario == ID);
-                if (usr != null)
-                {
-                    context.usuarios.Remove(usr);
-                    context.SaveChanges();
-                }
+                var usr = context.usuarios.FirstOrDefault(u => u.nombre_usuario == nom_usuario);
+                return NuevoUsuario(usr);
             }
         }
 
@@ -85,11 +53,23 @@ namespace Data.Database
             usuario.State = BusinessEntity.States.Unmodified;
         }
 
+        public void Delete(int ID)
+        {
+            using (var context = new AcademiaEntities())
+            {
+                var usr = context.usuarios.FirstOrDefault(u => u.id_usuario == ID);
+                if (usr != null)
+                {
+                    context.usuarios.Remove(usr);
+                    context.SaveChanges();
+                }
+            }
+        }
         protected void Update(Usuario usuario)
         {
             using (var context = new AcademiaEntities())
             {
-                var usr = context.usuarios.SingleOrDefault(u => u.id_usuario == usuario.ID);
+                var usr = context.usuarios.FirstOrDefault(u => u.id_usuario == usuario.ID);
                 if (usr != null)
                 {
                     usr.nombre_usuario = usuario.NombreUsuario;
@@ -119,6 +99,26 @@ namespace Data.Database
                 context.usuarios.Add(usr);
                 context.SaveChanges();
             }
+        }
+
+        private static Usuario NuevoUsuario(usuarios user)
+        {
+            if (user == null)
+            {
+                return null;
+            }
+            Usuario usuario = new Usuario
+            {
+                ID = user.id_usuario,
+                NombreUsuario = user.nombre_usuario,
+                Clave = user.clave,
+                Habilitado = user.habilitado,
+            };
+            if (user.id_persona != null)
+            {
+                usuario.MiPersona = personaData.GetOne((int)user.id_persona);
+            }
+            return usuario;
         }
     }
 }

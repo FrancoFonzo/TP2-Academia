@@ -8,7 +8,6 @@ namespace UI.Desktop
 {
     public partial class MateriaDesktop : ApplicationForm
     {
-        private Materia MateriaActual { get; set; }
         public MateriaDesktop()
         {
             InitializeComponent();
@@ -17,7 +16,7 @@ namespace UI.Desktop
 
         public MateriaDesktop(ModoForm modo) : this()
         {
-            this.Modo = modo;
+            Modo = modo;
         }
 
         public MateriaDesktop(int ID, ModoForm modo) : this(modo)
@@ -25,6 +24,8 @@ namespace UI.Desktop
             MateriaActual = new MateriaLogic().GetOne(ID);
             MapearDeDatos();
         }
+
+        private Materia MateriaActual { get; set; }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -64,29 +65,25 @@ namespace UI.Desktop
 
         public override void MapearADatos()
         {
-            if (Modo == ModoForm.Alta)
+            switch (Modo)
             {
-                MateriaActual = new Materia { State = BusinessEntity.States.New };
-            }
-            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                if (Modo == ModoForm.Modificacion)
-                {
+                case ModoForm.Baja:
+                    MateriaActual.State = BusinessEntity.States.Deleted;
+                    return;
+                case ModoForm.Consulta:
+                    MateriaActual.State = BusinessEntity.States.Unmodified;
+                    return;
+                case ModoForm.Alta:
+                    MateriaActual = new Materia { State = BusinessEntity.States.New };
+                    break;
+                case ModoForm.Modificacion:
                     MateriaActual.State = BusinessEntity.States.Modified;
-                }
-                MateriaActual.Descripcion = txtDescripcion.Text;
-                MateriaActual.HorasSemanales = int.Parse(txtHsSemanales.Text);
-                MateriaActual.HorasTotales = int.Parse(txtHsTotales.Text);
-                MateriaActual.MiPlan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
+                    break;
             }
-            else if (Modo == ModoForm.Baja)
-            {
-                MateriaActual.State = BusinessEntity.States.Deleted;
-            }
-            else if (Modo == ModoForm.Consulta)
-            {
-                MateriaActual.State = BusinessEntity.States.Unmodified;
-            }
+            MateriaActual.Descripcion = txtDescripcion.Text;
+            MateriaActual.HorasSemanales = int.Parse(txtHsSemanales.Text);
+            MateriaActual.HorasTotales = int.Parse(txtHsTotales.Text);
+            MateriaActual.MiPlan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
         }
 
         public override void GuardarCambios()
@@ -98,7 +95,7 @@ namespace UI.Desktop
         public override bool Validar()
         {
             if (!Validaciones.FormularioCompleto
-                (new List<string> {txtDescripcion.Text, txtHsSemanales.Text, txtHsTotales.Text}))
+                (new List<string> { txtDescripcion.Text, txtHsSemanales.Text, txtHsTotales.Text }))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

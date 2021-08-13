@@ -15,45 +15,43 @@ namespace UI.Desktop
 
         private void Usuarios_Load(object sender, EventArgs e)
         {
-            this.Listar();
+            Listar();
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            UsuarioDesktop formUsuario = new UsuarioDesktop(ApplicationForm.ModoForm.Alta);
-            formUsuario.ShowDialog();
-            this.Listar();
+            new UsuarioDesktop(ModoForm.Alta).ShowDialog();
+            Listar();
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvUsuarios))
+            if (IsRowSelected(dgvUsuarios))
             {
-                openForm(ModoForm.Modificacion);
+                OpenForm(ModoForm.Modificacion);
             }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvUsuarios))
+            if (IsRowSelected(dgvUsuarios))
             {
-                openForm(ApplicationForm.ModoForm.Baja);
+                OpenForm(ModoForm.Baja);
             }
         }
 
-        private void openForm(ApplicationForm.ModoForm modo)
+        private void OpenForm(ModoForm modo)
         {
-            int ID = ((Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-            UsuarioDesktop formUsuario = new UsuarioDesktop(ID, modo);
-            formUsuario.ShowDialog();
-            this.Listar();
+            int ID = ((Usuario)dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
+            new UsuarioDesktop(ID, modo).ShowDialog();
+            Listar();
         }
 
         public override void Listar()
         {
             try
             {
-                this.dgvUsuarios.DataSource = new UsuarioLogic().GetAll();
+                dgvUsuarios.DataSource = new UsuarioLogic().GetAll();
             }
             catch (Exception)
             {

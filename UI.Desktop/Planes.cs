@@ -15,45 +15,43 @@ namespace UI.Desktop
 
         private void Planes_Load(object sender, EventArgs e)
         {
-            this.Listar();
+            Listar();
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            PlanDesktop formPlan = new PlanDesktop(ApplicationForm.ModoForm.Alta);
-            formPlan.ShowDialog();
-            this.Listar();
+            new PlanDesktop(ModoForm.Alta).ShowDialog();
+            Listar();
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvPlanes))
+            if (IsRowSelected(dgvPlanes))
             {
-                openForm(ApplicationForm.ModoForm.Modificacion);
+                OpenForm(ModoForm.Modificacion);
             }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvPlanes))
+            if (IsRowSelected(dgvPlanes))
             {
-                openForm(ApplicationForm.ModoForm.Baja);
+                OpenForm(ModoForm.Baja);
             }
         }
 
-        private void openForm(ApplicationForm.ModoForm modo)
+        private void OpenForm(ModoForm modo)
         {
-            int ID = ((Plan)this.dgvPlanes.SelectedRows[0].DataBoundItem).ID;
-            PlanDesktop formPlan = new PlanDesktop(ID, modo);
-            formPlan.ShowDialog();
-            this.Listar();
+            int ID = ((Plan)dgvPlanes.SelectedRows[0].DataBoundItem).ID;
+            new PlanDesktop(ID, modo).ShowDialog();
+            Listar();
         }
 
         public override void Listar()
         {
             try
             {
-                this.dgvPlanes.DataSource = new PlanLogic().GetAll();
+                dgvPlanes.DataSource = new PlanLogic().GetAll();
             }
             catch (Exception)
             {

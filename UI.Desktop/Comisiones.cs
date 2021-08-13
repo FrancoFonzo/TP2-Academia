@@ -20,14 +20,13 @@ namespace UI.Desktop
 
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
-            ComisionDesktop formComision = new ComisionDesktop(ModoForm.Alta);
-            formComision.ShowDialog();
+            new ComisionDesktop(ModoForm.Alta).ShowDialog();
             Listar();
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvComisiones))
+            if (IsRowSelected(dgvComisiones))
             {
                 OpenForm(ModoForm.Modificacion);
             }
@@ -35,7 +34,7 @@ namespace UI.Desktop
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvComisiones))
+            if (IsRowSelected(dgvComisiones))
             {
                 OpenForm(ModoForm.Baja);
             }
@@ -44,8 +43,7 @@ namespace UI.Desktop
         private void OpenForm(ModoForm modo)
         {
             int ID = ((Comision)dgvComisiones.SelectedRows[0].DataBoundItem).ID;
-            ComisionDesktop formComision = new ComisionDesktop(ID, modo);
-            formComision.ShowDialog();
+            new ComisionDesktop(ID, modo).ShowDialog();
             Listar();
         }
 

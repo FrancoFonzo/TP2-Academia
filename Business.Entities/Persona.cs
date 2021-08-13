@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Business.Entities
 {
@@ -7,11 +6,11 @@ namespace Business.Entities
     {
         public string Nombre { get; set; }
         public string Apellido { get; set; }
+        public int? Legajo { get; set; }
         public string EMail { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public int? Legajo { get; set; }
         public TiposPersonas Tipo { get; set; }
 
         #region Propiedades de Navegacion
@@ -25,7 +24,7 @@ namespace Business.Entities
             {
                 return $"{Nombre} {Apellido}";
             }
-        } 
+        }
         #endregion
 
         public enum TiposPersonas

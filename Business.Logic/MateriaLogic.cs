@@ -14,14 +14,14 @@ namespace Business.Logic
             MateriaData = new MateriaAdapter();
         }
 
-        public Materia GetOne(int id)
-        {
-            return MateriaData.GetOne(id);
-        }
-
         public List<Materia> GetAll()
         {
             return MateriaData.GetAll();
+        }
+
+        public Materia GetOne(int id)
+        {
+            return MateriaData.GetOne(id);
         }
 
         public void Save(Materia materia)

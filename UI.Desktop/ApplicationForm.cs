@@ -9,6 +9,8 @@ namespace UI.Desktop
             InitializeComponent();
         }
 
+        public ModoForm Modo { get; set; }
+
         public enum ModoForm
         {
             Alta,
@@ -17,25 +19,23 @@ namespace UI.Desktop
             Consulta
         };
 
-        public ModoForm Modo { get; set; }
-
         public virtual void MapearDeDatos() { }
         public virtual void MapearADatos() { }
         public virtual void GuardarCambios() { }
-        public virtual bool Validar() { return false; }
-
         public virtual void Listar() { }
+        public virtual bool Validar() { return false; }
 
         public void Notificar(string titulo, string mensaje, MessageBoxButtons botones, MessageBoxIcon icono)
         {
             MessageBox.Show(mensaje, titulo, botones, icono);
         }
+
         public void Notificar(string mensaje, MessageBoxButtons botones, MessageBoxIcon icono)
         {
-            this.Notificar(this.Text, mensaje, botones, icono);
+            Notificar(Text, mensaje, botones, icono);
         }
 
-        protected bool isRowSelected(DataGridView dgvSelected)
+        protected bool IsRowSelected(DataGridView dgvSelected)
         {
             if (dgvSelected.SelectedRows.Count != 1)
             {

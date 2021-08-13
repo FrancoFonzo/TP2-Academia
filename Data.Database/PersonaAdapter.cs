@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Business.Entities;
 
@@ -12,13 +11,14 @@ namespace Data.Database
             using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Persona> personas = new List<Persona>();
-                var lstPersonas = context.personas;
-                lstPersonas?.ToList().ForEach(p => personas.Add(nuevaPersona(p)));
+                context.personas
+                    .ToList()
+                    .ForEach(p => personas.Add(NuevaPersona(p)));
                 return personas;
             }
         }
 
-        public List<Persona> GetAllTipos(Persona.TiposPersonas tipo)
+        public List<Persona> GetAllTipo(Persona.TiposPersonas tipo)
         {
             using (var context = new AcademiaEntities())
             {
@@ -26,40 +26,42 @@ namespace Data.Database
                 context.personas
                     .Where(p => p.tipo_persona == (int)tipo)
                     .ToList()
-                    .ForEach(p => personas.Add(nuevaPersona(p)));
+                    .ForEach(p => personas.Add(NuevaPersona(p)));
                 return personas;
             }
         }
-		
+
         public List<Persona> GetPersonasSinUsuario()
         {
             using (AcademiaEntities context = new AcademiaEntities())
             {
                 List<Persona> personas = new List<Persona>();
-                var lstPersonas = from p in context.personas
-                                  where !(from u in context.usuarios select u.id_persona)
-                                  .Contains(p.id_persona)
-                                  select p;
-                lstPersonas?.ToList().ForEach(p => personas.Add(nuevaPersona(p)));
+                context.personas
+                    .Where(p =>
+                        !context.usuarios
+                        .Select(u => u.id_persona)
+                        .Contains(p.id_persona))
+                    .ToList()
+                    .ForEach(p => personas.Add(NuevaPersona(p)));
                 return personas;
             }
         }
 
-        public Persona GetOne(int ID)
+        public Persona GetOne(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var per = context.personas.SingleOrDefault(p => p.id_persona == ID);
-                return nuevaPersona(per);
+                var per = context.personas.FirstOrDefault(p => p.id_persona == id);
+                return NuevaPersona(per);
             }
 
         }
 
-        public void Delete(int ID)
+        public void Delete(int id)
         {
             using (var context = new AcademiaEntities())
             {
-                var per = context.personas.SingleOrDefault(p => p.id_persona == ID);
+                var per = context.personas.FirstOrDefault(p => p.id_persona == id);
                 if (per != null)
                 {
                     context.Entry(per).State = System.Data.Entity.EntityState.Deleted;
@@ -89,7 +91,7 @@ namespace Data.Database
         {
             using (var context = new AcademiaEntities())
             {
-                var per = context.personas.SingleOrDefault(p => p.id_persona == persona.ID);
+                var per = context.personas.FirstOrDefault(p => p.id_persona == persona.ID);
                 if (per != null)
                 {
                     per.apellido = persona.Apellido;
@@ -128,7 +130,7 @@ namespace Data.Database
             }
         }
 
-        private Persona nuevaPersona(personas per)
+        private Persona NuevaPersona(personas per)
         {
             if (per == null)
             {

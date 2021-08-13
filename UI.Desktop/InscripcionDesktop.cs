@@ -8,7 +8,7 @@ namespace UI.Desktop
 {
     public partial class InscripcionDesktop : ApplicationForm
     {
-        private Persona PersonaActual { get;}
+        private Persona PersonaActual { get; }
         private AlumnoInscripcion InscripcionActual { get; set; }
 
         public InscripcionDesktop()
@@ -18,14 +18,9 @@ namespace UI.Desktop
             cbxCondicion.DataSource = Enum.GetValues(typeof(AlumnoInscripcion.Condiciones));
         }
 
-        private void Cursos_Load(object sender, EventArgs e)
-        {
-            Listar();
-        }
-
         public InscripcionDesktop(ModoForm modo) : this()
         {
-            this.Modo = modo;
+            Modo = modo;
         }
 
         public InscripcionDesktop(Persona personaActual, ModoForm modo) : this(modo)
@@ -39,6 +34,11 @@ namespace UI.Desktop
             PersonaActual = personaActual;
             InscripcionActual = new AlumnoInscripcionLogic().GetOne(ID);
             MapearDeDatos();
+        }
+
+        private void Cursos_Load(object sender, EventArgs e)
+        {
+            Listar();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -83,29 +83,23 @@ namespace UI.Desktop
 
         public override void MapearADatos()
         {
-            if (Modo == ModoForm.Baja)
+            switch (Modo)
             {
-                InscripcionActual.State = BusinessEntity.States.Deleted;
-                return;
-            }
-            if (Modo == ModoForm.Consulta)
-            {
-                InscripcionActual.State = BusinessEntity.States.Unmodified;
-                return;
-            }
-            if (Modo == ModoForm.Alta)
-            {
-                InscripcionActual = new AlumnoInscripcion
-                {
-                    State = BusinessEntity.States.New,
-                };
-            }
-            else if (Modo == ModoForm.Modificacion)
-            {
-                InscripcionActual.State = BusinessEntity.States.Modified;
+                case ModoForm.Baja:
+                    InscripcionActual.State = BusinessEntity.States.Deleted;
+                    return;
+                case ModoForm.Consulta:
+                    InscripcionActual.State = BusinessEntity.States.Unmodified;
+                    return;
+                case ModoForm.Alta:
+                    InscripcionActual = new AlumnoInscripcion { State = BusinessEntity.States.New };
+                    break;
+                case ModoForm.Modificacion:
+                    InscripcionActual.State = BusinessEntity.States.Modified;
+                    break;
             }
             InscripcionActual.MiAlumno = PersonaActual;
-            InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones) cbxCondicion.SelectedValue;
+            InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)cbxCondicion.SelectedValue;
             InscripcionActual.MiCurso = (Curso)dgvCursos.SelectedRows[0].DataBoundItem;
         }
 
@@ -146,7 +140,10 @@ namespace UI.Desktop
                 Notificar("Informacion invalida", "Porfavor seleccione una condicion valida.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else return isRowSelected(dgvCursos);
+            else
+            {
+                return IsRowSelected(dgvCursos);
+            }
             return false;
         }
     }

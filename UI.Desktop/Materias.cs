@@ -16,45 +16,43 @@ namespace UI.Desktop
 
         private void Materias_Load(object sender, EventArgs e)
         {
-            this.Listar();
+            Listar();
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            MateriaDesktop formMaterias = new MateriaDesktop(ApplicationForm.ModoForm.Alta);
-            formMaterias.ShowDialog();
-            this.Listar();
+            new MateriaDesktop(ModoForm.Alta).ShowDialog();
+            Listar();
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvMaterias))
+            if (IsRowSelected(dgvMaterias))
             {
-                OpenForm(ApplicationForm.ModoForm.Modificacion);
+                OpenForm(ModoForm.Modificacion);
             }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
-            if (isRowSelected(dgvMaterias))
+            if (IsRowSelected(dgvMaterias))
             {
-                OpenForm(ApplicationForm.ModoForm.Baja);
+                OpenForm(ModoForm.Baja);
             }
         }
 
-        private void OpenForm(ApplicationForm.ModoForm modo)
+        private void OpenForm(ModoForm modo)
         {
-            int ID = ((Materia)this.dgvMaterias.SelectedRows[0].DataBoundItem).ID;
-            MateriaDesktop formMaterias = new MateriaDesktop(ID, modo);
-            formMaterias.ShowDialog();
-            this.Listar();
+            int ID = ((Materia)dgvMaterias.SelectedRows[0].DataBoundItem).ID;
+            new MateriaDesktop(ID, modo).ShowDialog();
+            Listar();
         }
 
         public override void Listar()
         {
             try
             {
-                this.dgvMaterias.DataSource = new MateriaLogic().GetAll();
+                dgvMaterias.DataSource = new MateriaLogic().GetAll();
             }
             catch (Exception)
             {

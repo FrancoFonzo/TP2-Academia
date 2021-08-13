@@ -3,13 +3,11 @@ using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Linq;
-using Business.Logic;
 
 namespace UI.Desktop
 {
     public partial class Main : ApplicationForm
     {
-        private Usuario UsuarioActual { get; }
         private readonly string titulo;
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
@@ -20,26 +18,20 @@ namespace UI.Desktop
         public Main()
         {
             InitializeComponent();
+            titulo = $"Bienvenido/a {Login.UsuarioActual.MiPersona?.NombreCompleto}!";
             panelAdminReportes.Visible = false;
-        }
-
-        public Main(Usuario usuarioActual) : this()
-        {
-            UsuarioActual = usuarioActual;
-            titulo = $"Bienvenido/a {UsuarioActual.MiPersona?.NombreCompleto}!";
         }
 
         private void formMain_Load(object sender, EventArgs e)
         {
             lblTitulo.Text = titulo;
-            lblUsuario.Text = $"{lblUsuario.Text} {UsuarioActual.NombreUsuario}";
-            if (UsuarioActual.MiPersona != null)
+            lblUsuario.Text = $"{lblUsuario.Text} {Login.UsuarioActual.NombreUsuario}";
+            if (Login.UsuarioActual.MiPersona != null)
             {
-                lblLegajo.Text = $"{lblLegajo.Text} {UsuarioActual.MiPersona.Legajo}";
-                lblPersona.Text = $"{lblPersona.Text} {UsuarioActual.MiPersona.NombreCompleto}";
+                lblLegajo.Text = $"{lblLegajo.Text} {Login.UsuarioActual.MiPersona.Legajo}";
+                lblPersona.Text = $"{lblPersona.Text} {Login.UsuarioActual.MiPersona.NombreCompleto}";
             }
-            // Segun TipoPersona del usuario visibilizar botones
-            switch (UsuarioActual.MiPersona?.Tipo)
+            switch (Login.UsuarioActual.MiPersona?.Tipo)
             {
                 case Persona.TiposPersonas.Administrador:
                     panelMenu.Controls.OfType<Button>().ToList().ForEach(b => b.Visible = true);
@@ -49,8 +41,6 @@ namespace UI.Desktop
                     break;
                 case Persona.TiposPersonas.Docente:
                     btnNotas.Visible = true;
-                    break;
-                default:
                     break;
             }
         }
@@ -63,7 +53,7 @@ namespace UI.Desktop
 
         private void btnComisiones_Click(object sender, EventArgs e)
         {
-           openForm<Comisiones>();
+            OpenForm(new Comisiones());
         }
 
         private void btnAdministracion_Click(object sender, EventArgs e)
@@ -94,49 +84,43 @@ namespace UI.Desktop
 
         private void btnCursos_Click(object sender, EventArgs e)
         {
-            openForm<Cursos>();
+            OpenForm(new Cursos());
         }
 
         private void btnEspecialidades_Click(object sender, EventArgs e)
         {
-            openForm<Especialidades>();
+            OpenForm(new Especialidades());
         }
 
         private void btnMaterias_Click(object sender, EventArgs e)
         {
-            openForm<Materias>();
+            OpenForm(new Materias());
         }
 
         private void btnPersonas_Click(object sender, EventArgs e)
         {
-            openForm<Personas>();
+            OpenForm(new Personas());
         }
 
         private void btnPlanes_Click(object sender, EventArgs e)
         {
-            openForm<Planes>();
+            OpenForm(new Planes());
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            openForm<Usuarios>();
+            OpenForm(new Usuarios());
         }
-
 
         private void btnInscripcion_Click(object sender, EventArgs e)
         {
-            if( UsuarioActual.MiPersona.Tipo == Persona.TiposPersonas.Administrador)
+            if (Login.UsuarioActual.MiPersona.Tipo == Persona.TiposPersonas.Administrador)
             {
-                panelFormLoader.Controls.Clear();
-                /*ModalLegajo ModalLegajo = new ModalLegajo();
-                ModalLegajo.ShowDialog();
-                int legajo = ModalLegajo.Legajo;*/
-                openForm("Alumnos");
+                OpenForm(new Personas(Persona.TiposPersonas.Alumno));
             }
             else
             {
-                panelFormLoader.Controls.Clear();
-                openForm("Inscripciones");
+                OpenForm(new Inscripciones(Login.UsuarioActual.MiPersona));
             }
         }
 
@@ -178,8 +162,7 @@ namespace UI.Desktop
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            ApplicationForm form = panelFormLoader.Controls.OfType<ApplicationForm>().SingleOrDefault();
-            form.Listar();
+            panelFormLoader.Controls.OfType<ApplicationForm>().FirstOrDefault()?.Listar();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -206,47 +189,7 @@ namespace UI.Desktop
             WindowState = FormWindowState.Minimized;
         }
 
-        private void openForm<T>() where T : ApplicationForm
-        {
-            panelFormLoader.Controls.Clear();
-            T form = Activator.CreateInstance<T>();
-            form.Dock = DockStyle.Fill;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.TopLevel = false;
-            form.TopMost = true;
-            panelFormLoader.Controls.Add(form);
-            lblTitulo.Text = form.Text;
-            form.Show();
-        }
-
-        private void openForm(string tipoForm)
-        {
-            panelFormLoader.Controls.Clear();
-            ApplicationForm form;
-            switch (tipoForm)
-            {
-                case "Inscripciones":
-                    form = new Inscripciones(UsuarioActual.MiPersona);
-                    lblTitulo.Text = form.Text;
-                    break;
-                case "Alumnos":
-                    form = new Personas(Persona.TiposPersonas.Alumno);
-                    lblTitulo.Text = "Inscripcion Alumnos";
-                    break;
-                case "Docentes":
-                    throw new NotImplementedException();
-                default:
-                    throw new InvalidOperationException("Tipo de formulario desconocido");
-            }
-            form.Dock = DockStyle.Fill;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.TopLevel = false;
-            form.TopMost = true;
-            panelFormLoader.Controls.Add(form);
-            form.Show();
-        }
-
-        internal void openForm(ApplicationForm form)
+        internal void OpenForm(ApplicationForm form)
         {
             panelFormLoader.Controls.Clear();
             form.Dock = DockStyle.Fill;

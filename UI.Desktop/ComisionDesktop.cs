@@ -21,9 +21,9 @@ namespace UI.Desktop
             Modo = modo;
         }
 
-        public ComisionDesktop(int ID, ModoForm modo) : this(modo)
+        public ComisionDesktop(int id, ModoForm modo) : this(modo)
         {
-            ComisionActual = new ComisionLogic().GetOne(ID);
+            ComisionActual = new ComisionLogic().GetOne(id);
             MapearDeDatos();
         }
 
@@ -67,32 +67,27 @@ namespace UI.Desktop
 
         public override void MapearADatos()
         {
-            if (Modo == ModoForm.Alta)
+            switch (Modo)
             {
-                ComisionActual = new Comision { State = BusinessEntity.States.New };
-            }
-            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                if (Modo == ModoForm.Modificacion)
-                {
+                case ModoForm.Baja:
+                    ComisionActual.State = BusinessEntity.States.Deleted;
+                    return;
+                case ModoForm.Consulta:
+                    ComisionActual.State = BusinessEntity.States.Unmodified;
+                    return;
+                case ModoForm.Alta:
+                    ComisionActual = new Comision { State = BusinessEntity.States.New };
+                    break;
+                case ModoForm.Modificacion:
                     ComisionActual.State = BusinessEntity.States.Modified;
-                }
-                ComisionActual.Descripcion = txtDescripcion.Text;
-                ComisionActual.AnioEspecialidad = int.Parse(txtAnioEspecialidad.Text);
+                    break;
+            }
+            ComisionActual.Descripcion = txtDescripcion.Text;
+            ComisionActual.AnioEspecialidad = int.Parse(txtAnioEspecialidad.Text);
 
-                var idPlan = cbxPlan.SelectedValue;
-                if (idPlan != null)
-                {
-                    ComisionActual.MiPlan = new PlanLogic().GetOne((int)idPlan);
-                }
-            }
-            else if (Modo == ModoForm.Baja)
+            if (cbxPlan.SelectedValue != null)
             {
-                ComisionActual.State = BusinessEntity.States.Deleted;
-            }
-            else if (Modo == ModoForm.Consulta)
-            {
-                ComisionActual.State = BusinessEntity.States.Unmodified;
+                ComisionActual.MiPlan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
             }
         }
 
@@ -105,7 +100,7 @@ namespace UI.Desktop
         public override bool Validar()
         {
             if (!Validaciones.FormularioCompleto
-                (new List<string> {txtDescripcion.Text,  txtAnioEspecialidad.Text}))
+                (new List<string> { txtDescripcion.Text, txtAnioEspecialidad.Text }))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

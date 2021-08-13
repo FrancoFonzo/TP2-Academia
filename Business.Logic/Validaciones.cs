@@ -8,15 +8,13 @@ namespace Business.Logic
     {
         public static bool ValidarRegexEmail(string email)
         {
-            String patron = @"^[a-z0-9!#$%&'""*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'""*+/=?^_`{|}~-]+)*" +
-                    @"@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
-            return Regex.IsMatch(email, patron);
+            return Regex.IsMatch(email, @"^[a-z0-9!#$%&'""*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'""*+/=?^_`{|}~-]+)*" +
+                    @"@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
         }
 
         public static bool ValidarRegexClave(string clave)
         {
-            string patron = ".{4,50}";
-            return Regex.IsMatch(clave, patron);
+            return Regex.IsMatch(clave, ".{4,50}");
         }
 
         public static bool ValidarClaveConfirmada(string clave, string conf)
@@ -26,8 +24,7 @@ namespace Business.Logic
 
         public static bool ValidarRegexNyA(string texto)
         {
-            String patron = @"^[A-Za-zÀ-ú]+([-' ][A-Za-zÀ-ú]+)*$";
-            return Regex.IsMatch(texto, patron);
+            return Regex.IsMatch(texto, @"^[A-Za-zÀ-ú]+([-' ][A-Za-zÀ-ú]+)*$");
         }
 
         public static bool FormularioCompleto(List<string> txts)
@@ -35,9 +32,10 @@ namespace Business.Logic
             bool rta = true;
             txts.ForEach(t =>
             {
-                if (string.IsNullOrEmpty(t)) 
+                if (string.IsNullOrEmpty(t))
                 {
-                    rta = false; 
+                    rta = false;
+                    return;
                 }
             });
             return rta;

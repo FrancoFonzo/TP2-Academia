@@ -1,6 +1,5 @@
 ﻿using Business.Entities;
 using Data.Database;
-using System;
 using System.Collections.Generic;
 
 namespace Business.Logic
@@ -14,11 +13,6 @@ namespace Business.Logic
             PersonaData = new PersonaAdapter();
         }
 
-        public Persona GetOne(int id)
-        {
-            return PersonaData.GetOne(id);
-        }
-
         public List<Persona> GetAll()
         {
             return PersonaData.GetAll();
@@ -29,6 +23,16 @@ namespace Business.Logic
             return PersonaData.GetPersonasSinUsuario();
         }
 
+        public List<Persona> GetAllTipo(Persona.TiposPersonas tipo)
+        {
+            return PersonaData.GetAllTipo(tipo);
+        }
+
+        public Persona GetOne(int id)
+        {
+            return PersonaData.GetOne(id);
+        }
+
         public void Save(Persona persona)
         {
             PersonaData.Save(persona);
@@ -37,11 +41,6 @@ namespace Business.Logic
         public void Delete(int id)
         {
             PersonaData.Delete(id);
-        }
-
-        public List<Persona> GetAllTipos(Persona.TiposPersonas tipo)
-        {
-            return PersonaData.GetAllTipos(tipo);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Business.Entities
+﻿namespace Business.Entities
 {
     public class Plan : BusinessEntity
     {
