@@ -2,7 +2,12 @@
 {
     public class AlumnoInscripcion : BusinessEntity
     {
-        public string Condicion { get; set; }
+        public AlumnoInscripcion()
+        {
+            this.Condicion = Condiciones.Inscripto;
+        }
+
+        public Condiciones Condicion { get; set; }
         public int? Nota { get; set; }
 
         #region Propiedades de Navegacion

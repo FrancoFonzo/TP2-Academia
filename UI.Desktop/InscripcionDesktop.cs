@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using System.Collections.Generic;
 
 namespace UI.Desktop
 {
@@ -14,6 +15,7 @@ namespace UI.Desktop
         {
             InitializeComponent();
             dgvCursos.AutoGenerateColumns = false;
+            cbxCondicion.DataSource = Enum.GetValues(typeof(AlumnoInscripcion.Condiciones));
         }
 
         private void Cursos_Load(object sender, EventArgs e)
@@ -32,9 +34,11 @@ namespace UI.Desktop
             MapearDeDatos();
         }
 
-        public InscripcionDesktop(int ID, Persona personaActual, ModoForm modo) : this(personaActual, modo)
+        public InscripcionDesktop(int ID, Persona personaActual, ModoForm modo) : this(modo)
         {
+            PersonaActual = personaActual;
             InscripcionActual = new AlumnoInscripcionLogic().GetOne(ID);
+            MapearDeDatos();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -53,43 +57,56 @@ namespace UI.Desktop
 
         public override void MapearDeDatos()
         {
-            txtID.Text = PersonaActual.ID.ToString();
-            txtUsuario.Text = PersonaActual.Nombre;
-
+            txtAlumno.Text = PersonaActual.NombreCompleto;
+            if (InscripcionActual?.MiCurso != null)
+            {
+                cbxCondicion.SelectedItem = InscripcionActual.Condicion;
+            }
             if (Modo == ModoForm.Consulta)
             {
                 btnAceptar.Text = "Aceptar";
-            }
-            else if (Modo == ModoForm.Baja)
-            {
-                btnAceptar.Text = "Eliminar";
             }
             else if (Modo == ModoForm.Alta)
             {
                 btnAceptar.Text = "Inscribir";
             }
+            else if (Modo == ModoForm.Modificacion)
+            {
+                btnAceptar.Text = "Guardar";
+                cbxCondicion.Enabled = true;
+            }
+            else if (Modo == ModoForm.Baja)
+            {
+                btnAceptar.Text = "Eliminar";
+            }
         }
 
         public override void MapearADatos()
         {
+            if (Modo == ModoForm.Baja)
+            {
+                InscripcionActual.State = BusinessEntity.States.Deleted;
+                return;
+            }
+            if (Modo == ModoForm.Consulta)
+            {
+                InscripcionActual.State = BusinessEntity.States.Unmodified;
+                return;
+            }
             if (Modo == ModoForm.Alta)
             {
                 InscripcionActual = new AlumnoInscripcion
                 {
                     State = BusinessEntity.States.New,
-                    MiAlumno = PersonaActual,
-                    Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString(),
-                    MiCurso = (Curso)dgvCursos.SelectedRows[0].DataBoundItem
                 };
             }
-            else if (Modo == ModoForm.Baja)
+            else if (Modo == ModoForm.Modificacion)
             {
-                InscripcionActual.State = BusinessEntity.States.Deleted;
+                InscripcionActual.State = BusinessEntity.States.Modified;
             }
-            else if (Modo == ModoForm.Consulta)
-            {
-                InscripcionActual.State = BusinessEntity.States.Unmodified;
-            }
+            InscripcionActual.MiAlumno = PersonaActual;
+            InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones) cbxCondicion.SelectedValue;
+            InscripcionActual.MiCurso = (Curso)dgvCursos.SelectedRows[0].DataBoundItem;
         }
 
         public override void GuardarCambios()
@@ -102,14 +119,18 @@ namespace UI.Desktop
         {
             try
             {
-                if (Modo == ModoForm.Alta)
+                switch (Modo)
                 {
-                    dgvCursos.DataSource = new CursoLogic().GetCursosNoInscripto(PersonaActual.ID);
+                    case ModoForm.Alta:
+                        dgvCursos.DataSource = new CursoLogic().GetCursosNoInscripto(PersonaActual.ID);
+                        break;
+                    case ModoForm.Modificacion:
+                    case ModoForm.Baja:
+                        dgvCursos.DataSource = new List<Curso> { InscripcionActual.MiCurso };
+                        break;
+                    case ModoForm.Consulta:
+                        break;
                 }
-                else
-                {
-                    dgvCursos.DataSource = InscripcionActual?.MiCurso;
-                }                    
             }
             catch (Exception)
             {
@@ -120,13 +141,13 @@ namespace UI.Desktop
 
         public override bool Validar()
         {
-            if (!isRowSelected(dgvCursos))
+            if (cbxCondicion.SelectedValue == null)
             {
-                Notificar("Accion invalida", "Porfavor seleccione una fila.",
+                Notificar("Informacion invalida", "Porfavor seleccione una condicion valida.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
-            return true;
+            else return isRowSelected(dgvCursos);
+            return false;
         }
     }
 }

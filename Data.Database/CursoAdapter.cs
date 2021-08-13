@@ -21,16 +21,15 @@ namespace Data.Database
         {
             using (AcademiaEntities context = new AcademiaEntities())
             {
-                Persona persona = personaData.GetOne(idPersona);
                 List<Curso> cursos = new List<Curso>();
-                var lstCursos =
-                    context.cursos
+                context.cursos
                     .Where(c =>
                         !context.alumnos_inscripciones
+                        .Where(i => i.id_alumno == idPersona)
                         .Select(i => i.id_curso)
                         .Contains(c.id_curso))
-                    .ToList();
-                lstCursos?.ForEach(c => cursos.Add(nuevoCurso(c)));
+                    .ToList()
+                    .ForEach(c => cursos.Add(nuevoCurso(c)));
                 return cursos;
             }
         }
@@ -49,8 +48,6 @@ namespace Data.Database
                 MiMateria = materiaData.GetOne(cur.id_materia),
                 MiComision = comisionData.GetOne(cur.id_comision)
             };
-            curso.Descripcion = $"{curso.MiMateria.Descripcion}" +
-                $" - {curso.MiComision.Descripcion} - {curso.AnioCalendario}";
             return curso;
         }
 

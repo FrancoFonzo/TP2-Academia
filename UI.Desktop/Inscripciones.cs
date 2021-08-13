@@ -25,35 +25,44 @@ namespace UI.Desktop
             if (admin)
             {
                 tsbEliminar.Visible = true;
+                tsbEditar.Visible = true;
             }
         }
 
         private void Inscripciones_Load(object sender, EventArgs e)
         {
-            this.Listar();
+            Listar();
         }
 
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
             InscripcionDesktop formInscripciones = new InscripcionDesktop(PersonaActual, ModoForm.Alta);
             formInscripciones.ShowDialog();
-            this.Listar();
+            Listar();
+        }
+
+        private void tsbEditar_Click(object sender, EventArgs e)
+        {
+            if (isRowSelected(dgvInscripciones))
+            {
+                OpenForm(ModoForm.Modificacion);
+            }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)
         {
             if (isRowSelected(dgvInscripciones))
             {
-                OpenForm();
+                OpenForm(ModoForm.Baja);
             }
         }
 
-        private void OpenForm()
+        private void OpenForm(ModoForm modo)
         {
-            int ID = ((AlumnoInscripcion)this.dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
-            InscripcionDesktop formMaterias = new InscripcionDesktop(ID, PersonaActual, ModoForm.Baja);
+            int ID = ((AlumnoInscripcion) dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
+            InscripcionDesktop formMaterias = new InscripcionDesktop(ID, PersonaActual, modo);
             formMaterias.ShowDialog();
-            this.Listar();
+            Listar();
         }
 
         public override void Listar()

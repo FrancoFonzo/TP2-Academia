@@ -77,7 +77,6 @@ namespace UI.Desktop
                 {
                     CursoActual.State = BusinessEntity.States.Modified;
                 }
-                CursoActual.Descripcion = txtDescripcion.Text;
                 CursoActual.AnioCalendario = int.Parse(txtAñoCalendario.Text);
                 CursoActual.Cupo = int.Parse(txtCupo.Text);
                 CursoActual.MiMateria = new MateriaLogic().GetOne((int)cbxMateria.SelectedValue);

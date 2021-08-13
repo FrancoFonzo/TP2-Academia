@@ -29,54 +29,45 @@ namespace UI.Desktop
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.lblID = new System.Windows.Forms.Label();
-            this.lblPersona = new System.Windows.Forms.Label();
+            this.lblCondicion = new System.Windows.Forms.Label();
+            this.lblAlumno = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.tlpInscripcion = new System.Windows.Forms.TableLayoutPanel();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.cbxCondicion = new System.Windows.Forms.ComboBox();
+            this.lblCursos = new System.Windows.Forms.Label();
+            this.txtAlumno = new System.Windows.Forms.TextBox();
             this.panelButtons = new System.Windows.Forms.Panel();
-            this.dgvCursos = new System.Windows.Forms.DataGridView();
-            this.materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.anio_calendario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvCursos = new System.Windows.Forms.DataGridView();
             this.tlpInscripcion.SuspendLayout();
             this.panelButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtID
+            // lblCondicion
             // 
-            this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtID.Location = new System.Drawing.Point(87, 15);
-            this.txtID.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
-            this.txtID.Name = "txtID";
-            this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(282, 22);
-            this.txtID.TabIndex = 0;
+            this.lblCondicion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCondicion.AutoSize = true;
+            this.lblCondicion.Location = new System.Drawing.Point(362, 12);
+            this.lblCondicion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCondicion.Name = "lblCondicion";
+            this.lblCondicion.Size = new System.Drawing.Size(70, 17);
+            this.lblCondicion.TabIndex = 3;
+            this.lblCondicion.Text = "Condicion";
             // 
-            // lblID
+            // lblAlumno
             // 
-            this.lblID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(4, 17);
-            this.lblID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(78, 17);
-            this.lblID.TabIndex = 3;
-            this.lblID.Text = "ID Persona";
-            // 
-            // lblPersona
-            // 
-            this.lblPersona.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblPersona.AutoSize = true;
-            this.lblPersona.Location = new System.Drawing.Point(378, 17);
-            this.lblPersona.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPersona.Name = "lblUsuario";
-            this.lblPersona.Size = new System.Drawing.Size(57, 17);
-            this.lblPersona.TabIndex = 4;
-            this.lblPersona.Text = "Usuario";
+            this.lblAlumno.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblAlumno.AutoSize = true;
+            this.lblAlumno.Location = new System.Drawing.Point(4, 12);
+            this.lblAlumno.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAlumno.Name = "lblAlumno";
+            this.lblAlumno.Size = new System.Drawing.Size(55, 17);
+            this.lblAlumno.TabIndex = 4;
+            this.lblAlumno.Text = "Alumno";
             // 
             // btnAceptar
             // 
@@ -106,33 +97,66 @@ namespace UI.Desktop
             // 
             // tlpInscripcion
             // 
+            this.tlpInscripcion.AutoSize = true;
             this.tlpInscripcion.ColumnCount = 4;
             this.tlpInscripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpInscripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpInscripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpInscripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpInscripcion.Controls.Add(this.lblID, 0, 0);
-            this.tlpInscripcion.Controls.Add(this.txtID, 1, 0);
-            this.tlpInscripcion.Controls.Add(this.lblPersona, 2, 0);
-            this.tlpInscripcion.Controls.Add(this.txtUsuario, 3, 0);
+            this.tlpInscripcion.Controls.Add(this.cbxCondicion, 3, 0);
+            this.tlpInscripcion.Controls.Add(this.lblCursos, 0, 1);
+            this.tlpInscripcion.Controls.Add(this.lblCondicion, 2, 0);
+            this.tlpInscripcion.Controls.Add(this.lblAlumno, 0, 0);
+            this.tlpInscripcion.Controls.Add(this.txtAlumno, 1, 0);
             this.tlpInscripcion.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpInscripcion.Location = new System.Drawing.Point(0, 0);
             this.tlpInscripcion.Margin = new System.Windows.Forms.Padding(0);
             this.tlpInscripcion.Name = "tlpInscripcion";
-            this.tlpInscripcion.RowCount = 1;
+            this.tlpInscripcion.RowCount = 2;
             this.tlpInscripcion.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpInscripcion.Size = new System.Drawing.Size(732, 52);
+            this.tlpInscripcion.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpInscripcion.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpInscripcion.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpInscripcion.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpInscripcion.Size = new System.Drawing.Size(732, 79);
             this.tlpInscripcion.TabIndex = 7;
             // 
-            // txtUsuario
+            // cbxCondicion
             // 
-            this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUsuario.Location = new System.Drawing.Point(444, 15);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.ReadOnly = true;
-            this.txtUsuario.Size = new System.Drawing.Size(283, 22);
-            this.txtUsuario.TabIndex = 6;
+            this.cbxCondicion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxCondicion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbxCondicion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxCondicion.DisplayMember = "Condicion";
+            this.cbxCondicion.Enabled = false;
+            this.cbxCondicion.FormattingEnabled = true;
+            this.cbxCondicion.Location = new System.Drawing.Point(441, 9);
+            this.cbxCondicion.Margin = new System.Windows.Forms.Padding(5);
+            this.cbxCondicion.Name = "cbxCondicion";
+            this.cbxCondicion.Size = new System.Drawing.Size(286, 24);
+            this.cbxCondicion.TabIndex = 9;
+            // 
+            // lblCursos
+            // 
+            this.lblCursos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCursos.AutoSize = true;
+            this.tlpInscripcion.SetColumnSpan(this.lblCursos, 4);
+            this.lblCursos.Location = new System.Drawing.Point(0, 52);
+            this.lblCursos.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.lblCursos.Name = "lblCursos";
+            this.lblCursos.Size = new System.Drawing.Size(732, 17);
+            this.lblCursos.TabIndex = 8;
+            this.lblCursos.Text = "Cursos";
+            this.lblCursos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtAlumno
+            // 
+            this.txtAlumno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAlumno.Location = new System.Drawing.Point(68, 10);
+            this.txtAlumno.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.txtAlumno.Name = "txtAlumno";
+            this.txtAlumno.ReadOnly = true;
+            this.txtAlumno.Size = new System.Drawing.Size(285, 22);
+            this.txtAlumno.TabIndex = 6;
             // 
             // panelButtons
             // 
@@ -144,6 +168,30 @@ namespace UI.Desktop
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Size = new System.Drawing.Size(732, 50);
             this.panelButtons.TabIndex = 8;
+            // 
+            // anio_calendario
+            // 
+            this.anio_calendario.DataPropertyName = "AnioCalendario";
+            this.anio_calendario.HeaderText = "Año calendario";
+            this.anio_calendario.MinimumWidth = 6;
+            this.anio_calendario.Name = "anio_calendario";
+            this.anio_calendario.ReadOnly = true;
+            // 
+            // comision
+            // 
+            this.comision.DataPropertyName = "MiComision";
+            this.comision.HeaderText = "Comision";
+            this.comision.MinimumWidth = 6;
+            this.comision.Name = "comision";
+            this.comision.ReadOnly = true;
+            // 
+            // materia
+            // 
+            this.materia.DataPropertyName = "MiMateria";
+            this.materia.HeaderText = "Materia";
+            this.materia.MinimumWidth = 6;
+            this.materia.Name = "materia";
+            this.materia.ReadOnly = true;
             // 
             // dgvCursos
             // 
@@ -157,7 +205,7 @@ namespace UI.Desktop
             this.comision,
             this.anio_calendario});
             this.dgvCursos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCursos.Location = new System.Drawing.Point(0, 52);
+            this.dgvCursos.Location = new System.Drawing.Point(0, 79);
             this.dgvCursos.Margin = new System.Windows.Forms.Padding(0);
             this.dgvCursos.MultiSelect = false;
             this.dgvCursos.Name = "dgvCursos";
@@ -165,32 +213,8 @@ namespace UI.Desktop
             this.dgvCursos.RowHeadersWidth = 51;
             this.dgvCursos.RowTemplate.Height = 24;
             this.dgvCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCursos.Size = new System.Drawing.Size(732, 190);
+            this.dgvCursos.Size = new System.Drawing.Size(732, 163);
             this.dgvCursos.TabIndex = 9;
-            // 
-            // materia
-            // 
-            this.materia.DataPropertyName = "MiMateria";
-            this.materia.HeaderText = "Materia";
-            this.materia.MinimumWidth = 6;
-            this.materia.Name = "materia";
-            this.materia.ReadOnly = true;
-            // 
-            // comision
-            // 
-            this.comision.DataPropertyName = "MiComision";
-            this.comision.HeaderText = "Comision";
-            this.comision.MinimumWidth = 6;
-            this.comision.Name = "comision";
-            this.comision.ReadOnly = true;
-            // 
-            // anio_calendario
-            // 
-            this.anio_calendario.DataPropertyName = "AnioCalendario";
-            this.anio_calendario.HeaderText = "Año calendario";
-            this.anio_calendario.MinimumWidth = 6;
-            this.anio_calendario.Name = "anio_calendario";
-            this.anio_calendario.ReadOnly = true;
             // 
             // InscripcionDesktop
             // 
@@ -199,8 +223,8 @@ namespace UI.Desktop
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(732, 292);
             this.Controls.Add(this.dgvCursos);
-            this.Controls.Add(this.tlpInscripcion);
             this.Controls.Add(this.panelButtons);
+            this.Controls.Add(this.tlpInscripcion);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "InscripcionDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -212,22 +236,23 @@ namespace UI.Desktop
             this.panelButtons.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.Label lblID;
-        private System.Windows.Forms.Label lblPersona;
+        private System.Windows.Forms.Label lblCondicion;
+        private System.Windows.Forms.Label lblAlumno;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TableLayoutPanel tlpInscripcion;
         private System.Windows.Forms.Panel panelButtons;
-        private System.Windows.Forms.DataGridView dgvCursos;
-        private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn materia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn comision;
+        private System.Windows.Forms.TextBox txtAlumno;
         private System.Windows.Forms.DataGridViewTextBoxColumn anio_calendario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comision;
+        private System.Windows.Forms.DataGridViewTextBoxColumn materia;
+        private System.Windows.Forms.DataGridView dgvCursos;
+        private System.Windows.Forms.Label lblCursos;
+        private System.Windows.Forms.ComboBox cbxCondicion;
     }
 }

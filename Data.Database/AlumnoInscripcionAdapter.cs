@@ -18,13 +18,13 @@ namespace Data.Database
             }
         }
 
-        public IList<AlumnoInscripcion> GetAllAlumno(Persona alumno)
+        public List<AlumnoInscripcion> GetAllAlumno(Persona alumno)
         {
             using (var context = new AcademiaEntities())
             {
-                IList<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
+                List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
                 var lstInscripciones = context.alumnos_inscripciones.Where(i => i.id_alumno == alumno.ID);
-                lstInscripciones?.ToList().ForEach(i => inscripciones.Add(nuevaInscripcion(i, alumno)));
+                lstInscripciones?.ToList().ForEach(i => inscripciones.Add(nuevaInscripcion(i)));
                 return inscripciones;
             }
         }
@@ -78,8 +78,8 @@ namespace Data.Database
                     insc.id_inscripcion = inscripcion.ID;
                     insc.id_alumno = inscripcion.MiAlumno.ID;
                     insc.id_curso = inscripcion.MiCurso.ID;
-                    insc.nota = (int)inscripcion.Nota;
-                    insc.condicion = inscripcion.Condicion;
+                    insc.nota = inscripcion.Nota;
+                    insc.condicion = inscripcion.Condicion.ToString();
                     context.SaveChanges();
                 }
             }
@@ -94,7 +94,7 @@ namespace Data.Database
                     id_inscripcion = inscripcion.ID,
                     id_alumno = inscripcion.MiAlumno.ID,
                     id_curso = inscripcion.MiCurso.ID,
-                    condicion = inscripcion.Condicion,
+                    condicion = inscripcion.Condicion.ToString(),
                     nota = inscripcion.Nota
                 };
                 context.alumnos_inscripciones.Add(insc);
@@ -102,7 +102,7 @@ namespace Data.Database
             }
         }
 
-        private static AlumnoInscripcion nuevaInscripcion(alumnos_inscripciones insc, Persona alumno = null)
+        private static AlumnoInscripcion nuevaInscripcion(alumnos_inscripciones insc)
         {
             if (insc == null)
             {
@@ -111,9 +111,10 @@ namespace Data.Database
             AlumnoInscripcion inscripcion = new AlumnoInscripcion
             {
                 ID = insc.id_inscripcion,
-                Condicion = insc.condicion,
+                Condicion = (AlumnoInscripcion.Condiciones) 
+                    Enum.Parse(typeof(AlumnoInscripcion.Condiciones), insc.condicion),
                 Nota = insc.nota,
-                MiAlumno = alumno ?? personaData.GetOne(insc.id_alumno),
+                MiAlumno = personaData.GetOne(insc.id_alumno),
                 MiCurso = cursoData.GetOne(insc.id_curso)
             };
             return inscripcion;

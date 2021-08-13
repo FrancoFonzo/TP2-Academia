@@ -117,7 +117,7 @@ namespace UI.Desktop
         public override bool Validar()
         {
             if (!Validaciones.FormularioCompleto
-                (new List<string> {txtNombre.Text, txtApellido.Text, txtEMail.Text,
+                (new List<string> {txtNombre.Text, txtApellido.Text, txtLegajo.Text, txtEMail.Text,
                     txtDireccion.Text, txtTelefono.Text, dateNacimiento.Text}))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
