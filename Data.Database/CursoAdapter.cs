@@ -22,13 +22,15 @@ namespace Data.Database
             using (AcademiaEntities context = new AcademiaEntities())
             {
                 Persona persona = personaData.GetOne(idPersona);
-                var cursos =
-                    GetAll()
+                List<Curso> cursos = new List<Curso>();
+                var lstCursos =
+                    context.cursos
                     .Where(c =>
-                        !persona.MisInscripciones
-                        .Select(i => i.MiCurso)
-                        .Contains(c))
+                        !context.alumnos_inscripciones
+                        .Select(i => i.id_curso)
+                        .Contains(c.id_curso))
                     .ToList();
+                lstCursos?.ForEach(c => cursos.Add(nuevoCurso(c)));
                 return cursos;
             }
         }

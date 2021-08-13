@@ -24,11 +24,6 @@ namespace Business.Logic
             return PersonaData.GetAll();
         }
 
-        public List<String> GetTipos()
-        {
-            return PersonaData.GetTipos();
-        }
-
         public List<Persona> GetPersonasSinUsuario()
         {
             return PersonaData.GetPersonasSinUsuario();

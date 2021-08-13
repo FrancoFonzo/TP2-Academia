@@ -36,7 +36,6 @@ namespace UI.Desktop
             this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInscripciones = new System.Windows.Forms.ToolStrip();
             this.tsbAgregar = new System.Windows.Forms.ToolStripButton();
-            this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripciones)).BeginInit();
             this.tsInscripciones.SuspendLayout();
@@ -106,7 +105,6 @@ namespace UI.Desktop
             this.tsInscripciones.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsInscripciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbAgregar,
-            this.tsbEditar,
             this.tsbEliminar});
             this.tsInscripciones.Location = new System.Drawing.Point(0, 0);
             this.tsInscripciones.Name = "tsInscripciones";
@@ -126,20 +124,6 @@ namespace UI.Desktop
             this.tsbAgregar.Text = "Agregar";
             this.tsbAgregar.ToolTipText = "Agregar";
             this.tsbAgregar.Click += new System.EventHandler(this.tsbAgregar_Click);
-            // 
-            // tsbEditar
-            // 
-            this.tsbEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.tsbEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbEditar.Image = global::UI.Desktop.Properties.Resources.edit_32;
-            this.tsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEditar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.tsbEditar.Name = "tsbEditar";
-            this.tsbEditar.Size = new System.Drawing.Size(29, 31);
-            this.tsbEditar.Text = "Editar";
-            this.tsbEditar.ToolTipText = "Editar";
-            this.tsbEditar.Visible = false;
-            this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
             // 
             // tsbEliminar
             // 
@@ -183,7 +167,6 @@ namespace UI.Desktop
         private System.Windows.Forms.DataGridViewTextBoxColumn comision;
         private System.Windows.Forms.DataGridViewTextBoxColumn condicion;
         private System.Windows.Forms.DataGridViewTextBoxColumn nota;
-        private System.Windows.Forms.ToolStripButton tsbEditar;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
     }
 }

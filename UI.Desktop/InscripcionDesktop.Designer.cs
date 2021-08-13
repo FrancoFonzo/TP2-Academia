@@ -69,14 +69,14 @@ namespace UI.Desktop
             // 
             // lblPersona
             // 
-            this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(378, 17);
-            this.lblUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(57, 17);
-            this.lblUsuario.TabIndex = 4;
-            this.lblUsuario.Text = "Usuario";
+            this.lblPersona.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblPersona.AutoSize = true;
+            this.lblPersona.Location = new System.Drawing.Point(378, 17);
+            this.lblPersona.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPersona.Name = "lblUsuario";
+            this.lblPersona.Size = new System.Drawing.Size(57, 17);
+            this.lblPersona.TabIndex = 4;
+            this.lblPersona.Text = "Usuario";
             // 
             // btnAceptar
             // 
@@ -113,7 +113,7 @@ namespace UI.Desktop
             this.tlpInscripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpInscripcion.Controls.Add(this.lblID, 0, 0);
             this.tlpInscripcion.Controls.Add(this.txtID, 1, 0);
-            this.tlpInscripcion.Controls.Add(this.lblUsuario, 2, 0);
+            this.tlpInscripcion.Controls.Add(this.lblPersona, 2, 0);
             this.tlpInscripcion.Controls.Add(this.txtUsuario, 3, 0);
             this.tlpInscripcion.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpInscripcion.Location = new System.Drawing.Point(0, 0);

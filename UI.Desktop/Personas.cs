@@ -71,8 +71,7 @@ namespace UI.Desktop
         private void openFormInscripcion()
         {
             Persona persona = (Persona)dgvPersonas.SelectedRows[0].DataBoundItem;
-            var form = new Inscripciones(persona);
-            var main = new Main();
+            var form = new Inscripciones(persona, true);
             Program.MainUI.openForm(form);
         }
 

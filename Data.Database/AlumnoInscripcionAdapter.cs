@@ -18,7 +18,7 @@ namespace Data.Database
             }
         }
 
-        internal IList<AlumnoInscripcion> GetAllAlumno(Persona alumno)
+        public IList<AlumnoInscripcion> GetAllAlumno(Persona alumno)
         {
             using (var context = new AcademiaEntities())
             {

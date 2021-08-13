@@ -20,6 +20,14 @@ namespace UI.Desktop
             PersonaActual = personaActual;
         }
 
+        public Inscripciones(Persona personaActual, bool admin) : this(personaActual)
+        {
+            if (admin)
+            {
+                tsbEliminar.Visible = true;
+            }
+        }
+
         private void Inscripciones_Load(object sender, EventArgs e)
         {
             this.Listar();
@@ -32,27 +40,33 @@ namespace UI.Desktop
             this.Listar();
         }
 
+        private void tsbEliminar_Click(object sender, EventArgs e)
+        {
+            if (isRowSelected(dgvInscripciones))
+            {
+                OpenForm();
+            }
+        }
+
+        private void OpenForm()
+        {
+            int ID = ((AlumnoInscripcion)this.dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
+            InscripcionDesktop formMaterias = new InscripcionDesktop(ID, PersonaActual, ModoForm.Baja);
+            formMaterias.ShowDialog();
+            this.Listar();
+        }
+
         public override void Listar()
         {
             try
             {
-                this.dgvInscripciones.DataSource = UsuarioActual.MiPersona.MisInscripciones;
+                this.dgvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllAlumno(PersonaActual);
             }
             catch (Exception)
             {
                 Notificar("Error", "Error al recuperar los datos del usuario",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void tsbEditar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsbEliminar_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

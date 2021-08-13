@@ -32,10 +32,9 @@ namespace UI.Desktop
             MapearDeDatos();
         }
 
-        public InscripcionDesktop(AlumnoInscripcion inscripcion, ModoForm modo) : this(modo)
+        public InscripcionDesktop(int ID, Persona personaActual, ModoForm modo) : this(personaActual, modo)
         {
-            this.InscripcionActual = inscripcion;
-            MapearDeDatos();
+            InscripcionActual = new AlumnoInscripcionLogic().GetOne(ID);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -56,14 +55,10 @@ namespace UI.Desktop
         {
             txtID.Text = PersonaActual.ID.ToString();
             txtUsuario.Text = PersonaActual.Nombre;
-            
+
             if (Modo == ModoForm.Consulta)
             {
                 btnAceptar.Text = "Aceptar";
-            }
-            else if (Modo == ModoForm.Modificacion)
-            {
-                btnAceptar.Text = "Guardar";
             }
             else if (Modo == ModoForm.Baja)
             {
@@ -79,17 +74,13 @@ namespace UI.Desktop
         {
             if (Modo == ModoForm.Alta)
             {
-                InscripcionActual = new AlumnoInscripcion { State = BusinessEntity.States.New };
-            }
-            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                if (Modo == ModoForm.Modificacion)
+                InscripcionActual = new AlumnoInscripcion
                 {
-                    InscripcionActual.State = BusinessEntity.States.Modified;
-                }
-                InscripcionActual.MiAlumno = PersonaActual;
-                InscripcionActual.Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString();
-                InscripcionActual.MiCurso = (Curso) dgvCursos.SelectedRows[0].DataBoundItem;
+                    State = BusinessEntity.States.New,
+                    MiAlumno = PersonaActual,
+                    Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString(),
+                    MiCurso = (Curso)dgvCursos.SelectedRows[0].DataBoundItem
+                };
             }
             else if (Modo == ModoForm.Baja)
             {
@@ -111,7 +102,14 @@ namespace UI.Desktop
         {
             try
             {
-                dgvCursos.DataSource = new CursoLogic().GetCursosNoInscripto(UsuarioActual.MiPersona.ID);
+                if (Modo == ModoForm.Alta)
+                {
+                    dgvCursos.DataSource = new CursoLogic().GetCursosNoInscripto(PersonaActual.ID);
+                }
+                else
+                {
+                    dgvCursos.DataSource = InscripcionActual?.MiCurso;
+                }                    
             }
             catch (Exception)
             {
