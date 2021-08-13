@@ -150,19 +150,6 @@ namespace Data.Database
             {
                 persona.MiPlan = planData.GetOne((int)per.id_plan);
             }
-            switch (persona.Tipo)
-            {
-                case Persona.TiposPersonas.Administrador:
-                    break;
-                case Persona.TiposPersonas.Alumno:
-                    persona.MisInscripciones = inscripcionData.GetAllAlumno(persona);
-                    break;
-                case Persona.TiposPersonas.Docente:
-                    persona.MisDictados = dictadoAdapter.GetAllDocente(persona);
-                    break;
-                default:
-                    throw new Exception("Tipo de persona desconocido");
-            }
             return persona;
         }
     }

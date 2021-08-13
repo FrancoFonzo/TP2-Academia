@@ -9,7 +9,6 @@ namespace Business.Entities
 
         #region Propiedades de Navegacion
         public Plan MiPlan { get; set; }
-        //public IList<Curso> MisCursos { get; set; }
         #endregion
 
         public override string ToString()

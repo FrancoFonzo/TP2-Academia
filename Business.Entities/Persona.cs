@@ -5,10 +5,6 @@ namespace Business.Entities
 {
     public class Persona : BusinessEntity
     {
-        public Persona()
-        {
-        }
-
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string EMail { get; set; }
@@ -20,8 +16,6 @@ namespace Business.Entities
 
         #region Propiedades de Navegacion
         public virtual Plan MiPlan { get; set; }
-        public virtual IList<AlumnoInscripcion> MisInscripciones { get; set; }
-        public virtual IList<DocenteCurso> MisDictados { get; set; }
         #endregion
 
         #region Propiedades Auxiliares/DataPropertyName
