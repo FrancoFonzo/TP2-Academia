@@ -322,6 +322,7 @@ namespace UI.Desktop
             // 
             // panelFormLoader
             // 
+            this.panelFormLoader.AllowDrop = true;
             this.panelFormLoader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
             this.panelFormLoader.BackgroundImage = global::UI.Desktop.Properties.Resources.graduation_cap_main;
             this.panelFormLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -697,7 +698,6 @@ namespace UI.Desktop
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.PictureBox picPerfil;
         private System.Windows.Forms.Label lblLegajo;
-        private System.Windows.Forms.Panel panelFormLoader;
         private System.Windows.Forms.Panel panelAdminReportes;
         private System.Windows.Forms.Button btnABMCursos;
         private System.Windows.Forms.Button btnABMMaterias;
@@ -717,5 +717,6 @@ namespace UI.Desktop
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label lblPersona;
+        private System.Windows.Forms.Panel panelFormLoader;
     }
 }

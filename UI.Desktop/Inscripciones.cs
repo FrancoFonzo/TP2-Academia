@@ -7,7 +7,7 @@ namespace UI.Desktop
 {
     public partial class Inscripciones : ApplicationForm
     {
-        private Usuario UsuarioActual { get; }
+        private Persona PersonaActual { get; }
 
         public Inscripciones()
         {
@@ -15,9 +15,9 @@ namespace UI.Desktop
             dgvInscripciones.AutoGenerateColumns = false;
         }
 
-        public Inscripciones(Usuario usuarioActual) : this()
+        public Inscripciones(Persona personaActual) : this()
         {
-            UsuarioActual = usuarioActual;
+            PersonaActual = personaActual;
         }
 
         private void Inscripciones_Load(object sender, EventArgs e)
@@ -27,7 +27,7 @@ namespace UI.Desktop
 
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
-            InscripcionDesktop formInscripciones = new InscripcionDesktop(UsuarioActual, ModoForm.Alta);
+            InscripcionDesktop formInscripciones = new InscripcionDesktop(PersonaActual, ModoForm.Alta);
             formInscripciones.ShowDialog();
             this.Listar();
         }
@@ -43,6 +43,16 @@ namespace UI.Desktop
                 Notificar("Error", "Error al recuperar los datos del usuario",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void tsbEditar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbEliminar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

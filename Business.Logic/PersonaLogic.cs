@@ -43,5 +43,10 @@ namespace Business.Logic
         {
             PersonaData.Delete(id);
         }
+
+        public List<Persona> GetAllTipos(Persona.TiposPersonas tipo)
+        {
+            return PersonaData.GetAllTipos(tipo);
+        }
     }
 }

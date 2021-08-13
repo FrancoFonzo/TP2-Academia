@@ -18,6 +18,19 @@ namespace Data.Database
             }
         }
 
+        public List<Persona> GetAllTipos(Persona.TiposPersonas tipo)
+        {
+            using (var context = new AcademiaEntities())
+            {
+                List<Persona> personas = new List<Persona>();
+                context.personas
+                    .Where(p => p.tipo_persona == (int)tipo)
+                    .ToList()
+                    .ForEach(p => personas.Add(nuevaPersona(p)));
+                return personas;
+            }
+        }
+		
         public List<Persona> GetPersonasSinUsuario()
         {
             using (AcademiaEntities context = new AcademiaEntities())
@@ -151,16 +164,6 @@ namespace Data.Database
                     throw new Exception("Tipo de persona desconocido");
             }
             return persona;
-        }
-
-        public List<string> GetTipos()
-        {
-            List<string> tipos = new List<string>{
-                Persona.TiposPersonas.Administrador.ToString(),
-                Persona.TiposPersonas.Alumno.ToString(),
-                Persona.TiposPersonas.Docente.ToString()
-                };
-            return tipos;
         }
     }
 }

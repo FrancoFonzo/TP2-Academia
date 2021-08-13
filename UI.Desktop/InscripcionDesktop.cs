@@ -7,7 +7,7 @@ namespace UI.Desktop
 {
     public partial class InscripcionDesktop : ApplicationForm
     {
-        private Usuario UsuarioActual { get;}
+        private Persona PersonaActual { get;}
         private AlumnoInscripcion InscripcionActual { get; set; }
 
         public InscripcionDesktop()
@@ -26,9 +26,9 @@ namespace UI.Desktop
             this.Modo = modo;
         }
 
-        public InscripcionDesktop(Usuario UsuarioActual, ModoForm modo) : this(modo)
+        public InscripcionDesktop(Persona personaActual, ModoForm modo) : this(modo)
         {
-            this.UsuarioActual = UsuarioActual;
+            PersonaActual = personaActual;
             MapearDeDatos();
         }
 
@@ -54,16 +54,8 @@ namespace UI.Desktop
 
         public override void MapearDeDatos()
         {
-            txtID.Text = UsuarioActual.ID.ToString();
-            txtUsuario.Text = UsuarioActual.NombreUsuario;
-            if (InscripcionActual?.MiCurso != null)
-            {
-                //cbxCursos.SelectedValue = InscripcionActual.MiCurso.ID;
-            }
-            else
-            {
-                //cbxCursos.Text = "Ninguno";
-            }
+            txtID.Text = PersonaActual.ID.ToString();
+            txtUsuario.Text = PersonaActual.Nombre;
             
             if (Modo == ModoForm.Consulta)
             {
@@ -95,7 +87,7 @@ namespace UI.Desktop
                 {
                     InscripcionActual.State = BusinessEntity.States.Modified;
                 }
-                InscripcionActual.MiAlumno = UsuarioActual.MiPersona;
+                InscripcionActual.MiAlumno = PersonaActual;
                 InscripcionActual.Condicion = AlumnoInscripcion.Condiciones.Inscripto.ToString();
                 InscripcionActual.MiCurso = (Curso) dgvCursos.SelectedRows[0].DataBoundItem;
             }
@@ -138,6 +130,5 @@ namespace UI.Desktop
             }
             return true;
         }
-
     }
 }

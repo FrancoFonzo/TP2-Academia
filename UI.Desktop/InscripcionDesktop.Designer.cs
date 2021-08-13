@@ -31,7 +31,7 @@ namespace UI.Desktop
         {
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
-            this.lblUsuario = new System.Windows.Forms.Label();
+            this.lblPersona = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.tlpInscripcion = new System.Windows.Forms.TableLayoutPanel();
@@ -63,11 +63,11 @@ namespace UI.Desktop
             this.lblID.Location = new System.Drawing.Point(4, 17);
             this.lblID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(74, 17);
+            this.lblID.Size = new System.Drawing.Size(78, 17);
             this.lblID.TabIndex = 3;
-            this.lblID.Text = "ID Usuario";
+            this.lblID.Text = "ID Persona";
             // 
-            // lblUsuario
+            // lblPersona
             // 
             this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblUsuario.AutoSize = true;
@@ -219,7 +219,7 @@ namespace UI.Desktop
 
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label lblID;
-        private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.Label lblPersona;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TableLayoutPanel tlpInscripcion;

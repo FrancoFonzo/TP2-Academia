@@ -5,6 +5,7 @@ namespace UI.Desktop
 {
     static class Program
     {
+        static internal Main MainUI;
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -16,7 +17,8 @@ namespace UI.Desktop
             Login login = new Login();
             if (login.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new Main(login.UsuarioActual));
+                MainUI = new Main(login.UsuarioActual);
+                Application.Run(MainUI);
             }
         }
     }

@@ -7,10 +7,21 @@ namespace UI.Desktop
 {
     public partial class Personas : ApplicationForm
     {
+        public Persona.TiposPersonas TipoPersona { get; } = Persona.TiposPersonas.Administrador;
+
         public Personas()
         {
             InitializeComponent();
             dgvPersonas.AutoGenerateColumns = false;
+        }
+
+        public Personas(Persona.TiposPersonas tipo) : this()
+        {
+            TipoPersona = tipo;
+            tsbAgregar.Visible = false;
+            tsbEditar.Visible = false;
+            tsbEliminar.Visible = false;
+            tsbSeleccionar.Visible = true;
         }
 
         private void Personas_Load(object sender, EventArgs e)
@@ -41,6 +52,14 @@ namespace UI.Desktop
             }
         }
 
+        private void tsbSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (isRowSelected(dgvPersonas))
+            {
+                openFormInscripcion();
+            }
+        }
+
         private void openForm(ApplicationForm.ModoForm modo)
         {
             int ID = ((Persona)this.dgvPersonas.SelectedRows[0].DataBoundItem).ID;
@@ -49,11 +68,20 @@ namespace UI.Desktop
             this.Listar();
         }
 
+        private void openFormInscripcion()
+        {
+            Persona persona = (Persona)dgvPersonas.SelectedRows[0].DataBoundItem;
+            var form = new Inscripciones(persona);
+            var main = new Main();
+            Program.MainUI.openForm(form);
+        }
+
         public override void Listar()
         {
             try
             {
-                this.dgvPersonas.DataSource = new PersonaLogic().GetAll();
+                dgvPersonas.DataSource = TipoPersona == Persona.TiposPersonas.Administrador ?
+                    new PersonaLogic().GetAll() : new PersonaLogic().GetAllTipos(TipoPersona);
             }
             catch (Exception)
             {
