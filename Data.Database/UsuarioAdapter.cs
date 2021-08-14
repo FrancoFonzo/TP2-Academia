@@ -75,7 +75,7 @@ namespace Data.Database
                     usr.nombre_usuario = usuario.NombreUsuario;
                     usr.clave = usuario.Clave;
                     usr.habilitado = usuario.Habilitado;
-                    usr.id_persona = usuario.MiPersona?.ID;
+                    usr.id_persona = usuario.MiPersona.ID;
                     context.SaveChanges();
                 }
             }
@@ -90,12 +90,9 @@ namespace Data.Database
                     id_usuario = usuario.ID,
                     nombre_usuario = usuario.NombreUsuario,
                     clave = usuario.Clave,
-                    habilitado = usuario.Habilitado
+                    habilitado = usuario.Habilitado,
+                    id_persona = usuario.MiPersona.ID
                 };
-                if (usuario.MiPersona != null)
-                {
-                    usr.id_persona = usuario.MiPersona.ID;
-                }
                 context.usuarios.Add(usr);
                 context.SaveChanges();
             }

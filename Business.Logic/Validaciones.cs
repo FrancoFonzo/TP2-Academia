@@ -35,7 +35,6 @@ namespace Business.Logic
                 if (string.IsNullOrEmpty(t))
                 {
                     rta = false;
-                    return;
                 }
             });
             return rta;

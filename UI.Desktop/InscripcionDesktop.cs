@@ -58,7 +58,7 @@ namespace UI.Desktop
         public override void MapearDeDatos()
         {
             txtAlumno.Text = PersonaActual.NombreCompleto;
-            if (InscripcionActual?.MiCurso != null)
+            if (InscripcionActual != null)
             {
                 cbxCondicion.SelectedItem = InscripcionActual.Condicion;
             }

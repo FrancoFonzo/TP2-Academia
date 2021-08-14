@@ -4,6 +4,11 @@ namespace Business.Entities
 {
     public class Persona : BusinessEntity
     {
+        public Persona()
+        {
+            MiPlan = new Plan();
+        }
+
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int? Legajo { get; set; }

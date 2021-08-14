@@ -49,7 +49,7 @@ namespace UI.Desktop
             chkHabilitado.Checked = Usuario.Habilitado;
             txtUsuario.Text = Usuario.NombreUsuario;
             txtClave.Text = Usuario.Clave;
-            if (Usuario.MiPersona != null)
+            if (Usuario.MiPersona.ID != 0)
             {
                 cbxPersona.SelectedValue = Usuario.MiPersona.ID;
             }
@@ -90,8 +90,10 @@ namespace UI.Desktop
             Usuario.Clave = txtClave.Text;
 
             var idPer = cbxPersona.SelectedValue;
-            Usuario.MiPersona = idPer == null ?
-                null : new PersonaLogic().GetOne((int)idPer);
+            if (idPer  != null)
+            {
+                Usuario.MiPersona = new PersonaLogic().GetOne((int)idPer);
+            }
         }
 
         public override void GuardarCambios()

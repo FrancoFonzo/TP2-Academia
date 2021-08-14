@@ -18,7 +18,7 @@ namespace UI.Desktop
         public Main()
         {
             InitializeComponent();
-            titulo = $"Bienvenido/a {Login.UsuarioActual.MiPersona?.NombreCompleto}!";
+            titulo = $"Bienvenido/a {Login.UsuarioActual.MiPersona.NombreCompleto}!";
             panelAdminReportes.Visible = false;
         }
 
@@ -26,12 +26,9 @@ namespace UI.Desktop
         {
             lblTitulo.Text = titulo;
             lblUsuario.Text = $"{lblUsuario.Text} {Login.UsuarioActual.NombreUsuario}";
-            if (Login.UsuarioActual.MiPersona != null)
-            {
-                lblLegajo.Text = $"{lblLegajo.Text} {Login.UsuarioActual.MiPersona.Legajo}";
-                lblPersona.Text = $"{lblPersona.Text} {Login.UsuarioActual.MiPersona.NombreCompleto}";
-            }
-            switch (Login.UsuarioActual.MiPersona?.Tipo)
+            lblLegajo.Text = $"{lblLegajo.Text} {Login.UsuarioActual.MiPersona.Legajo}";
+            lblPersona.Text = $"{lblPersona.Text} {Login.UsuarioActual.MiPersona.NombreCompleto}";
+            switch (Login.UsuarioActual.MiPersona.Tipo)
             {
                 case Persona.TiposPersonas.Administrador:
                     panelMenu.Controls.OfType<Button>().ToList().ForEach(b => b.Visible = true);

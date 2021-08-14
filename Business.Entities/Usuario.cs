@@ -2,6 +2,11 @@
 {
     public class Usuario : BusinessEntity
     {
+        public Usuario()
+        {
+            MiPersona = new Persona();
+        }
+
         public string NombreUsuario { get; set; }
         public string Clave { get; set; }
         public bool Habilitado { get; set; }
@@ -15,7 +20,7 @@
         {
             get
             {
-                return MiPersona == null ? "" : MiPersona.Nombre;
+                return MiPersona.Nombre ?? "";
             }
         }
 
@@ -23,14 +28,14 @@
         {
             get
             {
-                return MiPersona == null ? "" : MiPersona.Apellido;
+                return MiPersona.Apellido ?? "";
             }
         }
         public string EMailPersona
         {
             get
             {
-                return MiPersona == null ? "" : MiPersona.EMail;
+                return MiPersona.EMail ?? "";
             }
         }
         #endregion

@@ -54,7 +54,7 @@ namespace UI.Desktop
             dateNacimiento.Value = PersonaActual.FechaNacimiento;
             cbxTipo.SelectedIndex = (int)PersonaActual.Tipo;
 
-            if (PersonaActual.MiPlan != null)
+            if (PersonaActual.MiPlan.ID != 0)
             {
                 cbxPlan.SelectedValue = PersonaActual.MiPlan.ID;
             }
@@ -100,8 +100,10 @@ namespace UI.Desktop
             PersonaActual.FechaNacimiento = dateNacimiento.Value;
 
             var idPlan = cbxPlan.SelectedValue;
-            PersonaActual.MiPlan = idPlan == null ?
-                null : new PlanLogic().GetOne((int)idPlan);
+            if (idPlan != null)
+            {
+                PersonaActual.MiPlan = new PlanLogic().GetOne((int)idPlan);
+            }
         }
 
         public override void GuardarCambios()
