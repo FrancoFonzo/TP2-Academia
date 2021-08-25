@@ -37,5 +37,10 @@ namespace Business.Logic
         {
             InscripcionData.Delete(id);
         }
+
+        public List<AlumnoInscripcion> GetAllByCursos(int idCurso)
+        {
+            return InscripcionData.GetAllByCursos(idCurso);
+        }
     }
 }

@@ -19,6 +19,19 @@ namespace Data.Database
             }
         }
 
+        public List<AlumnoInscripcion> GetAllByCursos(int idCurso)
+        {
+            using (AcademiaEntities context = new AcademiaEntities())
+            {
+                List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
+                context.alumnos_inscripciones
+                    .Where(i => i.id_curso == idCurso)
+                    .ToList()
+                    .ForEach(i => inscripciones.Add(NuevaInscripcion(i)));
+                return inscripciones;
+            }
+        }
+
         public List<AlumnoInscripcion> GetAllAlumno(int id)
         {
             using (var context = new AcademiaEntities())

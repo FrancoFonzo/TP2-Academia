@@ -101,6 +101,12 @@
     <Compile Include="Especialidades.Designer.cs">
       <DependentUpon>Especialidades.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarNotas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarNotas.Designer.cs">
+      <DependentUpon>RegistrarNotas.cs</DependentUpon>
+    </Compile>
     <Compile Include="InscripcionDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MateriaDesktop.resx">
       <DependentUpon>MateriaDesktop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarNotas.resx">
+      <DependentUpon>RegistrarNotas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsuarioDesktop.resx">
       <DependentUpon>UsuarioDesktop.cs</DependentUpon>
