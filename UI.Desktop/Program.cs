@@ -5,7 +5,7 @@ namespace UI.Desktop
 {
     static class Program
     {
-        static internal readonly Main MainUI = new Main();
+        internal static Main MainUI;
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -16,6 +16,7 @@ namespace UI.Desktop
             Application.SetCompatibleTextRenderingDefault(false);
             if (new Login().ShowDialog() == DialogResult.OK)
             {
+                MainUI = new Main();
                 Application.Run(MainUI);
             }
         }
