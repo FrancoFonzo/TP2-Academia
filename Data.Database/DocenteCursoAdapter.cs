@@ -19,7 +19,7 @@ namespace Data.Database
         }
 
         //TODO: Se usara para Registro Notas
-        public List<DocenteCurso> GetAllDocente(int id)
+        public List<DocenteCurso> GetAllByDocente(int id)
         {
             using (var context = new AcademiaEntities())
             {

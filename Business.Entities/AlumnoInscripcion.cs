@@ -24,6 +24,25 @@
             }
         }
 
+        public int? Legajo {
+            get
+            {
+                return MiAlumno.Legajo;
+            }
+        }
+        public string Nombre {
+            get
+            {
+                return MiAlumno.Nombre;
+            }
+        }
+        public string Apellido {
+            get
+            {
+                return MiAlumno.Apellido;
+            }
+        }
+
         public string DescripcionComision
         {
             get

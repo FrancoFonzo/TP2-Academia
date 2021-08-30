@@ -109,6 +109,18 @@ namespace UI.Desktop
             OpenForm(new Usuarios());
         }
 
+        private void btnNotas_Click(object sender, EventArgs e)
+        {
+            if (Login.UsuarioActual.MiPersona.Tipo == Persona.TiposPersonas.Administrador)
+            {
+                OpenForm(new Personas(Persona.TiposPersonas.Docente));
+            }
+            else
+            {
+                OpenForm(new RegistrarNotas(Login.UsuarioActual.MiPersona));
+            }
+        }
+
         private void btnInscripcion_Click(object sender, EventArgs e)
         {
             if (Login.UsuarioActual.MiPersona.Tipo == Persona.TiposPersonas.Administrador)
@@ -197,5 +209,6 @@ namespace UI.Desktop
             lblTitulo.Text = form.Text;
             form.Show();
         }
+
     }
 }

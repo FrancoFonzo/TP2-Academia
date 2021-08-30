@@ -18,7 +18,7 @@ namespace UI.Desktop
         public Personas(Persona.TiposPersonas tipo) : this()
         {
             TipoPersona = tipo;
-            Text = "Alumnos";
+            Text = tipo.ToString();
             tsbAgregar.Visible = false;
             tsbEditar.Visible = false;
             tsbEliminar.Visible = false;
@@ -57,7 +57,15 @@ namespace UI.Desktop
         {
             if (IsRowSelected(dgvPersonas))
             {
-                openFormInscripcion();
+                if(TipoPersona == Persona.TiposPersonas.Alumno)
+                {
+                    openFormInscripcion();
+                }
+                else
+                {
+                    openFormRegistrarNotas();
+                }
+                
             }
         }
 
@@ -72,6 +80,12 @@ namespace UI.Desktop
         {
             Persona persona = (Persona)dgvPersonas.SelectedRows[0].DataBoundItem;
             Program.MainUI.OpenForm(new Inscripciones(persona, true));
+        }
+
+        private void openFormRegistrarNotas()
+        {
+            Persona persona = (Persona)dgvPersonas.SelectedRows[0].DataBoundItem;
+            Program.MainUI.OpenForm(new RegistrarNotas(persona));
         }
 
         public override void Listar()

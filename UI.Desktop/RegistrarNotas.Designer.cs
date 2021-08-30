@@ -39,9 +39,9 @@ namespace UI.Desktop
             this.condicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelBotones = new System.Windows.Forms.Panel();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.lblNota = new System.Windows.Forms.Label();
             this.txtNota = new System.Windows.Forms.TextBox();
+            this.lblNota = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).BeginInit();
             this.panelBotones.SuspendLayout();
@@ -60,12 +60,16 @@ namespace UI.Desktop
             // 
             // cbxCursos
             // 
+            this.cbxCursos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxCursos.DisplayMember = "MiCurso";
             this.cbxCursos.FormattingEnabled = true;
-            this.cbxCursos.Location = new System.Drawing.Point(112, 14);
+            this.cbxCursos.Location = new System.Drawing.Point(126, 14);
             this.cbxCursos.Margin = new System.Windows.Forms.Padding(5);
             this.cbxCursos.Name = "cbxCursos";
-            this.cbxCursos.Size = new System.Drawing.Size(674, 21);
+            this.cbxCursos.Size = new System.Drawing.Size(660, 21);
             this.cbxCursos.TabIndex = 1;
+            this.cbxCursos.ValueMember = "ID";
             // 
             // panel1
             // 
@@ -79,6 +83,10 @@ namespace UI.Desktop
             // 
             // dgvAlumnos
             // 
+            this.dgvAlumnos.AllowUserToAddRows = false;
+            this.dgvAlumnos.AllowUserToDeleteRows = false;
+            this.dgvAlumnos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAlumnos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAlumnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAlumnos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.legajo,
@@ -88,9 +96,14 @@ namespace UI.Desktop
             this.nota});
             this.dgvAlumnos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAlumnos.Location = new System.Drawing.Point(0, 50);
+            this.dgvAlumnos.Margin = new System.Windows.Forms.Padding(0);
+            this.dgvAlumnos.MultiSelect = false;
             this.dgvAlumnos.Name = "dgvAlumnos";
-            this.dgvAlumnos.Size = new System.Drawing.Size(800, 535);
-            this.dgvAlumnos.TabIndex = 3;
+            this.dgvAlumnos.ReadOnly = true;
+            this.dgvAlumnos.RowHeadersWidth = 51;
+            this.dgvAlumnos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAlumnos.Size = new System.Drawing.Size(800, 480);
+            this.dgvAlumnos.TabIndex = 0;
             // 
             // legajo
             // 
@@ -132,21 +145,20 @@ namespace UI.Desktop
             this.panelBotones.Controls.Add(this.txtNota);
             this.panelBotones.Controls.Add(this.lblNota);
             this.panelBotones.Controls.Add(this.btnGuardar);
-            this.panelBotones.Location = new System.Drawing.Point(0, 533);
+            this.panelBotones.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBotones.Location = new System.Drawing.Point(0, 530);
             this.panelBotones.Name = "panelBotones";
             this.panelBotones.Size = new System.Drawing.Size(800, 55);
             this.panelBotones.TabIndex = 4;
             // 
-            // btnGuardar
+            // txtNota
             // 
-            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(665, 11);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(5);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(121, 30);
-            this.btnGuardar.TabIndex = 0;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.txtNota.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNota.Location = new System.Drawing.Point(126, 20);
+            this.txtNota.Name = "txtNota";
+            this.txtNota.Size = new System.Drawing.Size(93, 20);
+            this.txtNota.TabIndex = 2;
             // 
             // lblNota
             // 
@@ -159,24 +171,30 @@ namespace UI.Desktop
             this.lblNota.TabIndex = 1;
             this.lblNota.Text = "Ingresar nota:";
             // 
-            // txtNota
+            // btnGuardar
             // 
-            this.txtNota.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNota.Location = new System.Drawing.Point(126, 20);
-            this.txtNota.Name = "txtNota";
-            this.txtNota.Size = new System.Drawing.Size(93, 20);
-            this.txtNota.TabIndex = 2;
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.Location = new System.Drawing.Point(665, 11);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(5);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(121, 30);
+            this.btnGuardar.TabIndex = 0;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // RegistrarNotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 585);
-            this.Controls.Add(this.panelBotones);
             this.Controls.Add(this.dgvAlumnos);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelBotones);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RegistrarNotas";
             this.Text = "AlumnosCurso";
+            this.Load += new System.EventHandler(this.Cursos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).EndInit();
