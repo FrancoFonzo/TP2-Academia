@@ -71,7 +71,7 @@ namespace UI.Desktop
             this.cbxPersona.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxPersona.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxPersona.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbxPersona.DisplayMember = "NombreCompleto";
+            this.cbxPersona.DisplayMember = "Persona";
             this.cbxPersona.FormattingEnabled = true;
             this.cbxPersona.Location = new System.Drawing.Point(555, 43);
             this.cbxPersona.Margin = new System.Windows.Forms.Padding(5);
@@ -238,7 +238,7 @@ namespace UI.Desktop
             this.ClientSize = new System.Drawing.Size(911, 186);
             this.Controls.Add(this.tlUsuarios);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.Name = "UsuarioDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

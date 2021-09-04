@@ -38,10 +38,10 @@ namespace UI.Desktop
             this.lblCursos = new System.Windows.Forms.Label();
             this.txtAlumno = new System.Windows.Forms.TextBox();
             this.panelButtons = new System.Windows.Forms.Panel();
-            this.anio_calendario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCursos = new System.Windows.Forms.DataGridView();
+            this.materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.anio_calendario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpInscripcion.SuspendLayout();
             this.panelButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).BeginInit();
@@ -129,7 +129,7 @@ namespace UI.Desktop
             this.cbxCondicion.DisplayMember = "Condicion";
             this.cbxCondicion.Enabled = false;
             this.cbxCondicion.FormattingEnabled = true;
-            this.cbxCondicion.Location = new System.Drawing.Point(441, 9);
+            this.cbxCondicion.Location = new System.Drawing.Point(441, 8);
             this.cbxCondicion.Margin = new System.Windows.Forms.Padding(5);
             this.cbxCondicion.Name = "cbxCondicion";
             this.cbxCondicion.Size = new System.Drawing.Size(286, 24);
@@ -169,30 +169,6 @@ namespace UI.Desktop
             this.panelButtons.Size = new System.Drawing.Size(732, 50);
             this.panelButtons.TabIndex = 8;
             // 
-            // anio_calendario
-            // 
-            this.anio_calendario.DataPropertyName = "AnioCalendario";
-            this.anio_calendario.HeaderText = "Año calendario";
-            this.anio_calendario.MinimumWidth = 6;
-            this.anio_calendario.Name = "anio_calendario";
-            this.anio_calendario.ReadOnly = true;
-            // 
-            // comision
-            // 
-            this.comision.DataPropertyName = "MiComision";
-            this.comision.HeaderText = "Comision";
-            this.comision.MinimumWidth = 6;
-            this.comision.Name = "comision";
-            this.comision.ReadOnly = true;
-            // 
-            // materia
-            // 
-            this.materia.DataPropertyName = "MiMateria";
-            this.materia.HeaderText = "Materia";
-            this.materia.MinimumWidth = 6;
-            this.materia.Name = "materia";
-            this.materia.ReadOnly = true;
-            // 
             // dgvCursos
             // 
             this.dgvCursos.AllowUserToAddRows = false;
@@ -215,6 +191,30 @@ namespace UI.Desktop
             this.dgvCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCursos.Size = new System.Drawing.Size(732, 163);
             this.dgvCursos.TabIndex = 9;
+            // 
+            // materia
+            // 
+            this.materia.DataPropertyName = "Materia";
+            this.materia.HeaderText = "Materia";
+            this.materia.MinimumWidth = 6;
+            this.materia.Name = "materia";
+            this.materia.ReadOnly = true;
+            // 
+            // comision
+            // 
+            this.comision.DataPropertyName = "Comision";
+            this.comision.HeaderText = "Comision";
+            this.comision.MinimumWidth = 6;
+            this.comision.Name = "comision";
+            this.comision.ReadOnly = true;
+            // 
+            // anio_calendario
+            // 
+            this.anio_calendario.DataPropertyName = "AnioCalendario";
+            this.anio_calendario.HeaderText = "Año calendario";
+            this.anio_calendario.MinimumWidth = 6;
+            this.anio_calendario.Name = "anio_calendario";
+            this.anio_calendario.ReadOnly = true;
             // 
             // InscripcionDesktop
             // 
@@ -248,11 +248,11 @@ namespace UI.Desktop
         private System.Windows.Forms.TableLayoutPanel tlpInscripcion;
         private System.Windows.Forms.Panel panelButtons;
         private System.Windows.Forms.TextBox txtAlumno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn anio_calendario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn comision;
-        private System.Windows.Forms.DataGridViewTextBoxColumn materia;
         private System.Windows.Forms.DataGridView dgvCursos;
         private System.Windows.Forms.Label lblCursos;
         private System.Windows.Forms.ComboBox cbxCondicion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn materia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comision;
+        private System.Windows.Forms.DataGridViewTextBoxColumn anio_calendario;
     }
 }

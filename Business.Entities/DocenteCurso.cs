@@ -5,8 +5,10 @@
         public TiposCargos Cargo { get; set; }
 
         #region Propiedade de Navegacion
-        public Curso MiCurso { get; set; }
-        public Persona MiDocente { get; set; }
+        public int CursoId { get; set; }
+        public virtual Curso Curso { get; set; }
+        public int DocenteId { get; set; }
+        public virtual Persona Docente { get; set; }
         #endregion
 
         public enum TiposCargos

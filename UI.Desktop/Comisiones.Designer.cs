@@ -130,7 +130,7 @@ namespace UI.Desktop
             // 
             // plan
             // 
-            this.plan.DataPropertyName = "MiPlan";
+            this.plan.DataPropertyName = "Plan";
             this.plan.HeaderText = "Plan";
             this.plan.MinimumWidth = 6;
             this.plan.Name = "plan";

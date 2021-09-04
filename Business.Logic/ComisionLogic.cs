@@ -27,10 +27,5 @@ namespace Business.Logic
         {
             ComisionData.Save(comision);
         }
-
-        public void Delete(int id)
-        {
-            ComisionData.Delete(id);
-        }
     }
 }

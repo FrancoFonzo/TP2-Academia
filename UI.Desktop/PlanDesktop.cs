@@ -45,7 +45,7 @@ namespace UI.Desktop
         {
             txtID.Text = PlanActual.ID.ToString();
             txtDescripcion.Text = PlanActual.Descripcion;
-            cbxEspecialidad.SelectedValue = PlanActual.MiEspecialidad.ID;
+            cbxEspecialidad.SelectedItem = PlanActual.Especialidad;
 
             if (Modo == ModoForm.Consulta)
             {
@@ -79,8 +79,7 @@ namespace UI.Desktop
                     break;
             }
             PlanActual.Descripcion = txtDescripcion.Text;
-            var idEsp = cbxEspecialidad.SelectedValue;
-            PlanActual.MiEspecialidad = new EspecialidadLogic().GetOne((int)idEsp);
+            PlanActual.Especialidad = (Especialidad)cbxEspecialidad.SelectedItem;
         }
 
         public override void GuardarCambios()
@@ -96,7 +95,7 @@ namespace UI.Desktop
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (cbxEspecialidad.SelectedValue == null)
+            else if (cbxEspecialidad.SelectedItem == null)
             {
                 Notificar("Informacion invalida", "Porfavor seleccione una especialidad valida.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

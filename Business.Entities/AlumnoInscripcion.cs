@@ -11,8 +11,10 @@
         public int? Nota { get; set; }
 
         #region Propiedades de Navegacion
-        public virtual Persona MiAlumno { get; set; }
-        public virtual Curso MiCurso { get; set; }
+        public int AlumnoId { get; set; }
+        public virtual Persona Alumno { get; set; }
+        public int CursoId { get; set; }
+        public virtual Curso Curso { get; set; }
         #endregion
 
         #region Propiedades Auxiliares/DataPropertyName
@@ -20,7 +22,7 @@
         {
             get
             {
-                return MiCurso.MiMateria.Descripcion;
+                return $"{Curso.Materia}";
             }
         }
 
@@ -28,7 +30,7 @@
         {
             get
             {
-                return MiCurso.MiComision.Descripcion;
+                return $"{Curso.Comision}";
             }
         }
         #endregion

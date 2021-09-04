@@ -138,7 +138,7 @@ namespace UI.Desktop
             // 
             // especialidad
             // 
-            this.especialidad.DataPropertyName = "MiEspecialidad";
+            this.especialidad.DataPropertyName = "Especialidad";
             this.especialidad.HeaderText = "Especialidad";
             this.especialidad.MinimumWidth = 6;
             this.especialidad.Name = "especialidad";

@@ -30,14 +30,14 @@ namespace UI.Desktop
         private void InitializeComponent()
         {
             this.dgvInscripciones = new System.Windows.Forms.DataGridView();
-            this.materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.condicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInscripciones = new System.Windows.Forms.ToolStrip();
             this.tsbAgregar = new System.Windows.Forms.ToolStripButton();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
+            this.materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.condicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInscripciones)).BeginInit();
             this.tsInscripciones.SuspendLayout();
             this.SuspendLayout();
@@ -64,38 +64,6 @@ namespace UI.Desktop
             this.dgvInscripciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvInscripciones.Size = new System.Drawing.Size(800, 415);
             this.dgvInscripciones.TabIndex = 0;
-            // 
-            // materia
-            // 
-            this.materia.DataPropertyName = "DescripcionMateria";
-            this.materia.HeaderText = "Materia";
-            this.materia.MinimumWidth = 6;
-            this.materia.Name = "materia";
-            this.materia.ReadOnly = true;
-            // 
-            // comision
-            // 
-            this.comision.DataPropertyName = "DescripcionComision";
-            this.comision.HeaderText = "Comision";
-            this.comision.MinimumWidth = 6;
-            this.comision.Name = "comision";
-            this.comision.ReadOnly = true;
-            // 
-            // condicion
-            // 
-            this.condicion.DataPropertyName = "Condicion";
-            this.condicion.HeaderText = "Condicion";
-            this.condicion.MinimumWidth = 6;
-            this.condicion.Name = "condicion";
-            this.condicion.ReadOnly = true;
-            // 
-            // nota
-            // 
-            this.nota.DataPropertyName = "Nota";
-            this.nota.HeaderText = "Nota";
-            this.nota.MinimumWidth = 6;
-            this.nota.Name = "nota";
-            this.nota.ReadOnly = true;
             // 
             // tsInscripciones
             // 
@@ -155,6 +123,38 @@ namespace UI.Desktop
             this.tsbEliminar.Visible = false;
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
+            // materia
+            // 
+            this.materia.DataPropertyName = "DescripcionMateria";
+            this.materia.HeaderText = "Materia";
+            this.materia.MinimumWidth = 6;
+            this.materia.Name = "materia";
+            this.materia.ReadOnly = true;
+            // 
+            // comision
+            // 
+            this.comision.DataPropertyName = "DescripcionComision";
+            this.comision.HeaderText = "Comision";
+            this.comision.MinimumWidth = 6;
+            this.comision.Name = "comision";
+            this.comision.ReadOnly = true;
+            // 
+            // condicion
+            // 
+            this.condicion.DataPropertyName = "Condicion";
+            this.condicion.HeaderText = "Condicion";
+            this.condicion.MinimumWidth = 6;
+            this.condicion.Name = "condicion";
+            this.condicion.ReadOnly = true;
+            // 
+            // nota
+            // 
+            this.nota.DataPropertyName = "Nota";
+            this.nota.HeaderText = "Nota";
+            this.nota.MinimumWidth = 6;
+            this.nota.Name = "nota";
+            this.nota.ReadOnly = true;
+            // 
             // Inscripciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -179,11 +179,11 @@ namespace UI.Desktop
         private System.Windows.Forms.DataGridView dgvInscripciones;
         private System.Windows.Forms.ToolStrip tsInscripciones;
         private System.Windows.Forms.ToolStripButton tsbAgregar;
+        private System.Windows.Forms.ToolStripButton tsbEliminar;
+        private System.Windows.Forms.ToolStripButton tsbEditar;
         private System.Windows.Forms.DataGridViewTextBoxColumn materia;
         private System.Windows.Forms.DataGridViewTextBoxColumn comision;
         private System.Windows.Forms.DataGridViewTextBoxColumn condicion;
         private System.Windows.Forms.DataGridViewTextBoxColumn nota;
-        private System.Windows.Forms.ToolStripButton tsbEliminar;
-        private System.Windows.Forms.ToolStripButton tsbEditar;
     }
 }

@@ -2,40 +2,55 @@
 {
     public class Usuario : BusinessEntity
     {
-        public Usuario()
-        {
-            MiPersona = new Persona();
-        }
-
         public string NombreUsuario { get; set; }
         public string Clave { get; set; }
         public bool Habilitado { get; set; }
 
         #region Propiedades de Navegacion
-        public Persona MiPersona { get; set; }
+        public int? PersonaId { get; set; }
+        private Persona _persona;
+        public virtual Persona Persona
+        {
+            get
+            {
+                return _persona;
+            }
+            set
+            {
+                _persona = value;
+                if (value == null)
+                {
+                    PersonaId = null;
+                }
+                else
+                {
+                    PersonaId = value.ID;
+                }
+            }
+        }
         #endregion
 
         #region Propiedades Auxiliares/DataPropertyName
-        public string NombrePersona
+        public string PersonaNombre
         {
             get
             {
-                return MiPersona.Nombre ?? "";
+                return Persona?.Nombre ?? "-";
             }
         }
 
-        public string ApellidoPersona
+        public string PersonaApellido
         {
             get
             {
-                return MiPersona.Apellido ?? "";
+                return Persona?.Apellido ?? "-";
             }
         }
-        public string EMailPersona
+        public string PersonaEMail
         {
             get
             {
-                return MiPersona.EMail ?? "";
+                return Persona?.EMail ?? "-";
             }
         }
         #endregion

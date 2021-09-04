@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Business.Entities;
+using System.Data.Entity;
 
 namespace Data.Database
 {
@@ -8,45 +9,51 @@ namespace Data.Database
     {
         public List<Comision> GetAll()
         {
-            using (AcademiaEntities context = new AcademiaEntities())
+            using (AcademiaContext context = new AcademiaContext())
             {
-                List<Comision> comisiones = new List<Comision>();
-                context.comisiones
-                    .ToList()
-                    .ForEach(c => comisiones.Add(NuevaComision(c)));
-                return comisiones;
+                return context.Comision.Include(c => c.Plan).ToList();
             }
         }
 
         public Comision GetOne(int id)
         {
-            using (var context = new AcademiaEntities())
+            using (var context = new AcademiaContext())
             {
-                var com = context.comisiones.FirstOrDefault(c => c.id_comision == id);
-                return NuevaComision(com);
+                return context.Comision.Include(c => c.Plan).FirstOrDefault(c => c.ID == id);
             }
         }
 
-        public void Delete(int id)
+        protected void Insert(Comision comision)
         {
-            using (var context = new AcademiaEntities())
+            using (var context = new AcademiaContext())
             {
-                var com = context.comisiones.FirstOrDefault(c => c.id_comision == id);
-                if (com != null)
-                {
-                    context.Entry(com).State = System.Data.Entity.EntityState.Deleted;
-                    context.SaveChanges();
-                }
+                context.Plan.Attach(comision.Plan);
+                context.Comision.Add(comision);
+                context.SaveChanges();
+            }
+        }
+
+        protected void Update(Comision comision)
+        {
+            using (var context = new AcademiaContext())
+            {
+                context.Entry(comision).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public void Delete(Comision comision)
+        {
+            using (var context = new AcademiaContext())
+            {
+                context.Comision.Remove(context.Comision.Find(comision.ID));
+                context.SaveChanges();
             }
         }
 
         public void Save(Comision comision)
         {
-            if (comision.State == BusinessEntity.States.Deleted)
-            {
-                Delete(comision.ID);
-            }
-            else if (comision.State == BusinessEntity.States.New)
+            if (comision.State == BusinessEntity.States.New)
             {
                 Insert(comision);
             }
@@ -54,53 +61,11 @@ namespace Data.Database
             {
                 Update(comision);
             }
+            else if (comision.State == BusinessEntity.States.Deleted)
+            {
+                Delete(comision);
+            }
             comision.State = BusinessEntity.States.Unmodified;
-        }
-
-        protected void Update(Comision comisiones)
-        {
-            using (var context = new AcademiaEntities())
-            {
-                var com = context.comisiones.FirstOrDefault(c => c.id_comision == comisiones.ID);
-                if (com != null)
-                {
-                    com.desc_comision = comisiones.Descripcion;
-                    com.anio_especialidad = comisiones.AnioEspecialidad;
-
-                    context.SaveChanges();
-                }
-            }
-        }
-
-        protected void Insert(Comision comisiones)
-        {
-            using (var context = new AcademiaEntities())
-            {
-                comisiones com = new comisiones
-                {
-                    id_comision = comisiones.ID,
-                    desc_comision = comisiones.Descripcion,
-                    anio_especialidad = comisiones.AnioEspecialidad
-                };
-                context.comisiones.Add(com);
-                context.SaveChanges();
-            }
-        }
-
-        private Comision NuevaComision(comisiones com)
-        {
-            if (com == null)
-            {
-                return null;
-            }
-            Comision comision = new Comision
-            {
-                ID = com.id_comision,
-                Descripcion = com.desc_comision,
-                AnioEspecialidad = com.anio_especialidad,
-                MiPlan = planData.GetOne(com.id_plan)
-            };
-            return comision;
         }
     }
 }

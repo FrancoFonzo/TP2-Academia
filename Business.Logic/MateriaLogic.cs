@@ -28,10 +28,5 @@ namespace Business.Logic
         {
             MateriaData.Save(materia);
         }
-
-        public void Delete(int id)
-        {
-            MateriaData.Delete(id);
-        }
     }
 }

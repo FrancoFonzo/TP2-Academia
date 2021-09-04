@@ -11,12 +11,12 @@ namespace UI.Desktop
         public MateriaDesktop()
         {
             InitializeComponent();
-            cbxPlan.DataSource = new PlanLogic().GetAll();
         }
 
         public MateriaDesktop(ModoForm modo) : this()
         {
             Modo = modo;
+            MapearInicial();
         }
 
         public MateriaDesktop(int ID, ModoForm modo) : this(modo)
@@ -41,26 +41,32 @@ namespace UI.Desktop
             Close();
         }
 
+        private void MapearInicial()
+        {
+            cbxPlan.DataSource = new PlanLogic().GetAll();
+
+            switch (Modo)
+            {
+                case ModoForm.Alta:
+                case ModoForm.Modificacion:
+                    btnAceptar.Text = "Guardar";
+                    break;
+                case ModoForm.Baja:
+                    btnAceptar.Text = "Eliminar";
+                    break;
+                case ModoForm.Consulta:
+                    btnAceptar.Text = "Aceptar";
+                    break;
+            }
+        }
+
         public override void MapearDeDatos()
         {
             txtID.Text = MateriaActual.ID.ToString();
             txtDescripcion.Text = MateriaActual.Descripcion;
             txtHsSemanales.Text = MateriaActual.HorasSemanales.ToString();
             txtHsTotales.Text = MateriaActual.HorasTotales.ToString();
-            cbxPlan.SelectedValue = MateriaActual.MiPlan.ID;
-
-            if (Modo == ModoForm.Consulta)
-            {
-                btnAceptar.Text = "Aceptar";
-            }
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                btnAceptar.Text = "Guardar";
-            }
-            else if (Modo == ModoForm.Baja)
-            {
-                btnAceptar.Text = "Eliminar";
-            }
+            cbxPlan.SelectedValue = MateriaActual.Plan.ID;
         }
 
         public override void MapearADatos()
@@ -83,7 +89,7 @@ namespace UI.Desktop
             MateriaActual.Descripcion = txtDescripcion.Text;
             MateriaActual.HorasSemanales = int.Parse(txtHsSemanales.Text);
             MateriaActual.HorasTotales = int.Parse(txtHsTotales.Text);
-            MateriaActual.MiPlan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
+            MateriaActual.Plan = (Plan)cbxPlan.SelectedItem;
         }
 
         public override void GuardarCambios()

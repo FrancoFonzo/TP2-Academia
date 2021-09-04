@@ -13,13 +13,12 @@ namespace UI.Desktop
         public PersonaDesktop()
         {
             InitializeComponent();
-            cbxTipo.DataSource = Enum.GetValues(typeof(Persona.TiposPersonas));
-            cbxPlan.DataSource = new PlanLogic().GetAll();
         }
 
         public PersonaDesktop(ModoForm modo) : this()
         {
             Modo = modo;
+            MapearInicial();
         }
 
         public PersonaDesktop(int id, ModoForm modo) : this(modo)
@@ -42,34 +41,40 @@ namespace UI.Desktop
             Close();
         }
 
+        private void MapearInicial()
+        {
+            cbxTipo.DataSource = Enum.GetValues(typeof(Persona.TiposPersonas));
+            cbxPlan.DataSource = new PlanLogic().GetAll();
+
+            switch (Modo)
+            {
+                case ModoForm.Alta:
+                case ModoForm.Modificacion:
+                    btnAceptar.Text = "Guardar";
+                    break;
+                case ModoForm.Baja:
+                    btnAceptar.Text = "Eliminar";
+                    break;
+                case ModoForm.Consulta:
+                    btnAceptar.Text = "Aceptar";
+                    break;
+            }
+        }
+
         public override void MapearDeDatos()
         {
             txtID.Text = PersonaActual.ID.ToString();
-            txtLegajo.Text = PersonaActual.Legajo.ToString();
+            txtLegajo.Text = PersonaActual.Legajo?.ToString();
             txtNombre.Text = PersonaActual.Nombre;
             txtApellido.Text = PersonaActual.Apellido;
             txtEMail.Text = PersonaActual.EMail;
             txtDireccion.Text = PersonaActual.Direccion;
             txtTelefono.Text = PersonaActual.Telefono;
             dateNacimiento.Value = PersonaActual.FechaNacimiento;
-            cbxTipo.SelectedIndex = (int)PersonaActual.Tipo;
-
-            if (PersonaActual.MiPlan.ID != 0)
+            cbxTipo.SelectedItem = PersonaActual.Tipo;
+            if (PersonaActual.Plan != null)
             {
-                cbxPlan.SelectedValue = PersonaActual.MiPlan.ID;
-            }
-
-            if (Modo == ModoForm.Consulta)
-            {
-                btnAceptar.Text = "Aceptar";
-            }
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                btnAceptar.Text = "Guardar";
-            }
-            else if (Modo == ModoForm.Baja)
-            {
-                btnAceptar.Text = "Eliminar";
+                cbxPlan.SelectedValue = PersonaActual.Plan.ID;
             }
         }
 
@@ -90,20 +95,19 @@ namespace UI.Desktop
                     PersonaActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            PersonaActual.Legajo = int.Parse(txtLegajo.Text);
+            if (int.TryParse(txtLegajo.Text, out int result))
+            {
+                PersonaActual.Legajo = result;
+            }
+            //PersonaActual.Legajo = int.Parse(txtLegajo.Text);
             PersonaActual.Nombre = txtNombre.Text;
             PersonaActual.Apellido = txtApellido.Text;
             PersonaActual.EMail = txtEMail.Text;
             PersonaActual.Direccion = txtDireccion.Text;
             PersonaActual.Telefono = txtTelefono.Text;
-            PersonaActual.Tipo = (Persona.TiposPersonas)cbxTipo.SelectedIndex;
+            PersonaActual.Tipo = (Persona.TiposPersonas)Enum.Parse(typeof(Persona.TiposPersonas), cbxTipo.SelectedItem.ToString());
             PersonaActual.FechaNacimiento = dateNacimiento.Value;
-
-            var idPlan = cbxPlan.SelectedValue;
-            if (idPlan != null)
-            {
-                PersonaActual.MiPlan = new PlanLogic().GetOne((int)idPlan);
-            }
+            PersonaActual.Plan = (Plan)cbxPlan.SelectedItem;
         }
 
         public override void GuardarCambios()
@@ -115,7 +119,7 @@ namespace UI.Desktop
         public override bool Validar()
         {
             if (!Validaciones.FormularioCompleto
-                (new List<string> {txtNombre.Text, txtApellido.Text, txtLegajo.Text, txtEMail.Text,
+                (new List<string> {txtNombre.Text, txtApellido.Text, txtEMail.Text,
                     txtDireccion.Text, txtTelefono.Text, dateNacimiento.Text}))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",

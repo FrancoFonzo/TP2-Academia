@@ -4,11 +4,6 @@ namespace Business.Entities
 {
     public class Persona : BusinessEntity
     {
-        public Persona()
-        {
-            MiPlan = new Plan();
-        }
-
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int? Legajo { get; set; }
@@ -19,15 +14,25 @@ namespace Business.Entities
         public TiposPersonas Tipo { get; set; }
 
         #region Propiedades de Navegacion
-        public virtual Plan MiPlan { get; set; }
-        #endregion
-
-        #region Propiedades Auxiliares/DataPropertyName
-        public string NombreCompleto
+        public int? PlanId { get; set; }
+        private Plan _plan;
+        public virtual Plan Plan
         {
             get
             {
-                return $"{Nombre} {Apellido}";
+                return _plan;
+            }
+            set
+            {
+                _plan = value;
+                if (value == null)
+                {
+                    PlanId = null;
+                }
+                else
+                {
+                    PlanId = value.ID;
+                }
             }
         }
         #endregion
@@ -37,6 +42,11 @@ namespace Business.Entities
             Administrador,
             Alumno,
             Docente
+        }
+
+        public override string ToString()
+        {
+            return $"{Nombre} {Apellido}";
         }
     }
 }

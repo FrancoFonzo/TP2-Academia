@@ -59,7 +59,7 @@ namespace UI.Desktop
 
         private void OpenForm(ModoForm modo)
         {
-            int ID = ((AlumnoInscripcion) dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
+            int ID = ((AlumnoInscripcion)dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
             InscripcionDesktop formMaterias = new InscripcionDesktop(ID, PersonaActual, modo);
             formMaterias.ShowDialog();
             Listar();
@@ -69,7 +69,7 @@ namespace UI.Desktop
         {
             try
             {
-                this.dgvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllAlumno(PersonaActual.ID);
+                dgvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllAlumno(PersonaActual.ID);
             }
             catch (Exception)
             {

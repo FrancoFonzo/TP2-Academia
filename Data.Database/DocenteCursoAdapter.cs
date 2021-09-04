@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Business.Entities;
 using System.Linq;
+using System.Data.Entity;
 
 namespace Data.Database
 {
@@ -8,58 +9,60 @@ namespace Data.Database
     {
         public List<DocenteCurso> GetAll()
         {
-            using (AcademiaEntities context = new AcademiaEntities())
+            using (AcademiaContext context = new AcademiaContext())
             {
-                List<DocenteCurso> docentesCursos = new List<DocenteCurso>();
-                context.docentes_cursos
-                    .ToList()
-                    .ForEach(dc => docentesCursos.Add(NuevoDictado(dc)));
-                return docentesCursos;
+                return context.DocenteCurso.Include(dc => dc.Curso).Include(dc => dc.Docente).ToList();
             }
         }
 
-        //TODO: Se usara para Registro Notas
-        public List<DocenteCurso> GetAllDocente(int id)
+        public List<DocenteCurso> GetAllByDocente(int id)
         {
-            using (var context = new AcademiaEntities())
+            using (var context = new AcademiaContext())
             {
-                List<DocenteCurso> dictados = new List<DocenteCurso>();
-                context.docentes_cursos.Where(i => i.id_docente == id)
-                    .ToList()
-                    .ForEach(i => dictados.Add(NuevoDictado(i)));
-                return dictados;
+                return context.DocenteCurso.Include(dc => dc.Curso).Include(dc => dc.Docente).Where(i => i.Docente.ID == id).ToList();
             }
         }
 
         public DocenteCurso GetOne(int id)
         {
-            using (var context = new AcademiaEntities())
+            using (var context = new AcademiaContext())
             {
-                var docCur = context.docentes_cursos.FirstOrDefault(dc => dc.id_dictado == id);
-                return NuevoDictado(docCur);
+                return context.DocenteCurso.Include(dc => dc.Curso).Include(dc => dc.Docente).FirstOrDefault(i => i.Docente.ID == id);
             }
         }
 
-        public void Delete(int id)
+        protected void Insert(DocenteCurso docenteCurso)
         {
-            using (var context = new AcademiaEntities())
+            using (var context = new AcademiaContext())
             {
-                var docCur = context.docentes_cursos.FirstOrDefault(dc => dc.id_dictado == id);
-                if (docCur != null)
-                {
-                    context.docentes_cursos.Remove(docCur);
-                    context.SaveChanges();
-                }
+                context.Persona.Attach(docenteCurso.Docente);
+                context.Curso.Attach(docenteCurso.Curso);
+                context.DocenteCurso.Add(docenteCurso);
+                context.SaveChanges();
+            }
+        }
+
+        protected void Update(DocenteCurso docenteCurso)
+        {
+            using (var context = new AcademiaContext())
+            {
+                context.Entry(docenteCurso).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public void Delete(DocenteCurso docenteCurso)
+        {
+            using (var context = new AcademiaContext())
+            {
+                context.DocenteCurso.Remove(context.DocenteCurso.Find(docenteCurso.ID));
+                context.SaveChanges();
             }
         }
 
         public void Save(DocenteCurso docenteCurso)
         {
-            if (docenteCurso.State == BusinessEntity.States.Deleted)
-            {
-                Delete(docenteCurso.ID);
-            }
-            else if (docenteCurso.State == BusinessEntity.States.New)
+            if (docenteCurso.State == BusinessEntity.States.New)
             {
                 Insert(docenteCurso);
             }
@@ -67,51 +70,11 @@ namespace Data.Database
             {
                 Update(docenteCurso);
             }
+            else if (docenteCurso.State == BusinessEntity.States.Deleted)
+            {
+                Delete(docenteCurso);
+            }
             docenteCurso.State = BusinessEntity.States.Unmodified;
-        }
-
-        protected void Update(DocenteCurso docenteCurso)
-        {
-            using (var context = new AcademiaEntities())
-            {
-                var docCur = context.docentes_cursos.FirstOrDefault(dc => dc.id_dictado == docenteCurso.ID);
-                if (docCur != null)
-                {
-                    docCur.id_docente = docenteCurso.MiDocente.ID;
-                    docCur.id_curso = docenteCurso.MiCurso.ID;
-                    context.SaveChanges();
-                }
-            }
-        }
-
-        protected void Insert(DocenteCurso docenteCurso)
-        {
-            using (var context = new AcademiaEntities())
-            {
-                docentes_cursos docCur = new docentes_cursos
-                {
-                    id_dictado = docenteCurso.ID,
-                    id_docente = docenteCurso.MiDocente.ID,
-                    id_curso = docenteCurso.MiCurso.ID
-                };
-                context.docentes_cursos.Add(docCur);
-                context.SaveChanges();
-            }
-        }
-
-        private static DocenteCurso NuevoDictado(docentes_cursos dc)
-        {
-            if (dc == null)
-            {
-                return null;
-            }
-            DocenteCurso dictado = new DocenteCurso
-            {
-                ID = dc.id_dictado,
-                MiDocente = personaData.GetOne(dc.id_docente),
-                MiCurso = cursoData.GetOne(dc.id_curso)
-            };
-            return dictado;
         }
     }
 }
