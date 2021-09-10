@@ -144,7 +144,7 @@ namespace UI.Desktop
             this.txtID.Cursor = System.Windows.Forms.Cursors.No;
             this.txtID.Enabled = false;
             this.txtID.Location = new System.Drawing.Point(95, 5);
-            this.txtID.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtID.Margin = new System.Windows.Forms.Padding(5);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(279, 22);
@@ -155,7 +155,7 @@ namespace UI.Desktop
             // 
             this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescripcion.Location = new System.Drawing.Point(95, 37);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(5);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.ReadOnly = true;
             this.txtDescripcion.Size = new System.Drawing.Size(279, 22);
@@ -165,7 +165,7 @@ namespace UI.Desktop
             // 
             this.txtAñoCalendario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAñoCalendario.Location = new System.Drawing.Point(497, 5);
-            this.txtAñoCalendario.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtAñoCalendario.Margin = new System.Windows.Forms.Padding(5);
             this.txtAñoCalendario.Name = "txtAñoCalendario";
             this.txtAñoCalendario.Size = new System.Drawing.Size(279, 22);
             this.txtAñoCalendario.TabIndex = 5;
@@ -174,7 +174,7 @@ namespace UI.Desktop
             // 
             this.txtCupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCupo.Location = new System.Drawing.Point(497, 37);
-            this.txtCupo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtCupo.Margin = new System.Windows.Forms.Padding(5);
             this.txtCupo.Name = "txtCupo";
             this.txtCupo.Size = new System.Drawing.Size(279, 22);
             this.txtCupo.TabIndex = 7;
@@ -187,7 +187,7 @@ namespace UI.Desktop
             this.cbxMateria.DisplayMember = "Descripcion";
             this.cbxMateria.FormattingEnabled = true;
             this.cbxMateria.Location = new System.Drawing.Point(95, 69);
-            this.cbxMateria.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbxMateria.Margin = new System.Windows.Forms.Padding(5);
             this.cbxMateria.Name = "cbxMateria";
             this.cbxMateria.Size = new System.Drawing.Size(279, 24);
             this.cbxMateria.TabIndex = 9;
@@ -212,7 +212,7 @@ namespace UI.Desktop
             this.cbxComision.DisplayMember = "Descripcion";
             this.cbxComision.FormattingEnabled = true;
             this.cbxComision.Location = new System.Drawing.Point(497, 69);
-            this.cbxComision.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbxComision.Margin = new System.Windows.Forms.Padding(5);
             this.cbxComision.Name = "cbxComision";
             this.cbxComision.Size = new System.Drawing.Size(279, 24);
             this.cbxComision.TabIndex = 13;
@@ -223,7 +223,7 @@ namespace UI.Desktop
             this.btnCancelar.AutoSize = true;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(384, 123);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 33);
             this.btnCancelar.TabIndex = 11;
@@ -235,7 +235,7 @@ namespace UI.Desktop
             // 
             this.btnAceptar.AutoSize = true;
             this.btnAceptar.Location = new System.Drawing.Point(497, 123);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(89, 33);
             this.btnAceptar.TabIndex = 10;
@@ -250,8 +250,9 @@ namespace UI.Desktop
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(781, 158);
             this.Controls.Add(this.tlMaterias);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CursoDesktop";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CursoDesktop";
             this.tlMaterias.ResumeLayout(false);
             this.tlMaterias.PerformLayout();

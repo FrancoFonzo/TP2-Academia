@@ -45,21 +45,25 @@ namespace UI.Desktop
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            var alumno = (AlumnoInscripcion)dgvAlumnos.SelectedRows[0].DataBoundItem;
-            alumno.Nota = int.Parse(txtNota.Text);
-            alumno.State = BusinessEntity.States.Modified;
-            if(alumno.Nota >= 6)
+            if (IsRowSelected(dgvAlumnos))
             {
-                alumno.Condicion = AlumnoInscripcion.Condiciones.Aprobado;
-            }else if(alumno.Nota >= 4)
-            {
-                alumno.Condicion = AlumnoInscripcion.Condiciones.Regular;
-            }
-            else
-            {
-                alumno.Condicion = AlumnoInscripcion.Condiciones.Inscripto;
-            }
-            new AlumnoInscripcionLogic().Save(alumno);
+                var alumno = (AlumnoInscripcion)dgvAlumnos.SelectedRows[0].DataBoundItem;
+                alumno.Nota = int.Parse(txtNota.Text);
+                alumno.State = BusinessEntity.States.Modified;
+                if (alumno.Nota >= 6)
+                {
+                    alumno.Condicion = AlumnoInscripcion.Condiciones.Aprobado;
+                }
+                else if (alumno.Nota >= 4)
+                {
+                    alumno.Condicion = AlumnoInscripcion.Condiciones.Regular;
+                }
+                else
+                {
+                    alumno.Condicion = AlumnoInscripcion.Condiciones.Inscripto;
+                }
+                new AlumnoInscripcionLogic().Save(alumno);
+            }            
         }
     }
 }

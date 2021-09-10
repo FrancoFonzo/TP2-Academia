@@ -2,6 +2,7 @@
 using System.Linq;
 using Business.Entities;
 using System.Data.Entity;
+using System;
 
 namespace Data.Database
 {
@@ -30,6 +31,20 @@ namespace Data.Database
                     .Include(i => i.Curso.Materia)
                     .Include(i => i.Curso.Comision)
                     .Where(a => a.Alumno.ID == id)
+                    .ToList();
+            }
+        }
+
+        public List<AlumnoInscripcion> GetAllByCursos(int idCurso)
+        {
+            using (var context = new AcademiaContext())
+            {
+                return context
+                    .AlumnoInscripcion
+                    .Include(i => i.Alumno)
+                    .Include(i => i.Curso.Materia)
+                    .Include(i => i.Curso.Comision)
+                    .Where(a => a.Curso.ID == idCurso)
                     .ToList();
             }
         }

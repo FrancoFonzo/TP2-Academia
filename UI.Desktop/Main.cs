@@ -111,13 +111,13 @@ namespace UI.Desktop
 
         private void btnNotas_Click(object sender, EventArgs e)
         {
-            if (Login.UsuarioActual.MiPersona.Tipo == Persona.TiposPersonas.Administrador)
+            if (Login.UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)
             {
                 OpenForm(new Personas(Persona.TiposPersonas.Docente));
             }
             else
             {
-                OpenForm(new RegistrarNotas(Login.UsuarioActual.MiPersona));
+                OpenForm(new RegistrarNotas(Login.UsuarioActual.Persona));
             }
         }
 

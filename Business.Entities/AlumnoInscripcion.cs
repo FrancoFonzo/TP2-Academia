@@ -29,19 +29,19 @@
         public int? Legajo {
             get
             {
-                return MiAlumno.Legajo;
+                return Alumno.Legajo;
             }
         }
         public string Nombre {
             get
             {
-                return MiAlumno.Nombre;
+                return Alumno.Nombre;
             }
         }
         public string Apellido {
             get
             {
-                return MiAlumno.Apellido;
+                return Alumno.Apellido;
             }
         }
 
