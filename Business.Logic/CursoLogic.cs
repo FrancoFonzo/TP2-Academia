@@ -23,19 +23,14 @@ namespace Business.Logic
             return CursoData.GetOne(id);
         }
 
-        public List<Curso> GetCursosNoInscripto(int id)
+        public List<Curso> GetAllNoInscByPersona(int id)
         {
-            return CursoData.GetCursosNoInscripto(id);
+            return CursoData.GetAllNoInscByPersona(id);
         }
 
         public void Save(Curso curso)
         {
             CursoData.Save(curso);
-        }
-
-        public void Delete(int id)
-        {
-            CursoData.Delete(id);
         }
     }
 }

@@ -13,12 +13,12 @@ namespace UI.Desktop
         public ComisionDesktop()
         {
             InitializeComponent();
-            cbxPlan.DataSource = new PlanLogic().GetAll();
         }
 
         public ComisionDesktop(ModoForm modo) : this()
         {
             Modo = modo;
+            MapearInicial();
         }
 
         public ComisionDesktop(int id, ModoForm modo) : this(modo)
@@ -41,28 +41,30 @@ namespace UI.Desktop
             Close();
         }
 
+        private void MapearInicial()
+        {
+            cbxPlan.DataSource = new PlanLogic().GetAll();
+            switch (Modo)
+            {
+                case ModoForm.Alta:
+                case ModoForm.Modificacion:
+                    btnAceptar.Text = "Guardar";
+                    break;
+                case ModoForm.Baja:
+                    btnAceptar.Text = "Eliminar";
+                    break;
+                case ModoForm.Consulta:
+                    btnAceptar.Text = "Aceptar";
+                    break;
+            }
+        }
+
         public override void MapearDeDatos()
         {
             txtID.Text = ComisionActual.ID.ToString();
             txtDescripcion.Text = ComisionActual.Descripcion;
             txtAnioEspecialidad.Text = ComisionActual.AnioEspecialidad.ToString();
-            if (ComisionActual.MiPlan != null)
-            {
-                cbxPlan.SelectedValue = ComisionActual.MiPlan.ID;
-            }
-
-            if (Modo == ModoForm.Consulta)
-            {
-                btnAceptar.Text = "Aceptar";
-            }
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                btnAceptar.Text = "Guardar";
-            }
-            else if (Modo == ModoForm.Baja)
-            {
-                btnAceptar.Text = "Eliminar";
-            }
+            cbxPlan.SelectedItem = ComisionActual.Plan;
         }
 
         public override void MapearADatos()
@@ -87,7 +89,7 @@ namespace UI.Desktop
 
             if (cbxPlan.SelectedValue != null)
             {
-                ComisionActual.MiPlan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
+                ComisionActual.Plan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
             }
         }
 

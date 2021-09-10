@@ -27,10 +27,5 @@ namespace Business.Logic
         {
             EspecialidadData.Save(especialidad);
         }
-
-        public void Delete(int id)
-        {
-            EspecialidadData.Delete(id);
-        }
     }
 }

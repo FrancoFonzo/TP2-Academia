@@ -32,10 +32,5 @@ namespace Business.Logic
         {
             DocenteCursoData.Save(docenteCurso);
         }
-
-        public void Delete(int id)
-        {
-            DocenteCursoData.Delete(id);
-        }
     }
 }

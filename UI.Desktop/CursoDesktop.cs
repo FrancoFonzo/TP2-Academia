@@ -13,13 +13,12 @@ namespace UI.Desktop
         public CursoDesktop()
         {
             InitializeComponent();
-            cbxMateria.DataSource = new MateriaLogic().GetAll();
-            cbxComision.DataSource = new ComisionLogic().GetAll();
         }
 
         public CursoDesktop(ModoForm modo) : this()
         {
             Modo = modo;
+            MapearInicial();
         }
 
         public CursoDesktop(int id, ModoForm modo) : this(modo)
@@ -42,27 +41,34 @@ namespace UI.Desktop
             Close();
         }
 
+        private void MapearInicial()
+        {
+            cbxMateria.DataSource = new MateriaLogic().GetAll();
+            cbxComision.DataSource = new ComisionLogic().GetAll();
+
+            switch (Modo)
+            {
+                case ModoForm.Alta:
+                case ModoForm.Modificacion:
+                    btnAceptar.Text = "Guardar";
+                    break;
+                case ModoForm.Baja:
+                    btnAceptar.Text = "Eliminar";
+                    break;
+                case ModoForm.Consulta:
+                    btnAceptar.Text = "Aceptar";
+                    break;
+            }
+        }
+
         public override void MapearDeDatos()
         {
             txtID.Text = CursoActual.ID.ToString();
             txtDescripcion.Text = CursoActual.Descripcion;
             txtAñoCalendario.Text = CursoActual.AnioCalendario.ToString();
             txtCupo.Text = CursoActual.Cupo.ToString();
-            cbxMateria.SelectedValue = CursoActual.MiMateria.ID;
-            cbxComision.SelectedValue = CursoActual.MiComision.ID;
-
-            if (Modo == ModoForm.Consulta)
-            {
-                btnAceptar.Text = "Aceptar";
-            }
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                btnAceptar.Text = "Guardar";
-            }
-            else if (Modo == ModoForm.Baja)
-            {
-                btnAceptar.Text = "Eliminar";
-            }
+            cbxMateria.SelectedValue = CursoActual.MateriaId;
+            cbxComision.SelectedValue = CursoActual.ComisionId;
         }
 
         public override void MapearADatos()
@@ -84,8 +90,8 @@ namespace UI.Desktop
             }
             CursoActual.AnioCalendario = int.Parse(txtAñoCalendario.Text);
             CursoActual.Cupo = int.Parse(txtCupo.Text);
-            CursoActual.MiMateria = new MateriaLogic().GetOne((int)cbxMateria.SelectedValue);
-            CursoActual.MiComision = new ComisionLogic().GetOne((int)cbxComision.SelectedValue);
+            CursoActual.Materia = (Materia)cbxMateria.SelectedItem;
+            CursoActual.Comision = (Comision)cbxComision.SelectedItem;
         }
 
         public override void GuardarCambios()
@@ -97,7 +103,7 @@ namespace UI.Desktop
         public override bool Validar()
         {
             if (!Validaciones.FormularioCompleto
-                (new List<string> { txtDescripcion.Text, txtCupo.Text, txtAñoCalendario.Text }))
+                (new List<string> { txtCupo.Text, txtAñoCalendario.Text }))
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

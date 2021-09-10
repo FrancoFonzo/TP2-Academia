@@ -18,14 +18,14 @@ namespace Business.Logic
             return PersonaData.GetAll();
         }
 
-        public List<Persona> GetPersonasSinUsuario()
+        public List<Persona> GetAllSinUsuario()
         {
-            return PersonaData.GetPersonasSinUsuario();
+            return PersonaData.GetAllSinUsuario();
         }
 
         public List<Persona> GetAllTipo(Persona.TiposPersonas tipo)
         {
-            return PersonaData.GetAllTipo(tipo);
+            return PersonaData.GetAllByTipo(tipo);
         }
 
         public Persona GetOne(int id)
@@ -36,11 +36,6 @@ namespace Business.Logic
         public void Save(Persona persona)
         {
             PersonaData.Save(persona);
-        }
-
-        public void Delete(int id)
-        {
-            PersonaData.Delete(id);
         }
     }
 }

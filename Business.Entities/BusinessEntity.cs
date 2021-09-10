@@ -1,4 +1,6 @@
-﻿namespace Business.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Business.Entities
 {
     public class BusinessEntity
     {
@@ -8,6 +10,8 @@
         }
 
         public int ID { get; set; }
+
+        [NotMapped]
         public States State { get; set; }
 
         public enum States

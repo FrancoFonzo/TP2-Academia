@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Business.Entities;
 
@@ -8,32 +9,51 @@ namespace Data.Database
     {
         public List<Plan> GetAll()
         {
-            using (AcademiaEntities context = new AcademiaEntities())
+            using (AcademiaContext context = new AcademiaContext())
             {
-                List<Plan> planes = new List<Plan>();
-                context.planes
-                    .ToList()
-                    .ForEach(p => planes.Add(NuevoPlan(p)));
-                return planes;
+                return context.Plan.Include(p => p.Especialidad).ToList();
             }
         }
 
         public Plan GetOne(int id)
         {
-            using (var context = new AcademiaEntities())
+            using (var context = new AcademiaContext())
             {
-                var plan = context.planes.FirstOrDefault(p => p.id_plan == id);
-                return NuevoPlan(plan);
+                return context.Plan.Include(p => p.Especialidad).FirstOrDefault(p => p.ID == id);
+            }
+        }
+
+        protected void Insert(Plan plan)
+        {
+            using (var context = new AcademiaContext())
+            {
+                context.Especialidad.Attach(plan.Especialidad);
+                context.Plan.Add(plan);
+                context.SaveChanges();
+            }
+        }
+
+        protected void Update(Plan plan)
+        {
+            using (var context = new AcademiaContext())
+            {
+                context.Entry(plan).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public void Delete(Plan plan)
+        {
+            using (var context = new AcademiaContext())
+            {
+                context.Plan.Remove(context.Plan.Find(plan.ID));
+                context.SaveChanges();
             }
         }
 
         public void Save(Plan plan)
         {
-            if (plan.State == BusinessEntity.States.Deleted)
-            {
-                Delete(plan);
-            }
-            else if (plan.State == BusinessEntity.States.New)
+            if (plan.State == BusinessEntity.States.New)
             {
                 Insert(plan);
             }
@@ -41,64 +61,11 @@ namespace Data.Database
             {
                 Update(plan);
             }
+            else if (plan.State == BusinessEntity.States.Deleted)
+            {
+                Delete(plan);
+            }
             plan.State = BusinessEntity.States.Unmodified;
-        }
-
-        public void Delete(Plan plan)
-        {
-            using (var context = new AcademiaEntities())
-            {
-                var pln = context.planes.FirstOrDefault(p => p.id_plan == plan.ID);
-                if (pln != null)
-                {
-                    context.planes.Remove(pln);
-                    context.SaveChanges();
-                }
-            }
-        }
-
-        protected void Update(Plan plan)
-        {
-            using (var context = new AcademiaEntities())
-            {
-                var pln = context.planes.FirstOrDefault(p => p.id_plan == plan.ID);
-                if (pln != null)
-                {
-                    pln.desc_plan = plan.Descripcion;
-                    pln.id_especialidad = plan.MiEspecialidad.ID;
-                    context.SaveChanges();
-                }
-            }
-        }
-
-        protected void Insert(Plan plan)
-        {
-            using (var context = new AcademiaEntities())
-            {
-                planes pln = new planes
-                {
-                    id_plan = plan.ID,
-                    desc_plan = plan.Descripcion,
-                    id_especialidad = plan.MiEspecialidad.ID
-                };
-                context.planes.Add(pln);
-                context.SaveChanges();
-            }
-        }
-
-        private static Plan NuevoPlan(planes p)
-        {
-            if (p == null)
-            {
-                return null;
-            }
-            Plan plan = new Plan
-            {
-                ID = p.id_plan,
-                Descripcion = p.desc_plan,
-                MiEspecialidad = especialidadData.GetOne(p.especialidades.id_especialidad)
-            };
-            return plan;
         }
     }
 }

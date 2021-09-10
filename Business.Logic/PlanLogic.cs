@@ -1,5 +1,4 @@
-﻿using Business.Entities;
-using Data.Database;
+﻿using Data.Database;
 using System.Collections.Generic;
 
 namespace Business.Logic
@@ -13,24 +12,19 @@ namespace Business.Logic
             PlanData = new PlanAdapter();
         }
 
-        public List<Plan> GetAll()
+        public List<Entities.Plan> GetAll()
         {
             return PlanData.GetAll();
         }
 
-        public Plan GetOne(int id)
+        public Entities.Plan GetOne(int id)
         {
             return PlanData.GetOne(id);
         }
 
-        public void Save(Plan plan)
+        public void Save(Entities.Plan plan)
         {
             PlanData.Save(plan);
-        }
-
-        public void Delete(Plan plan)
-        {
-            PlanData.Delete(plan);
         }
     }
 }

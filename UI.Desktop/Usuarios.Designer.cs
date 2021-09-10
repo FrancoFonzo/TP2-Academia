@@ -31,16 +31,16 @@ namespace UI.Desktop
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tsbAgregar = new System.Windows.Forms.ToolStripButton();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.tsUsuarios = new System.Windows.Forms.ToolStrip();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.tsUsuarios.SuspendLayout();
             this.SuspendLayout();
@@ -54,9 +54,9 @@ namespace UI.Desktop
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
+            this.usuario,
             this.nombre,
             this.apellido,
-            this.usuario,
             this.email,
             this.habilitado});
             this.dgvUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -70,56 +70,6 @@ namespace UI.Desktop
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsuarios.Size = new System.Drawing.Size(800, 415);
             this.dgvUsuarios.TabIndex = 5;
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "ID";
-            this.id.HeaderText = "ID";
-            this.id.MinimumWidth = 6;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // nombre
-            // 
-            this.nombre.DataPropertyName = "NombrePersona";
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.MinimumWidth = 6;
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
-            // apellido
-            // 
-            this.apellido.DataPropertyName = "ApellidoPersona";
-            this.apellido.HeaderText = "Apellido";
-            this.apellido.MinimumWidth = 6;
-            this.apellido.Name = "apellido";
-            this.apellido.ReadOnly = true;
-            // 
-            // usuario
-            // 
-            this.usuario.DataPropertyName = "NombreUsuario";
-            this.usuario.HeaderText = "Usuario";
-            this.usuario.MinimumWidth = 6;
-            this.usuario.Name = "usuario";
-            this.usuario.ReadOnly = true;
-            // 
-            // email
-            // 
-            this.email.DataPropertyName = "EMailPersona";
-            this.email.HeaderText = "EMail";
-            this.email.MinimumWidth = 6;
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            // 
-            // habilitado
-            // 
-            this.habilitado.DataPropertyName = "Habilitado";
-            this.habilitado.HeaderText = "Habilitado";
-            this.habilitado.MinimumWidth = 6;
-            this.habilitado.Name = "habilitado";
-            this.habilitado.ReadOnly = true;
-            this.habilitado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.habilitado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // tsbAgregar
             // 
@@ -178,6 +128,58 @@ namespace UI.Desktop
             this.tsUsuarios.Size = new System.Drawing.Size(800, 35);
             this.tsUsuarios.TabIndex = 4;
             // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.id.DataPropertyName = "ID";
+            this.id.HeaderText = "ID";
+            this.id.MinimumWidth = 6;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 50;
+            // 
+            // usuario
+            // 
+            this.usuario.DataPropertyName = "NombreUsuario";
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.MinimumWidth = 6;
+            this.usuario.Name = "usuario";
+            this.usuario.ReadOnly = true;
+            // 
+            // nombre
+            // 
+            this.nombre.DataPropertyName = "PersonaNombre";
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.MinimumWidth = 6;
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            // 
+            // apellido
+            // 
+            this.apellido.DataPropertyName = "PersonaApellido";
+            this.apellido.HeaderText = "Apellido";
+            this.apellido.MinimumWidth = 6;
+            this.apellido.Name = "apellido";
+            this.apellido.ReadOnly = true;
+            // 
+            // email
+            // 
+            this.email.DataPropertyName = "PersonaEMail";
+            this.email.HeaderText = "EMail";
+            this.email.MinimumWidth = 6;
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            // 
+            // habilitado
+            // 
+            this.habilitado.DataPropertyName = "Habilitado";
+            this.habilitado.HeaderText = "Habilitado";
+            this.habilitado.MinimumWidth = 6;
+            this.habilitado.Name = "habilitado";
+            this.habilitado.ReadOnly = true;
+            this.habilitado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.habilitado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -201,16 +203,16 @@ namespace UI.Desktop
 
         #endregion
         private System.Windows.Forms.DataGridView dgvUsuarios;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn habilitado;
         private System.Windows.Forms.ToolStripButton tsbAgregar;
         private System.Windows.Forms.ToolStripButton tsbEditar;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.ToolStrip tsUsuarios;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn habilitado;
     }
 }
 

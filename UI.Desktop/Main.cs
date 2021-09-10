@@ -18,7 +18,7 @@ namespace UI.Desktop
         public Main()
         {
             InitializeComponent();
-            titulo = $"Bienvenido/a {Login.UsuarioActual.MiPersona.NombreCompleto}!";
+            titulo = $"Bienvenido/a {Login.UsuarioActual.Persona}!";
             panelAdminReportes.Visible = false;
         }
 
@@ -26,9 +26,9 @@ namespace UI.Desktop
         {
             lblTitulo.Text = titulo;
             lblUsuario.Text = $"{lblUsuario.Text} {Login.UsuarioActual.NombreUsuario}";
-            lblLegajo.Text = $"{lblLegajo.Text} {Login.UsuarioActual.MiPersona.Legajo}";
-            lblPersona.Text = $"{lblPersona.Text} {Login.UsuarioActual.MiPersona.NombreCompleto}";
-            switch (Login.UsuarioActual.MiPersona.Tipo)
+            lblLegajo.Text = $"{lblLegajo.Text} {Login.UsuarioActual.Persona.Legajo}";
+            lblPersona.Text = $"{lblPersona.Text} {Login.UsuarioActual.Persona}";
+            switch (Login.UsuarioActual.Persona.Tipo)
             {
                 case Persona.TiposPersonas.Administrador:
                     panelMenu.Controls.OfType<Button>().ToList().ForEach(b => b.Visible = true);
@@ -123,13 +123,13 @@ namespace UI.Desktop
 
         private void btnInscripcion_Click(object sender, EventArgs e)
         {
-            if (Login.UsuarioActual.MiPersona.Tipo == Persona.TiposPersonas.Administrador)
+            if (Login.UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)
             {
                 OpenForm(new Personas(Persona.TiposPersonas.Alumno));
             }
             else
             {
-                OpenForm(new Inscripciones(Login.UsuarioActual.MiPersona));
+                OpenForm(new Inscripciones(Login.UsuarioActual.Persona));
             }
         }
 

@@ -14,13 +14,12 @@ namespace UI.Desktop
         public InscripcionDesktop()
         {
             InitializeComponent();
-            dgvCursos.AutoGenerateColumns = false;
-            cbxCondicion.DataSource = Enum.GetValues(typeof(AlumnoInscripcion.Condiciones));
         }
 
         public InscripcionDesktop(ModoForm modo) : this()
         {
             Modo = modo;
+            MapearInicial();
         }
 
         public InscripcionDesktop(Persona personaActual, ModoForm modo) : this(modo)
@@ -31,8 +30,8 @@ namespace UI.Desktop
 
         public InscripcionDesktop(int ID, Persona personaActual, ModoForm modo) : this(modo)
         {
-            PersonaActual = personaActual;
             InscripcionActual = new AlumnoInscripcionLogic().GetOne(ID);
+            PersonaActual = personaActual;
             MapearDeDatos();
         }
 
@@ -55,30 +54,37 @@ namespace UI.Desktop
             Close();
         }
 
+        private void MapearInicial()
+        {
+            dgvCursos.AutoGenerateColumns = false;
+            cbxCondicion.DataSource = Enum.GetValues(typeof(AlumnoInscripcion.Condiciones));
+
+            switch (Modo)
+            {
+                case ModoForm.Alta:
+                    btnAceptar.Text = "Inscribir";
+                    break;
+                case ModoForm.Modificacion:
+                    btnAceptar.Text = "Guardar";
+                    cbxCondicion.Enabled = true;
+                    break;
+                case ModoForm.Baja:
+                    btnAceptar.Text = "Eliminar";
+                    break;
+                case ModoForm.Consulta:
+                    btnAceptar.Text = "Aceptar";
+                    break;
+            }
+        }
+
         public override void MapearDeDatos()
         {
-            txtAlumno.Text = PersonaActual.NombreCompleto;
-            if (InscripcionActual != null)
+            if (Modo != ModoForm.Alta)
             {
+                cbxCondicion.Enabled = true;
                 cbxCondicion.SelectedItem = InscripcionActual.Condicion;
             }
-            if (Modo == ModoForm.Consulta)
-            {
-                btnAceptar.Text = "Aceptar";
-            }
-            else if (Modo == ModoForm.Alta)
-            {
-                btnAceptar.Text = "Inscribir";
-            }
-            else if (Modo == ModoForm.Modificacion)
-            {
-                btnAceptar.Text = "Guardar";
-                cbxCondicion.Enabled = true;
-            }
-            else if (Modo == ModoForm.Baja)
-            {
-                btnAceptar.Text = "Eliminar";
-            }
+            txtAlumno.Text = PersonaActual.ToString();
         }
 
         public override void MapearADatos()
@@ -98,9 +104,9 @@ namespace UI.Desktop
                     InscripcionActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            InscripcionActual.MiAlumno = PersonaActual;
-            InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)cbxCondicion.SelectedValue;
-            InscripcionActual.MiCurso = (Curso)dgvCursos.SelectedRows[0].DataBoundItem;
+            InscripcionActual.Alumno = PersonaActual;
+            InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)Enum.Parse(typeof(AlumnoInscripcion.Condiciones), cbxCondicion.SelectedItem.ToString());
+            InscripcionActual.Curso = (Curso)dgvCursos.SelectedRows[0].DataBoundItem;
         }
 
         public override void GuardarCambios()
@@ -116,11 +122,11 @@ namespace UI.Desktop
                 switch (Modo)
                 {
                     case ModoForm.Alta:
-                        dgvCursos.DataSource = new CursoLogic().GetCursosNoInscripto(PersonaActual.ID);
+                        dgvCursos.DataSource = new CursoLogic().GetAllNoInscByPersona(PersonaActual.ID);
                         break;
                     case ModoForm.Modificacion:
                     case ModoForm.Baja:
-                        dgvCursos.DataSource = new List<Curso> { InscripcionActual.MiCurso };
+                        dgvCursos.DataSource = new List<Curso> { InscripcionActual.Curso };
                         break;
                     case ModoForm.Consulta:
                         break;

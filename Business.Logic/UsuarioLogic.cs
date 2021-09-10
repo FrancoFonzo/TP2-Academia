@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Business.Entities;
 using Data.Database;
 
 namespace Business.Logic
@@ -13,29 +12,24 @@ namespace Business.Logic
             UsuarioData = new UsuarioAdapter();
         }
 
-        public List<Usuario> GetAll()
+        public List<Entities.Usuario> GetAll()
         {
             return UsuarioData.GetAll();
         }
 
-        public Usuario GetOne(int id)
+        public Entities.Usuario GetOne(int id)
         {
             return UsuarioData.GetOne(id);
         }
 
-        public Usuario GetOneNombreUsuario(string user)
+        public Entities.Usuario GetOneNombreUsuario(string user)
         {
-            return UsuarioData.GetOneNombreUsuario(user);
+            return UsuarioData.GetOneByNombreUsuario(user);
         }
 
-        public void Save(Usuario usuario)
+        public void Save(Entities.Usuario usuario)
         {
             UsuarioData.Save(usuario);
-        }
-
-        public void Delete(int id)
-        {
-            UsuarioData.Delete(id);
         }
     }
 }

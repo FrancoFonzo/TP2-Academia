@@ -20,7 +20,12 @@ namespace Business.Logic
 
         public List<AlumnoInscripcion> GetAllAlumno(int id)
         {
-            return InscripcionData.GetAllAlumno(id);
+            return InscripcionData.GetAllByAlumno(id);
+        }
+		
+		public List<AlumnoInscripcion> GetAllByCursos(int idCurso)
+        {
+            return InscripcionData.GetAllByCursos(idCurso);
         }
 
         public AlumnoInscripcion GetOne(int id)
@@ -31,16 +36,6 @@ namespace Business.Logic
         public void Save(AlumnoInscripcion inscripcion)
         {
             InscripcionData.Save(inscripcion);
-        }
-
-        public void Delete(int id)
-        {
-            InscripcionData.Delete(id);
-        }
-
-        public List<AlumnoInscripcion> GetAllByCursos(int idCurso)
-        {
-            return InscripcionData.GetAllByCursos(idCurso);
         }
     }
 }

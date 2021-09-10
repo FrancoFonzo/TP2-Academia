@@ -44,17 +44,18 @@ namespace UI.Desktop
             txtID.Text = EspecialidadActual.ID.ToString();
             txtDescripcion.Text = EspecialidadActual.Descripcion;
 
-            if (Modo == ModoForm.Consulta)
+            switch (Modo)
             {
-                btnAceptar.Text = "Aceptar";
-            }
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                btnAceptar.Text = "Guardar";
-            }
-            else if (Modo == ModoForm.Baja)
-            {
-                btnAceptar.Text = "Eliminar";
+                case ModoForm.Alta:
+                case ModoForm.Modificacion:
+                    btnAceptar.Text = "Guardar";
+                    break;
+                case ModoForm.Baja:
+                    btnAceptar.Text = "Eliminar";
+                    break;
+                case ModoForm.Consulta:
+                    btnAceptar.Text = "Aceptar";
+                    break;
             }
         }
 

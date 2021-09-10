@@ -9,18 +9,15 @@ namespace UI.Desktop
     public partial class UsuarioDesktop : ApplicationForm
     {
         private Usuario Usuario { get; set; }
-
         public UsuarioDesktop()
         {
             InitializeComponent();
-            List<Persona> personas = new PersonaLogic().GetPersonasSinUsuario();
-            personas.Add(Usuario?.MiPersona);
-            cbxPersona.DataSource = personas;
         }
 
         public UsuarioDesktop(ModoForm modo) : this()
         {
             Modo = modo;
+            MapearInicial();
         }
 
         public UsuarioDesktop(int id, ModoForm modo) : this(modo)
@@ -43,29 +40,36 @@ namespace UI.Desktop
             Close();
         }
 
+        private void MapearInicial()
+        {
+            cbxPersona.DataSource = new PersonaLogic().GetAllSinUsuario();
+
+            switch (Modo)
+            {
+                case ModoForm.Alta:
+                case ModoForm.Modificacion:
+                    btnAceptar.Text = "Guardar";
+                    break;
+                case ModoForm.Baja:
+                    btnAceptar.Text = "Eliminar";
+                    break;
+                case ModoForm.Consulta:
+                    btnAceptar.Text = "Aceptar";
+                    break;
+            }
+        }
+
         public override void MapearDeDatos()
         {
+            List<Persona> personas = new PersonaLogic().GetAllSinUsuario();
+            personas.Add(Usuario.Persona);
+            cbxPersona.DataSource = personas;
+
             txtID.Text = Usuario.ID.ToString();
             chkHabilitado.Checked = Usuario.Habilitado;
             txtUsuario.Text = Usuario.NombreUsuario;
             txtClave.Text = Usuario.Clave;
-            if (Usuario.MiPersona.ID != 0)
-            {
-                cbxPersona.SelectedValue = Usuario.MiPersona.ID;
-            }
-
-            if (Modo == ModoForm.Consulta)
-            {
-                btnAceptar.Text = "Aceptar";
-            }
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                btnAceptar.Text = "Guardar";
-            }
-            else if (Modo == ModoForm.Baja)
-            {
-                btnAceptar.Text = "Eliminar";
-            }
+            cbxPersona.SelectedItem = Usuario.Persona;
         }
 
         public override void MapearADatos()
@@ -88,12 +92,7 @@ namespace UI.Desktop
             Usuario.Habilitado = chkHabilitado.Checked;
             Usuario.NombreUsuario = txtUsuario.Text;
             Usuario.Clave = txtClave.Text;
-
-            var idPer = cbxPersona.SelectedValue;
-            if (idPer  != null)
-            {
-                Usuario.MiPersona = new PersonaLogic().GetOne((int)idPer);
-            }
+            Usuario.Persona = (Persona)cbxPersona.SelectedItem;
         }
 
         public override void GuardarCambios()
