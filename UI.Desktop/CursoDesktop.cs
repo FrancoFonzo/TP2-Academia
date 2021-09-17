@@ -120,9 +120,24 @@ namespace UI.Desktop
             }
             else
             {
-                return true;
+                return false ;
             }
             return false;
+        }
+
+        private void cbxMateria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+           int idPlan = ((Business.Entities.Materia)this.cbxMateria.SelectedItem).PlanId;
+            ComisionLogic com = new ComisionLogic();
+            com.GetComisionPlanes(idPlan);
+            this.cbxComision.DataSource = com;
+            this.cbxComision.DisplayMember = "Descripcion";
+        }
+
+        private void CursoDesktop_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

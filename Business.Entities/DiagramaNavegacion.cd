@@ -2,20 +2,10 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Business.Entities.Comision">
     <Position X="1.25" Y="1.25" Width="1.5" />
-    <AssociationLine Name="MiPlan" Type="Business.Entities.Plan" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="1.938" Y="3.127" />
-        <Point X="1.938" Y="4.219" />
-        <Point X="4.25" Y="4.219" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAEIAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>BAAAAAAAAAAAAAAEIAAAAAABAAAAAAABAAAAACAAAAA=</HashCode>
       <FileName>Comision.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="MiPlan" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Business.Entities.DocenteCurso">
     <Position X="7.25" Y="6.75" Width="1.5" />
@@ -27,13 +17,9 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAQAAAAABAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAEAAAAAABBAAAAAAAIAA=</HashCode>
       <FileName>DocenteCurso.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="MiDocente" />
-      <Property Name="MiCurso" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Business.Entities.Especialidad">
     <Position X="1.25" Y="4.5" Width="1.5" />
@@ -45,12 +31,9 @@
   <Class Name="Business.Entities.Usuario">
     <Position X="1.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAAAkAAAAAAAAAAAAAAAAAABAAAIAACAAAEAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAIAkACQAkAA=</HashCode>
       <FileName>Usuario.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="MiPersona" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Business.Entities.Persona">
     <Position X="4.25" Y="6.5" Width="1.5" />
@@ -62,32 +45,23 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAgAAAEACAAhABAACAAAAAAAAAAAgAAAAQ=</HashCode>
+      <HashCode>FAAAAAAAAAAAAAAEACAAhAAAACAAAAABAAAAAiAAAAQ=</HashCode>
       <FileName>Persona.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="MiPlan" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Business.Entities.Materia">
-    <Position X="4.25" Y="1.25" Width="1.5" />
+    <Position X="4.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAEAQAAAAABgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>BAAAAAAAAAAAAAAEAQAAAAABgAAAAAABAAAAACAAAAA=</HashCode>
       <FileName>Materia.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="MiPlan" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Business.Entities.Plan">
     <Position X="4.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAAEAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAEAAAAABAAAAAAEAAAAAAABAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Plan.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="MiEspecialidad" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Business.Entities.AlumnoInscripcion">
     <Position X="9.5" Y="6.5" Width="1.5" />
@@ -99,29 +73,16 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAGAAAAAAAAAAAAAAAEAAAABAAAAEAAEAAA=</HashCode>
+      <HashCode>AAAAAAAAAQCAAAAEAAAChAAAEAEAABAAAAAAEAAEAAA=</HashCode>
       <FileName>AlumnoInscripcion.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="MiCurso" />
-      <Property Name="MiAlumno" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Business.Entities.Curso">
     <Position X="7.25" Y="1.25" Width="1.5" />
-    <AssociationLine Name="MiComision" Type="Business.Entities.Comision">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-1.073" Y="0.102" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAEAAAAAGAAAAAAABAAAAAAAAAAABAAAAAAA=</HashCode>
+      <HashCode>AAAAAIAACAAAAAAGAAAAAAQBAAQAAAAACAAAAAACAAA=</HashCode>
       <FileName>Curso.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="MiMateria" />
-      <Property Name="MiComision" />
-    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
