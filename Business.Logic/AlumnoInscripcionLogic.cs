@@ -37,5 +37,10 @@ namespace Business.Logic
         {
             InscripcionData.Save(inscripcion);
         }
+
+        public int CountInscripcionesByCursos(int idCurso)
+        {
+            return InscripcionData.CountInscripcionesByCursos(idCurso);
+        }
     }
 }
