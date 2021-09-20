@@ -107,5 +107,14 @@ namespace Data.Database
             }
             insc.State = BusinessEntity.States.Unmodified;
         }
+
+        public int CountInscripcionesByCursos(int idCurso)
+        {
+            using (var context = new AcademiaContext())
+            {
+                int cantidad = context.AlumnoInscripcion.Where(i => i.CursoId == idCurso).Count();
+                return (cantidad);
+            }
+        }
     }
 }
