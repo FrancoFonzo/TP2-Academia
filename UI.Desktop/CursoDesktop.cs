@@ -102,6 +102,9 @@ namespace UI.Desktop
 
         public override bool Validar()
         {
+            int planComision = ((Comision)cbxComision.SelectedItem).PlanId;
+            int planMateria = ((Materia)cbxMateria.SelectedItem).PlanId;
+
             if (!Validaciones.FormularioCompleto
                 (new List<string> { txtCupo.Text, txtAñoCalendario.Text }))
             {
@@ -118,26 +121,16 @@ namespace UI.Desktop
                 Notificar("Informacion invalida", "La comision especificada no existe.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if (planComision != planMateria)
+            {
+                Notificar("Informacion invalida", "La comision y la materia deben pertenecer al mismo plan.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
-                return false ;
+                return true;
             }
             return false;
-        }
-
-        private void cbxMateria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-           int idPlan = ((Business.Entities.Materia)this.cbxMateria.SelectedItem).PlanId;
-            ComisionLogic com = new ComisionLogic();
-            com.GetComisionPlanes(idPlan);
-            this.cbxComision.DataSource = com;
-            this.cbxComision.DisplayMember = "Descripcion";
-        }
-
-        private void CursoDesktop_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

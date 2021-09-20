@@ -27,9 +27,5 @@ namespace Business.Logic
         {
             ComisionData.Save(comision);
         }
-        public List<Comision> GetComisionPlanes(int idPlan)
-        {
-            return ComisionData.GetComisionPlanes(idPlan);
-        }
     }
 }

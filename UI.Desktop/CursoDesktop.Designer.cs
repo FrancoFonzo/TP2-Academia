@@ -187,7 +187,6 @@ namespace UI.Desktop
             this.cbxMateria.Size = new System.Drawing.Size(208, 21);
             this.cbxMateria.TabIndex = 9;
             this.cbxMateria.ValueMember = "ID";
-            this.cbxMateria.SelectedIndexChanged += new System.EventHandler(this.cbxMateria_SelectedIndexChanged);
             // 
             // lblComision
             // 
@@ -249,7 +248,6 @@ namespace UI.Desktop
             this.Name = "CursoDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CursoDesktop";
-            this.Load += new System.EventHandler(this.CursoDesktop_Load);
             this.tlMaterias.ResumeLayout(false);
             this.tlMaterias.PerformLayout();
             this.ResumeLayout(false);
