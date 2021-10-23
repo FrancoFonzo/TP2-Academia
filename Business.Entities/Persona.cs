@@ -37,6 +37,10 @@ namespace Business.Entities
         }
         #endregion
 
+        #region Propiedades Auxiliares
+        public string NombreCompleto => ToString();
+        #endregion
+
         public enum TiposPersonas
         {
             Administrador,

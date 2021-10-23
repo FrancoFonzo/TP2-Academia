@@ -3,6 +3,7 @@ using Business.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -19,7 +20,7 @@ namespace UI.Web
         {
             if (!Page.IsPostBack)
             {
-                LoadGrid();
+                Listar();
             }
         }
 
@@ -28,25 +29,115 @@ namespace UI.Web
             this.SelectedID = (int)this.gvUsuarios.SelectedValue;
         }
 
+        protected void linkNuevo_Click(object sender, EventArgs e)
+        {
+            Modo = ModoForm.Alta;
+            MapearInicial();
+            ShowForm(true);
+        }
+
         protected void linkEditar_Click(object sender, EventArgs e)
         {
-            if (IsEntitySelected)
+            if (IsRowSelected())
             {
-                EnableForm(true);
-                formPanel.Visible = true;
                 Modo = ModoForm.Modificacion;
-                LoadForm(SelectedID);
+                MapearInicial();
+                ShowForm(true);
+                MapearForm(SelectedID);
+            }
+        }
+
+        protected void linkEliminar_Click(object sender, EventArgs e)
+        {
+            if (IsRowSelected())
+            {
+                Modo = ModoForm.Baja;
+                MapearInicial();
+                ShowForm(true);
+                MapearForm(SelectedID);
             }
         }
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            //TODO: Revisar returns, breaks, y save en baja.
-            UsuarioActual = UsuarioLogic.GetOne(SelectedID);
+            this.Validate();
+            if (this.IsValid)
+            {
+                SaveEntity(SelectedID);
+                ShowForm(false);
+                Listar();
+            }
+        }        
+
+        protected void linkCancelar_Click(object sender, EventArgs e)
+        {
+            ShowForm(false);
+        }
+
+        private void ShowForm(bool visible)
+        {
+            this.ClearForm();
+            formPanel.Visible = visible;
+            gridPanel.Visible = !visible;
+        }
+
+        private void ClearForm()
+        {
+            txtUsuario.Text = string.Empty;
+            txtClave.Text = string.Empty;
+            txtRepetirClave.Text = string.Empty;
+            chkHabilitado.Checked = false;
+        }
+
+        private void MapearInicial()
+        {
+            List<Persona> personas = new PersonaLogic().GetAllSinUsuario();
+            
+            if (Modo != ModoForm.Alta)
+            {
+                UsuarioActual = UsuarioLogic.GetOne(SelectedID);
+                if (UsuarioActual.Persona != null)
+                {
+                    personas.Add(UsuarioActual.Persona);
+                }
+            }
 
             switch (Modo)
             {
+                case ModoForm.Alta:
+                case ModoForm.Modificacion:
+                    linkAceptar.Text = "Guardar";
+                    break;
                 case ModoForm.Baja:
+                    linkAceptar.Text = "Eliminar";
+                    break;
+                case ModoForm.Consulta:
+                    linkAceptar.Text = "Aceptar";
+                    break;
+            }
+
+            ddlPersona.DataSource = personas;
+            ddlPersona.DataBind();
+            ddlPersona.Items.Insert(0, new ListItem("[Seleccionar]", "0"));
+        }
+
+        private void MapearForm(int id)
+        {
+            UsuarioActual = UsuarioLogic.GetOne(id);
+            
+            txtUsuario.Text = UsuarioActual.NombreUsuario;
+            txtClave.Text = UsuarioActual.Clave;
+            ddlPersona.SelectedValue = UsuarioActual.Persona?.ID.ToString();
+            chkHabilitado.Checked = UsuarioActual.Habilitado;
+        }
+
+        private void MapearEntidad()
+        {
+            UsuarioActual = UsuarioLogic.GetOne(SelectedID);
+            switch (Modo)
+            {
+                case ModoForm.Baja:
+                    SelectedID.ToString();
                     UsuarioActual.State = BusinessEntity.States.Deleted;
                     return;
                 case ModoForm.Alta:
@@ -56,38 +147,30 @@ namespace UI.Web
                     UsuarioActual.State = BusinessEntity.States.Modified;
                     break;
             }
-
-            LoadEntity(UsuarioActual);
-            SaveEntity(UsuarioActual);
-            LoadGrid();
-            formPanel.Visible = false;
+            UsuarioActual.NombreUsuario = txtUsuario.Text;
+            UsuarioActual.Clave = txtClave.Text;
+            /*if (!String.IsNullOrEmpty(ddlPersona.SelectedValue))
+            {
+                int.TryParse(ddlPersona.SelectedValue, out int id);
+                UsuarioActual.Persona = new PersonaLogic().GetOne(id);
+            }*/
+            UsuarioActual.Persona = new PersonaLogic().GetOne(int.Parse(ddlPersona.SelectedValue));
+            UsuarioActual.Habilitado = chkHabilitado.Checked;
         }
 
-        protected void linkEliminar_Click(object sender, EventArgs e)
+        private void SaveEntity(int id)
         {
-            if (IsEntitySelected)
+            UsuarioActual = UsuarioLogic.GetOne(id);
+            MapearEntidad();
+            UsuarioLogic.Save(UsuarioActual);
+            if (Modo == ModoForm.Baja)
             {
-                formPanel.Visible = true;
-                Modo = ModoForm.Baja;
-                EnableForm(false);
-                LoadForm(SelectedID);
+                //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
+                SelectedID = 0;
             }
         }
 
-        protected void linkNuevo_Click(object sender, EventArgs e)
-        {
-            formPanel.Visible = true;
-            Modo = ModoForm.Alta;
-            this.ClearForm();
-            EnableForm(true);
-        }
-
-        protected void linkCancelar_Click(object sender, EventArgs e)
-        {
-            gridPanel.Visible = true;
-        }
-
-        private void LoadGrid()
+        private void Listar()
         {
             try
             {
@@ -96,46 +179,8 @@ namespace UI.Web
             }
             catch (Exception)
             {
+                Notificar("Error al recuperar los datos del usuario.");
             }
-        }
-
-        private void LoadForm(int id)
-        {
-            UsuarioActual = UsuarioLogic.GetOne(id);
-            txtUsuario.Text = UsuarioActual.NombreUsuario;
-            txtClave.Text = UsuarioActual.Clave;
-            chkHabilitado.Checked = UsuarioActual.Habilitado;
-        }
-
-        private void LoadEntity(Usuario usuario)
-        {
-            //TODO:añadir cbxPersona
-            usuario.NombreUsuario = txtUsuario.Text;
-            usuario.Clave = txtClave.Text;
-            usuario.Habilitado = chkHabilitado.Checked;
-        }
-
-        private void SaveEntity(Usuario usuario)
-        {
-            UsuarioLogic.Save(usuario);
-        }
-
-        private void EnableForm(bool enable)
-        {
-            txtUsuario.Enabled = enable;
-            txtClave.Visible = enable;
-            lblClave.Visible = enable;
-            lblRepetirClave.Visible = enable;
-            txtRepetirClave.Visible = enable;
-            //chkHabilitado.Enabled = enable;
-        }
-
-        private void ClearForm()
-        {
-            txtUsuario.Text = string.Empty;
-            txtClave.Text = string.Empty; //??
-            txtRepetirClave.Text = string.Empty; //??
-            chkHabilitado.Checked = false;
         }
     }
 }

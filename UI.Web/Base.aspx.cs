@@ -14,7 +14,8 @@ namespace UI.Web
         {
             Alta,
             Baja,
-            Modificacion
+            Modificacion,
+            Consulta
         }
 
         public ModoForm Modo
@@ -39,6 +40,29 @@ namespace UI.Web
             set { this.ViewState["SelectedID"] = value; }
         }
 
-        protected bool IsEntitySelected { get => this.SelectedID != 0; }
+        protected bool IsRowSelected()
+        {
+            if (SelectedID == 0)
+            {
+                Notificar("Porfavor seleccione una fila.");
+                return false;
+            }
+            return true;
+        }
+
+        protected void Notificar(string mensaje)
+        {
+            Type csType = this.GetType();
+
+            // Obtiene una referencia del ClientScriptManager de la pagina.
+            ClientScriptManager cs = Page.ClientScript;
+
+            //Valida si el startup del script ya esta registrado.
+            if (!cs.IsStartupScriptRegistered(csType, "PopupScript"))
+            {
+                String csText = $"alert('{mensaje}');";
+                cs.RegisterStartupScript(csType, "PopupScript", csText, true);
+            }
+        }
     }
 }

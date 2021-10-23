@@ -35,7 +35,10 @@ namespace Data.Database
         {
             using (var context = new AcademiaContext())
             {
-                context.Persona.Attach(usuario.Persona);
+                if (usuario.Persona != null)
+                {
+                    context.Persona.Attach(usuario.Persona);
+                }
                 context.Usuario.Add(usuario);
                 context.SaveChanges();
             }
