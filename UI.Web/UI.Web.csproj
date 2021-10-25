@@ -77,6 +77,7 @@
     <Content Include="Base.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Personas.aspx" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -118,6 +119,13 @@
     <Compile Include="Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personas.aspx.cs">
+      <DependentUpon>Personas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personas.aspx.designer.cs">
+      <DependentUpon>Personas.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -144,6 +152,10 @@
     <ProjectReference Include="..\Business.Logic\Business.Logic.csproj">
       <Project>{8541c7a3-d49d-46d5-8e37-616f805a86d2}</Project>
       <Name>Business.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Database\Data.Database.csproj">
+      <Project>{18d1c50f-58e0-4d94-b05b-4a95a146e6bb}</Project>
+      <Name>Data.Database</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
