@@ -124,7 +124,7 @@ namespace UI.Web
             txtApellido.Text = PersonaActual.Apellido;
             txtEmail.Text = PersonaActual.EMail;
             txtLegajo.Text = PersonaActual.Legajo.ToString();
-            ddlPlan.SelectedValue = PersonaActual.Plan.ID.ToString();
+            ddlPlan.SelectedValue = PersonaActual.Plan?.ID.ToString();
             txtDireccion.Text = PersonaActual.Direccion;
             txtTelefono.Text = PersonaActual.Telefono;
             calendarFecha.SelectedDate = PersonaActual.FechaNacimiento;
@@ -151,17 +151,11 @@ namespace UI.Web
             PersonaActual.Apellido = txtApellido.Text;
             PersonaActual.EMail = txtEmail.Text;
             PersonaActual.Legajo = int.Parse(txtLegajo.Text);
-            PersonaActual.PlanId = int.Parse(ddlPlan.SelectedValue);
+            PersonaActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
             PersonaActual.Direccion = txtDireccion.Text;
             PersonaActual.Telefono = txtTelefono.Text;
             PersonaActual.FechaNacimiento = calendarFecha.SelectedDate;
             PersonaActual.Tipo = (Persona.TiposPersonas)Enum.Parse(typeof(Persona.TiposPersonas), ddlTipo.SelectedValue);
-
-            /*if (!String.IsNullOrEmpty(ddlPersona.SelectedValue))
-            {
-                int.TryParse(ddlPersona.SelectedValue, out int id);
-                UsuarioActual.Persona = new PersonaLogic().GetOne(id);
-            }*/
         }
 
         private void SaveEntity(int id)
@@ -185,7 +179,7 @@ namespace UI.Web
             }
             catch (Exception)
             {
-                Notificar("Error al recuperar los datos del usuario.");
+                Notificar("Error al recuperar los datos Personas.");
             }
         }
     }

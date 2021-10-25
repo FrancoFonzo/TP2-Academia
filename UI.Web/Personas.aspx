@@ -21,7 +21,7 @@
         <asp:Panel ID="gridActionsPanel" runat="server">
             <asp:LinkButton ID="linkEditar" runat="server" OnClick="linkEditar_Click">Editar</asp:LinkButton>
             <asp:LinkButton ID="linkNuevo" runat="server" OnClick="linkNuevo_Click">Nuevo</asp:LinkButton>
-            <asp:LinkButton ID="linkEliminar" runat="server">Eliminar</asp:LinkButton>
+            <asp:LinkButton ID="linkEliminar" runat="server" OnClick="linkEliminar_Click">Eliminar</asp:LinkButton>
         </asp:Panel>
     </asp:Panel>
     <asp:Panel ID="formPanel" runat="server" Visible="False">
