@@ -45,7 +45,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>FAAAAAAAAAAAAAAEACAAhAAAACAAAAABAAAAAiAAAAQ=</HashCode>
+      <HashCode>FAAAAAAAAAAAAAAEACAAhABAACAAAAABAAAAAiAAAAQ=</HashCode>
       <FileName>Persona.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -57,7 +57,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Business.Entities.Plan">
-    <Position X="4.25" Y="4" Width="1.5" />
+    <Position X="4.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAABAAAAAAEAAAAAAABAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Plan.cs</FileName>
