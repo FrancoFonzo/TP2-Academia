@@ -140,7 +140,7 @@ namespace UI.Web
             CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
             CursoActual.Cupo = int.Parse(txtCupo.Text);
             CursoActual.Comision = new ComisionLogic().GetOne(int.Parse(ddlComision.SelectedValue));
-            // CursoActual.Materia = int.Parse(ddlMateria.SelectedValue);
+            CursoActual.Materia = new MateriaLogic().GetOne(int.Parse(ddlMateria.SelectedValue));
 
 
 
