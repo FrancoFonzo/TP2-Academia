@@ -83,7 +83,6 @@ namespace UI.Web
         private void ClearForm()
         {
             txtDescripcion.Text = string.Empty;
-
         }
 
         private void MapearInicial()
@@ -114,7 +113,6 @@ namespace UI.Web
             txtDescripcion.Text = PlanActual.Descripcion;
            
             ddlEspecialidad.SelectedValue = PlanActual.Especialidad?.ID.ToString();
-          
         }
 
         private void MapearEntidad()
@@ -134,12 +132,7 @@ namespace UI.Web
                     break;
             }
             PlanActual.Descripcion = txtDescripcion.Text;
-          
-            /*if (!String.IsNullOrEmpty(ddlPersona.SelectedValue))
-            {
-                int.TryParse(ddlPersona.SelectedValue, out int id);
-                UsuarioActual.Persona = new PersonaLogic().GetOne(id);
-            }*/
+         
             PlanActual.Especialidad = new EspecialidadLogic().GetOne(int.Parse(ddlEspecialidad.SelectedValue));
           
         }
