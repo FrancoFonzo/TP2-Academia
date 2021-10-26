@@ -109,11 +109,11 @@ namespace UI.Web
 
             ddlTipo.DataSource = Enum.GetValues(typeof(Persona.TiposPersonas));
             ddlTipo.DataBind();
-            ddlTipo.Items.Insert(0, new ListItem("[Seleccionar]", "0"));
+            ddlTipo.Items.Insert(0, "[Seleccionar]");
 
             ddlPlan.DataSource = new PlanLogic().GetAll();
             ddlPlan.DataBind();
-            ddlPlan.Items.Insert(0, new ListItem("[Seleccionar]", "0"));
+            ddlPlan.Items.Insert(0, "[Seleccionar]");
         }
 
         private void MapearForm(int id)
@@ -123,11 +123,11 @@ namespace UI.Web
             txtNombre.Text = PersonaActual.Nombre;
             txtApellido.Text = PersonaActual.Apellido;
             txtEmail.Text = PersonaActual.EMail;
-            txtLegajo.Text = PersonaActual.Legajo.ToString();
+            txtLegajo.Text = PersonaActual.Legajo?.ToString();
             ddlPlan.SelectedValue = PersonaActual.Plan?.ID.ToString();
             txtDireccion.Text = PersonaActual.Direccion;
             txtTelefono.Text = PersonaActual.Telefono;
-            calendarFecha.SelectedDate = PersonaActual.FechaNacimiento;
+            calendarFecha.SelectedDate = DateTime.Parse(PersonaActual.FechaNacimiento.ToString());
             ddlTipo.SelectedValue = PersonaActual.Tipo.ToString();
         }
 
@@ -150,12 +150,32 @@ namespace UI.Web
             PersonaActual.Nombre = txtNombre.Text;
             PersonaActual.Apellido = txtApellido.Text;
             PersonaActual.EMail = txtEmail.Text;
-            PersonaActual.Legajo = int.Parse(txtLegajo.Text);
-            PersonaActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
+            if (!string.IsNullOrEmpty(txtLegajo.Text))
+            {
+                PersonaActual.Legajo = int.Parse(txtLegajo.Text);
+            }
+            else
+            {
+                PersonaActual.Legajo = null;
+            }
+            if (ddlPlan.SelectedIndex > 0)
+            {
+                PersonaActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
+            }
+            else
+            {
+                PersonaActual.Plan = null;
+            }
             PersonaActual.Direccion = txtDireccion.Text;
             PersonaActual.Telefono = txtTelefono.Text;
             PersonaActual.FechaNacimiento = calendarFecha.SelectedDate;
             PersonaActual.Tipo = (Persona.TiposPersonas)Enum.Parse(typeof(Persona.TiposPersonas), ddlTipo.SelectedValue);
+
+            /*if (!String.IsNullOrEmpty(ddlPersona.SelectedValue))
+            {
+                int.TryParse(ddlPersona.SelectedValue, out int id);
+                UsuarioActual.Persona = new PersonaLogic().GetOne(id);
+            }*/
         }
 
         private void SaveEntity(int id)
@@ -179,7 +199,7 @@ namespace UI.Web
             }
             catch (Exception)
             {
-                Notificar("Error al recuperar los datos Personas.");
+                Notificar("Error al recuperar los datos del usuario.");
             }
         }
     }
