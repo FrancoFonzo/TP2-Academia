@@ -6,8 +6,8 @@
         <asp:GridView ID="gvComisiones" runat="server" 
             AutoGenerateColumns="False" OnSelectedIndexChanged="gvComisiones_SelectedIndexChanged" DataKeyNames="ID">
             <Columns>
-                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
-                <asp:BoundField DataField="AnioEspecialidad" HeaderText="Año Calendario" />
+                <asp:BoundField DataField="Descripcion" HeaderText="Comisión" />
+                <asp:BoundField DataField="AnioEspecialidad" HeaderText="Año Especialidad" />
                 <asp:BoundField DataField="Plan.Descripcion" HeaderText="Descripción Plan" />
                 <asp:CommandField HeaderText="Seleccionar" SelectText="Seleccionar" ShowSelectButton="True" />
             </Columns>

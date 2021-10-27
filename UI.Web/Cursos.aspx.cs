@@ -164,7 +164,7 @@ namespace UI.Web
             }
             catch (Exception)
             {
-                Notificar("Error al recuperar los datos del usuario.");
+                Notificar("Error al recuperar los datos de los cursos.");
             }
         }
     }
