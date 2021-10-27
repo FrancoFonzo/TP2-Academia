@@ -170,12 +170,6 @@ namespace UI.Web
             PersonaActual.Telefono = txtTelefono.Text;
             PersonaActual.FechaNacimiento = calendarFecha.SelectedDate;
             PersonaActual.Tipo = (Persona.TiposPersonas)Enum.Parse(typeof(Persona.TiposPersonas), ddlTipo.SelectedValue);
-
-            /*if (!String.IsNullOrEmpty(ddlPersona.SelectedValue))
-            {
-                int.TryParse(ddlPersona.SelectedValue, out int id);
-                UsuarioActual.Persona = new PersonaLogic().GetOne(id);
-            }*/
         }
 
         private void SaveEntity(int id)

@@ -37,7 +37,7 @@
             <asp:DropDownList ID="ddlComision" runat="server" DataTextField="Descripcion" DataValueField="ID"></asp:DropDownList>
             <asp:RequiredFieldValidator ID="validComision" runat="server" ErrorMessage="La comisión no puede estar vacia" ForeColor="Red" ControlToValidate="ddlComision" InitialValue="[Seleccionar]" ValidationGroup="formCursos">*</asp:RequiredFieldValidator>
             <br />
-            <asp:ValidationSummary ID="vsErrores" runat="server" ForeColor="Red" HeaderText="Error" ValidationGroup="formPersonas" />
+            <asp:ValidationSummary ID="vsErrores" runat="server" ForeColor="Red" HeaderText="Error" ValidationGroup="formCursos" />
             <asp:Panel ID="formActionsPanel" runat="server">
                 <asp:LinkButton ID="linkCancelar" runat="server" OnClick="linkCancelar_Click">Cancelar</asp:LinkButton>
                 <asp:LinkButton ID="linkAceptar" runat="server" OnClick="linkAceptar_Click">Aceptar</asp:LinkButton>

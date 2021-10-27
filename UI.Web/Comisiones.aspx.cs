@@ -1,19 +1,14 @@
 ﻿using Business.Entities;
 using Business.Logic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
-    public partial class Cursos : Base
+    public partial class Comisiones : Base
     {
-        private static CursoLogic CursoLogic = new CursoLogic();
-        private Curso CursoActual { get; set; }
+        private static ComisionLogic ComisionLogic = new ComisionLogic();
+        private Comision ComisionActual { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,9 +18,9 @@ namespace UI.Web
             }
         }
 
-        protected void gvCursos_SelectedIndexChanged(object sender, EventArgs e)
+        protected void gvComisiones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gvCursos.SelectedValue;
+            this.SelectedID = (int)this.gvComisiones.SelectedValue;
         }
 
         protected void linkNuevo_Click(object sender, EventArgs e)
@@ -83,7 +78,7 @@ namespace UI.Web
         private void ClearForm()
         {
             txtAnio.Text = string.Empty;
-            txtCupo.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
         }
 
         private void MapearInicial()
@@ -102,52 +97,46 @@ namespace UI.Web
                     break;
             }
 
-            ddlComision.DataSource = new ComisionLogic().GetAll();
-            ddlComision.DataBind();
-            ddlComision.Items.Insert(0, "[Seleccionar]");
-
-            ddlMateria.DataSource = new MateriaLogic().GetAll();
-            ddlMateria.DataBind();
-            ddlMateria.Items.Insert(0, "[Seleccionar]");
+            ddlPlan.DataSource = new PlanLogic().GetAll();
+            ddlPlan.DataBind();
+            ddlPlan.Items.Insert(0, "[Seleccionar]");
         }
 
         private void MapearForm(int id)
         {
-            CursoActual = CursoLogic.GetOne(id);
+            ComisionActual = ComisionLogic.GetOne(id);
 
-            txtAnio.Text = CursoActual.AnioCalendario.ToString();
-            txtCupo.Text = CursoActual.Cupo.ToString();
-            ddlComision.SelectedValue = CursoActual.Comision.ID.ToString();
-            ddlMateria.SelectedValue = CursoActual.Materia.ID.ToString();
+            txtAnio.Text = ComisionActual.AnioEspecialidad.ToString();
+            txtDescripcion.Text = ComisionActual.Descripcion;
+            ddlPlan.SelectedValue = ComisionActual.Plan.ID.ToString();
         }
 
         private void MapearEntidad()
         {
-            CursoActual = CursoLogic.GetOne(SelectedID);
+            ComisionActual = ComisionLogic.GetOne(SelectedID);
             switch (Modo)
             {
                 case ModoForm.Baja:
                     SelectedID.ToString();
-                    CursoActual.State = BusinessEntity.States.Deleted;
+                    ComisionActual.State = BusinessEntity.States.Deleted;
                     return;
                 case ModoForm.Alta:
-                    CursoActual = new Curso { State = BusinessEntity.States.New };
+                    ComisionActual = new Comision { State = BusinessEntity.States.New };
                     break;
                 case ModoForm.Modificacion:
-                    CursoActual.State = BusinessEntity.States.Modified;
+                    ComisionActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
-            CursoActual.Cupo = int.Parse(txtCupo.Text);
-            CursoActual.Comision = new ComisionLogic().GetOne(int.Parse(ddlComision.SelectedValue));
-            CursoActual.Materia = new MateriaLogic().GetOne(int.Parse(ddlMateria.SelectedValue));
+            ComisionActual.AnioEspecialidad = int.Parse(txtAnio.Text);
+            ComisionActual.Descripcion = txtDescripcion.Text;
+            ComisionActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
         }
 
         private void SaveEntity(int id)
         {
-            CursoActual = CursoLogic.GetOne(id);
+            ComisionActual = ComisionLogic.GetOne(id);
             MapearEntidad();
-            CursoLogic.Save(CursoActual);
+            ComisionLogic.Save(ComisionActual);
             if (Modo == ModoForm.Baja)
             {
                 //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
@@ -159,8 +148,8 @@ namespace UI.Web
         {
             try
             {
-                this.gvCursos.DataSource = CursoLogic.GetAll();
-                this.gvCursos.DataBind();
+                this.gvComisiones.DataSource = ComisionLogic.GetAll();
+                this.gvComisiones.DataBind();
             }
             catch (Exception)
             {
