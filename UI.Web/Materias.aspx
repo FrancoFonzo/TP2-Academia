@@ -11,7 +11,7 @@
                 <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
                 <asp:BoundField HeaderText="Horas Semanales" DataField="HorasSemanales" />
                 <asp:BoundField HeaderText="Horas Totales" DataField="HorasTotales" />
-                <asp:BoundField HeaderText="Plan" DataField="Plan.Descripcion" />
+                <asp:BoundField HeaderText="Plan" DataField="Plan" />
                 <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
             </Columns>
             <SelectedRowStyle BackColor="Black" ForeColor="White" />

@@ -90,17 +90,6 @@ namespace UI.Web
 
         private void MapearInicial()
         {
-            List<Plan> planes = new PlanLogic().GetAll();
-
-            if (Modo != ModoForm.Alta)
-            {
-                MateriaActual = MateriaLogic.GetOne(SelectedID);
-                if (MateriaActual.Plan != null)
-                {
-                    planes.Add(MateriaActual.Plan);
-                }
-            }
-
             switch (Modo)
             {
                 case ModoForm.Alta:
@@ -115,7 +104,7 @@ namespace UI.Web
                     break;
             }
 
-            ddlPlan.DataSource = planes;
+            ddlPlan.DataSource = new PlanLogic().GetAll();
             ddlPlan.DataBind();
             ddlPlan.Items.Insert(0, "[Seleccionar]");
         }
