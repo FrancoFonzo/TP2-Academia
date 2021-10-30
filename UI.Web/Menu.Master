@@ -1,0 +1,47 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Menu.Master.cs" Inherits="UI.Web.Menu" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <asp:ContentPlaceHolder ID="head" runat="server"> </asp:ContentPlaceHolder>
+    <title>Menu Academia</title>
+    <link href="./css/menu/styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <form runat="server">
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="navMenu" runat="server">
+            <asp:LinkButton runat="server" ID="btnHome" OnClick="linkHome_Click" Visible="true">Home</asp:LinkButton>
+            <div class="dropdown">  
+                    <asp:Button id="btnAdministracion" class="dropbtn fa fa-caret-down" runat="server" Text="Administracion" Visible="False">
+                    </asp:Button>
+                        <div class="dropdown-content">
+                            <asp:LinkButton runat="server" OnClick="comisiones_Click">Comisiones</asp:LinkButton>
+                            <asp:LinkButton runat="server" OnClick="cursos_Click">Cursos</asp:LinkButton>
+                            <asp:LinkButton runat="server" OnClick="especialidades_Click">Especialidades</asp:LinkButton>
+                            <asp:LinkButton runat="server" OnClick="materias_Click">Materias</asp:LinkButton>
+                            <asp:LinkButton runat="server" OnClick="personas_Click">Personas</asp:LinkButton>
+                            <asp:LinkButton runat="server" OnClick="planes_Click">Planes</asp:LinkButton>
+                            <asp:LinkButton runat="server" OnClick="usuarios_Click">Usuarios</asp:LinkButton>
+                        </div>
+            </div>
+            <asp:LinkButton runat="server" ID="linkInscripciones" OnClick="linkInscripciones_Click" Visible="False">Inscripciones</asp:LinkButton>
+            <asp:LinkButton runat="server" ID="linkNotas" OnClick="linkNotas_Click" Visible="False">Registrar Notas</asp:LinkButton>
+            <div class="dropdown">   
+                <asp:Button id="btnReportes" class="dropbtn fa fa-caret-down" runat="server" Text="Reportes" Visible="False">
+                </asp:Button>
+                    <div class="dropdown-content">
+                        <asp:LinkButton runat="server" OnClick="reportAlumnos_Click">Alumnos</asp:LinkButton>
+                        <asp:LinkButton runat="server" OnClick="reportPlanes_Click">Planes</asp:LinkButton>
+                    </div>
+            </div>
+            <asp:LinkButton runat="server" ID="linkAcercaDe" OnClick="linkAcercaDe_Click">Acerca De</asp:LinkButton>
+            <asp:LinkButton class="margin-right" runat="server" ID="linkCerrarSesion" OnClick="linkCerrarSesion_Click">Cerrar Sesion</asp:LinkButton>
+        </nav>
+        <asp:ContentPlaceHolder ID="bodyContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
+
+

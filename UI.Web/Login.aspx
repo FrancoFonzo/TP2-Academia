@@ -6,7 +6,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Academia</title>
-    <link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/login/styles.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <header id="header">

@@ -25,7 +25,7 @@ namespace UI.Web
             if (this.IsValid)
             {
                 Session["UsuarioGlobal"] = UsuarioActual;
-                Response.Redirect("Default.aspx");
+                Response.Redirect("Home.aspx");
             }
         }
 
