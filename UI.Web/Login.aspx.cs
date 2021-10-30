@@ -21,7 +21,12 @@ namespace UI.Web
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-
+            this.Validate();
+            if (this.IsValid)
+            {
+                Session["UsuarioGlobal"] = UsuarioActual;
+                Response.Redirect("Default.aspx");
+            }
         }
 
         protected void cvValidarUsuario_ServerValidate(object source, ServerValidateEventArgs args)
