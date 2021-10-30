@@ -11,7 +11,7 @@ namespace UI.Web
 {
 
 
-    public partial class RegsitrarNotas
+    public partial class RegistrarNotas
     {
 
         /// <summary>

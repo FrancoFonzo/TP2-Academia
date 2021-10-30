@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
-    public partial class RegsitrarNotas : Base
+    public partial class RegistrarNotas : Base
     {
 
         private Persona PersonaActual { get; set; }
@@ -19,6 +19,11 @@ namespace UI.Web
             if (!Page.IsPostBack)
             {
                 formPanelCurso.Visible = true;
+
+                //ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(PersonaActual.ID);
+                this.ddlCurso.DataSource = new CursoLogic().GetAll();
+                this.ddlCurso.DataBind();
+
                 Listar();
             }
         }
@@ -32,7 +37,7 @@ namespace UI.Web
         private void ShowForm(bool visible)
         {
             formPanelCurso.Visible = visible;
-            gridPanel.Visible = !visible;
+            gridPanel.Visible = visible;
             formPanel.Visible = !visible;
         }
 
@@ -66,9 +71,6 @@ namespace UI.Web
         {
             try
             {
-                //ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(PersonaActual.ID);
-                this.ddlCurso.DataSource = new CursoLogic().GetAll();
-                this.ddlCurso.DataBind();
                 var curso = ddlCurso.SelectedValue;
                 this.gvRegistrarNotas.DataSource = new AlumnoInscripcionLogic().GetAllByCursos(int.Parse(curso));
                 this.gvRegistrarNotas.DataBind();
