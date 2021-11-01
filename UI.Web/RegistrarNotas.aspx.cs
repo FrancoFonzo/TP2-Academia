@@ -20,14 +20,22 @@ namespace UI.Web
             {
                 formPanelCurso.Visible = true;
 
-                //ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(PersonaActual.ID);
-                this.ddlCurso.DataSource = new CursoLogic().GetAll();
-                this.ddlCurso.DataBind();
-
                 Listar();
             }
         }
 
+        protected void gvRegistrarNotas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.SelectedID = (int)this.gvRegistrarNotas.SelectedValue;
+            ShowForm(true);
+        }
+
+        protected void ddlCurso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            formPanelCurso.Visible = true;
+
+            Listar();
+        }
 
         protected void linkCancelar_Click(object sender, EventArgs e)
         {
@@ -36,9 +44,7 @@ namespace UI.Web
 
         private void ShowForm(bool visible)
         {
-            formPanelCurso.Visible = visible;
-            gridPanel.Visible = visible;
-            formPanel.Visible = !visible;
+            formPanel.Visible = visible;
         }
 
         protected void linkGuardar_Click(object sender, EventArgs e)
@@ -46,8 +52,8 @@ namespace UI.Web
             this.Validate();
             if (this.IsValid)
             {
-                var alumno = (AlumnoInscripcion)gvRegistrarNotas.SelectedValue;
-                alumno.Nota = int.Parse(ddlNota.Text);
+                var alumno = new AlumnoInscripcionLogic().GetOne(this.SelectedID);
+                alumno.Nota = int.Parse(ddlNota.SelectedValue);
                 alumno.State = BusinessEntity.States.Modified;
                 if (alumno.Nota >= 6)
                 {
@@ -69,10 +75,22 @@ namespace UI.Web
 
         private void Listar()
         {
+            /*if (PersonaActual.Tipo == Persona.TiposPersonas.Administrador)
+            {
+                this.ddlCurso.DataSource = new CursoLogic().GetAll();
+            }
+            else
+            {
+                ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(PersonaActual.ID);
+            }*/
+
+            this.ddlCurso.DataSource = new CursoLogic().GetAll();
+            this.ddlCurso.DataBind();
+
             try
             {
-                var curso = ddlCurso.SelectedValue;
-                this.gvRegistrarNotas.DataSource = new AlumnoInscripcionLogic().GetAllByCursos(int.Parse(curso));
+                int idcurso = int.Parse(ddlCurso.SelectedValue);
+                this.gvRegistrarNotas.DataSource = new AlumnoInscripcionLogic().GetAllByCursos(idcurso);
                 this.gvRegistrarNotas.DataBind();
             }
             catch (Exception)
@@ -80,6 +98,5 @@ namespace UI.Web
                 Notificar("Error al recuperar los datos de alumnos.");
             }
         }
-
     }
 }
