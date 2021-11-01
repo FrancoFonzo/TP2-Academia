@@ -23,6 +23,11 @@ namespace Business.Logic
             return DocenteCursoData.GetAllByDocente(id);
         }
 
+        public DocenteCurso GetOneByCurso(int id)
+        {
+            return DocenteCursoData.GetOneByCurso(id);
+        }
+
         public DocenteCurso GetOne(int id)
         {
             return DocenteCursoData.GetOne(id);

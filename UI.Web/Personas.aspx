@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Personas" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Personas.aspx.cs" Inherits="UI.Web.Personas" %>
+﻿<%@ Page Title="Personas" Language="C#" MasterPageFile="~/Menu.Master" AutoEventWireup="true" CodeBehind="Personas.aspx.cs" Inherits="UI.Web.Personas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script runat = "server" >
         void ValidarRegexEmail(object source, ServerValidateEventArgs args)

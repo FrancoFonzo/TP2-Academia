@@ -118,7 +118,7 @@ namespace UI.Desktop
             this.tlpInscripcion.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpInscripcion.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpInscripcion.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpInscripcion.Size = new System.Drawing.Size(732, 79);
+            this.tlpInscripcion.Size = new System.Drawing.Size(732, 82);
             this.tlpInscripcion.TabIndex = 7;
             // 
             // cbxCondicion
@@ -129,7 +129,7 @@ namespace UI.Desktop
             this.cbxCondicion.DisplayMember = "Condicion";
             this.cbxCondicion.Enabled = false;
             this.cbxCondicion.FormattingEnabled = true;
-            this.cbxCondicion.Location = new System.Drawing.Point(441, 8);
+            this.cbxCondicion.Location = new System.Drawing.Point(441, 9);
             this.cbxCondicion.Margin = new System.Windows.Forms.Padding(5);
             this.cbxCondicion.Name = "cbxCondicion";
             this.cbxCondicion.Size = new System.Drawing.Size(286, 24);
@@ -140,10 +140,11 @@ namespace UI.Desktop
             this.lblCursos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCursos.AutoSize = true;
             this.tlpInscripcion.SetColumnSpan(this.lblCursos, 4);
+            this.lblCursos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCursos.Location = new System.Drawing.Point(0, 52);
             this.lblCursos.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.lblCursos.Name = "lblCursos";
-            this.lblCursos.Size = new System.Drawing.Size(732, 17);
+            this.lblCursos.Size = new System.Drawing.Size(732, 20);
             this.lblCursos.TabIndex = 8;
             this.lblCursos.Text = "Cursos";
             this.lblCursos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -181,7 +182,7 @@ namespace UI.Desktop
             this.comision,
             this.anio_calendario});
             this.dgvCursos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCursos.Location = new System.Drawing.Point(0, 79);
+            this.dgvCursos.Location = new System.Drawing.Point(0, 82);
             this.dgvCursos.Margin = new System.Windows.Forms.Padding(0);
             this.dgvCursos.MultiSelect = false;
             this.dgvCursos.Name = "dgvCursos";
@@ -189,7 +190,7 @@ namespace UI.Desktop
             this.dgvCursos.RowHeadersWidth = 51;
             this.dgvCursos.RowTemplate.Height = 24;
             this.dgvCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCursos.Size = new System.Drawing.Size(732, 163);
+            this.dgvCursos.Size = new System.Drawing.Size(732, 160);
             this.dgvCursos.TabIndex = 9;
             // 
             // materia

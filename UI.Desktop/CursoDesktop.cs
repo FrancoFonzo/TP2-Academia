@@ -45,6 +45,7 @@ namespace UI.Desktop
         {
             cbxMateria.DataSource = new MateriaLogic().GetAll();
             cbxComision.DataSource = new ComisionLogic().GetAll();
+            cbxDocente.DataSource = new PersonaLogic().GetAllTipo(Persona.TiposPersonas.Docente);
 
             switch (Modo)
             {
@@ -67,8 +68,9 @@ namespace UI.Desktop
             txtDescripcion.Text = CursoActual.Descripcion;
             txtAñoCalendario.Text = CursoActual.AnioCalendario.ToString();
             txtCupo.Text = CursoActual.Cupo.ToString();
-            cbxMateria.SelectedValue = CursoActual.MateriaId;
-            cbxComision.SelectedValue = CursoActual.ComisionId;
+            cbxMateria.SelectedItem = CursoActual.Materia;
+            cbxComision.SelectedItem= CursoActual.Comision;
+            cbxDocente.SelectedItem = new DocenteCursoLogic().GetOneByCurso(CursoActual.ID).Docente;
         }
 
         public override void MapearADatos()
@@ -92,6 +94,10 @@ namespace UI.Desktop
             CursoActual.Cupo = int.Parse(txtCupo.Text);
             CursoActual.Materia = (Materia)cbxMateria.SelectedItem;
             CursoActual.Comision = (Comision)cbxComision.SelectedItem;
+            Business.Entities.DocenteCurso DocenteCursoActual = new Business.Entities.DocenteCurso()
+            {
+                
+            };
         }
 
         public override void GuardarCambios()
