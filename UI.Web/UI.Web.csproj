@@ -74,11 +74,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Base.aspx" />
-    <Content Include="css\menu\styles.css" />
+	<Content Include="css\menu\styles.css" />
     <Content Include="css\login\styles.css" />
+    <Content Include="Base.aspx" />
     <Content Include="Home.aspx" />
+    <Content Include="Comisiones.aspx" />
+    <Content Include="Cursos.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Personas.aspx" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="resources\graduation_cap_main.png" />
@@ -100,7 +103,21 @@
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+	  <SubType>ASPXCodeBehind</SubType>
+	</Compile>
+    <Compile Include="Comisiones.aspx.cs">
+      <DependentUpon>Comisiones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Comisiones.aspx.designer.cs">
+      <DependentUpon>Comisiones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cursos.aspx.cs">
+      <DependentUpon>Cursos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cursos.aspx.designer.cs">
+      <DependentUpon>Cursos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -130,6 +147,13 @@
     <Compile Include="Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personas.aspx.cs">
+      <DependentUpon>Personas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personas.aspx.designer.cs">
+      <DependentUpon>Personas.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -155,6 +179,10 @@
     <ProjectReference Include="..\Business.Logic\Business.Logic.csproj">
       <Project>{8541c7a3-d49d-46d5-8e37-616f805a86d2}</Project>
       <Name>Business.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Database\Data.Database.csproj">
+      <Project>{18d1c50f-58e0-4d94-b05b-4a95a146e6bb}</Project>
+      <Name>Data.Database</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
