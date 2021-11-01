@@ -5,7 +5,7 @@
      <asp:Panel ID="formPanelCurso" runat="server" Visible="False">
         <br />
         <asp:Label ID="lblCurso" runat="server" Text="Curso: "></asp:Label>
-        <asp:DropDownList ID="ddlCurso" runat="server" DataTextField="Descripcion" DataValueField="ID" OnSelectedIndexChanged="ddlCurso_SelectedIndexChanged">
+        <asp:DropDownList ID="ddlCurso" runat="server" DataTextField="Descripcion" DataValueField="ID" OnSelectedIndexChanged="ddlCurso_SelectedIndexChanged" AutoPostBack="True">
         </asp:DropDownList>
      </asp:Panel>
     <br />

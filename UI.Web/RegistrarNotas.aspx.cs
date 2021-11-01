@@ -20,6 +20,9 @@ namespace UI.Web
             {
                 formPanelCurso.Visible = true;
 
+                this.ddlCurso.DataSource = new CursoLogic().GetAll();
+                this.ddlCurso.DataBind();
+
                 Listar();
             }
         }
@@ -84,8 +87,6 @@ namespace UI.Web
                 ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(PersonaActual.ID);
             }*/
 
-            this.ddlCurso.DataSource = new CursoLogic().GetAll();
-            this.ddlCurso.DataBind();
 
             try
             {
