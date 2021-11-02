@@ -13,15 +13,28 @@ namespace UI.Web
     public partial class RegistrarNotas : Base
     {
 
-        private Persona PersonaActual { get; set; }
+        private Usuario UsuarioActual { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            UsuarioActual = (Usuario)Session["UsuarioGlobal"];
+            
             if (!Page.IsPostBack)
             {
                 formPanelCurso.Visible = true;
 
-                this.ddlCurso.DataSource = new CursoLogic().GetAll();
-                this.ddlCurso.DataBind();
+                /*this.ddlCurso.DataSource = new CursoLogic().GetAll();
+                this.ddlCurso.DataBind();*/
+
+                if (UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)
+                {
+                    ddlCurso.DataSource = new DocenteCursoLogic().GetAll();
+                }
+                else
+                {
+                    ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(UsuarioActual.Persona.ID);
+                }
+
+                ddlCurso.DataBind();
 
                 Listar();
             }
@@ -78,16 +91,6 @@ namespace UI.Web
 
         private void Listar()
         {
-            /*if (PersonaActual.Tipo == Persona.TiposPersonas.Administrador)
-            {
-                this.ddlCurso.DataSource = new CursoLogic().GetAll();
-            }
-            else
-            {
-                ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(PersonaActual.ID);
-            }*/
-
-
             try
             {
                 int idcurso = int.Parse(ddlCurso.SelectedValue);

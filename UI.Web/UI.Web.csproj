@@ -158,7 +158,6 @@
       <DependentUpon>Materias.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
     <Compile Include="RegistrarNotas.aspx.cs">
       <DependentUpon>RegistrarNotas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

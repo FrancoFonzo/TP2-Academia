@@ -1,11 +1,11 @@
-﻿<%@ Page Title="RegistrarNotas" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistrarNotas.aspx.cs" Inherits="UI.Web.RegistrarNotas" %>
+﻿<%@ Page Title="RegistrarNotas" Language="C#" MasterPageFile="~/Menu.Master" AutoEventWireup="true" CodeBehind="RegistrarNotas.aspx.cs" Inherits="UI.Web.RegistrarNotas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
      <asp:Panel ID="formPanelCurso" runat="server" Visible="False">
         <br />
         <asp:Label ID="lblCurso" runat="server" Text="Curso: "></asp:Label>
-        <asp:DropDownList ID="ddlCurso" runat="server" DataTextField="Descripcion" DataValueField="ID" OnSelectedIndexChanged="ddlCurso_SelectedIndexChanged" AutoPostBack="True">
+        <asp:DropDownList ID="ddlCurso" runat="server" DataTextField="Curso" DataValueField="ID" OnSelectedIndexChanged="ddlCurso_SelectedIndexChanged" AutoPostBack="True">
         </asp:DropDownList>
      </asp:Panel>
     <br />
