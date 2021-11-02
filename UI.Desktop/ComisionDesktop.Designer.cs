@@ -133,7 +133,7 @@ namespace UI.Desktop
             this.cbxPlan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxPlan.DisplayMember = "Descripcion";
             this.cbxPlan.FormattingEnabled = true;
-            this.cbxPlan.Location = new System.Drawing.Point(374, 75);
+            this.cbxPlan.Location = new System.Drawing.Point(374, 74);
             this.cbxPlan.Margin = new System.Windows.Forms.Padding(4);
             this.cbxPlan.Name = "cbxPlan";
             this.cbxPlan.Size = new System.Drawing.Size(354, 24);

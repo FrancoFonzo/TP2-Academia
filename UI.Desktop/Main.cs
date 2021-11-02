@@ -109,6 +109,11 @@ namespace UI.Desktop
             OpenForm(new Usuarios());
         }
 
+        private void btnDictados_Click(object sender, EventArgs e)
+        {
+            OpenForm(new Dictados());
+        }
+
         private void btnNotas_Click(object sender, EventArgs e)
         {
             if (Login.UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)

@@ -74,11 +74,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+	<Content Include="css\menu\styles.css" />
+    <Content Include="css\login\styles.css" />
     <Content Include="Base.aspx" />
-    <Content Include="Default.aspx" />
+    <Content Include="Home.aspx" />
+    <Content Include="Comisiones.aspx" />
+    <Content Include="Cursos.aspx" />
+    <Content Include="Especialidades.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Personas.aspx" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="RegistrarNotas.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="resources\graduation_cap_main.png" />
+    <Content Include="resources\sign_out_32.png" />
+    <Content Include="Planes.aspx" />
+    <Content Include="Materias.aspx" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.js" />
@@ -94,17 +105,60 @@
     <Compile Include="Base.aspx.designer.cs">
       <DependentUpon>Base.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+	  <SubType>ASPXCodeBehind</SubType>
+	</Compile>
+    <Compile Include="Comisiones.aspx.cs">
+      <DependentUpon>Comisiones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Comisiones.aspx.designer.cs">
+      <DependentUpon>Comisiones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cursos.aspx.cs">
+      <DependentUpon>Cursos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cursos.aspx.designer.cs">
+      <DependentUpon>Cursos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Especialidades.aspx.cs">
+      <DependentUpon>Especialidades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Especialidades.aspx.designer.cs">
+      <DependentUpon>Especialidades.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+	</Compile>
+    <Compile Include="Planes.aspx.cs">
+      <DependentUpon>Planes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Planes.aspx.designer.cs">
+      <DependentUpon>Planes.aspx</DependentUpon>
+	</Compile>
+    <Compile Include="Materias.aspx.cs">
+      <DependentUpon>Materias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Materias.aspx.designer.cs">
+      <DependentUpon>Materias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Compile Include="RegistrarNotas.aspx.cs">
       <DependentUpon>RegistrarNotas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -112,12 +166,12 @@
     <Compile Include="RegistrarNotas.aspx.designer.cs">
       <DependentUpon>RegistrarNotas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Site.Master.cs">
-      <DependentUpon>Site.Master</DependentUpon>
+    <Compile Include="Menu.Master.cs">
+      <DependentUpon>Menu.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Site.Master.designer.cs">
-      <DependentUpon>Site.Master</DependentUpon>
+    <Compile Include="Menu.Master.designer.cs">
+      <DependentUpon>Menu.Master</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
@@ -126,10 +180,17 @@
     <Compile Include="Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personas.aspx.cs">
+      <DependentUpon>Personas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personas.aspx.designer.cs">
+      <DependentUpon>Personas.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Site.Master" />
+    <Content Include="Menu.Master" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <None Include="Web.Debug.config">
@@ -138,7 +199,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -152,6 +212,10 @@
     <ProjectReference Include="..\Business.Logic\Business.Logic.csproj">
       <Project>{8541c7a3-d49d-46d5-8e37-616f805a86d2}</Project>
       <Name>Business.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Database\Data.Database.csproj">
+      <Project>{18d1c50f-58e0-4d94-b05b-4a95a146e6bb}</Project>
+      <Name>Data.Database</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

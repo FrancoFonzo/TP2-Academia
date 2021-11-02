@@ -145,20 +145,20 @@ namespace UI.Desktop
             {
                 Notificar("Informacion invalida", "Porfavor seleccione una condicion valida.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!IsRowSelected(dgvCursos))
+            {
+                return false;
             }
             var curso = (Curso)dgvCursos.SelectedRows[0].DataBoundItem;
             if (new AlumnoInscripcionLogic().CountInscripcionesByCursos(curso.ID) >= curso.Cupo)
             {
                 Notificar("Sin cupos", "El curso no tiene mas cupos disponibles.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else
-            {
-                return IsRowSelected(dgvCursos);
-            }
-
-
-            return false;
+            return true;
         }
     }
 }

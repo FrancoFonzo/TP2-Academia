@@ -50,7 +50,9 @@ namespace Data.Database
         {
             using (var context = new AcademiaContext())
             {
-                context.Plan.Attach(persona.Plan);
+                if (persona.Plan != null) {
+                    context.Plan.Attach(persona.Plan);
+                }
                 context.Persona.Add(persona);
                 context.SaveChanges();
             }

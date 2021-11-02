@@ -11,7 +11,7 @@ namespace Data.Database
         {
             using (AcademiaContext context = new AcademiaContext())
             {
-                return context.DocenteCurso.Include(dc => dc.Curso).Include(dc => dc.Docente).ToList();
+                return context.DocenteCurso.Include(dc => dc.Curso.Comision).Include(dc => dc.Curso.Materia).Include(dc => dc.Docente).ToList();
             }
         }
 
@@ -19,7 +19,15 @@ namespace Data.Database
         {
             using (var context = new AcademiaContext())
             {
-                return context.DocenteCurso.Include(dc => dc.Curso).Include(dc => dc.Docente).Where(i => i.Docente.ID == id).ToList();
+                return context.DocenteCurso.Include(dc => dc.Curso.Comision).Include(dc => dc.Curso.Materia).Include(dc => dc.Docente).Where(i => i.Docente.ID == id).ToList();
+            }
+        }
+
+        public DocenteCurso GetOneByCurso(int id)
+        {
+            using (var context = new AcademiaContext())
+            {
+                return context.DocenteCurso.Include(dc => dc.Curso.Comision).Include(dc => dc.Curso.Materia).Include(dc => dc.Docente).FirstOrDefault(i => i.Curso.ID == id);
             }
         }
 
@@ -27,7 +35,7 @@ namespace Data.Database
         {
             using (var context = new AcademiaContext())
             {
-                return context.DocenteCurso.Include(dc => dc.Curso).Include(dc => dc.Docente).FirstOrDefault(i => i.Docente.ID == id);
+                return context.DocenteCurso.Include(dc => dc.Curso.Comision).Include(dc => dc.Curso.Materia).Include(dc => dc.Docente).FirstOrDefault(i => i.ID == id);
             }
         }
 
