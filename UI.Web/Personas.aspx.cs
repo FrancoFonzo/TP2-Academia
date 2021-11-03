@@ -22,6 +22,7 @@ namespace UI.Web
                 Listar();
             }
         }
+      
 
         protected void gvPersonas_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -78,6 +79,7 @@ namespace UI.Web
             this.ClearForm();
             formPanel.Visible = visible;
             gridPanel.Visible = !visible;
+            linkAgregar.Visible = !visible;
         }
 
         private void ClearForm()
@@ -92,7 +94,7 @@ namespace UI.Web
 
         private void MapearInicial()
         {
-
+          
             switch (Modo)
             {
                 case ModoForm.Alta:
@@ -188,6 +190,12 @@ namespace UI.Web
         {
             try
             {
+                if (Login.UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)
+                {
+                    linkEditar.Visible = false;
+                    linkEliminar.Visible = false;
+                    linkNuevo.Visible = false;
+                }
                 this.gvPersonas.DataSource = PersonaLogic.GetAll();
                 this.gvPersonas.DataBind();
             }
@@ -195,6 +203,11 @@ namespace UI.Web
             {
                 Notificar("Error al recuperar los datos del usuario.");
             }
+        }
+
+        protected void linkAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Inscripciones.aspx");
         }
     }
 }

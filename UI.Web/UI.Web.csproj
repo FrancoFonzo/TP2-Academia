@@ -74,7 +74,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-	<Content Include="css\menu\styles.css" />
+    <Content Include="css\menu\styles.css" />
     <Content Include="css\login\styles.css" />
     <Content Include="Base.aspx" />
     <Content Include="Home.aspx" />
@@ -82,6 +82,7 @@
     <Content Include="Cursos.aspx" />
     <Content Include="Especialidades.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Inscripciones.aspx" />
     <Content Include="Personas.aspx" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Login.aspx" />
@@ -106,8 +107,8 @@
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
-	  <SubType>ASPXCodeBehind</SubType>
-	</Compile>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Comisiones.aspx.cs">
       <DependentUpon>Comisiones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -135,20 +136,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Inscripciones.aspx.cs">
+      <DependentUpon>Inscripciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inscripciones.aspx.designer.cs">
+      <DependentUpon>Inscripciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Planes.aspx.cs">
       <DependentUpon>Planes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Planes.aspx.designer.cs">
       <DependentUpon>Planes.aspx</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Materias.aspx.cs">
       <DependentUpon>Materias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

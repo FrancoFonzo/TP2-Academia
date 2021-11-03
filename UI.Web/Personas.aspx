@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Personas" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Personas.aspx.cs" Inherits="UI.Web.Personas" %>
+﻿<%@ Page Title="Personas" Language="C#" MasterPageFile="~/Menu.Master" AutoEventWireup="true" CodeBehind="Personas.aspx.cs" Inherits="UI.Web.Personas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script runat = "server" >
         void ValidarRegexEmail(object source, ServerValidateEventArgs args)
@@ -28,6 +28,7 @@
             <asp:LinkButton ID="linkEditar" runat="server" OnClick="linkEditar_Click">Editar</asp:LinkButton>
             <asp:LinkButton ID="linkNuevo" runat="server" OnClick="linkNuevo_Click">Nuevo</asp:LinkButton>
             <asp:LinkButton ID="linkEliminar" runat="server" OnClick="linkEliminar_Click">Eliminar</asp:LinkButton>
+            <asp:LinkButton ID="linkAgregar" runat="server" OnClick="linkAgregar_Click">Nueva Inscripcion</asp:LinkButton>
         </asp:Panel>
     </asp:Panel>
     <asp:Panel ID="formPanel" runat="server" Visible="False">

@@ -44,7 +44,17 @@ namespace UI.Web
 
         protected void linkInscripciones_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Inscripciones.aspx");
+            if (Login.UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)
+            {
+
+                Response.Redirect("Personas.aspx");
+
+            }
+            else 
+            {
+                Response.Redirect("Inscripciones.aspx");
+            }
+          
         }
 
         protected void linkNotas_Click(object sender, EventArgs e)
