@@ -84,12 +84,31 @@ namespace UI.Desktop
                     ComisionActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            ComisionActual.Descripcion = txtDescripcion.Text;
-            ComisionActual.AnioEspecialidad = int.Parse(txtAnioEspecialidad.Text);
 
-            if (cbxPlan.SelectedValue != null)
+
+
+            //TODO: comprobar que año sea número
+            try
             {
-                ComisionActual.Plan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
+                int anio = int.Parse(txtAnioEspecialidad.Text);
+                if(anio > 0)
+                {
+                    ComisionActual.AnioEspecialidad = anio;
+                    ComisionActual.Descripcion = txtDescripcion.Text;
+                    if (cbxPlan.SelectedValue != null)
+                    {
+                        ComisionActual.Plan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
+                    }
+                }
+                else
+                {
+                    Notificar("Informacion invalida", "El año y la comisión deben ser positivos.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception){
+                Notificar("Informacion invalida", "El año y la comisión deben ser positivos.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -127,9 +127,17 @@ namespace UI.Web
                     ComisionActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            ComisionActual.AnioEspecialidad = int.Parse(txtAnio.Text);
-            ComisionActual.Descripcion = txtDescripcion.Text;
-            ComisionActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
+
+            if(int.Parse(txtAnio.Text) > 0 && int.Parse(txtDescripcion.Text) > 0)
+            {
+                ComisionActual.AnioEspecialidad = int.Parse(txtAnio.Text);
+                ComisionActual.Descripcion = txtDescripcion.Text;
+                ComisionActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
+            }
+            else
+            {
+                Notificar("Año y comisión deben ser positivos");
+            }            
         }
 
         private void SaveEntity(int id)

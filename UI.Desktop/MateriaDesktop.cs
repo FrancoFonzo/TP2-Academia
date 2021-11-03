@@ -86,10 +86,31 @@ namespace UI.Desktop
                     MateriaActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            MateriaActual.Descripcion = txtDescripcion.Text;
-            MateriaActual.HorasSemanales = int.Parse(txtHsSemanales.Text);
-            MateriaActual.HorasTotales = int.Parse(txtHsTotales.Text);
-            MateriaActual.Plan = (Plan)cbxPlan.SelectedItem;
+
+
+            //TODO: horas número
+            try
+            {
+                int semanales = int.Parse(txtHsSemanales.Text);
+                int totales = int.Parse(txtHsTotales.Text);
+                if (semanales > 0 && totales > 0)
+                {
+                    MateriaActual.Descripcion = txtDescripcion.Text;
+                    MateriaActual.HorasSemanales = semanales;
+                    MateriaActual.HorasTotales = totales;
+                    MateriaActual.Plan = (Plan)cbxPlan.SelectedItem;
+                }
+                else
+                {
+                    Notificar("Informacion invalida", "Las horas deben ser positivas.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception)
+            {
+                Notificar("Informacion invalida", "Las horas deben ser positivas.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override void GuardarCambios()

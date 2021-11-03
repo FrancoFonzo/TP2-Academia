@@ -90,14 +90,31 @@ namespace UI.Desktop
                     CursoActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            CursoActual.AnioCalendario = int.Parse(txtAñoCalendario.Text);
-            CursoActual.Cupo = int.Parse(txtCupo.Text);
-            CursoActual.Materia = (Materia)cbxMateria.SelectedItem;
-            CursoActual.Comision = (Comision)cbxComision.SelectedItem;
-            Business.Entities.DocenteCurso DocenteCursoActual = new Business.Entities.DocenteCurso()
+
+
+            //TODO: Que año y cupo sea número
+            try
             {
-                
-            };
+                int anio = int.Parse(txtAñoCalendario.Text);
+                int cupo = int.Parse(txtCupo.Text);
+                if(anio > 0 && cupo > 0)
+                {
+                    CursoActual.AnioCalendario = anio;
+                    CursoActual.Cupo = cupo;
+                    CursoActual.Materia = (Materia)cbxMateria.SelectedItem;
+                    CursoActual.Comision = (Comision)cbxComision.SelectedItem;
+                }
+                else
+                {
+                    Notificar("Informacion invalida", "El año y el cupo deben ser positivos.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception)
+            {
+                Notificar("Informacion invalida", "El año y el cupo deben ser positivos.",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override void GuardarCambios()
