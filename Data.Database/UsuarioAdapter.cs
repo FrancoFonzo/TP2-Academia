@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Business.Entities;
 using System.Linq;
 using System.Data.Entity;
+using System;
 
 namespace Data.Database
 {
@@ -9,56 +10,98 @@ namespace Data.Database
     {
         public List<Usuario> GetAll()
         {
-            using (AcademiaContext context = new AcademiaContext())
+            try
             {
-                return context.Usuario.Include(u => u.Persona).ToList();
+                using (AcademiaContext context = new AcademiaContext())
+                {
+                    return context.Usuario.Include(u => u.Persona).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         public Usuario GetOne(int id)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                return context.Usuario.Include(u => u.Persona).FirstOrDefault(u => u.ID == id);
+                using (var context = new AcademiaContext())
+                {
+                    return context.Usuario.Include(u => u.Persona).FirstOrDefault(u => u.ID == id);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         public Usuario GetOneByNombreUsuario(string nombreUsuario)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                return context.Usuario.Include(u => u.Persona).FirstOrDefault(u => u.NombreUsuario == nombreUsuario);
+                using (var context = new AcademiaContext())
+                {
+                    return context.Usuario.Include(u => u.Persona).FirstOrDefault(u => u.NombreUsuario == nombreUsuario);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         protected void Insert(Usuario usuario)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                if (usuario.Persona != null)
+                using (var context = new AcademiaContext())
                 {
-                    context.Persona.Attach(usuario.Persona);
+                    if (usuario.Persona != null)
+                    {
+                        context.Persona.Attach(usuario.Persona);
+                    }
+                    context.Usuario.Add(usuario);
+                    context.SaveChanges();
                 }
-                context.Usuario.Add(usuario);
-                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron insertar los datos", e);
             }
         }
 
         protected void Update(Usuario usuario)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Entry(usuario).State = EntityState.Modified;
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Entry(usuario).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron actualizar los datos", e);
             }
         }
 
         public void Delete(Usuario usuario)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Usuario.Remove(context.Usuario.Find(usuario.ID));
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Usuario.Remove(context.Usuario.Find(usuario.ID));
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron borrar los datos", e);
             }
         }
 

@@ -2,6 +2,7 @@
 using Business.Entities;
 using System.Linq;
 using System.Data.Entity;
+using System;
 
 namespace Data.Database
 {
@@ -9,62 +10,109 @@ namespace Data.Database
     {
         public List<DocenteCurso> GetAll()
         {
-            using (AcademiaContext context = new AcademiaContext())
+            try
             {
-                return context.DocenteCurso.Include(dc => dc.Curso.Comision).Include(dc => dc.Curso.Materia).Include(dc => dc.Docente).ToList();
+                using (AcademiaContext context = new AcademiaContext())
+                {
+                    return context.DocenteCurso.Include(dc => dc.Curso.Comision).Include(dc => dc.Curso.Materia).Include(dc => dc.Docente).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         public List<DocenteCurso> GetAllByDocente(int id)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                return context.DocenteCurso.Include(dc => dc.Curso.Comision).Include(dc => dc.Curso.Materia).Include(dc => dc.Docente).Where(i => i.Docente.ID == id).ToList();
+                using (var context = new AcademiaContext())
+                {
+                    return context.DocenteCurso.Include(dc => dc.Curso.Comision).Include(dc => dc.Curso.Materia).Include(dc => dc.Docente).Where(i => i.Docente.ID == id).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         public DocenteCurso GetOneByCurso(int id)
         {
+            try { 
             using (var context = new AcademiaContext())
             {
                 return context.DocenteCurso.Include(dc => dc.Curso.Comision).Include(dc => dc.Curso.Materia).Include(dc => dc.Docente).FirstOrDefault(i => i.Curso.ID == id);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         public DocenteCurso GetOne(int id)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                return context.DocenteCurso.Include(dc => dc.Curso.Comision).Include(dc => dc.Curso.Materia).Include(dc => dc.Docente).FirstOrDefault(i => i.ID == id);
+                using (var context = new AcademiaContext())
+                {
+                    return context.DocenteCurso.Include(dc => dc.Curso.Comision).Include(dc => dc.Curso.Materia).Include(dc => dc.Docente).FirstOrDefault(i => i.ID == id);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         protected void Insert(DocenteCurso docenteCurso)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Persona.Attach(docenteCurso.Docente);
-                context.Curso.Attach(docenteCurso.Curso);
-                context.DocenteCurso.Add(docenteCurso);
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Persona.Attach(docenteCurso.Docente);
+                    context.Curso.Attach(docenteCurso.Curso);
+                    context.DocenteCurso.Add(docenteCurso);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron insertar los datos", e);
             }
         }
 
         protected void Update(DocenteCurso docenteCurso)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Entry(docenteCurso).State = EntityState.Modified;
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Entry(docenteCurso).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron actualizar los datos", e);
             }
         }
 
         public void Delete(DocenteCurso docenteCurso)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.DocenteCurso.Remove(context.DocenteCurso.Find(docenteCurso.ID));
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.DocenteCurso.Remove(context.DocenteCurso.Find(docenteCurso.ID));
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron borrar los datos", e);
             }
         }
 

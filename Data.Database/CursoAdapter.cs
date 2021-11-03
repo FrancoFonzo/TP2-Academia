@@ -2,6 +2,7 @@
 using System.Linq;
 using Business.Entities;
 using System.Data.Entity;
+using System;
 
 namespace Data.Database
 {
@@ -9,36 +10,51 @@ namespace Data.Database
     {
         public List<Curso> GetAll()
         {
-            using (AcademiaContext context = new AcademiaContext())
+            try
             {
-                return context
-                    .Curso
-                    .Include(c => c.Materia)
-                    .Include(c => c.Comision)
-                    .ToList();
+                using (AcademiaContext context = new AcademiaContext())
+                {
+                    return context
+                        .Curso
+                        .Include(c => c.Materia)
+                        .Include(c => c.Comision)
+                        .ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         public List<Curso> GetAllNoInscByPersona(int idPersona)
         {
-            using (AcademiaContext context = new AcademiaContext())
+            try
             {
-                var aux = context.Curso
-                    .Include(c => c.Materia)
-                    .Include(c => c.Comision)
-                    .ToList()
-                    .Where(c =>
-                        !context.AlumnoInscripcion
-                        .Where(i => i.AlumnoId.Equals(idPersona))
-                        .Select(i => i.CursoId)
-                        .Contains(c.ID))
-                    .ToList();
-                return aux;
+                using (AcademiaContext context = new AcademiaContext())
+                {
+                    var aux = context.Curso
+                        .Include(c => c.Materia)
+                        .Include(c => c.Comision)
+                        .ToList()
+                        .Where(c =>
+                            !context.AlumnoInscripcion
+                            .Where(i => i.AlumnoId.Equals(idPersona))
+                            .Select(i => i.CursoId)
+                            .Contains(c.ID))
+                        .ToList();
+                    return aux;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         public Curso GetOne(int id)
         {
+            try { 
             using (var context = new AcademiaContext())
             {
                 return context
@@ -47,38 +63,63 @@ namespace Data.Database
                     .Include(c => c.Comision)
                     .FirstOrDefault(c => c.ID == id);
             }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
+            }
         }
 
         protected void Insert(Curso curso)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                curso.Materia.Plan = context.Plan.Find(curso.Materia.PlanId);
-                curso.Comision.Plan = context.Plan.Find(curso.Comision.PlanId);
-                context.Comision.Attach(curso.Comision);
-                context.Materia.Attach(curso.Materia);
-                context.Curso.Add(curso);
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    curso.Materia.Plan = context.Plan.Find(curso.Materia.PlanId);
+                    curso.Comision.Plan = context.Plan.Find(curso.Comision.PlanId);
+                    context.Comision.Attach(curso.Comision);
+                    context.Materia.Attach(curso.Materia);
+                    context.Curso.Add(curso);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron insertar los datos", e);
             }
         }
 
         protected void Update(Curso curso)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                curso.Materia.Plan = context.Plan.Find(curso.Materia.PlanId);
-                curso.Comision.Plan = context.Plan.Find(curso.Comision.PlanId);
-                context.Entry(curso).State = EntityState.Modified;
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    curso.Materia.Plan = context.Plan.Find(curso.Materia.PlanId);
+                    curso.Comision.Plan = context.Plan.Find(curso.Comision.PlanId);
+                    context.Entry(curso).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron guardar los datos", e);
             }
         }
 
         public void Delete(Curso curso)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Curso.Remove(context.Curso.Find(curso.ID));
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Curso.Remove(context.Curso.Find(curso.ID));
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron borrar los datos", e);
             }
         }
 

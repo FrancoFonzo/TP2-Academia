@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using Business.Entities;
+using System;
 
 namespace Data.Database
 {
@@ -9,45 +10,78 @@ namespace Data.Database
     {
         public List<Plan> GetAll()
         {
-            using (AcademiaContext context = new AcademiaContext())
+            try
             {
-                return context.Plan.Include(p => p.Especialidad).ToList();
+                using (AcademiaContext context = new AcademiaContext())
+                {
+                    return context.Plan.Include(p => p.Especialidad).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         public Plan GetOne(int id)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                return context.Plan.Include(p => p.Especialidad).FirstOrDefault(p => p.ID == id);
+                using (var context = new AcademiaContext())
+                {
+                    return context.Plan.Include(p => p.Especialidad).FirstOrDefault(p => p.ID == id);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         protected void Insert(Plan plan)
         {
+            try { 
             using (var context = new AcademiaContext())
             {
                 context.Especialidad.Attach(plan.Especialidad);
                 context.Plan.Add(plan);
                 context.SaveChanges();
             }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron insertar los datos", e);
+            }
         }
 
         protected void Update(Plan plan)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Entry(plan).State = EntityState.Modified;
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Entry(plan).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron actualizar los datos", e);
             }
         }
 
         public void Delete(Plan plan)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Plan.Remove(context.Plan.Find(plan.ID));
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Plan.Remove(context.Plan.Find(plan.ID));
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron borrar los datos", e);
             }
         }
 

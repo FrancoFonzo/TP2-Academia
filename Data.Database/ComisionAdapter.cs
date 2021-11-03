@@ -13,45 +13,80 @@ namespace Data.Database
     {
         public List<Comision> GetAll()
         {
-            using (AcademiaContext context = new AcademiaContext())
+            try
             {
-                return context.Comision.Include(c => c.Plan).ToList();
+                using (AcademiaContext context = new AcademiaContext())
+                {
+                    return context.Comision.Include(c => c.Plan).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         public Comision GetOne(int id)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                return context.Comision.Include(c => c.Plan).FirstOrDefault(c => c.ID == id);
+                using (var context = new AcademiaContext())
+                {
+                    return context.Comision.Include(c => c.Plan).FirstOrDefault(c => c.ID == id);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron recuperar los datos", e);
             }
         }
 
         protected void Insert(Comision comision)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Plan.Attach(comision.Plan);
-                context.Comision.Add(comision);
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Plan.Attach(comision.Plan);
+                    context.Comision.Add(comision);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron insertar los datos", e);
             }
         }
 
         protected void Update(Comision comision)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Entry(comision).State = EntityState.Modified;
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Entry(comision).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron actualizar los datos", e);
             }
         }
 
         public void Delete(Comision comision)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Comision.Remove(context.Comision.Find(comision.ID));
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Comision.Remove(context.Comision.Find(comision.ID));
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudieron borrar los datos", e);
             }
         }
 
