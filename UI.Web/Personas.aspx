@@ -44,7 +44,7 @@
             <br />
             <asp:Label ID="lblEmail" runat="server" Text="Email:"></asp:Label>
             <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-            <asp:CustomValidator ID="validEmail" runat="server" ControlToValidate="txtEmail" ValidateEmptyText="True" ErrorMessage="El email debe ser válido" ValidationGroup="formPersonas" OnServerValidate="ValidarRegexEmail">*</asp:CustomValidator>
+            <asp:CustomValidator ID="validEmail" runat="server" ControlToValidate="txtEmail" ValidateEmptyText="True" ErrorMessage="El email debe ser válido" ValidationGroup="formPersonas" OnServerValidate="ValidarRegexEmail" ForeColor="Red">*</asp:CustomValidator>
             <br />
             <asp:Label ID="lblDireccion" runat="server" Text="Dirección:"></asp:Label>
             <asp:TextBox ID="txtDireccion" runat="server"></asp:TextBox>

@@ -19,6 +19,7 @@
                         <div class="dropdown-content">
                             <asp:LinkButton runat="server" OnClick="comisiones_Click">Comisiones</asp:LinkButton>
                             <asp:LinkButton runat="server" OnClick="cursos_Click">Cursos</asp:LinkButton>
+                            <asp:LinkButton runat="server" OnClick="dictados_Click">Dictados</asp:LinkButton>
                             <asp:LinkButton runat="server" OnClick="especialidades_Click">Especialidades</asp:LinkButton>
                             <asp:LinkButton runat="server" OnClick="materias_Click">Materias</asp:LinkButton>
                             <asp:LinkButton runat="server" OnClick="personas_Click">Personas</asp:LinkButton>

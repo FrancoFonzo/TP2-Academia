@@ -72,6 +72,11 @@ namespace UI.Web
             Response.Redirect("Cursos.aspx");
         }
 
+        protected void dictados_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Dictados.aspx");
+        }
+
         protected void especialidades_Click(object sender, EventArgs e)
         {
             Response.Redirect("Especialidades.aspx");

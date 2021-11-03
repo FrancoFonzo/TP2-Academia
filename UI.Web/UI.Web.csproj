@@ -74,9 +74,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-	<Content Include="css\menu\styles.css" />
+    <Content Include="css\menu\styles.css" />
     <Content Include="css\login\styles.css" />
     <Content Include="Base.aspx" />
+    <Content Include="Dictados.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Comisiones.aspx" />
     <Content Include="Cursos.aspx" />
@@ -105,10 +106,17 @@
     <Compile Include="Base.aspx.designer.cs">
       <DependentUpon>Base.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dictados.aspx.cs">
+      <DependentUpon>Dictados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dictados.aspx.designer.cs">
+      <DependentUpon>Dictados.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
-	  <SubType>ASPXCodeBehind</SubType>
-	</Compile>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Comisiones.aspx.cs">
       <DependentUpon>Comisiones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -142,14 +150,14 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Planes.aspx.cs">
       <DependentUpon>Planes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Planes.aspx.designer.cs">
       <DependentUpon>Planes.aspx</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Materias.aspx.cs">
       <DependentUpon>Materias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
