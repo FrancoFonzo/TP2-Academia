@@ -20,8 +20,15 @@ namespace UI.Desktop
 
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
-            new ComisionDesktop(ModoForm.Alta).ShowDialog();
-            Listar();
+            try
+            {
+                new ComisionDesktop(ModoForm.Alta).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
@@ -43,8 +50,15 @@ namespace UI.Desktop
         private void OpenForm(ModoForm modo)
         {
             int ID = ((Comision)dgvComisiones.SelectedRows[0].DataBoundItem).ID;
-            new ComisionDesktop(ID, modo).ShowDialog();
-            Listar();
+            try
+            {
+                new ComisionDesktop(ID, modo).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }   
         }
 
         public override void Listar()
@@ -53,10 +67,9 @@ namespace UI.Desktop
             {
                 dgvComisiones.DataSource = new ComisionLogic().GetAll();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error", "Error al recuperar los datos de las comisiones",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -23,14 +23,28 @@ namespace UI.Desktop
 
         public DictadoDesktop(ModoForm modo) : this()
         {
-            Modo = modo;
-            MapearInicial();
+            try
+            {
+                Modo = modo;
+                MapearInicial();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public DictadoDesktop(int id, ModoForm modo) : this(modo)
         {
-            DictadoActual = new DocenteCursoLogic().GetOne(id);
-            MapearDeDatos();
+            try
+            {
+                DictadoActual = new DocenteCursoLogic().GetOne(id);
+                MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -99,14 +113,21 @@ namespace UI.Desktop
         }
         public override void GuardarCambios()
         {
-            MapearADatos();
-            new DocenteCursoLogic().Save(DictadoActual);
+            try
+            {
+                MapearADatos();
+                new DocenteCursoLogic().Save(DictadoActual);
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override bool Validar()
         {
-            if (!Validaciones.FormularioCompleto
-                (new List<string> {
+            if (!Validaciones.FormularioCompleto(
+                new List<string> {
                     cbxCursos.SelectedValue.ToString(),
                     cbxDocentes.SelectedValue.ToString(),
                     cbxCursos.SelectedValue.ToString() 

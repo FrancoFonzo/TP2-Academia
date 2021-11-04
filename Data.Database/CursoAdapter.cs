@@ -21,9 +21,9 @@ namespace Data.Database
                         .ToList();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar los cursos.", ex);
             }
         }
 
@@ -46,26 +46,28 @@ namespace Data.Database
                     return aux;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar los cursos.", ex);
             }
         }
 
         public Curso GetOne(int id)
         {
-            try { 
-            using (var context = new AcademiaContext())
+            try
             {
-                return context
-                    .Curso
-                    .Include(c => c.Materia)
-                    .Include(c => c.Comision)
-                    .FirstOrDefault(c => c.ID == id);
+                using (var context = new AcademiaContext())
+                {
+                    return context
+                        .Curso
+                        .Include(c => c.Materia)
+                        .Include(c => c.Comision)
+                        .FirstOrDefault(c => c.ID == id);
+                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar el curso.", ex);
             }
         }
 
@@ -83,9 +85,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron insertar los datos", e);
+                throw new Exception("Error al insertar el curso.", ex);
             }
         }
 
@@ -101,9 +103,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron guardar los datos", e);
+                throw new Exception("Error al actualizar el curso.", ex);
             }
         }
 
@@ -117,9 +119,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron borrar los datos", e);
+                throw new Exception("Error al eliminar el curso.", ex);
             }
         }
 

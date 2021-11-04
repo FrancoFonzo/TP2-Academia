@@ -17,9 +17,9 @@ namespace Data.Database
                     return context.Plan.Include(p => p.Especialidad).ToList();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar los planes.", ex);
             }
         }
 
@@ -32,24 +32,26 @@ namespace Data.Database
                     return context.Plan.Include(p => p.Especialidad).FirstOrDefault(p => p.ID == id);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar el plan.", ex);
             }
         }
 
         protected void Insert(Plan plan)
         {
-            try { 
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Especialidad.Attach(plan.Especialidad);
-                context.Plan.Add(plan);
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Especialidad.Attach(plan.Especialidad);
+                    context.Plan.Add(plan);
+                    context.SaveChanges();
+                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron insertar los datos", e);
+                throw new Exception("Error al insertar el plan.", ex);
             }
         }
 
@@ -63,9 +65,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron actualizar los datos", e);
+                throw new Exception("Error al actualizar el plan.", ex);
             }
         }
 
@@ -79,9 +81,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron borrar los datos", e);
+                throw new Exception("Error al eliminar el plan.", ex);
             }
         }
 

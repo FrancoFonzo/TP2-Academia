@@ -21,9 +21,9 @@ namespace Data.Database
                         .ToList();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar las inscripciones.", ex);
             }
         }
 
@@ -41,9 +41,9 @@ namespace Data.Database
                         .ToList();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar las inscripciones.", ex);
             }
         }
 
@@ -62,9 +62,9 @@ namespace Data.Database
                         .ToList();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar las inscripciones.", ex);
             }
         }
 
@@ -82,9 +82,25 @@ namespace Data.Database
                         .FirstOrDefault(i => i.ID == id);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar la inscripcion.", ex);
+            }
+        }
+
+        public int CountInscripcionesByCursos(int idCurso)
+        {
+            try
+            {
+                using (var context = new AcademiaContext())
+                {
+                    int cantidad = context.AlumnoInscripcion.Where(i => i.CursoId == idCurso).Count();
+                    return (cantidad);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al contar las inscripciones.", ex);
             }
         }
 
@@ -100,9 +116,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al insertar la inscripcion.", ex);
             }
         }
 
@@ -116,9 +132,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al actualizar la inscripcion.", ex);
             }
         }
 
@@ -132,9 +148,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al eliminar la inscripcion.", ex);
             }
         }
 
@@ -153,22 +169,6 @@ namespace Data.Database
                 Delete(insc);
             }
             insc.State = BusinessEntity.States.Unmodified;
-        }
-
-        public int CountInscripcionesByCursos(int idCurso)
-        {
-            try
-            {
-                using (var context = new AcademiaContext())
-                {
-                    int cantidad = context.AlumnoInscripcion.Where(i => i.CursoId == idCurso).Count();
-                    return (cantidad);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception("No se pudieron recuperar los datos", e);
-            }
         }
     }
 }

@@ -20,8 +20,15 @@ namespace UI.Desktop
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            new EspecialidadDesktop(ModoForm.Alta).ShowDialog();
-            Listar();
+            try
+            {
+                new EspecialidadDesktop(ModoForm.Alta).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }   
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
@@ -42,9 +49,16 @@ namespace UI.Desktop
 
         private void OpenForm(ModoForm modo)
         {
-            int ID = ((Especialidad)dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
-            new EspecialidadDesktop(ID, modo).ShowDialog();
-            Listar();
+            try
+            {
+                int ID = ((Especialidad)dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
+                new EspecialidadDesktop(ID, modo).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override void Listar()
@@ -53,10 +67,9 @@ namespace UI.Desktop
             {
                 dgvEspecialidades.DataSource = new EspecialidadLogic().GetAll();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error", "Error al recuperar los datos del usuario",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

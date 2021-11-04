@@ -26,9 +26,9 @@ namespace UI.Desktop
         {
             lblTitulo.Text = titulo;
             lblUsuario.Text = $"{lblUsuario.Text} {Login.UsuarioActual.NombreUsuario}";
-            lblLegajo.Text = $"{lblLegajo.Text} {Login.UsuarioActual.Persona.Legajo}";
+            lblLegajo.Text = $"{lblLegajo.Text} {Login.UsuarioActual.Persona?.Legajo}";
             lblPersona.Text = $"{lblPersona.Text} {Login.UsuarioActual.Persona}";
-            switch (Login.UsuarioActual.Persona.Tipo)
+            switch (Login.UsuarioActual.Persona?.Tipo)
             {
                 case Persona.TiposPersonas.Administrador:
                     panelMenu.Controls.OfType<Button>().ToList().ForEach(b => b.Visible = true);
@@ -214,6 +214,5 @@ namespace UI.Desktop
             lblTitulo.Text = form.Text;
             form.Show();
         }
-
     }
 }

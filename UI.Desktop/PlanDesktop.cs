@@ -13,18 +13,32 @@ namespace UI.Desktop
         public PlanDesktop()
         {
             InitializeComponent();
-            cbxEspecialidad.DataSource = new EspecialidadLogic().GetAll();
         }
 
         public PlanDesktop(ModoForm modo) : this()
         {
-            Modo = modo;
+            try
+            {
+                Modo = modo;
+                MapearInicial();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }   
         }
 
         public PlanDesktop(int id, ModoForm modo) : this(modo)
         {
-            PlanActual = new PlanLogic().GetOne(id);
-            MapearDeDatos();
+            try
+            {
+                PlanActual = new PlanLogic().GetOne(id);
+                MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -41,24 +55,30 @@ namespace UI.Desktop
             Close();
         }
 
+        private void MapearInicial()
+        {
+            cbxEspecialidad.DataSource = new EspecialidadLogic().GetAll();
+
+            switch (Modo)
+            {
+                case ModoForm.Alta:
+                case ModoForm.Modificacion:
+                    btnAceptar.Text = "Guardar";
+                    break;
+                case ModoForm.Baja:
+                    btnAceptar.Text = "Eliminar";
+                    break;
+                case ModoForm.Consulta:
+                    btnAceptar.Text = "Aceptar";
+                    break;
+            }
+        }
+
         public override void MapearDeDatos()
         {
             txtID.Text = PlanActual.ID.ToString();
             txtDescripcion.Text = PlanActual.Descripcion;
             cbxEspecialidad.SelectedItem = PlanActual.Especialidad;
-
-            if (Modo == ModoForm.Consulta)
-            {
-                btnAceptar.Text = "Aceptar";
-            }
-            else if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion)
-            {
-                btnAceptar.Text = "Guardar";
-            }
-            else if (Modo == ModoForm.Baja)
-            {
-                btnAceptar.Text = "Eliminar";
-            }
         }
 
         public override void MapearADatos()
@@ -84,8 +104,15 @@ namespace UI.Desktop
 
         public override void GuardarCambios()
         {
-            MapearADatos();
-            new PlanLogic().Save(PlanActual);
+            try
+            {
+                MapearADatos();
+                new PlanLogic().Save(PlanActual);
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override bool Validar()
@@ -94,17 +121,15 @@ namespace UI.Desktop
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (cbxEspecialidad.SelectedItem == null)
+            if (cbxEspecialidad.SelectedItem == null)
             {
                 Notificar("Informacion invalida", "Porfavor seleccione una especialidad valida.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }
