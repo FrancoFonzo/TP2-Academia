@@ -24,12 +24,19 @@ namespace UI.Desktop
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            Validar();
+            try
+            {
+                Validar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void lnkRecuperarClave_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Notificar("Funcion no implementada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Notificar("Login","Funcion no implementada", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -88,29 +95,25 @@ namespace UI.Desktop
             if (txtUsuario.Text.Equals("Usuario") || txtClave.Text.Equals("Contraseña") ||
                 !Validaciones.FormularioCompleto(new List<string> { txtUsuario.Text, txtClave.Text }))
             {
-                Notificar("Complete todos los campos para continuar.",
+                Notificar("Informacion invalida","Complete todos los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
             UsuarioActual = new UsuarioLogic().GetOneNombreUsuario(txtUsuario.Text);
-
             if (!Validaciones.ValidarClave(UsuarioActual?.Clave, txtClave.Text))
             {
-                Notificar("Usuario y/o contraseña incorrectos",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Notificar("Informacion invalida", "Usuario y/o contraseña incorrectos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (!UsuarioActual.Habilitado)
+            if (!UsuarioActual.Habilitado)
             {
-                Notificar("Usuario no habilitado",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Notificar("Error", "Usuario no habilitado",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else
-            {
-                DialogResult = DialogResult.OK;
-                return true;
-            }
-            return false;
+            DialogResult = DialogResult.OK;
+            return true;
         }
     }
 

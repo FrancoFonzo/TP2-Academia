@@ -17,9 +17,9 @@ namespace Data.Database
                     return context.Usuario.Include(u => u.Persona).ToList();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar los usuarios.", ex);
             }
         }
 
@@ -32,9 +32,9 @@ namespace Data.Database
                     return context.Usuario.Include(u => u.Persona).FirstOrDefault(u => u.ID == id);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar el usuario: /nMensaje.", ex);
             }
         }
 
@@ -47,9 +47,9 @@ namespace Data.Database
                     return context.Usuario.Include(u => u.Persona).FirstOrDefault(u => u.NombreUsuario == nombreUsuario);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar el usuario.", ex);
             }
         }
 
@@ -67,9 +67,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron insertar los datos", e);
+                throw new Exception("Error al insertar el usuario.", ex);
             }
         }
 
@@ -83,9 +83,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron actualizar los datos", e);
+                throw new Exception("Error al actualizar el usuario.", ex);
             }
         }
 
@@ -99,9 +99,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron borrar los datos", e);
+                throw new Exception("Error al eliminar el usuario.", ex);
             }
         }
 

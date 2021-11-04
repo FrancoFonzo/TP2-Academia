@@ -27,8 +27,15 @@ namespace UI.Desktop
 
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
-            new DictadoDesktop(ModoForm.Alta).ShowDialog();
-            Listar();
+            try
+            {
+                new DictadoDesktop(ModoForm.Alta).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
@@ -49,9 +56,16 @@ namespace UI.Desktop
 
         private void OpenForm(ModoForm modo)
         {
-            int ID = ((DocenteCurso)dgvDocentes.SelectedRows[0].DataBoundItem).ID;
-            new DictadoDesktop(ID, modo).ShowDialog();
-            Listar();
+            try
+            {
+                int ID = ((DocenteCurso)dgvDocentes.SelectedRows[0].DataBoundItem).ID;
+                new DictadoDesktop(ID, modo).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override void Listar()
@@ -60,10 +74,9 @@ namespace UI.Desktop
             {
                 dgvDocentes.DataSource = new DocenteCursoLogic().GetAll();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error", "Error al recuperar los datos de los dictados",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

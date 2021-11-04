@@ -20,9 +20,9 @@ namespace Data.Database
                     return context.Comision.Include(c => c.Plan).ToList();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar las comisiones.", ex);
             }
         }
 
@@ -35,9 +35,9 @@ namespace Data.Database
                     return context.Comision.Include(c => c.Plan).FirstOrDefault(c => c.ID == id);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar la comision.", ex);
             }
         }
 
@@ -52,9 +52,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron insertar los datos", e);
+                throw new Exception("Error al insertar la comision.", ex);
             }
         }
 
@@ -68,9 +68,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron actualizar los datos", e);
+                throw new Exception("Error al actualizar las comisiones.", ex);
             }
         }
 
@@ -84,9 +84,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron borrar los datos", e);
+                throw new Exception("Error al eliminar la comision.", ex);
             }
         }
 

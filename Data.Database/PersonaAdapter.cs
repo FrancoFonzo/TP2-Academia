@@ -17,9 +17,9 @@ namespace Data.Database
                     return context.Persona.Include(p => p.Plan).ToList();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar las personas.", ex);
             }
         }
 
@@ -32,9 +32,9 @@ namespace Data.Database
                     return context.Persona.Include(p => p.Plan).Where(p => p.Tipo == tipo).ToList();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar las personas.", ex);
             }
         }
 
@@ -53,9 +53,9 @@ namespace Data.Database
                          .ToList();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar las personas.", ex);
             }
         }
 
@@ -68,9 +68,9 @@ namespace Data.Database
                     return context.Persona.Include(p => p.Plan).FirstOrDefault(p => p.ID == id);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar la persona.", ex);
             }
 
         }
@@ -89,9 +89,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron insertar los datos", e);
+                throw new Exception("Error al insertar la persona.", ex);
             }
         }
 
@@ -105,9 +105,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron actualizar los datos", e);
+                throw new Exception("Error al actualizar la persona.", ex);
             }
         }
 
@@ -121,9 +121,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron borrar los datos", e);
+                throw new Exception("Error al eliminar la persona.", ex);
             }
         }
 

@@ -17,9 +17,9 @@ namespace Data.Database
                     return context.Especialidad.ToList();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar las especialidades.", ex);
             }
         }
 
@@ -32,9 +32,9 @@ namespace Data.Database
                     return context.Especialidad.Find(id);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron recuperar los datos", e);
+                throw new Exception("Error al recuperar la especialidad.", ex);
             }
         }
 
@@ -48,9 +48,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron insertar los datos", e);
+                throw new Exception("Error al insertar la especialidad.", ex);
             }
         }
 
@@ -64,9 +64,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron actualizar los datos", e);
+                throw new Exception("Error al actualizar la especialidad.", ex);
             }
         }
 
@@ -80,9 +80,9 @@ namespace Data.Database
                     context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudieron borrar los datos", e);
+                throw new Exception("Error al eliminar la especialidad.", ex);
             }
         }
 

@@ -21,8 +21,15 @@ namespace UI.Desktop
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            new MateriaDesktop(ModoForm.Alta).ShowDialog();
-            Listar();
+            try
+            {
+                new MateriaDesktop(ModoForm.Alta).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
@@ -43,9 +50,16 @@ namespace UI.Desktop
 
         private void OpenForm(ModoForm modo)
         {
-            int ID = ((Materia)dgvMaterias.SelectedRows[0].DataBoundItem).ID;
-            new MateriaDesktop(ID, modo).ShowDialog();
-            Listar();
+            try
+            {
+                int ID = ((Materia)dgvMaterias.SelectedRows[0].DataBoundItem).ID;
+                new MateriaDesktop(ID, modo).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override void Listar()
@@ -54,10 +68,9 @@ namespace UI.Desktop
             {
                 dgvMaterias.DataSource = new MateriaLogic().GetAll();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error", "Error al recuperar los datos de las materias",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

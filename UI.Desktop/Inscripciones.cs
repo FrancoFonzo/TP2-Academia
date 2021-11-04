@@ -36,9 +36,15 @@ namespace UI.Desktop
 
         private void tsbAgregar_Click(object sender, EventArgs e)
         {
-            InscripcionDesktop formInscripciones = new InscripcionDesktop(PersonaActual, ModoForm.Alta);
-            formInscripciones.ShowDialog();
-            Listar();
+            try
+            {
+                new InscripcionDesktop(PersonaActual, ModoForm.Alta).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
@@ -59,10 +65,16 @@ namespace UI.Desktop
 
         private void OpenForm(ModoForm modo)
         {
-            int ID = ((AlumnoInscripcion)dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
-            InscripcionDesktop formMaterias = new InscripcionDesktop(ID, PersonaActual, modo);
-            formMaterias.ShowDialog();
-            Listar();
+            try
+            {
+                int ID = ((AlumnoInscripcion)dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
+                new InscripcionDesktop(ID, PersonaActual, modo).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override void Listar()
@@ -71,10 +83,9 @@ namespace UI.Desktop
             {
                 dgvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllAlumno(PersonaActual.ID);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error", "Error al recuperar los datos del usuario",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

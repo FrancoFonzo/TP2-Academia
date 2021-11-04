@@ -17,14 +17,28 @@ namespace UI.Desktop
 
         public CursoDesktop(ModoForm modo) : this()
         {
-            Modo = modo;
-            MapearInicial();
+            try
+            {
+                Modo = modo;
+                MapearInicial();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CursoDesktop(int id, ModoForm modo) : this(modo)
         {
+            try
+            {
             CursoActual = new CursoLogic().GetOne(id);
             MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -91,36 +105,30 @@ namespace UI.Desktop
                     break;
             }
 
-
             //TODO: Que año y cupo sea número
-            try
+            int.TryParse(txtAñoCalendario.Text, out int anio);
+            int.TryParse(txtCupo.Text, out int cupo);
+            if (anio < 1 || cupo < 1)
             {
-                int anio = int.Parse(txtAñoCalendario.Text);
-                int cupo = int.Parse(txtCupo.Text);
-                if(anio > 0 && cupo > 0)
-                {
-                    CursoActual.AnioCalendario = anio;
-                    CursoActual.Cupo = cupo;
-                    CursoActual.Materia = (Materia)cbxMateria.SelectedItem;
-                    CursoActual.Comision = (Comision)cbxComision.SelectedItem;
-                }
-                else
-                {
-                    Notificar("Informacion invalida", "El año y el cupo deben ser positivos.",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                throw new Exception("El año y el cupo deben ser numeros positivos.");
             }
-            catch (Exception)
-            {
-                Notificar("Informacion invalida", "El año y el cupo deben ser positivos.",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            CursoActual.AnioCalendario = anio;
+            CursoActual.Cupo = cupo;
+            CursoActual.Materia = (Materia)cbxMateria.SelectedItem;
+            CursoActual.Comision = (Comision)cbxComision.SelectedItem;
         }
 
         public override void GuardarCambios()
         {
-            MapearADatos();
-            new CursoLogic().Save(CursoActual);
+            try
+            {
+                MapearADatos();
+                new CursoLogic().Save(CursoActual);
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override bool Validar()
@@ -133,27 +141,27 @@ namespace UI.Desktop
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (cbxMateria.SelectedValue == null)
+            if (cbxMateria.SelectedValue == null)
             {
                 Notificar("Informacion invalida", "La materia especificada no existe.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (cbxComision.SelectedValue == null)
+            if (cbxComision.SelectedValue == null)
             {
                 Notificar("Informacion invalida", "La comision especificada no existe.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (planComision != planMateria)
+            if (planComision != planMateria)
             {
                 Notificar("Informacion invalida", "La comision y la materia deben pertenecer al mismo plan.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }

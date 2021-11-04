@@ -51,10 +51,10 @@ namespace UI.Desktop
             // 
             this.lblCurso.AutoSize = true;
             this.lblCurso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurso.Location = new System.Drawing.Point(14, 15);
-            this.lblCurso.Margin = new System.Windows.Forms.Padding(5);
+            this.lblCurso.Location = new System.Drawing.Point(19, 18);
+            this.lblCurso.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.lblCurso.Name = "lblCurso";
-            this.lblCurso.Size = new System.Drawing.Size(55, 20);
+            this.lblCurso.Size = new System.Drawing.Size(71, 25);
             this.lblCurso.TabIndex = 0;
             this.lblCurso.Text = "Curso:";
             // 
@@ -64,10 +64,10 @@ namespace UI.Desktop
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxCursos.DisplayMember = "Curso";
             this.cbxCursos.FormattingEnabled = true;
-            this.cbxCursos.Location = new System.Drawing.Point(126, 14);
-            this.cbxCursos.Margin = new System.Windows.Forms.Padding(5);
+            this.cbxCursos.Location = new System.Drawing.Point(168, 17);
+            this.cbxCursos.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.cbxCursos.Name = "cbxCursos";
-            this.cbxCursos.Size = new System.Drawing.Size(660, 21);
+            this.cbxCursos.Size = new System.Drawing.Size(879, 24);
             this.cbxCursos.TabIndex = 1;
             this.cbxCursos.ValueMember = "ID";
             // 
@@ -77,8 +77,9 @@ namespace UI.Desktop
             this.panel1.Controls.Add(this.lblCurso);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 50);
+            this.panel1.Size = new System.Drawing.Size(1067, 62);
             this.panel1.TabIndex = 2;
             // 
             // dgvAlumnos
@@ -95,20 +96,21 @@ namespace UI.Desktop
             this.condicion,
             this.nota});
             this.dgvAlumnos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAlumnos.Location = new System.Drawing.Point(0, 50);
+            this.dgvAlumnos.Location = new System.Drawing.Point(0, 62);
             this.dgvAlumnos.Margin = new System.Windows.Forms.Padding(0);
             this.dgvAlumnos.MultiSelect = false;
             this.dgvAlumnos.Name = "dgvAlumnos";
             this.dgvAlumnos.ReadOnly = true;
             this.dgvAlumnos.RowHeadersWidth = 51;
             this.dgvAlumnos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAlumnos.Size = new System.Drawing.Size(800, 480);
+            this.dgvAlumnos.Size = new System.Drawing.Size(1067, 590);
             this.dgvAlumnos.TabIndex = 0;
             // 
             // legajo
             // 
             this.legajo.DataPropertyName = "Legajo";
             this.legajo.HeaderText = "Legajo";
+            this.legajo.MinimumWidth = 6;
             this.legajo.Name = "legajo";
             this.legajo.ReadOnly = true;
             // 
@@ -116,6 +118,7 @@ namespace UI.Desktop
             // 
             this.nombre.DataPropertyName = "Nombre";
             this.nombre.HeaderText = "Nombre";
+            this.nombre.MinimumWidth = 6;
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
             // 
@@ -123,6 +126,7 @@ namespace UI.Desktop
             // 
             this.apellido.DataPropertyName = "Apellido";
             this.apellido.HeaderText = "Apellido";
+            this.apellido.MinimumWidth = 6;
             this.apellido.Name = "apellido";
             this.apellido.ReadOnly = true;
             // 
@@ -130,6 +134,7 @@ namespace UI.Desktop
             // 
             this.condicion.DataPropertyName = "Condicion";
             this.condicion.HeaderText = "Condicion";
+            this.condicion.MinimumWidth = 6;
             this.condicion.Name = "condicion";
             this.condicion.ReadOnly = true;
             // 
@@ -137,6 +142,7 @@ namespace UI.Desktop
             // 
             this.nota.DataPropertyName = "Nota";
             this.nota.HeaderText = "Nota";
+            this.nota.MinimumWidth = 6;
             this.nota.Name = "nota";
             this.nota.ReadOnly = true;
             // 
@@ -146,18 +152,20 @@ namespace UI.Desktop
             this.panelBotones.Controls.Add(this.lblNota);
             this.panelBotones.Controls.Add(this.btnGuardar);
             this.panelBotones.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBotones.Location = new System.Drawing.Point(0, 530);
+            this.panelBotones.Location = new System.Drawing.Point(0, 652);
+            this.panelBotones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelBotones.Name = "panelBotones";
-            this.panelBotones.Size = new System.Drawing.Size(800, 55);
+            this.panelBotones.Size = new System.Drawing.Size(1067, 68);
             this.panelBotones.TabIndex = 4;
             // 
             // txtNota
             // 
             this.txtNota.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNota.Location = new System.Drawing.Point(126, 20);
+            this.txtNota.Location = new System.Drawing.Point(168, 25);
+            this.txtNota.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNota.Name = "txtNota";
-            this.txtNota.Size = new System.Drawing.Size(93, 20);
+            this.txtNota.Size = new System.Drawing.Size(123, 22);
             this.txtNota.TabIndex = 2;
             // 
             // lblNota
@@ -165,19 +173,20 @@ namespace UI.Desktop
             this.lblNota.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNota.AutoSize = true;
             this.lblNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNota.Location = new System.Drawing.Point(12, 17);
+            this.lblNota.Location = new System.Drawing.Point(16, 21);
+            this.lblNota.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNota.Name = "lblNota";
-            this.lblNota.Size = new System.Drawing.Size(108, 20);
+            this.lblNota.Size = new System.Drawing.Size(132, 25);
             this.lblNota.TabIndex = 1;
             this.lblNota.Text = "Ingresar nota:";
             // 
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(665, 11);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(5);
+            this.btnGuardar.Location = new System.Drawing.Point(887, 14);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(121, 30);
+            this.btnGuardar.Size = new System.Drawing.Size(161, 37);
             this.btnGuardar.TabIndex = 0;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -185,13 +194,14 @@ namespace UI.Desktop
             // 
             // RegistrarNotas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 585);
+            this.ClientSize = new System.Drawing.Size(1067, 720);
             this.Controls.Add(this.dgvAlumnos);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelBotones);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "RegistrarNotas";
             this.Text = "AlumnosCurso";
             this.Load += new System.EventHandler(this.Cursos_Load);
