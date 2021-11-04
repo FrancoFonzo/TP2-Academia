@@ -4,15 +4,14 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-  branches:
-    include:
-      - main
+- main
 
 pool:
   vmImage: 'windows-latest'
 
 variables:
   solution: '**/*.sln'
+  webProject: '**/UI.Web.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
@@ -23,11 +22,14 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'build'
+    projects: |
+      **/UI.Web.csproj
+      **/Bussines.Entities.csproj
+      **/Bussines.Logic.csproj
+      **/Data.Database.csproj
+      **/Bussines.Entities.csproj'
 
 - task: PublishBuildArtifacts@1
