@@ -18,6 +18,19 @@ namespace UI.Web
             Consulta
         }
 
+        public bool ValidaSesion()
+        {
+            if (Session["UsuarioGlobal"] == null)
+            {
+                Response.Redirect("Login.aspx");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public ModoForm Modo
         {
             get => (ModoForm)this.ViewState["FormMode"];

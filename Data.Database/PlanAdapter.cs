@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using Business.Entities;
+using System;
 
 namespace Data.Database
 {
@@ -9,45 +10,80 @@ namespace Data.Database
     {
         public List<Plan> GetAll()
         {
-            using (AcademiaContext context = new AcademiaContext())
+            try
             {
-                return context.Plan.Include(p => p.Especialidad).ToList();
+                using (AcademiaContext context = new AcademiaContext())
+                {
+                    return context.Plan.Include(p => p.Especialidad).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al recuperar los planes.", ex);
             }
         }
 
         public Plan GetOne(int id)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                return context.Plan.Include(p => p.Especialidad).FirstOrDefault(p => p.ID == id);
+                using (var context = new AcademiaContext())
+                {
+                    return context.Plan.Include(p => p.Especialidad).FirstOrDefault(p => p.ID == id);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al recuperar el plan.", ex);
             }
         }
 
         protected void Insert(Plan plan)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Especialidad.Attach(plan.Especialidad);
-                context.Plan.Add(plan);
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Especialidad.Attach(plan.Especialidad);
+                    context.Plan.Add(plan);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al insertar el plan.", ex);
             }
         }
 
         protected void Update(Plan plan)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Entry(plan).State = EntityState.Modified;
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Entry(plan).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar el plan.", ex);
             }
         }
 
         public void Delete(Plan plan)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Plan.Remove(context.Plan.Find(plan.ID));
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Plan.Remove(context.Plan.Find(plan.ID));
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar el plan.", ex);
             }
         }
 

@@ -17,14 +17,28 @@ namespace UI.Desktop
 
         public CursoDesktop(ModoForm modo) : this()
         {
-            Modo = modo;
-            MapearInicial();
+            try
+            {
+                Modo = modo;
+                MapearInicial();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CursoDesktop(int id, ModoForm modo) : this(modo)
         {
+            try
+            {
             CursoActual = new CursoLogic().GetOne(id);
             MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -90,20 +104,31 @@ namespace UI.Desktop
                     CursoActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            CursoActual.AnioCalendario = int.Parse(txtAñoCalendario.Text);
-            CursoActual.Cupo = int.Parse(txtCupo.Text);
+
+            //TODO: Que año y cupo sea número
+            int.TryParse(txtAñoCalendario.Text, out int anio);
+            int.TryParse(txtCupo.Text, out int cupo);
+            if (anio < 1 || cupo < 1)
+            {
+                throw new Exception("El año y el cupo deben ser numeros positivos.");
+            }
+            CursoActual.AnioCalendario = anio;
+            CursoActual.Cupo = cupo;
             CursoActual.Materia = (Materia)cbxMateria.SelectedItem;
             CursoActual.Comision = (Comision)cbxComision.SelectedItem;
-            Business.Entities.DocenteCurso DocenteCursoActual = new Business.Entities.DocenteCurso()
-            {
-                
-            };
         }
 
         public override void GuardarCambios()
         {
-            MapearADatos();
-            new CursoLogic().Save(CursoActual);
+            try
+            {
+                MapearADatos();
+                new CursoLogic().Save(CursoActual);
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override bool Validar()
@@ -116,27 +141,27 @@ namespace UI.Desktop
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (cbxMateria.SelectedValue == null)
+            if (cbxMateria.SelectedValue == null)
             {
                 Notificar("Informacion invalida", "La materia especificada no existe.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (cbxComision.SelectedValue == null)
+            if (cbxComision.SelectedValue == null)
             {
                 Notificar("Informacion invalida", "La comision especificada no existe.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (planComision != planMateria)
+            if (planComision != planMateria)
             {
                 Notificar("Informacion invalida", "La comision y la materia deben pertenecer al mismo plan.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }

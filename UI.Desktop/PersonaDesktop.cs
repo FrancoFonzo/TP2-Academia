@@ -17,14 +17,28 @@ namespace UI.Desktop
 
         public PersonaDesktop(ModoForm modo) : this()
         {
-            Modo = modo;
-            MapearInicial();
+            try
+            {
+                Modo = modo;
+                MapearInicial();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public PersonaDesktop(int id, ModoForm modo) : this(modo)
         {
-            PersonaActual = new PersonaLogic().GetOne(id);
-            MapearDeDatos();
+            try
+            {
+                PersonaActual = new PersonaLogic().GetOne(id);
+                MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -95,11 +109,12 @@ namespace UI.Desktop
                     PersonaActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            if (int.TryParse(txtLegajo.Text, out int result))
+            int.TryParse(txtLegajo.Text, out int legajo);
+            if (!String.IsNullOrEmpty(txtLegajo.Text) && legajo < 0)
             {
-                PersonaActual.Legajo = result;
+                throw new Exception("El legajo sebe ser un numero positivo(alumno) o vacio(docente y admin).");
             }
-            //PersonaActual.Legajo = int.Parse(txtLegajo.Text);
+            PersonaActual.Legajo = legajo;
             PersonaActual.Nombre = txtNombre.Text;
             PersonaActual.Apellido = txtApellido.Text;
             PersonaActual.EMail = txtEMail.Text;
@@ -112,8 +127,15 @@ namespace UI.Desktop
 
         public override void GuardarCambios()
         {
-            MapearADatos();
-            new PersonaLogic().Save(PersonaActual);
+            try
+            {
+                MapearADatos();
+                new PersonaLogic().Save(PersonaActual);
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override bool Validar()
@@ -124,27 +146,27 @@ namespace UI.Desktop
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (!Validaciones.ValidarRegexNyA(txtNombre.Text) || !Validaciones.ValidarRegexNyA(txtApellido.Text))
+            if (!Validaciones.ValidarRegexNyA(txtNombre.Text) || !Validaciones.ValidarRegexNyA(txtApellido.Text))
             {
                 Notificar("Informacion invalida", "Porfavor ingrese su nombre y apellido correctamente.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (!Validaciones.ValidarRegexEmail(txtEMail.Text))
+            if (!Validaciones.ValidarRegexEmail(txtEMail.Text))
             {
                 Notificar("Informacion invalida", "Porfavor ingrese un email valido.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (cbxTipo.SelectedItem == null)
+            if (cbxTipo.SelectedItem == null)
             {
                 Notificar("Informacion invalida", "Porfavor ingrese un tipo de persona valido.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }

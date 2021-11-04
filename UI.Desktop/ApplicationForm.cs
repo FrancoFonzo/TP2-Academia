@@ -30,9 +30,9 @@ namespace UI.Desktop
             MessageBox.Show(mensaje, titulo, botones, icono);
         }
 
-        public void Notificar(string mensaje, MessageBoxButtons botones, MessageBoxIcon icono)
+        public void Notificar(string titulo, string mensaje)
         {
-            Notificar(Text, mensaje, botones, icono);
+            MessageBox.Show(mensaje, titulo);
         }
 
         protected bool IsRowSelected(DataGridView dgvSelected)

@@ -8,6 +8,8 @@ namespace UI.Desktop
 {
     public partial class EspecialidadDesktop : ApplicationForm
     {
+        private Especialidad EspecialidadActual { get; set; }
+
         public EspecialidadDesktop()
         {
             InitializeComponent();
@@ -19,11 +21,16 @@ namespace UI.Desktop
 
         public EspecialidadDesktop(int id, ModoForm modo) : this(modo)
         {
-            EspecialidadActual = new EspecialidadLogic().GetOne(id);
-            MapearDeDatos();
+            try
+            {
+                EspecialidadActual = new EspecialidadLogic().GetOne(id);
+                MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-
-        private Especialidad EspecialidadActual { get; set; }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -81,8 +88,15 @@ namespace UI.Desktop
 
         public override void GuardarCambios()
         {
-            MapearADatos();
-            new EspecialidadLogic().Save(EspecialidadActual);
+            try
+            {
+                MapearADatos();
+                new EspecialidadLogic().Save(EspecialidadActual);
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override bool Validar()

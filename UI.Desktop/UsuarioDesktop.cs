@@ -16,14 +16,28 @@ namespace UI.Desktop
 
         public UsuarioDesktop(ModoForm modo) : this()
         {
-            Modo = modo;
-            MapearInicial();
+            try
+            {
+                Modo = modo;
+                MapearInicial();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public UsuarioDesktop(int id, ModoForm modo) : this(modo)
         {
-            Usuario = new UsuarioLogic().GetOne(id);
-            MapearDeDatos();
+            try
+            {
+                Usuario = new UsuarioLogic().GetOne(id);
+                MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -97,8 +111,15 @@ namespace UI.Desktop
 
         public override void GuardarCambios()
         {
-            MapearADatos();
-            new UsuarioLogic().Save(Usuario);
+            try
+            {
+                MapearADatos();
+                new UsuarioLogic().Save(Usuario);
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override bool Validar()
@@ -108,27 +129,27 @@ namespace UI.Desktop
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (!Validaciones.ValidarRegexClave(txtClave.Text))
+            if (!Validaciones.ValidarRegexClave(txtClave.Text))
             {
                 Notificar("Contraseña invalida", "La contraseñas debe tener entre 4 y 50 caracteres.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (txtUsuario.Text.Length >= 16)
+            if (txtUsuario.Text.Length >= 16)
             {
                 Notificar("Usuario invalido", "El usuario debe ser menor a 16 caracteres.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (!Validaciones.ValidarClaveConfirmada(txtClave.Text, txtConfirmarClave.Text))
+            if (!Validaciones.ValidarClaveConfirmada(txtClave.Text, txtConfirmarClave.Text))
             {
                 Notificar("Contraseña invalida", "Las contraseñas no coinciden.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }

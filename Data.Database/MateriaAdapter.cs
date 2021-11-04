@@ -2,6 +2,7 @@
 using System.Linq;
 using Business.Entities;
 using System.Data.Entity;
+using System;
 
 namespace Data.Database
 {
@@ -9,45 +10,80 @@ namespace Data.Database
     {
         public List<Materia> GetAll()
         {
-            using (AcademiaContext context = new AcademiaContext())
+            try
             {
-                return context.Materia.Include(m => m.Plan).ToList();
+                using (AcademiaContext context = new AcademiaContext())
+                {
+                    return context.Materia.Include(m => m.Plan).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al recuperar las materias.", ex);
             }
         }
 
         public Materia GetOne(int id)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                return context.Materia.Include(m => m.Plan).FirstOrDefault(m => m.ID == id);
+                using (var context = new AcademiaContext())
+                {
+                    return context.Materia.Include(m => m.Plan).FirstOrDefault(m => m.ID == id);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al recuperar la materia.", ex);
             }
         }
 
         protected void Insert(Materia materia)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Plan.Attach(materia.Plan);
-                context.Materia.Add(materia);
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Plan.Attach(materia.Plan);
+                    context.Materia.Add(materia);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al insertar la materia.", ex);
             }
         }
 
         protected void Update(Materia materia)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Entry(materia).State = EntityState.Modified;
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Entry(materia).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar la materia.", ex);
             }
         }
 
         public void Delete(Materia materia)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Materia.Remove(context.Materia.Find(materia.ID));
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Materia.Remove(context.Materia.Find(materia.ID));
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar la materia.", ex);
             }
         }
 

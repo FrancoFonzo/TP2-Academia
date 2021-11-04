@@ -17,14 +17,28 @@ namespace UI.Desktop
 
         public ComisionDesktop(ModoForm modo) : this()
         {
-            Modo = modo;
-            MapearInicial();
+            try
+            {
+                Modo = modo;
+                MapearInicial();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public ComisionDesktop(int id, ModoForm modo) : this(modo)
         {
-            ComisionActual = new ComisionLogic().GetOne(id);
-            MapearDeDatos();
+            try
+            {
+                ComisionActual = new ComisionLogic().GetOne(id);
+                MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -44,6 +58,7 @@ namespace UI.Desktop
         private void MapearInicial()
         {
             cbxPlan.DataSource = new PlanLogic().GetAll();
+
             switch (Modo)
             {
                 case ModoForm.Alta:
@@ -84,19 +99,29 @@ namespace UI.Desktop
                     ComisionActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            ComisionActual.Descripcion = txtDescripcion.Text;
-            ComisionActual.AnioEspecialidad = int.Parse(txtAnioEspecialidad.Text);
 
-            if (cbxPlan.SelectedValue != null)
+            //TODO: comprobar que año sea número
+            int.TryParse(txtAnioEspecialidad.Text, out int anio);
+            if (anio < 1 || anio > 5)
             {
-                ComisionActual.Plan = new PlanLogic().GetOne((int)cbxPlan.SelectedValue);
+                throw new FormatException("El año debe ser un numero entre 1 y 5.");
             }
+            ComisionActual.AnioEspecialidad = anio;
+            ComisionActual.Descripcion = txtDescripcion.Text;
+            ComisionActual.Plan = (Plan)cbxPlan.SelectedItem;
         }
 
         public override void GuardarCambios()
         {
-            MapearADatos();
-            new ComisionLogic().Save(ComisionActual);
+            try
+            {
+                MapearADatos();
+                new ComisionLogic().Save(ComisionActual);
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override bool Validar()
@@ -106,17 +131,15 @@ namespace UI.Desktop
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (cbxPlan.SelectedValue == null)
+            if (cbxPlan.SelectedValue == null)
             {
                 Notificar("Informacion invalida", "El plan especificada no existe.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }

@@ -8,6 +8,8 @@ namespace UI.Desktop
 {
     public partial class MateriaDesktop : ApplicationForm
     {
+        private Materia MateriaActual { get; set; }
+
         public MateriaDesktop()
         {
             InitializeComponent();
@@ -15,17 +17,29 @@ namespace UI.Desktop
 
         public MateriaDesktop(ModoForm modo) : this()
         {
-            Modo = modo;
-            MapearInicial();
+            try
+            {
+                Modo = modo;
+                MapearInicial();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public MateriaDesktop(int ID, ModoForm modo) : this(modo)
         {
-            MateriaActual = new MateriaLogic().GetOne(ID);
-            MapearDeDatos();
+            try
+            {
+                MateriaActual = new MateriaLogic().GetOne(ID);
+                MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-
-        private Materia MateriaActual { get; set; }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -86,16 +100,39 @@ namespace UI.Desktop
                     MateriaActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            MateriaActual.Descripcion = txtDescripcion.Text;
-            MateriaActual.HorasSemanales = int.Parse(txtHsSemanales.Text);
-            MateriaActual.HorasTotales = int.Parse(txtHsTotales.Text);
-            MateriaActual.Plan = (Plan)cbxPlan.SelectedItem;
+
+
+            //TODO: horas número
+            try
+            {
+                int.TryParse(txtHsSemanales.Text, out int hsSemana);
+                int.TryParse(txtHsSemanales.Text, out int hsTotal);
+                if (hsSemana < 1 || hsTotal < 1)
+                {
+                    throw new Exception("Las horas deben ser numeros positivos.");
+                }
+                MateriaActual.Descripcion = txtDescripcion.Text;
+                MateriaActual.HorasSemanales = hsSemana;
+                MateriaActual.HorasTotales = hsTotal;
+                MateriaActual.Plan = (Plan)cbxPlan.SelectedItem;
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override void GuardarCambios()
         {
-            MapearADatos();
-            new MateriaLogic().Save(MateriaActual);
+            try
+            {
+                MapearADatos();
+                new MateriaLogic().Save(MateriaActual);
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override bool Validar()
@@ -105,17 +142,15 @@ namespace UI.Desktop
             {
                 Notificar("Informacion invalida", "Complete los campos para continuar.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else if (cbxPlan.SelectedValue == null)
+            if (cbxPlan.SelectedValue == null)
             {
                 Notificar("Informacion invalida", "Porfavor seleccione una especialidad valida.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            else
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }

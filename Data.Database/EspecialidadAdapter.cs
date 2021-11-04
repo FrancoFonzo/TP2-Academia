@@ -2,6 +2,7 @@
 using System.Linq;
 using Business.Entities;
 using System.Data.Entity;
+using System;
 
 namespace Data.Database
 {
@@ -9,44 +10,79 @@ namespace Data.Database
     {
         public List<Especialidad> GetAll()
         {
-            using (AcademiaContext context = new AcademiaContext())
+            try
             {
-                return context.Especialidad.ToList();
+                using (AcademiaContext context = new AcademiaContext())
+                {
+                    return context.Especialidad.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al recuperar las especialidades.", ex);
             }
         }
 
         public Especialidad GetOne(int id)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                return context.Especialidad.Find(id);
+                using (var context = new AcademiaContext())
+                {
+                    return context.Especialidad.Find(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al recuperar la especialidad.", ex);
             }
         }
 
         protected void Insert(Especialidad especialidad)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Especialidad.Add(especialidad);
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Especialidad.Add(especialidad);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al insertar la especialidad.", ex);
             }
         }
 
         protected void Update(Especialidad especialidad)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Entry(especialidad).State = EntityState.Modified;
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Entry(especialidad).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar la especialidad.", ex);
             }
         }
 
         public void Delete(Especialidad especialidad)
         {
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Especialidad.Remove(context.Especialidad.Find(especialidad.ID));
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Especialidad.Remove(context.Especialidad.Find(especialidad.ID));
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar la especialidad.", ex);
             }
         }
 

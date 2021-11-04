@@ -20,8 +20,15 @@ namespace UI.Desktop
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            new PlanDesktop(ModoForm.Alta).ShowDialog();
-            Listar();
+            try
+            {
+                new PlanDesktop(ModoForm.Alta).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
@@ -42,9 +49,16 @@ namespace UI.Desktop
 
         private void OpenForm(ModoForm modo)
         {
-            int ID = ((Plan)dgvPlanes.SelectedRows[0].DataBoundItem).ID;
-            new PlanDesktop(ID, modo).ShowDialog();
-            Listar();
+            try
+            {
+                int ID = ((Plan)dgvPlanes.SelectedRows[0].DataBoundItem).ID;
+                new PlanDesktop(ID, modo).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override void Listar()
@@ -53,10 +67,9 @@ namespace UI.Desktop
             {
                 dgvPlanes.DataSource = new PlanLogic().GetAll();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error", "Error al recuperar los datos del plan",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

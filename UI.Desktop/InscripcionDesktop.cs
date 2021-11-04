@@ -18,21 +18,42 @@ namespace UI.Desktop
 
         public InscripcionDesktop(ModoForm modo) : this()
         {
-            Modo = modo;
-            MapearInicial();
+            try
+            {
+                Modo = modo;
+                MapearInicial();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public InscripcionDesktop(Persona personaActual, ModoForm modo) : this(modo)
         {
-            PersonaActual = personaActual;
-            MapearDeDatos();
+            try
+            {
+                PersonaActual = personaActual;
+                MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public InscripcionDesktop(int ID, Persona personaActual, ModoForm modo) : this(modo)
         {
-            InscripcionActual = new AlumnoInscripcionLogic().GetOne(ID);
-            PersonaActual = personaActual;
-            MapearDeDatos();
+            try
+            {
+                InscripcionActual = new AlumnoInscripcionLogic().GetOne(ID);
+                PersonaActual = personaActual;
+                MapearDeDatos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void Cursos_Load(object sender, EventArgs e)
@@ -111,8 +132,15 @@ namespace UI.Desktop
 
         public override void GuardarCambios()
         {
-            MapearADatos();
-            new AlumnoInscripcionLogic().Save(InscripcionActual);
+            try
+            {
+                MapearADatos();
+                new AlumnoInscripcionLogic().Save(InscripcionActual);
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override void Listar()
@@ -132,10 +160,9 @@ namespace UI.Desktop
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error", "Error al recuperar los datos de los cursos",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

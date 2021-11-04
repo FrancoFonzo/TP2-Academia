@@ -19,6 +19,7 @@ namespace UI.Web
         {
             if (!Page.IsPostBack)
             {
+                ValidaSesion();
                 Listar();
             }
         }
@@ -137,10 +138,18 @@ namespace UI.Web
                     CursoActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
-            CursoActual.Cupo = int.Parse(txtCupo.Text);
-            CursoActual.Comision = new ComisionLogic().GetOne(int.Parse(ddlComision.SelectedValue));
-            CursoActual.Materia = new MateriaLogic().GetOne(int.Parse(ddlMateria.SelectedValue));
+
+            if (int.Parse(txtAnio.Text) > 0 && int.Parse(txtCupo.Text) > 0)
+            {
+                CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
+                CursoActual.Cupo = int.Parse(txtCupo.Text);
+                CursoActual.Comision = new ComisionLogic().GetOne(int.Parse(ddlComision.SelectedValue));
+                CursoActual.Materia = new MateriaLogic().GetOne(int.Parse(ddlMateria.SelectedValue));
+            }
+            else
+            {
+                Notificar("Año y cupo deben ser positivos");
+            }            
         }
 
         private void SaveEntity(int id)

@@ -7,7 +7,7 @@ namespace UI.Desktop
 {
     public partial class Personas : ApplicationForm
     {
-        public Persona.TiposPersonas TipoPersona { get; } = Persona.TiposPersonas.Administrador;
+        private Persona.TiposPersonas TipoPersona { get; } = Persona.TiposPersonas.Administrador;
 
         public Personas()
         {
@@ -32,9 +32,15 @@ namespace UI.Desktop
 
         private void tsbAgregarP_Click(object sender, EventArgs e)
         {
-            PersonaDesktop formPersona = new PersonaDesktop(ApplicationForm.ModoForm.Alta);
-            formPersona.ShowDialog();
-            Listar();
+            try
+            {
+                new PersonaDesktop(ModoForm.Alta).ShowDialog();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tsbEditarP_Click(object sender, EventArgs e)
@@ -65,15 +71,21 @@ namespace UI.Desktop
                 {
                     openFormRegistrarNotas();
                 }
-                
             }
         }
 
         private void OpenForm(ModoForm modo)
         {
-            int ID = ((Persona)dgvPersonas.SelectedRows[0].DataBoundItem).ID;
-            new PersonaDesktop(ID, modo).ShowDialog();
-            Listar();
+            try
+            {
+                int ID = ((Persona)dgvPersonas.SelectedRows[0].DataBoundItem).ID;
+                new PersonaDesktop(ID, modo).ShowDialog();
+                Listar();
+            }
+            catch(Exception ex)
+            {
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void openFormInscripcion()
@@ -95,10 +107,9 @@ namespace UI.Desktop
                 dgvPersonas.DataSource = TipoPersona == Persona.TiposPersonas.Administrador ?
                     new PersonaLogic().GetAll() : new PersonaLogic().GetAllTipo(TipoPersona);
             }
-            catch (Exception)
+            catch(Exception ex)
             {
-                Notificar("Error", "Error al recuperar los datos del usuario",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
