@@ -11,7 +11,6 @@ pool:
 
 variables:
   solution: '**/*.sln'
-  webProject: '**/UI.Web.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
@@ -22,14 +21,11 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: DotNetCoreCLI@2
+- task: VSBuild@1
   inputs:
-    command: 'build'
-    projects: |
-      **/UI.Web.csproj
-      **/Bussines.Entities.csproj
-      **/Bussines.Logic.csproj
-      **/Data.Database.csproj
-      **/Bussines.Entities.csproj'
+    solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
 
 - task: PublishBuildArtifacts@1
