@@ -54,14 +54,16 @@ namespace Data.Database
 
         public Curso GetOne(int id)
         {
-            try { 
-            using (var context = new AcademiaContext())
+            try
             {
-                return context
-                    .Curso
-                    .Include(c => c.Materia)
-                    .Include(c => c.Comision)
-                    .FirstOrDefault(c => c.ID == id);
+                using (var context = new AcademiaContext())
+                {
+                    return context
+                        .Curso
+                        .Include(c => c.Materia)
+                        .Include(c => c.Comision)
+                        .FirstOrDefault(c => c.ID == id);
+                }
             }
             catch (Exception e)
             {

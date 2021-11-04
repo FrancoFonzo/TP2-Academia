@@ -40,12 +40,14 @@ namespace Data.Database
 
         protected void Insert(Plan plan)
         {
-            try { 
-            using (var context = new AcademiaContext())
+            try
             {
-                context.Especialidad.Attach(plan.Especialidad);
-                context.Plan.Add(plan);
-                context.SaveChanges();
+                using (var context = new AcademiaContext())
+                {
+                    context.Especialidad.Attach(plan.Especialidad);
+                    context.Plan.Add(plan);
+                    context.SaveChanges();
+                }
             }
             catch (Exception e)
             {
