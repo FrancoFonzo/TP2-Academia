@@ -47,6 +47,7 @@ namespace UI.Desktop
         {
             if (IsRowSelected(dgvAlumnos))
             {
+               
                 var alumno = (AlumnoInscripcion)dgvAlumnos.SelectedRows[0].DataBoundItem;
                 alumno.Nota = int.Parse(txtNota.Text);
                 alumno.State = BusinessEntity.States.Modified;
