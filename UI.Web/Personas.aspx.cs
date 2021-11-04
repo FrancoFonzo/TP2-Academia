@@ -19,7 +19,6 @@ namespace UI.Web
         {
             if (!Page.IsPostBack)
             {
-                ValidaSesion();
                 Listar();
             }
         }

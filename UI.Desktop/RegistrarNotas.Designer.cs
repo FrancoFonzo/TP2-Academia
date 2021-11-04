@@ -62,7 +62,7 @@ namespace UI.Desktop
             // 
             this.cbxCursos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxCursos.DisplayMember = "Curso";
+            this.cbxCursos.DisplayMember = "MiCurso";
             this.cbxCursos.FormattingEnabled = true;
             this.cbxCursos.Location = new System.Drawing.Point(126, 14);
             this.cbxCursos.Margin = new System.Windows.Forms.Padding(5);

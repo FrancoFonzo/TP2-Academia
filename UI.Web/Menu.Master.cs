@@ -38,9 +38,6 @@ namespace UI.Web
                             linkNotas.Visible = true;
                         }
                         break;
-                    default:
-                        Response.Redirect("Login.aspx");
-                        break;
                 }
             }
         }
@@ -62,7 +59,6 @@ namespace UI.Web
 
         protected void linkCerrarSesion_Click(object sender, EventArgs e)
         {
-            Session.Clear();
             Response.Redirect("Login.aspx");
         }
 

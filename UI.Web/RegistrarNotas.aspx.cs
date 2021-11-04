@@ -20,8 +20,10 @@ namespace UI.Web
             
             if (!Page.IsPostBack)
             {
-                ValidaSesion();
                 formPanelCurso.Visible = true;
+
+                /*this.ddlCurso.DataSource = new CursoLogic().GetAll();
+                this.ddlCurso.DataBind();*/
 
                 if (UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)
                 {
