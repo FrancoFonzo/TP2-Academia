@@ -32,8 +32,15 @@ namespace UI.Web
         protected void linkNuevo_Click(object sender, EventArgs e)
         {
             Modo = ModoForm.Alta;
-            MapearInicial();
-            ShowForm(true);
+            try
+            {
+                MapearInicial();
+                ShowForm(true);
+            }
+            catch(Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         protected void linkEditar_Click(object sender, EventArgs e)
@@ -41,9 +48,14 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Modificacion;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try { 
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }catch(Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
@@ -52,20 +64,32 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Baja;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try
+                {
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }catch(Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            try
             {
-                SaveEntity(SelectedID);
-                ShowForm(false);
-                Listar();
+                this.Validate();
+                if (this.IsValid)
+                {
+                    SaveEntity(SelectedID);
+                    ShowForm(false);
+                    Listar();
+                }
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 
@@ -105,39 +129,57 @@ namespace UI.Web
 
         private void MapearForm(int id)
         {
-            EspecialidadActual = EspecialidadLogic.GetOne(id);
+            try { 
+                EspecialidadActual = EspecialidadLogic.GetOne(id);
 
-            txtDescripcion.Text = EspecialidadActual.Descripcion;
+                txtDescripcion.Text = EspecialidadActual.Descripcion;
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         private void MapearEntidad()
         {
-            EspecialidadActual = EspecialidadLogic.GetOne(SelectedID);
-            switch (Modo)
+            try
             {
-                case ModoForm.Baja:
-                    SelectedID.ToString();
-                    EspecialidadActual.State = BusinessEntity.States.Deleted;
-                    return;
-                case ModoForm.Alta:
-                    EspecialidadActual = new Especialidad { State = BusinessEntity.States.New };
-                    break;
-                case ModoForm.Modificacion:
-                    EspecialidadActual.State = BusinessEntity.States.Modified;
-                    break;
+                EspecialidadActual = EspecialidadLogic.GetOne(SelectedID);
+                switch (Modo)
+                {
+                    case ModoForm.Baja:
+                        SelectedID.ToString();
+                        EspecialidadActual.State = BusinessEntity.States.Deleted;
+                        return;
+                    case ModoForm.Alta:
+                        EspecialidadActual = new Especialidad { State = BusinessEntity.States.New };
+                        break;
+                    case ModoForm.Modificacion:
+                        EspecialidadActual.State = BusinessEntity.States.Modified;
+                        break;
+                }
+                EspecialidadActual.Descripcion = txtDescripcion.Text;
             }
-            EspecialidadActual.Descripcion= txtDescripcion.Text;
+            catch(Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         private void SaveEntity(int id)
         {
-            EspecialidadActual = EspecialidadLogic.GetOne(id);
-            MapearEntidad();
-            EspecialidadLogic.Save(EspecialidadActual);
-            if (Modo == ModoForm.Baja)
+            try { 
+                EspecialidadActual = EspecialidadLogic.GetOne(id);
+                MapearEntidad();
+                EspecialidadLogic.Save(EspecialidadActual);
+                if (Modo == ModoForm.Baja)
+                {
+                    //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
+                    SelectedID = 0;
+                }
+            }
+            catch(Exception ex)
             {
-                //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
-                SelectedID = 0;
+                Notificar(ex.Message);
             }
         }
 
