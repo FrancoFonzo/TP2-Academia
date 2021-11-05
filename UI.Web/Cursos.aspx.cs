@@ -32,8 +32,14 @@ namespace UI.Web
         protected void linkNuevo_Click(object sender, EventArgs e)
         {
             Modo = ModoForm.Alta;
-            MapearInicial();
-            ShowForm(true);
+            try
+            {
+                MapearInicial();
+                ShowForm(true);
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         protected void linkEditar_Click(object sender, EventArgs e)
@@ -41,9 +47,14 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Modificacion;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try { 
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }catch(Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
@@ -52,20 +63,33 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Baja;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try
+                {
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }
+                catch (Exception ex) 
+                { 
+                    Notificar(ex.Message);
+                }
             }
         }
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            try
             {
-                SaveEntity(SelectedID);
-                ShowForm(false);
-                Listar();
+                this.Validate();
+                if (this.IsValid)
+                {
+                    SaveEntity(SelectedID);
+                    ShowForm(false);
+                    Listar();
+                }
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 
@@ -103,64 +127,88 @@ namespace UI.Web
                     break;
             }
 
-            ddlComision.DataSource = new ComisionLogic().GetAll();
-            ddlComision.DataBind();
-            ddlComision.Items.Insert(0, "[Seleccionar]");
+            try { 
+                ddlComision.DataSource = new ComisionLogic().GetAll();
+                ddlComision.DataBind();
+                ddlComision.Items.Insert(0, "[Seleccionar]");
 
-            ddlMateria.DataSource = new MateriaLogic().GetAll();
-            ddlMateria.DataBind();
-            ddlMateria.Items.Insert(0, "[Seleccionar]");
+                ddlMateria.DataSource = new MateriaLogic().GetAll();
+                ddlMateria.DataBind();
+                ddlMateria.Items.Insert(0, "[Seleccionar]");
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         private void MapearForm(int id)
         {
-            CursoActual = CursoLogic.GetOne(id);
+            try
+            {
+                CursoActual = CursoLogic.GetOne(id);
 
-            txtAnio.Text = CursoActual.AnioCalendario.ToString();
-            txtCupo.Text = CursoActual.Cupo.ToString();
-            ddlComision.SelectedValue = CursoActual.Comision.ID.ToString();
-            ddlMateria.SelectedValue = CursoActual.Materia.ID.ToString();
+                txtAnio.Text = CursoActual.AnioCalendario.ToString();
+                txtCupo.Text = CursoActual.Cupo.ToString();
+                ddlComision.SelectedValue = CursoActual.Comision.ID.ToString();
+                ddlMateria.SelectedValue = CursoActual.Materia.ID.ToString();
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         private void MapearEntidad()
         {
-            CursoActual = CursoLogic.GetOne(SelectedID);
-            switch (Modo)
+            try
             {
-                case ModoForm.Baja:
-                    SelectedID.ToString();
-                    CursoActual.State = BusinessEntity.States.Deleted;
-                    return;
-                case ModoForm.Alta:
-                    CursoActual = new Curso { State = BusinessEntity.States.New };
-                    break;
-                case ModoForm.Modificacion:
-                    CursoActual.State = BusinessEntity.States.Modified;
-                    break;
-            }
+                CursoActual = CursoLogic.GetOne(SelectedID);
+                switch (Modo)
+                {
+                    case ModoForm.Baja:
+                        SelectedID.ToString();
+                        CursoActual.State = BusinessEntity.States.Deleted;
+                        return;
+                    case ModoForm.Alta:
+                        CursoActual = new Curso { State = BusinessEntity.States.New };
+                        break;
+                    case ModoForm.Modificacion:
+                        CursoActual.State = BusinessEntity.States.Modified;
+                        break;
+                }
 
-            if (int.Parse(txtAnio.Text) > 0 && int.Parse(txtCupo.Text) > 0)
-            {
-                CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
-                CursoActual.Cupo = int.Parse(txtCupo.Text);
-                CursoActual.Comision = new ComisionLogic().GetOne(int.Parse(ddlComision.SelectedValue));
-                CursoActual.Materia = new MateriaLogic().GetOne(int.Parse(ddlMateria.SelectedValue));
+                if (int.Parse(txtAnio.Text) > 0 && int.Parse(txtCupo.Text) > 0)
+                {
+                    CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
+                    CursoActual.Cupo = int.Parse(txtCupo.Text);
+                    CursoActual.Comision = new ComisionLogic().GetOne(int.Parse(ddlComision.SelectedValue));
+                    CursoActual.Materia = new MateriaLogic().GetOne(int.Parse(ddlMateria.SelectedValue));
+                }
+                else
+                {
+                    Notificar("Año y cupo deben ser positivos");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Notificar("Año y cupo deben ser positivos");
-            }            
+                Notificar(ex.Message);
+            }
         }
 
         private void SaveEntity(int id)
         {
-            CursoActual = CursoLogic.GetOne(id);
-            MapearEntidad();
-            CursoLogic.Save(CursoActual);
-            if (Modo == ModoForm.Baja)
+            try
             {
-                //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
-                SelectedID = 0;
+                CursoActual = CursoLogic.GetOne(id);
+                MapearEntidad();
+                CursoLogic.Save(CursoActual);
+                if (Modo == ModoForm.Baja)
+                {
+                    //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
+                    SelectedID = 0;
+                }
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 
