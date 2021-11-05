@@ -20,7 +20,6 @@ namespace UI.Web
             
             if (!Page.IsPostBack)
             {
-                ValidaSesion();
                 formPanelCurso.Visible = true;
 
                 if (UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)

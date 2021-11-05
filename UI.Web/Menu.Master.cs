@@ -14,6 +14,7 @@ namespace UI.Web
         {
             if (!Page.IsPostBack)
             {
+                ValidarSesion();
                 switch (Login.UsuarioActual.Persona.Tipo)
                 {
                     case Persona.TiposPersonas.Administrador:
@@ -119,6 +120,16 @@ namespace UI.Web
         protected void linkHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("Home.aspx");
+        }
+
+        public bool ValidarSesion()
+        {
+            if (Session["UsuarioGlobal"] == null)
+            {
+                Response.Redirect("Login.aspx");
+                return false;
+            }
+            return true;
         }
     }
 }
