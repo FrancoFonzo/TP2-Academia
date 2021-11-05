@@ -26,8 +26,14 @@ namespace UI.Web
         protected void linkNuevo_Click(object sender, EventArgs e)
         {
             Modo = ModoForm.Alta;
-            MapearInicial();
-            ShowForm(true);
+            try
+            {
+                MapearInicial();
+                ShowForm(true);
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         protected void linkEditar_Click(object sender, EventArgs e)
@@ -35,9 +41,15 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Modificacion;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try { 
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }
+                catch (Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
@@ -46,20 +58,32 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Baja;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try { 
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }
+                catch (Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            try { 
+                this.Validate();
+                if (this.IsValid)
+                {
+                    SaveEntity(SelectedID);
+                    ShowForm(false);
+                    Listar();
+                }
+            }
+            catch (Exception ex)
             {
-                SaveEntity(SelectedID);
-                ShowForm(false);
-                Listar();
+                Notificar(ex.Message);
             }
         }
 
@@ -97,58 +121,82 @@ namespace UI.Web
                     break;
             }
 
-            ddlPlan.DataSource = new PlanLogic().GetAll();
-            ddlPlan.DataBind();
-            ddlPlan.Items.Insert(0, "[Seleccionar]");
+            try { 
+                ddlPlan.DataSource = new PlanLogic().GetAll();
+                ddlPlan.DataBind();
+                ddlPlan.Items.Insert(0, "[Seleccionar]");
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         private void MapearForm(int id)
         {
-            ComisionActual = ComisionLogic.GetOne(id);
+            try { 
+                ComisionActual = ComisionLogic.GetOne(id);
 
-            txtAnio.Text = ComisionActual.AnioEspecialidad.ToString();
-            txtDescripcion.Text = ComisionActual.Descripcion;
-            ddlPlan.SelectedValue = ComisionActual.Plan.ID.ToString();
+                txtAnio.Text = ComisionActual.AnioEspecialidad.ToString();
+                txtDescripcion.Text = ComisionActual.Descripcion;
+                ddlPlan.SelectedValue = ComisionActual.Plan.ID.ToString();
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         private void MapearEntidad()
         {
-            ComisionActual = ComisionLogic.GetOne(SelectedID);
-            switch (Modo)
-            {
-                case ModoForm.Baja:
-                    SelectedID.ToString();
-                    ComisionActual.State = BusinessEntity.States.Deleted;
-                    return;
-                case ModoForm.Alta:
-                    ComisionActual = new Comision { State = BusinessEntity.States.New };
-                    break;
-                case ModoForm.Modificacion:
-                    ComisionActual.State = BusinessEntity.States.Modified;
-                    break;
-            }
+            try { 
+                ComisionActual = ComisionLogic.GetOne(SelectedID);
+                switch (Modo)
+                {
+                    case ModoForm.Baja:
+                        SelectedID.ToString();
+                        ComisionActual.State = BusinessEntity.States.Deleted;
+                        return;
+                    case ModoForm.Alta:
+                        ComisionActual = new Comision { State = BusinessEntity.States.New };
+                        break;
+                    case ModoForm.Modificacion:
+                        ComisionActual.State = BusinessEntity.States.Modified;
+                        break;
+                }
 
-            if(int.Parse(txtAnio.Text) > 0 && int.Parse(txtDescripcion.Text) > 0)
-            {
-                ComisionActual.AnioEspecialidad = int.Parse(txtAnio.Text);
-                ComisionActual.Descripcion = txtDescripcion.Text;
-                ComisionActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
+                if(int.Parse(txtAnio.Text) > 0 && int.Parse(txtDescripcion.Text) > 0)
+                {
+                    ComisionActual.AnioEspecialidad = int.Parse(txtAnio.Text);
+                    ComisionActual.Descripcion = txtDescripcion.Text;
+                    ComisionActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
+                }
+                else
+                {
+                    Notificar("Año y comisión deben ser positivos");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Notificar("Año y comisión deben ser positivos");
-            }            
+                Notificar(ex.Message);
+            }
         }
 
         private void SaveEntity(int id)
         {
-            ComisionActual = ComisionLogic.GetOne(id);
-            MapearEntidad();
-            ComisionLogic.Save(ComisionActual);
-            if (Modo == ModoForm.Baja)
+            try { 
+                ComisionActual = ComisionLogic.GetOne(id);
+                MapearEntidad();
+                ComisionLogic.Save(ComisionActual);
+                if (Modo == ModoForm.Baja)
+                {
+                    //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
+                    SelectedID = 0;
+                }
+            }
+            catch (Exception ex)
             {
-                //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
-                SelectedID = 0;
+                Notificar(ex.Message);
             }
         }
 
