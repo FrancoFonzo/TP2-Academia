@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Business.Entities;
@@ -14,7 +15,6 @@ namespace UI.Web
         {
             if (!Page.IsPostBack)
             {
-                ValidarSesion();
                 switch (Login.UsuarioActual.Persona.Tipo)
                 {
                     case Persona.TiposPersonas.Administrador:
@@ -63,8 +63,8 @@ namespace UI.Web
 
         protected void linkCerrarSesion_Click(object sender, EventArgs e)
         {
-            Session.Clear();
-            Response.Redirect("Login.aspx");
+            FormsAuthentication.SignOut();
+            FormsAuthentication.RedirectToLoginPage();
         }
 
         protected void comisiones_Click(object sender, EventArgs e)
@@ -120,16 +120,6 @@ namespace UI.Web
         protected void linkHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("Home.aspx");
-        }
-
-        public bool ValidarSesion()
-        {
-            if (Session["UsuarioGlobal"] == null)
-            {
-                Response.Redirect("Login.aspx");
-                return false;
-            }
-            return true;
         }
     }
 }

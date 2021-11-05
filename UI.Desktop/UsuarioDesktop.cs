@@ -137,9 +137,15 @@ namespace UI.Desktop
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (txtUsuario.Text.Length >= 16)
+            if (!Validaciones.UsuarioLengthValido(txtUsuario.Text))
             {
                 Notificar("Usuario invalido", "El usuario debe ser menor a 16 caracteres.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!Validaciones.UsuarioNoExiste(txtUsuario.Text))
+            {
+                Notificar("Usuario invalido", "El usuario ya existe.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

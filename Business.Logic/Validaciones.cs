@@ -47,5 +47,23 @@ namespace Business.Logic
             }
             return true;
         }
+
+        public static bool UsuarioNoExiste(string nombreUsuario)
+        {
+            if (new UsuarioLogic().GetOneNombreUsuario(nombreUsuario) != null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool UsuarioLengthValido(string nombreUsuario)
+        {
+            if (nombreUsuario.Length > 15)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

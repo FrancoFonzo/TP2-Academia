@@ -70,6 +70,7 @@ namespace UI.Desktop
             this.cbxCursos.Size = new System.Drawing.Size(879, 24);
             this.cbxCursos.TabIndex = 1;
             this.cbxCursos.ValueMember = "ID";
+            this.cbxCursos.SelectedIndexChanged += new System.EventHandler(this.cbxCursos_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -77,7 +78,7 @@ namespace UI.Desktop
             this.panel1.Controls.Add(this.lblCurso);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1067, 62);
             this.panel1.TabIndex = 2;
@@ -153,7 +154,7 @@ namespace UI.Desktop
             this.panelBotones.Controls.Add(this.btnGuardar);
             this.panelBotones.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelBotones.Location = new System.Drawing.Point(0, 652);
-            this.panelBotones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelBotones.Margin = new System.Windows.Forms.Padding(4);
             this.panelBotones.Name = "panelBotones";
             this.panelBotones.Size = new System.Drawing.Size(1067, 68);
             this.panelBotones.TabIndex = 4;
@@ -163,7 +164,7 @@ namespace UI.Desktop
             this.txtNota.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNota.Location = new System.Drawing.Point(168, 25);
-            this.txtNota.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNota.Margin = new System.Windows.Forms.Padding(4);
             this.txtNota.Name = "txtNota";
             this.txtNota.Size = new System.Drawing.Size(123, 22);
             this.txtNota.TabIndex = 2;
@@ -201,7 +202,7 @@ namespace UI.Desktop
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelBotones);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "RegistrarNotas";
             this.Text = "AlumnosCurso";
             this.Load += new System.EventHandler(this.Cursos_Load);

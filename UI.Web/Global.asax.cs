@@ -22,11 +22,5 @@ namespace UI.Web
                 }
             );
         }
-
-        protected void Application_BeginRequest(object sender, EventArgs e)
-        {
-            if (!HttpContext.Current.Request.Path.EndsWith("Login.aspx", StringComparison.InvariantCultureIgnoreCase))
-                Response.Redirect("Login.aspx");
-        }
     }
 }

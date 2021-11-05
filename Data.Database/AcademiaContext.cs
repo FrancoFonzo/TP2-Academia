@@ -6,7 +6,7 @@ namespace Data.Database
 {
     public class AcademiaContext : DbContext
     {
-        public AcademiaContext() : base("name=AcademiaContext") { }
+        public AcademiaContext() : base("name=ConnStringAzure") { }
 
         public virtual DbSet<AlumnoInscripcion> AlumnoInscripcion { get; set; }
         public virtual DbSet<Comision> Comision { get; set; }

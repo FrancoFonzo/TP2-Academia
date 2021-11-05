@@ -34,6 +34,11 @@ namespace UI.Desktop
             Listar();
         }
 
+        private void cbxCursos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Listar();
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (Validar())
@@ -55,6 +60,7 @@ namespace UI.Desktop
                 {
                     Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                Listar();
             }            
         }
 
