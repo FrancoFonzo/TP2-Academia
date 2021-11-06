@@ -33,19 +33,8 @@
     <br />
     <asp:Panel ID="formPanel" runat="server" Visible="False">
         <asp:Label ID="lblNota" runat="server" Text="Ingresar nota: "></asp:Label>
-        <asp:DropDownList ID="ddlNota" runat="server">
-                <asp:ListItem>1</asp:ListItem>
-                <asp:ListItem>2</asp:ListItem>
-                <asp:ListItem>3</asp:ListItem>
-                <asp:ListItem>4</asp:ListItem>
-                <asp:ListItem>5</asp:ListItem>
-                <asp:ListItem>6</asp:ListItem>
-                <asp:ListItem>7</asp:ListItem>
-                <asp:ListItem>8</asp:ListItem>
-                <asp:ListItem>9</asp:ListItem>
-                <asp:ListItem>10</asp:ListItem>
-        </asp:DropDownList>
-        <asp:RequiredFieldValidator ID="validNota" runat="server" ErrorMessage="La nota no puede estar vacía" ForeColor="Red" ControlToValidate="ddlNota" InitialValue="[Seleccionar]" ValidationGroup="formRegistrar">*</asp:RequiredFieldValidator>
+        <asp:TextBox ID="txtNota" runat="server" TextMode="Number"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="validNota" runat="server" ErrorMessage="La nota no puede estar vacía" ForeColor="Red" ControlToValidate="txtNota" InitialValue="[Seleccionar]" ValidationGroup="formRegistrar">*</asp:RequiredFieldValidator>
 
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" HeaderText="Error" ValidationGroup="formRegistrar" />
         <asp:Panel ID="formActionsPanel" runat="server">

@@ -20,21 +20,30 @@ namespace UI.Web
             
             if (!Page.IsPostBack)
             {
-                formPanelCurso.Visible = true;
-
-                if (UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)
+                try
                 {
-                    lblDocente.Visible = true;
-                    ddlDocente.Visible = true;
-                    ddlDocente.DataSource = new PersonaLogic().GetAllTipo(Persona.TiposPersonas.Docente);
-                    ddlDocente.DataBind();
+                    formPanelCurso.Visible = true;
+                    switch (UsuarioActual.Persona?.Tipo)
+                    {
+                        case Persona.TiposPersonas.Administrador:
+                            lblDocente.Visible = true;
+                            ddlDocente.Visible = true;
+                            ddlDocente.DataSource = new PersonaLogic().GetAllTipo(Persona.TiposPersonas.Docente);
+                            ddlDocente.DataBind();
+                            break;
+                        case Persona.TiposPersonas.Docente:
+                            ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(UsuarioActual.Persona.ID);
+                            ddlCurso.DataBind();
+                            Listar();
+                            break;
+                        default:
+                            break;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(UsuarioActual.Persona.ID);
-                    ddlCurso.DataBind();
-                    Listar();
-                }
+                    Notificar(ex.Message);
+                }   
             }
         }
 
@@ -49,8 +58,47 @@ namespace UI.Web
             try
             {
                 formPanelCurso.Visible = true;
-
                 Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
+        }
+        protected void ddlDocente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(int.Parse(ddlDocente.SelectedValue));
+                ddlCurso.DataBind();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
+        }
+
+        protected void linkGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Validate();
+                if (this.IsValid)
+                {
+                    var alumno = new AlumnoInscripcionLogic().GetOne(this.SelectedID);
+
+                    int.TryParse(txtNota.Text, out int nota);
+                    if (nota < 1 || nota > 10)
+                    {
+                        throw new Exception("La nota debe ser un numero entre 1 y 10");
+                    }
+                    alumno.State = BusinessEntity.States.Modified;
+                    SetCondicion(alumno);
+                    new AlumnoInscripcionLogic().Save(alumno);
+                    ShowForm(false);
+                    Listar();
+                }
             }
             catch (Exception ex)
             {
@@ -66,38 +114,22 @@ namespace UI.Web
         private void ShowForm(bool visible)
         {
             formPanel.Visible = visible;
+            gridPanel.Visible = !visible;
         }
 
-        protected void linkGuardar_Click(object sender, EventArgs e)
+        private static void SetCondicion(AlumnoInscripcion alumno)
         {
-            try
+            if (alumno.Nota >= 6)
             {
-                this.Validate();
-                if (this.IsValid)
-                {
-                    var alumno = new AlumnoInscripcionLogic().GetOne(this.SelectedID);
-                    alumno.Nota = int.Parse(ddlNota.SelectedValue);
-                    alumno.State = BusinessEntity.States.Modified;
-                    if (alumno.Nota >= 6)
-                    {
-                        alumno.Condicion = AlumnoInscripcion.Condiciones.Aprobado;
-                    }
-                    else if (alumno.Nota >= 4)
-                    {
-                        alumno.Condicion = AlumnoInscripcion.Condiciones.Regular;
-                    }
-                    else
-                    {
-                        alumno.Condicion = AlumnoInscripcion.Condiciones.Inscripto;
-                    }
-                    new AlumnoInscripcionLogic().Save(alumno);
-                    ShowForm(false);
-                    Listar();
-                }
+                alumno.Condicion = AlumnoInscripcion.Condiciones.Aprobado;
             }
-            catch (Exception ex)
+            else if (alumno.Nota >= 4)
             {
-                Notificar(ex.Message);
+                alumno.Condicion = AlumnoInscripcion.Condiciones.Regular;
+            }
+            else
+            {
+                alumno.Condicion = AlumnoInscripcion.Condiciones.Inscripto;
             }
         }
 
@@ -109,19 +141,7 @@ namespace UI.Web
                 this.gvRegistrarNotas.DataSource = new AlumnoInscripcionLogic().GetAllByCursos(idcurso);
                 this.gvRegistrarNotas.DataBind();
             }
-            catch (Exception)
-            {
-                Notificar("Error al recuperar los datos de alumnos.");
-            }
-        }
-
-        protected void ddlDocente_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try { 
-                ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(int.Parse(ddlDocente.SelectedValue));
-                ddlCurso.DataBind();
-                Listar();
-            }catch(Exception ex)
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }

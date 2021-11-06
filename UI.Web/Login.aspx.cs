@@ -18,23 +18,32 @@ namespace UI.Web
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            try { 
-            this.Validate();
-                if (this.IsValid)
+            try
+            {
+                Validate();
+                if (IsValid)
                 {
-                   Session["UsuarioGlobal"] = UsuarioActual;
+                    Session["UsuarioGlobal"] = UsuarioActual;
                     FormsAuthentication.RedirectFromLoginPage(txtUsuario.Text, false);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Notificar(ex.Message);
+                Notificar($"Se ha producido un error: {ex.Message}");
             }
         }
 
         protected void cvValidarUsuario_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = Validar();
+            try
+            {
+                args.IsValid = Validar();
+            }
+            catch (Exception ex)
+            {
+                args.IsValid = false;
+                Notificar(ex.Message);
+            }
         }
 
         public bool Validar()

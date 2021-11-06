@@ -20,7 +20,7 @@ namespace UI.Web
 
         protected void gvComisiones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gvComisiones.SelectedValue;
+            SelectedID = (int)gvComisiones.SelectedValue;
         }
 
         protected void linkNuevo_Click(object sender, EventArgs e)
@@ -30,7 +30,8 @@ namespace UI.Web
             {
                 MapearInicial();
                 ShowForm(true);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -41,7 +42,8 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Modificacion;
-                try { 
+                try
+                {
                     MapearInicial();
                     ShowForm(true);
                     MapearForm(SelectedID);
@@ -58,7 +60,8 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Baja;
-                try { 
+                try
+                {
                     MapearInicial();
                     ShowForm(true);
                     MapearForm(SelectedID);
@@ -72,9 +75,10 @@ namespace UI.Web
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            try { 
-                this.Validate();
-                if (this.IsValid)
+            try
+            {
+                Validate();
+                if (IsValid)
                 {
                     SaveEntity(SelectedID);
                     ShowForm(false);
@@ -94,7 +98,7 @@ namespace UI.Web
 
         private void ShowForm(bool visible)
         {
-            this.ClearForm();
+            ClearForm();
             formPanel.Visible = visible;
             gridPanel.Visible = !visible;
         }
@@ -120,7 +124,7 @@ namespace UI.Web
                     linkAceptar.Text = "Aceptar";
                     break;
             }
- 
+
             ddlPlan.DataSource = new PlanLogic().GetAll();
             ddlPlan.DataBind();
             ddlPlan.Items.Insert(0, "[Seleccionar]");
@@ -151,22 +155,26 @@ namespace UI.Web
                     ComisionActual.State = BusinessEntity.States.Modified;
                     break;
             }
-
-            if(int.Parse(txtAnio.Text) > 0 && int.Parse(txtDescripcion.Text) > 0)
+            int.TryParse(txtAnio.Text, out int anio);
+            int.TryParse(txtDescripcion.Text, out int nroComision);
+            if (anio < 1 || anio > 5)
             {
-                ComisionActual.AnioEspecialidad = int.Parse(txtAnio.Text);
-                ComisionActual.Descripcion = txtDescripcion.Text;
-                ComisionActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
+                throw new Exception("El año debe ser un numero entre 1 y 5.");
             }
-            else
+            if (nroComision < 1)
             {
-                Notificar("Año y comisión deben ser positivos");
+                throw new Exception("La comision debe ser un numero positivo.");
             }
+            ComisionActual.AnioEspecialidad = anio;
+            ComisionActual.Descripcion = nroComision.ToString();
+            int.TryParse(ddlPlan.SelectedValue, out int idPlan);
+            ComisionActual.Plan = new PlanLogic().GetOne(idPlan);
         }
 
         private void SaveEntity(int id)
         {
-            try { 
+            try
+            {
                 ComisionActual = ComisionLogic.GetOne(id);
                 MapearEntidad();
                 ComisionLogic.Save(ComisionActual);
@@ -186,12 +194,12 @@ namespace UI.Web
         {
             try
             {
-                this.gvComisiones.DataSource = ComisionLogic.GetAll();
-                this.gvComisiones.DataBind();
+                gvComisiones.DataSource = ComisionLogic.GetAll();
+                gvComisiones.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error al recuperar los datos de las comisiones.");
+                Notificar(ex.Message);
             }
         }
     }

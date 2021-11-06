@@ -74,6 +74,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\home\styles.css" />
     <Content Include="css\menu\styles.css" />
     <Content Include="css\login\styles.css" />
     <Content Include="Base.aspx" />

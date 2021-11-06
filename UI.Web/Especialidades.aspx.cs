@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Business.Entities;
 using Business.Logic;
 
@@ -25,7 +21,7 @@ namespace UI.Web
 
         protected void gvEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gvEspecialidad.SelectedValue;
+            SelectedID = (int)gvEspecialidad.SelectedValue;
         }
 
         protected void linkNuevo_Click(object sender, EventArgs e)
@@ -36,7 +32,7 @@ namespace UI.Web
                 MapearInicial();
                 ShowForm(true);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -47,11 +43,13 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Modificacion;
-                try { 
+                try
+                {
                     MapearInicial();
                     ShowForm(true);
                     MapearForm(SelectedID);
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Notificar(ex.Message);
                 }
@@ -68,7 +66,8 @@ namespace UI.Web
                     MapearInicial();
                     ShowForm(true);
                     MapearForm(SelectedID);
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Notificar(ex.Message);
                 }
@@ -79,14 +78,15 @@ namespace UI.Web
         {
             try
             {
-                this.Validate();
-                if (this.IsValid)
+                Validate();
+                if (IsValid)
                 {
                     SaveEntity(SelectedID);
                     ShowForm(false);
                     Listar();
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -99,7 +99,7 @@ namespace UI.Web
 
         private void ShowForm(bool visible)
         {
-            this.ClearForm();
+            ClearForm();
             formPanel.Visible = visible;
             gridPanel.Visible = !visible;
         }
@@ -154,7 +154,8 @@ namespace UI.Web
 
         private void SaveEntity(int id)
         {
-            try { 
+            try
+            {
                 EspecialidadActual = EspecialidadLogic.GetOne(id);
                 MapearEntidad();
                 EspecialidadLogic.Save(EspecialidadActual);
@@ -164,7 +165,7 @@ namespace UI.Web
                     SelectedID = 0;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -174,12 +175,12 @@ namespace UI.Web
         {
             try
             {
-                this.gvEspecialidad.DataSource = EspecialidadLogic.GetAll();
-                this.gvEspecialidad.DataBind();
+                gvEspecialidad.DataSource = EspecialidadLogic.GetAll();
+                gvEspecialidad.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error al recuperar los datos de la especialidad.");
+                Notificar(ex.Message);
             }
         }
     }

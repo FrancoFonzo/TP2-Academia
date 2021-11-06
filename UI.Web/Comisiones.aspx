@@ -21,11 +21,11 @@
     </asp:Panel>
     <asp:Panel ID="formPanel" runat="server" Visible="False">
             <asp:Label ID="lblAnio" runat="server" Text="Año Especialidad:"></asp:Label>
-            <asp:TextBox ID="txtAnio" runat="server" type="number"></asp:TextBox>
+            <asp:TextBox ID="txtAnio" runat="server" type="number" TextMode="Number"></asp:TextBox>
             <asp:RequiredFieldValidator ID="validAnio" runat="server" ErrorMessage="El año no puede estar vacio" ForeColor="Red" ControlToValidate="txtAnio" ValidationGroup="formComisiones">*</asp:RequiredFieldValidator>
             <br />
             <asp:Label ID="lblDescripcion" runat="server" Text="Número de comisión:"></asp:Label>
-            <asp:TextBox ID="txtDescripcion" runat="server" type="number"></asp:TextBox>
+            <asp:TextBox ID="txtDescripcion" runat="server" type="number" TextMode="Number"></asp:TextBox>
             <asp:RequiredFieldValidator ID="validDescripcion" runat="server" ErrorMessage="La descripción no puede estar vacia" ForeColor="Red" ControlToValidate="txtDescripcion" ValidationGroup="formComisiones">*</asp:RequiredFieldValidator>
             <br />
             <asp:Label ID="lblPlan" runat="server" Text="Plan:"></asp:Label>

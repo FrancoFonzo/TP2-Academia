@@ -23,7 +23,7 @@
     <asp:Panel ID="formPanel" runat="server" Visible="False">
         <asp:Label ID="lblDescripcion" runat="server" Text="Descripcion:"></asp:Label>
         <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
-        &nbsp;<asp:RequiredFieldValidator ID="validDescripcion" runat="server" ErrorMessage="El campo no puede estar vacio" ForeColor="Red" ControlToValidate="txtDescripcion" ValidationGroup="formPlan">*</asp:RequiredFieldValidator>
+        &nbsp;<asp:RequiredFieldValidator ID="validDescripcion" runat="server" ErrorMessage="Descripcion no puede estar vacio" ForeColor="Red" ControlToValidate="txtDescripcion" ValidationGroup="formPlan">*</asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad:"></asp:Label>
         <asp:DropDownList ID="ddlEspecialidad" runat="server" DataTextField="Descripcion" DataValueField="ID">

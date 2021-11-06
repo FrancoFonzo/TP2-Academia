@@ -71,7 +71,8 @@ namespace UI.Web
                     MapearInicial();
                     ShowForm(true);
                     MapearForm(SelectedID);
-                }catch(Exception ex)
+                }
+                catch(Exception ex)
                 {
                     Notificar(ex.Message);
                 }
@@ -89,7 +90,8 @@ namespace UI.Web
                     ShowForm(false);
                     Listar();
                 }
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -175,12 +177,8 @@ namespace UI.Web
             }
             UsuarioActual.NombreUsuario = txtUsuario.Text;
             UsuarioActual.Clave = txtClave.Text;
-            /*if (!String.IsNullOrEmpty(ddlPersona.SelectedValue))
-            {
-                int.TryParse(ddlPersona.SelectedValue, out int id);
-                UsuarioActual.Persona = new PersonaLogic().GetOne(id);
-            }*/
-            UsuarioActual.Persona = new PersonaLogic().GetOne(int.Parse(ddlPersona.SelectedValue));
+            int.TryParse(ddlPersona.SelectedValue, out int idPersona);
+            UsuarioActual.Persona = new PersonaLogic().GetOne(idPersona);
             UsuarioActual.Habilitado = chkHabilitado.Checked;
         }
 
@@ -210,9 +208,9 @@ namespace UI.Web
                 this.gvUsuarios.DataSource = UsuarioLogic.GetAll();
                 this.gvUsuarios.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error al recuperar los datos del usuario.");
+                Notificar(ex.Message);
             }
         }
     }

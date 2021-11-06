@@ -106,7 +106,7 @@ namespace UI.Desktop
             try
             {
                 int.TryParse(txtHsSemanales.Text, out int hsSemana);
-                int.TryParse(txtHsSemanales.Text, out int hsTotal);
+                int.TryParse(txtHsTotales.Text, out int hsTotal);
                 if (hsSemana < 1 || hsTotal < 1)
                 {
                     throw new Exception("Las horas deben ser numeros positivos.");

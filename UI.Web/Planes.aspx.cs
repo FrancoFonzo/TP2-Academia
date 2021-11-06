@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Business.Entities;
@@ -25,7 +22,7 @@ namespace UI.Web
 
         protected void gvPlan_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gvPlan.SelectedValue;
+            SelectedID = (int)gvPlan.SelectedValue;
         }
 
         protected void linkNuevo_Click(object sender, EventArgs e)
@@ -35,7 +32,8 @@ namespace UI.Web
             {
                 MapearInicial();
                 ShowForm(true);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -64,19 +62,16 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Baja;
-
                 try
                 {
                     MapearInicial();
                     ShowForm(true);
                     MapearForm(SelectedID);
                 }
-                catch (Exception ex) 
-                { 
+                catch (Exception ex)
+                {
                     Notificar(ex.Message);
                 }
-
-                    
             }
         }
 
@@ -84,8 +79,8 @@ namespace UI.Web
         {
             try
             {
-                this.Validate();
-                if (this.IsValid)
+                Validate();
+                if (IsValid)
                 {
                     SaveEntity(SelectedID);
                     ShowForm(false);
@@ -105,7 +100,7 @@ namespace UI.Web
 
         private void ShowForm(bool visible)
         {
-            this.ClearForm();
+            ClearForm();
             formPanel.Visible = visible;
             gridPanel.Visible = !visible;
         }
@@ -141,7 +136,7 @@ namespace UI.Web
             PlanActual = PlanLogic.GetOne(id);
 
             txtDescripcion.Text = PlanActual.Descripcion;
-           
+
             ddlEspecialidad.SelectedValue = PlanActual.Especialidad?.ID.ToString();
         }
 
@@ -162,9 +157,9 @@ namespace UI.Web
                     break;
             }
             PlanActual.Descripcion = txtDescripcion.Text;
-         
-            PlanActual.Especialidad = new EspecialidadLogic().GetOne(int.Parse(ddlEspecialidad.SelectedValue));
-          
+            int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecilidad);
+            PlanActual.Especialidad = new EspecialidadLogic().GetOne(idEspecilidad);
+
         }
 
         private void SaveEntity(int id)
@@ -179,7 +174,8 @@ namespace UI.Web
                     //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
                     SelectedID = 0;
                 }
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -189,12 +185,12 @@ namespace UI.Web
         {
             try
             {
-                this.gvPlan.DataSource = PlanLogic.GetAll();
-                this.gvPlan.DataBind();
+                gvPlan.DataSource = PlanLogic.GetAll();
+                gvPlan.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error al recuperar los datos del plan.");
+                Notificar(ex.Message);
             }
         }
     }

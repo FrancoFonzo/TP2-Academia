@@ -1,12 +1,7 @@
 ﻿using Business.Entities;
 using Business.Logic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
@@ -15,6 +10,7 @@ namespace UI.Web
         private static PersonaLogic PersonaLogic = new PersonaLogic();
 
         private Persona PersonaActual { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -25,7 +21,7 @@ namespace UI.Web
 
         protected void gvPersonas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gvPersonas.SelectedValue;
+            SelectedID = (int)gvPersonas.SelectedValue;
         }
 
         protected void linkNuevo_Click(object sender, EventArgs e)
@@ -35,7 +31,8 @@ namespace UI.Web
             {
                 MapearInicial();
                 ShowForm(true);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -48,14 +45,15 @@ namespace UI.Web
                 Modo = ModoForm.Modificacion;
                 try
                 {
-                  MapearInicial();
-                  ShowForm(true);
-                  MapearForm(SelectedID);
-                } catch (Exception ex)
-                 {
-                     Notificar(ex.Message);
-                 }
-        }
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }
+                catch (Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
+            }
         }
 
         protected void linkEliminar_Click(object sender, EventArgs e)
@@ -68,7 +66,8 @@ namespace UI.Web
                     MapearInicial();
                     ShowForm(true);
                     MapearForm(SelectedID);
-                }catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Notificar(ex.Message);
                 }
@@ -79,14 +78,15 @@ namespace UI.Web
         {
             try
             {
-                this.Validate();
-                if (this.IsValid)
+                Validate();
+                if (IsValid)
                 {
                     SaveEntity(SelectedID);
                     ShowForm(false);
                     Listar();
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -99,7 +99,7 @@ namespace UI.Web
 
         private void ShowForm(bool visible)
         {
-            this.ClearForm();
+            ClearForm();
             formPanel.Visible = visible;
             gridPanel.Visible = !visible;
         }
@@ -174,9 +174,11 @@ namespace UI.Web
             PersonaActual.Nombre = txtNombre.Text;
             PersonaActual.Apellido = txtApellido.Text;
             PersonaActual.EMail = txtEmail.Text;
-            if (!string.IsNullOrEmpty(txtLegajo.Text))
+
+            int.TryParse(txtLegajo.Text, out int legajo);
+            if (legajo != 0)
             {
-                PersonaActual.Legajo = int.Parse(txtLegajo.Text);
+                PersonaActual.Legajo = legajo;
             }
             else
             {
@@ -184,7 +186,8 @@ namespace UI.Web
             }
             if (ddlPlan.SelectedIndex > 0)
             {
-                PersonaActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
+                int.TryParse(ddlPlan.SelectedValue, out int idPlan);
+                PersonaActual.Plan = new PlanLogic().GetOne(idPlan);
             }
             else
             {
@@ -208,7 +211,8 @@ namespace UI.Web
                     //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
                     SelectedID = 0;
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -218,12 +222,12 @@ namespace UI.Web
         {
             try
             {
-                this.gvPersonas.DataSource = PersonaLogic.GetAll();
-                this.gvPersonas.DataBind();
+                gvPersonas.DataSource = PersonaLogic.GetAll();
+                gvPersonas.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error al recuperar los datos del usuario.");
+                Notificar(ex.Message);
             }
         }
     }

@@ -55,12 +55,12 @@ namespace UI.Desktop
                     alumno.State = BusinessEntity.States.Modified;
                     SetCondicion(alumno);
                     new AlumnoInscripcionLogic().Save(alumno);
+                    Listar();
                 }
                 catch (Exception ex)
                 {
                     Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                Listar();
             }            
         }
 

@@ -1,11 +1,7 @@
 ﻿using Business.Entities;
 using Business.Logic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
@@ -24,7 +20,7 @@ namespace UI.Web
 
         protected void gvCursos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gvDictados.SelectedValue;
+            SelectedID = (int)gvDictados.SelectedValue;
         }
 
 
@@ -35,11 +31,12 @@ namespace UI.Web
             {
                 MapearInicial();
                 ShowForm(true);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
-    }
+        }
 
         protected void linkEditar_Click(object sender, EventArgs e)
         {
@@ -51,7 +48,8 @@ namespace UI.Web
                     MapearInicial();
                     ShowForm(true);
                     MapearForm(SelectedID);
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Notificar(ex.Message);
                 }
@@ -69,24 +67,26 @@ namespace UI.Web
                     ShowForm(true);
                     MapearForm(SelectedID);
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
-                    Notificar(ex.Message); 
+                    Notificar(ex.Message);
                 }
             }
         }
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            try {
-                this.Validate();
-                if (this.IsValid)
+            try
+            {
+                Validate();
+                if (IsValid)
                 {
                     SaveEntity(SelectedID);
                     ShowForm(false);
                     Listar();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -157,8 +157,10 @@ namespace UI.Web
                     DictadoActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            DictadoActual.Docente = new PersonaLogic().GetOne(int.Parse(ddlDocentes.SelectedValue));
-            DictadoActual.Curso = new CursoLogic().GetOne(int.Parse(ddlCursos.SelectedValue));
+            int.TryParse(ddlDocentes.SelectedValue, out int idDocente);
+            DictadoActual.Docente = new PersonaLogic().GetOne(idDocente);
+            int.TryParse(ddlCursos.SelectedValue, out int idCurso);
+            DictadoActual.Curso = new CursoLogic().GetOne(idCurso);
             DictadoActual.Cargo = (DocenteCurso.TiposCargos)Enum.Parse(typeof(DocenteCurso.TiposCargos), ddlCargos.SelectedValue);
         }
 
@@ -174,7 +176,8 @@ namespace UI.Web
                     //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
                     SelectedID = 0;
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Notificar(ex.Message);
             }
@@ -184,12 +187,12 @@ namespace UI.Web
         {
             try
             {
-                this.gvDictados.DataSource = DocenteCursoLogic.GetAll();
-                this.gvDictados.DataBind();
+                gvDictados.DataSource = DocenteCursoLogic.GetAll();
+                gvDictados.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error al recuperar los datos de los cursos.");
+                Notificar(ex.Message);
             }
         }
     }
