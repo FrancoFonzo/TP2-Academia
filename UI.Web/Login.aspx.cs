@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Login : Base
     {
 
         public static Usuario UsuarioActual { get; private set; }
@@ -18,17 +18,32 @@ namespace UI.Web
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            try
             {
-                Session["UsuarioGlobal"] = UsuarioActual;
-                FormsAuthentication.RedirectFromLoginPage(txtUsuario.Text, false);
+                Validate();
+                if (IsValid)
+                {
+                    Session["UsuarioGlobal"] = UsuarioActual;
+                    FormsAuthentication.RedirectFromLoginPage(txtUsuario.Text, false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Notificar($"Se ha producido un error: {ex.Message}");
             }
         }
 
         protected void cvValidarUsuario_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = Validar();
+            try
+            {
+                args.IsValid = Validar();
+            }
+            catch (Exception ex)
+            {
+                args.IsValid = false;
+                Notificar(ex.Message);
+            }
         }
 
         public bool Validar()

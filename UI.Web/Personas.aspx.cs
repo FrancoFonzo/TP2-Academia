@@ -1,12 +1,7 @@
 ﻿using Business.Entities;
 using Business.Logic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
@@ -15,6 +10,7 @@ namespace UI.Web
         private static PersonaLogic PersonaLogic = new PersonaLogic();
 
         private Persona PersonaActual { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidarPermisos(Persona.TiposPersonas.Administrador);
@@ -26,14 +22,21 @@ namespace UI.Web
 
         protected void gvPersonas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gvPersonas.SelectedValue;
+            SelectedID = (int)gvPersonas.SelectedValue;
         }
 
         protected void linkNuevo_Click(object sender, EventArgs e)
         {
             Modo = ModoForm.Alta;
-            MapearInicial();
-            ShowForm(true);
+            try
+            {
+                MapearInicial();
+                ShowForm(true);
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         protected void linkEditar_Click(object sender, EventArgs e)
@@ -41,9 +44,16 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Modificacion;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try
+                {
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }
+                catch (Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
@@ -52,20 +62,34 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Baja;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try
+                {
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }
+                catch (Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            try
             {
-                SaveEntity(SelectedID);
-                ShowForm(false);
-                Listar();
+                Validate();
+                if (IsValid)
+                {
+                    SaveEntity(SelectedID);
+                    ShowForm(false);
+                    Listar();
+                }
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 
@@ -76,7 +100,7 @@ namespace UI.Web
 
         private void ShowForm(bool visible)
         {
-            this.ClearForm();
+            ClearForm();
             formPanel.Visible = visible;
             gridPanel.Visible = !visible;
         }
@@ -151,9 +175,11 @@ namespace UI.Web
             PersonaActual.Nombre = txtNombre.Text;
             PersonaActual.Apellido = txtApellido.Text;
             PersonaActual.EMail = txtEmail.Text;
-            if (!string.IsNullOrEmpty(txtLegajo.Text))
+
+            int.TryParse(txtLegajo.Text, out int legajo);
+            if (legajo != 0)
             {
-                PersonaActual.Legajo = int.Parse(txtLegajo.Text);
+                PersonaActual.Legajo = legajo;
             }
             else
             {
@@ -161,7 +187,8 @@ namespace UI.Web
             }
             if (ddlPlan.SelectedIndex > 0)
             {
-                PersonaActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
+                int.TryParse(ddlPlan.SelectedValue, out int idPlan);
+                PersonaActual.Plan = new PlanLogic().GetOne(idPlan);
             }
             else
             {
@@ -175,13 +202,20 @@ namespace UI.Web
 
         private void SaveEntity(int id)
         {
-            PersonaActual = PersonaLogic.GetOne(id);
-            MapearEntidad();
-            PersonaLogic.Save(PersonaActual);
-            if (Modo == ModoForm.Baja)
+            try
             {
-                //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
-                SelectedID = 0;
+                PersonaActual = PersonaLogic.GetOne(id);
+                MapearEntidad();
+                PersonaLogic.Save(PersonaActual);
+                if (Modo == ModoForm.Baja)
+                {
+                    //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
+                    SelectedID = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 
@@ -189,12 +223,12 @@ namespace UI.Web
         {
             try
             {
-                this.gvPersonas.DataSource = PersonaLogic.GetAll();
-                this.gvPersonas.DataBind();
+                gvPersonas.DataSource = PersonaLogic.GetAll();
+                gvPersonas.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error al recuperar los datos del usuario.");
+                Notificar(ex.Message);
             }
         }
     }

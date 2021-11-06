@@ -1,12 +1,7 @@
 ﻿using Business.Entities;
 using Business.Logic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
@@ -27,14 +22,21 @@ namespace UI.Web
 
         protected void gvMaterias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gvMaterias.SelectedValue;
+            SelectedID = (int)gvMaterias.SelectedValue;
         }
 
         protected void linkNuevo_Click(object sender, EventArgs e)
         {
             Modo = ModoForm.Alta;
-            MapearInicial();
-            ShowForm(true);
+            try
+            {
+                MapearInicial();
+                ShowForm(true);
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         protected void linkEditar_Click(object sender, EventArgs e)
@@ -42,9 +44,16 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Modificacion;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try
+                {
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }
+                catch (Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
@@ -53,20 +62,34 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Baja;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try
+                {
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }
+                catch (Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            try
             {
-                SaveEntity(SelectedID);
-                ShowForm(false);
-                Listar();
+                Validate();
+                if (IsValid)
+                {
+                    SaveEntity(SelectedID);
+                    ShowForm(false);
+                    Listar();
+                }
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 
@@ -77,7 +100,7 @@ namespace UI.Web
 
         private void ShowForm(bool visible)
         {
-            this.ClearForm();
+            ClearForm();
             formPanel.Visible = visible;
             gridPanel.Visible = !visible;
         }
@@ -136,21 +159,33 @@ namespace UI.Web
                     MateriaActual.State = BusinessEntity.States.Modified;
                     break;
             }
+            int.TryParse(txtHorasSemanales.Text, out int hsSemana);
+            int.TryParse(txtHorasTotales.Text, out int hsTotal);
+            if (hsSemana < 1 || hsTotal < 1)
+            {
+                throw new Exception("Las horas deben ser numeros positivos.");
+            }
             MateriaActual.Descripcion = txtMateria.Text;
-            MateriaActual.HorasSemanales = int.Parse(txtHorasSemanales.Text);
-            MateriaActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
-            MateriaActual.HorasTotales = int.Parse(txtHorasTotales.Text);
+            int.TryParse(ddlPlan.SelectedValue, out int idPlan);
+            MateriaActual.Plan = new PlanLogic().GetOne(idPlan);
         }
 
         private void SaveEntity(int id)
         {
-            MateriaActual = MateriaLogic.GetOne(id);
-            MapearEntidad();
-            MateriaLogic.Save(MateriaActual);
-            if (Modo == ModoForm.Baja)
+            try
             {
-                //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
-                SelectedID = 0;
+                MateriaActual = MateriaLogic.GetOne(id);
+                MapearEntidad();
+                MateriaLogic.Save(MateriaActual);
+                if (Modo == ModoForm.Baja)
+                {
+                    //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
+                    SelectedID = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 
@@ -158,12 +193,12 @@ namespace UI.Web
         {
             try
             {
-                this.gvMaterias.DataSource = MateriaLogic.GetAll();
-                this.gvMaterias.DataBind();
+                gvMaterias.DataSource = MateriaLogic.GetAll();
+                gvMaterias.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error al recuperar los datos de la materia.");
+                Notificar(ex.Message);
             }
         }
     }

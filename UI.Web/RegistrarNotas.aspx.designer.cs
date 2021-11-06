@@ -24,6 +24,24 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.Panel formPanelCurso;
 
         /// <summary>
+        /// Control lblDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDocente;
+
+        /// <summary>
+        /// Control ddlDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDocente;
+
+        /// <summary>
         /// Control lblCurso.
         /// </summary>
         /// <remarks>
@@ -78,13 +96,13 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.Label lblNota;
 
         /// <summary>
-        /// Control ddlNota.
+        /// Control txtNota.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNota;
+        protected global::System.Web.UI.WebControls.TextBox txtNota;
 
         /// <summary>
         /// Control validNota.

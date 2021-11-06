@@ -40,7 +40,7 @@
             <asp:RequiredFieldValidator ID="validApellido" runat="server" ErrorMessage="El apellido no puede estar vacio" ForeColor="Red" ControlToValidate="txtApellido" ValidationGroup="formPersonas">*</asp:RequiredFieldValidator>
             <br />
             <asp:Label ID="lblLegajo" runat="server" Text="Legajo:"></asp:Label>
-            <asp:TextBox ID="txtLegajo" runat="server" type="number"></asp:TextBox>
+            <asp:TextBox ID="txtLegajo" runat="server" type="number" TextMode="Number"></asp:TextBox>
             <br />
             <asp:Label ID="lblEmail" runat="server" Text="Email:"></asp:Label>
             <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
@@ -51,7 +51,7 @@
             <asp:RequiredFieldValidator ID="validDireccion" runat="server" ErrorMessage="La dirección no puede estar vacia" ForeColor="Red" ControlToValidate="txtDireccion" ValidationGroup="formPersonas">*</asp:RequiredFieldValidator>
             <br />
             <asp:Label ID="lblTelefono" runat="server" Text="Telefono:"></asp:Label>
-            <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtTelefono" runat="server" TextMode="Number"></asp:TextBox>
             <asp:RequiredFieldValidator ID="validTelefono" runat="server" ErrorMessage="El teléfono no puede estar vacio" ForeColor="Red" ControlToValidate="txtTelefono" ValidationGroup="formPersonas">*</asp:RequiredFieldValidator>
             <br />
             <asp:Label ID="lblFecha" runat="server" Text="Fecha de nacimiento:"></asp:Label>

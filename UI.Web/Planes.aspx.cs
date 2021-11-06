@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Business.Entities;
@@ -26,14 +23,21 @@ namespace UI.Web
 
         protected void gvPlan_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gvPlan.SelectedValue;
+            SelectedID = (int)gvPlan.SelectedValue;
         }
 
         protected void linkNuevo_Click(object sender, EventArgs e)
         {
             Modo = ModoForm.Alta;
-            MapearInicial();
-            ShowForm(true);
+            try
+            {
+                MapearInicial();
+                ShowForm(true);
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         protected void linkEditar_Click(object sender, EventArgs e)
@@ -41,9 +45,16 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Modificacion;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try
+                {
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }
+                catch (Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
@@ -52,20 +63,34 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Baja;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try
+                {
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }
+                catch (Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            try
             {
-                SaveEntity(SelectedID);
-                ShowForm(false);
-                Listar();
+                Validate();
+                if (IsValid)
+                {
+                    SaveEntity(SelectedID);
+                    ShowForm(false);
+                    Listar();
+                }
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 
@@ -76,7 +101,7 @@ namespace UI.Web
 
         private void ShowForm(bool visible)
         {
-            this.ClearForm();
+            ClearForm();
             formPanel.Visible = visible;
             gridPanel.Visible = !visible;
         }
@@ -112,7 +137,7 @@ namespace UI.Web
             PlanActual = PlanLogic.GetOne(id);
 
             txtDescripcion.Text = PlanActual.Descripcion;
-           
+
             ddlEspecialidad.SelectedValue = PlanActual.Especialidad?.ID.ToString();
         }
 
@@ -133,20 +158,27 @@ namespace UI.Web
                     break;
             }
             PlanActual.Descripcion = txtDescripcion.Text;
-         
-            PlanActual.Especialidad = new EspecialidadLogic().GetOne(int.Parse(ddlEspecialidad.SelectedValue));
-          
+            int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecilidad);
+            PlanActual.Especialidad = new EspecialidadLogic().GetOne(idEspecilidad);
+
         }
 
         private void SaveEntity(int id)
         {
-            PlanActual = PlanLogic.GetOne(id);
-            MapearEntidad();
-            PlanLogic.Save(PlanActual);
-            if (Modo == ModoForm.Baja)
+            try
             {
-                //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
-                SelectedID = 0;
+                PlanActual = PlanLogic.GetOne(id);
+                MapearEntidad();
+                PlanLogic.Save(PlanActual);
+                if (Modo == ModoForm.Baja)
+                {
+                    //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
+                    SelectedID = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 
@@ -154,12 +186,12 @@ namespace UI.Web
         {
             try
             {
-                this.gvPlan.DataSource = PlanLogic.GetAll();
-                this.gvPlan.DataBind();
+                gvPlan.DataSource = PlanLogic.GetAll();
+                gvPlan.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error al recuperar los datos del plan.");
+                Notificar(ex.Message);
             }
         }
     }
