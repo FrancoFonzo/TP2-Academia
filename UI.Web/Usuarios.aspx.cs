@@ -2,9 +2,6 @@
 using Business.Logic;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -18,6 +15,7 @@ namespace UI.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ValidarPermisos(Persona.TiposPersonas.Administrador);
             if (!Page.IsPostBack)
             {
                 Listar();
@@ -26,7 +24,7 @@ namespace UI.Web
 
         protected void gvUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gvUsuarios.SelectedValue;
+            SelectedID = (int)gvUsuarios.SelectedValue;
         }
 
         protected void linkNuevo_Click(object sender, EventArgs e)
@@ -60,14 +58,14 @@ namespace UI.Web
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            Validate();
+            if (IsValid)
             {
                 SaveEntity(SelectedID);
                 ShowForm(false);
                 Listar();
             }
-        }        
+        }
 
         protected void linkCancelar_Click(object sender, EventArgs e)
         {
@@ -76,7 +74,7 @@ namespace UI.Web
 
         private void ShowForm(bool visible)
         {
-            this.ClearForm();
+            ClearForm();
             formPanel.Visible = visible;
             gridPanel.Visible = !visible;
         }
@@ -92,7 +90,7 @@ namespace UI.Web
         private void MapearInicial()
         {
             List<Persona> personas = new PersonaLogic().GetAllSinUsuario();
-            
+
             if (Modo != ModoForm.Alta)
             {
                 UsuarioActual = UsuarioLogic.GetOne(SelectedID);
@@ -124,7 +122,7 @@ namespace UI.Web
         private void MapearForm(int id)
         {
             UsuarioActual = UsuarioLogic.GetOne(id);
-            
+
             txtUsuario.Text = UsuarioActual.NombreUsuario;
             txtClave.Text = UsuarioActual.Clave;
             ddlPersona.SelectedValue = UsuarioActual.Persona?.ID.ToString();
@@ -149,11 +147,6 @@ namespace UI.Web
             }
             UsuarioActual.NombreUsuario = txtUsuario.Text;
             UsuarioActual.Clave = txtClave.Text;
-            /*if (!String.IsNullOrEmpty(ddlPersona.SelectedValue))
-            {
-                int.TryParse(ddlPersona.SelectedValue, out int id);
-                UsuarioActual.Persona = new PersonaLogic().GetOne(id);
-            }*/
             UsuarioActual.Persona = new PersonaLogic().GetOne(int.Parse(ddlPersona.SelectedValue));
             UsuarioActual.Habilitado = chkHabilitado.Checked;
         }
@@ -174,8 +167,8 @@ namespace UI.Web
         {
             try
             {
-                this.gvUsuarios.DataSource = UsuarioLogic.GetAll();
-                this.gvUsuarios.DataBind();
+                gvUsuarios.DataSource = UsuarioLogic.GetAll();
+                gvUsuarios.DataBind();
             }
             catch (Exception)
             {

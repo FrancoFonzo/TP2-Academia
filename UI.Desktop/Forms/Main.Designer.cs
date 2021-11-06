@@ -32,7 +32,6 @@ namespace UI.Desktop
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
-            this.btnAcerdaDe = new System.Windows.Forms.Button();
             this.btnReportes = new System.Windows.Forms.Button();
             this.btnNotas = new System.Windows.Forms.Button();
             this.btnInscripcion = new System.Windows.Forms.Button();
@@ -48,12 +47,12 @@ namespace UI.Desktop
             this.panelAdminReportes = new System.Windows.Forms.Panel();
             this.btnReportesPlanes = new System.Windows.Forms.Button();
             this.btnReportesCursos = new System.Windows.Forms.Button();
-            this.btnABMDictados = new System.Windows.Forms.Button();
             this.btnABMUsuarios = new System.Windows.Forms.Button();
             this.btnABMPlanes = new System.Windows.Forms.Button();
             this.btnABMPersonas = new System.Windows.Forms.Button();
             this.btnABMMaterias = new System.Windows.Forms.Button();
             this.btnABMEspecialidades = new System.Windows.Forms.Button();
+            this.btnABMDictados = new System.Windows.Forms.Button();
             this.btnABMCursos = new System.Windows.Forms.Button();
             this.btnABMComisiones = new System.Windows.Forms.Button();
             this.panelTop = new System.Windows.Forms.Panel();
@@ -76,7 +75,6 @@ namespace UI.Desktop
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(73)))));
             this.panelMenu.Controls.Add(this.btnCerrarSesion);
-            this.panelMenu.Controls.Add(this.btnAcerdaDe);
             this.panelMenu.Controls.Add(this.btnReportes);
             this.panelMenu.Controls.Add(this.btnNotas);
             this.panelMenu.Controls.Add(this.btnInscripcion);
@@ -111,28 +109,6 @@ namespace UI.Desktop
             this.btnCerrarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCerrarSesion.UseVisualStyleBackColor = true;
             this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
-            // 
-            // btnAcerdaDe
-            // 
-            this.btnAcerdaDe.AutoSize = true;
-            this.btnAcerdaDe.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAcerdaDe.FlatAppearance.BorderSize = 0;
-            this.btnAcerdaDe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnAcerdaDe.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(105)))));
-            this.btnAcerdaDe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAcerdaDe.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAcerdaDe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(180)))), ((int)(((byte)(190)))));
-            this.btnAcerdaDe.Image = global::UI.Desktop.Properties.Resources.info_32;
-            this.btnAcerdaDe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAcerdaDe.Location = new System.Drawing.Point(0, 478);
-            this.btnAcerdaDe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAcerdaDe.Name = "btnAcerdaDe";
-            this.btnAcerdaDe.Padding = new System.Windows.Forms.Padding(5);
-            this.btnAcerdaDe.Size = new System.Drawing.Size(251, 57);
-            this.btnAcerdaDe.TabIndex = 5;
-            this.btnAcerdaDe.Text = "Acerca De";
-            this.btnAcerdaDe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAcerdaDe.UseVisualStyleBackColor = true;
             // 
             // btnReportes
             // 
@@ -401,27 +377,6 @@ namespace UI.Desktop
             this.btnReportesCursos.Visible = false;
             this.btnReportesCursos.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
-            // btnABMDictados
-            // 
-            this.btnABMDictados.AutoSize = true;
-            this.btnABMDictados.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnABMDictados.FlatAppearance.BorderSize = 0;
-            this.btnABMDictados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnABMDictados.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnABMDictados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btnABMDictados.Location = new System.Drawing.Point(0, 114);
-            this.btnABMDictados.Margin = new System.Windows.Forms.Padding(0);
-            this.btnABMDictados.Name = "btnABMDictados";
-            this.btnABMDictados.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.btnABMDictados.Size = new System.Drawing.Size(251, 57);
-            this.btnABMDictados.TabIndex = 16;
-            this.btnABMDictados.Text = "Dictados";
-            this.btnABMDictados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnABMDictados.UseVisualStyleBackColor = true;
-            this.btnABMDictados.Visible = false;
-            this.btnABMDictados.Click += new System.EventHandler(this.btnDictados_Click);
-            this.btnABMDictados.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
-            // 
             // btnABMUsuarios
             // 
             this.btnABMUsuarios.AutoSize = true;
@@ -526,6 +481,27 @@ namespace UI.Desktop
             this.btnABMEspecialidades.Visible = false;
             this.btnABMEspecialidades.Click += new System.EventHandler(this.btnEspecialidades_Click);
             this.btnABMEspecialidades.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
+            // 
+            // btnABMDictados
+            // 
+            this.btnABMDictados.AutoSize = true;
+            this.btnABMDictados.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnABMDictados.FlatAppearance.BorderSize = 0;
+            this.btnABMDictados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnABMDictados.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnABMDictados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btnABMDictados.Location = new System.Drawing.Point(0, 114);
+            this.btnABMDictados.Margin = new System.Windows.Forms.Padding(0);
+            this.btnABMDictados.Name = "btnABMDictados";
+            this.btnABMDictados.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.btnABMDictados.Size = new System.Drawing.Size(251, 57);
+            this.btnABMDictados.TabIndex = 16;
+            this.btnABMDictados.Text = "Dictados";
+            this.btnABMDictados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnABMDictados.UseVisualStyleBackColor = true;
+            this.btnABMDictados.Visible = false;
+            this.btnABMDictados.Click += new System.EventHandler(this.btnDictados_Click);
+            this.btnABMDictados.MouseLeave += new System.EventHandler(this.panelAdminReportes_MouseLeave);
             // 
             // btnABMCursos
             // 
@@ -715,7 +691,6 @@ namespace UI.Desktop
         private System.Windows.Forms.Panel panelTitulo;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button btnAdministracion;
-        private System.Windows.Forms.Button btnAcerdaDe;
         private System.Windows.Forms.Button btnReportes;
         private System.Windows.Forms.Button btnNotas;
         private System.Windows.Forms.Button btnInscripcion;

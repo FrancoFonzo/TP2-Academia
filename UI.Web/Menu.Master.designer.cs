@@ -78,15 +78,6 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.Button btnReportes;
 
         /// <summary>
-        /// Control linkAcercaDe.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkAcercaDe;
-
-        /// <summary>
         /// Control linkCerrarSesion.
         /// </summary>
         /// <remarks>

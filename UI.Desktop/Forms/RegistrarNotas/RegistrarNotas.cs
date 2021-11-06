@@ -87,7 +87,7 @@ namespace UI.Desktop
                 var idCurso = cbxCursos.SelectedValue;
                 if (idCurso != null)
                 {
-                    dgvAlumnos.DataSource = new AlumnoInscripcionLogic().GetAllByCursos((int)idCurso);
+                    dgvAlumnos.DataSource = new AlumnoInscripcionLogic().GetAllByCurso((int)idCurso);
                 }
             }
             catch (Exception ex)

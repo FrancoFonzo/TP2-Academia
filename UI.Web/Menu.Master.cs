@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Business.Entities;
 
 namespace UI.Web
@@ -40,31 +36,15 @@ namespace UI.Web
                         }
                         break;
                     default:
-                        Response.Redirect("Login.aspx");
+                        //Response.Redirect("Login.aspx");
                         break;
                 }
             }
         }
 
-        protected void linkInscripciones_Click(object sender, EventArgs e)
+        protected void linkHome_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Inscripciones.aspx");
-        }
-
-        protected void linkNotas_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("RegistrarNotas.aspx");
-        }
-
-        protected void linkAcercaDe_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AcercaDe.aspx");
-        }
-
-        protected void linkCerrarSesion_Click(object sender, EventArgs e)
-        {
-            FormsAuthentication.SignOut();
-            FormsAuthentication.RedirectToLoginPage();
+            Response.Redirect("Home.aspx");
         }
 
         protected void comisiones_Click(object sender, EventArgs e)
@@ -117,9 +97,20 @@ namespace UI.Web
             Response.Redirect("Home.aspx");
         }
 
-        protected void linkHome_Click(object sender, EventArgs e)
+        protected void linkInscripciones_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Inscripciones.aspx");
+        }
+
+        protected void linkNotas_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RegistrarNotas.aspx");
+        }
+
+        protected void linkCerrarSesion_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+            FormsAuthentication.RedirectToLoginPage();
         }
     }
 }

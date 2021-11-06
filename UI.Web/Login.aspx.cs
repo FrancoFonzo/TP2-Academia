@@ -21,7 +21,7 @@ namespace UI.Web
             this.Validate();
             if (this.IsValid)
             {
-               Session["UsuarioGlobal"] = UsuarioActual;
+                Session["UsuarioGlobal"] = UsuarioActual;
                 FormsAuthentication.RedirectFromLoginPage(txtUsuario.Text, false);
             }
         }

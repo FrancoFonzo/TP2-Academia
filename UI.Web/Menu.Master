@@ -12,7 +12,7 @@
 <body>
     <form runat="server">
         <nav class="navbar navbar-inverse navbar-fixed-top" id="navMenu" runat="server">
-            <asp:LinkButton runat="server" ID="btnHome" OnClick="linkHome_Click" Visible="true">Home</asp:LinkButton>
+            <asp:LinkButton runat="server" ID="btnHome" OnClick="linkHome_Click">Home</asp:LinkButton>
             <div class="dropdown">  
                     <asp:Button id="btnAdministracion" class="dropbtn fa fa-caret-down" runat="server" Text="Administracion" Visible="False">
                     </asp:Button>
@@ -37,7 +37,6 @@
                         <asp:LinkButton runat="server" OnClick="reportPlanes_Click">Planes</asp:LinkButton>
                     </div>
             </div>
-            <asp:LinkButton runat="server" ID="linkAcercaDe" OnClick="linkAcercaDe_Click">Acerca De</asp:LinkButton>
             <asp:LinkButton class="margin-right" runat="server" ID="linkCerrarSesion" OnClick="linkCerrarSesion_Click">Cerrar Sesion</asp:LinkButton>
         </nav>
         <asp:ContentPlaceHolder ID="bodyContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>

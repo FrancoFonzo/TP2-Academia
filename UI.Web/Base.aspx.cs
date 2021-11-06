@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -48,6 +49,16 @@ namespace UI.Web
                 return false;
             }
             return true;
+        }
+
+        public void ValidarPermisos(Persona.TiposPersonas tipo)
+        {
+            var usrTipo = ((Usuario)Session["UsuarioGlobal"])?.Persona?.Tipo;
+            if (usrTipo != tipo && usrTipo != Persona.TiposPersonas.Administrador)
+            {
+                Response.Redirect("Home.aspx");
+                Notificar("Acceso denegado.");
+            }
         }
 
         protected void Notificar(string mensaje)

@@ -47,7 +47,7 @@ namespace Data.Database
             }
         }
 
-        public List<AlumnoInscripcion> GetAllByCursos(int idCurso)
+        public List<AlumnoInscripcion> GetAllByCurso(int idCurso)
         {
             try
             {

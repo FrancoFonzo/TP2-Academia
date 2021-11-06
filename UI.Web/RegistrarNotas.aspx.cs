@@ -1,12 +1,7 @@
 ﻿using Business.Entities;
 using Business.Logic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
@@ -16,8 +11,8 @@ namespace UI.Web
         private Usuario UsuarioActual { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            ValidarPermisos(Persona.TiposPersonas.Docente);
             UsuarioActual = (Usuario)Session["UsuarioGlobal"];
-            
             if (!Page.IsPostBack)
             {
                 formPanelCurso.Visible = true;
@@ -39,7 +34,7 @@ namespace UI.Web
 
         protected void gvRegistrarNotas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedID = (int)this.gvRegistrarNotas.SelectedValue;
+            SelectedID = (int)gvRegistrarNotas.SelectedValue;
             ShowForm(true);
         }
 
@@ -62,10 +57,10 @@ namespace UI.Web
 
         protected void linkGuardar_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            Validate();
+            if (IsValid)
             {
-                var alumno = new AlumnoInscripcionLogic().GetOne(this.SelectedID);
+                var alumno = new AlumnoInscripcionLogic().GetOne(SelectedID);
                 alumno.Nota = int.Parse(ddlNota.SelectedValue);
                 alumno.State = BusinessEntity.States.Modified;
                 if (alumno.Nota >= 6)
@@ -91,8 +86,8 @@ namespace UI.Web
             try
             {
                 int idcurso = int.Parse(ddlCurso.SelectedValue);
-                this.gvRegistrarNotas.DataSource = new AlumnoInscripcionLogic().GetAllByCursos(idcurso);
-                this.gvRegistrarNotas.DataBind();
+                gvRegistrarNotas.DataSource = new AlumnoInscripcionLogic().GetAllByCurso(idcurso);
+                gvRegistrarNotas.DataBind();
             }
             catch (Exception)
             {
