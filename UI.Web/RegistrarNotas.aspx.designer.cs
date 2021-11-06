@@ -24,6 +24,24 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.Panel formPanelCurso;
 
         /// <summary>
+        /// lblDocente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDocente;
+
+        /// <summary>
+        /// ddlDocente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDocente;
+
+        /// <summary>
         /// lblCurso control.
         /// </summary>
         /// <remarks>

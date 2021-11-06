@@ -3,10 +3,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
      <asp:Panel ID="formPanelCurso" runat="server" Visible="False">
+         <br />
+         <asp:Label ID="lblDocente" runat="server" Text="Docente:" Visible="False"></asp:Label>
+         <asp:DropDownList ID="ddlDocente" runat="server" DataTextField="NombreCompleto" DataValueField="ID" OnSelectedIndexChanged="ddlDocente_SelectedIndexChanged" Visible="False" AutoPostBack="True">
+         </asp:DropDownList>
         <br />
+         <br />
         <asp:Label ID="lblCurso" runat="server" Text="Curso: "></asp:Label>
         <asp:DropDownList ID="ddlCurso" runat="server" DataTextField="Curso" DataValueField="ID" OnSelectedIndexChanged="ddlCurso_SelectedIndexChanged" AutoPostBack="True">
         </asp:DropDownList>
+         <br />
      </asp:Panel>
     <br />
     <asp:Panel ID="gridPanel" runat="server">

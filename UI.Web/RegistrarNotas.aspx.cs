@@ -24,16 +24,17 @@ namespace UI.Web
 
                 if (UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)
                 {
-                    ddlCurso.DataSource = new DocenteCursoLogic().GetAll();
+                    lblDocente.Visible = true;
+                    ddlDocente.Visible = true;
+                    ddlDocente.DataSource = new PersonaLogic().GetAllTipo(Persona.TiposPersonas.Docente);
+                    ddlDocente.DataBind();
                 }
                 else
                 {
                     ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(UsuarioActual.Persona.ID);
+                    ddlCurso.DataBind();
+                    Listar();
                 }
-
-                ddlCurso.DataBind();
-
-                Listar();
             }
         }
 
@@ -97,6 +98,18 @@ namespace UI.Web
             catch (Exception)
             {
                 Notificar("Error al recuperar los datos de alumnos.");
+            }
+        }
+
+        protected void ddlDocente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try { 
+                ddlCurso.DataSource = new DocenteCursoLogic().GetAllByDocente(int.Parse(ddlDocente.SelectedValue));
+                ddlCurso.DataBind();
+                Listar();
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
     }
