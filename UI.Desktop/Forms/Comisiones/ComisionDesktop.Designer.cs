@@ -68,17 +68,16 @@ namespace UI.Desktop
             this.tlComision.RowCount = 2;
             this.tlComision.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlComision.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlComision.Size = new System.Drawing.Size(732, 116);
+            this.tlComision.Size = new System.Drawing.Size(549, 94);
             this.tlComision.TabIndex = 0;
             // 
             // lblID
             // 
             this.lblID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(4, 20);
-            this.lblID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblID.Location = new System.Drawing.Point(3, 17);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(21, 17);
+            this.lblID.Size = new System.Drawing.Size(18, 13);
             this.lblID.TabIndex = 0;
             this.lblID.Text = "ID";
             // 
@@ -86,10 +85,9 @@ namespace UI.Desktop
             // 
             this.lblDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(284, 20);
-            this.lblDescripcion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDescripcion.Location = new System.Drawing.Point(213, 17);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(82, 17);
+            this.lblDescripcion.Size = new System.Drawing.Size(63, 13);
             this.lblDescripcion.TabIndex = 1;
             this.lblDescripcion.Text = "Descripcion";
             // 
@@ -97,10 +95,9 @@ namespace UI.Desktop
             // 
             this.lblPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblPlan.AutoSize = true;
-            this.lblPlan.Location = new System.Drawing.Point(284, 78);
-            this.lblPlan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPlan.Location = new System.Drawing.Point(213, 64);
             this.lblPlan.Name = "lblPlan";
-            this.lblPlan.Size = new System.Drawing.Size(36, 17);
+            this.lblPlan.Size = new System.Drawing.Size(28, 13);
             this.lblPlan.TabIndex = 3;
             this.lblPlan.Text = "Plan";
             // 
@@ -110,20 +107,18 @@ namespace UI.Desktop
             this.txtID.BackColor = System.Drawing.SystemColors.Control;
             this.txtID.Cursor = System.Windows.Forms.Cursors.No;
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(129, 18);
-            this.txtID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtID.Location = new System.Drawing.Point(98, 13);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(147, 22);
+            this.txtID.Size = new System.Drawing.Size(109, 20);
             this.txtID.TabIndex = 4;
             this.txtID.TabStop = false;
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescripcion.Location = new System.Drawing.Point(374, 18);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescripcion.Location = new System.Drawing.Point(282, 13);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(354, 22);
+            this.txtDescripcion.Size = new System.Drawing.Size(264, 20);
             this.txtDescripcion.TabIndex = 6;
             // 
             // cbxPlan
@@ -133,10 +128,9 @@ namespace UI.Desktop
             this.cbxPlan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxPlan.DisplayMember = "Descripcion";
             this.cbxPlan.FormattingEnabled = true;
-            this.cbxPlan.Location = new System.Drawing.Point(374, 74);
-            this.cbxPlan.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxPlan.Location = new System.Drawing.Point(282, 60);
             this.cbxPlan.Name = "cbxPlan";
-            this.cbxPlan.Size = new System.Drawing.Size(354, 24);
+            this.cbxPlan.Size = new System.Drawing.Size(264, 21);
             this.cbxPlan.TabIndex = 13;
             this.cbxPlan.ValueMember = "ID";
             // 
@@ -144,20 +138,18 @@ namespace UI.Desktop
             // 
             this.lblAnioEspecialidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAnioEspecialidad.AutoSize = true;
-            this.lblAnioEspecialidad.Location = new System.Drawing.Point(4, 78);
-            this.lblAnioEspecialidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAnioEspecialidad.Location = new System.Drawing.Point(3, 64);
             this.lblAnioEspecialidad.Name = "lblAnioEspecialidad";
-            this.lblAnioEspecialidad.Size = new System.Drawing.Size(117, 17);
+            this.lblAnioEspecialidad.Size = new System.Drawing.Size(89, 13);
             this.lblAnioEspecialidad.TabIndex = 2;
             this.lblAnioEspecialidad.Text = "Año Especialidad";
             // 
             // txtAnioEspecialidad
             // 
             this.txtAnioEspecialidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAnioEspecialidad.Location = new System.Drawing.Point(129, 76);
-            this.txtAnioEspecialidad.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAnioEspecialidad.Location = new System.Drawing.Point(98, 60);
             this.txtAnioEspecialidad.Name = "txtAnioEspecialidad";
-            this.txtAnioEspecialidad.Size = new System.Drawing.Size(147, 22);
+            this.txtAnioEspecialidad.Size = new System.Drawing.Size(109, 20);
             this.txtAnioEspecialidad.TabIndex = 5;
             // 
             // btnCancelar
@@ -165,10 +157,10 @@ namespace UI.Desktop
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.AutoSize = true;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(522, 5);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.btnCancelar.Location = new System.Drawing.Point(392, 3);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(100, 27);
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -178,10 +170,10 @@ namespace UI.Desktop
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAceptar.AutoSize = true;
-            this.btnAceptar.Location = new System.Drawing.Point(627, 5);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAceptar.Location = new System.Drawing.Point(470, 3);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(100, 27);
+            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 15;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -192,20 +184,21 @@ namespace UI.Desktop
             this.panelBottom.Controls.Add(this.btnAceptar);
             this.panelBottom.Controls.Add(this.btnCancelar);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Location = new System.Drawing.Point(0, 116);
+            this.panelBottom.Location = new System.Drawing.Point(0, 94);
+            this.panelBottom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(732, 37);
+            this.panelBottom.Size = new System.Drawing.Size(549, 30);
             this.panelBottom.TabIndex = 1;
             // 
             // ComisionDesktop
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(732, 153);
+            this.ClientSize = new System.Drawing.Size(549, 124);
             this.Controls.Add(this.tlComision);
             this.Controls.Add(this.panelBottom);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Name = "ComisionDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Comision";
