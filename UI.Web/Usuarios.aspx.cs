@@ -32,8 +32,15 @@ namespace UI.Web
         protected void linkNuevo_Click(object sender, EventArgs e)
         {
             Modo = ModoForm.Alta;
-            MapearInicial();
-            ShowForm(true);
+            try
+            {
+                MapearInicial();
+                ShowForm(true);
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         protected void linkEditar_Click(object sender, EventArgs e)
@@ -41,9 +48,16 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Modificacion;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try
+                {
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }
+                catch (Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
@@ -52,20 +66,32 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Baja;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try
+                {
+                    MapearInicial();
+                    ShowForm(true);
+                    MapearForm(SelectedID);
+                }catch(Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            try
             {
-                SaveEntity(SelectedID);
-                ShowForm(false);
-                Listar();
+                this.Validate();
+                if (this.IsValid)
+                {
+                    SaveEntity(SelectedID);
+                    ShowForm(false);
+                    Listar();
+                }
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }        
 
@@ -160,13 +186,20 @@ namespace UI.Web
 
         private void SaveEntity(int id)
         {
-            UsuarioActual = UsuarioLogic.GetOne(id);
-            MapearEntidad();
-            UsuarioLogic.Save(UsuarioActual);
-            if (Modo == ModoForm.Baja)
+            try
             {
-                //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
-                SelectedID = 0;
+                UsuarioActual = UsuarioLogic.GetOne(id);
+                MapearEntidad();
+                UsuarioLogic.Save(UsuarioActual);
+                if (Modo == ModoForm.Baja)
+                {
+                    //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
+                    SelectedID = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 

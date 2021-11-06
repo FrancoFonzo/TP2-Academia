@@ -46,9 +46,16 @@ namespace UI.Web
 
         protected void ddlCurso_SelectedIndexChanged(object sender, EventArgs e)
         {
-            formPanelCurso.Visible = true;
+            try
+            {
+                formPanelCurso.Visible = true;
 
-            Listar();
+                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         protected void linkCancelar_Click(object sender, EventArgs e)
@@ -63,27 +70,34 @@ namespace UI.Web
 
         protected void linkGuardar_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            try
             {
-                var alumno = new AlumnoInscripcionLogic().GetOne(this.SelectedID);
-                alumno.Nota = int.Parse(ddlNota.SelectedValue);
-                alumno.State = BusinessEntity.States.Modified;
-                if (alumno.Nota >= 6)
+                this.Validate();
+                if (this.IsValid)
                 {
-                    alumno.Condicion = AlumnoInscripcion.Condiciones.Aprobado;
+                    var alumno = new AlumnoInscripcionLogic().GetOne(this.SelectedID);
+                    alumno.Nota = int.Parse(ddlNota.SelectedValue);
+                    alumno.State = BusinessEntity.States.Modified;
+                    if (alumno.Nota >= 6)
+                    {
+                        alumno.Condicion = AlumnoInscripcion.Condiciones.Aprobado;
+                    }
+                    else if (alumno.Nota >= 4)
+                    {
+                        alumno.Condicion = AlumnoInscripcion.Condiciones.Regular;
+                    }
+                    else
+                    {
+                        alumno.Condicion = AlumnoInscripcion.Condiciones.Inscripto;
+                    }
+                    new AlumnoInscripcionLogic().Save(alumno);
+                    ShowForm(false);
+                    Listar();
                 }
-                else if (alumno.Nota >= 4)
-                {
-                    alumno.Condicion = AlumnoInscripcion.Condiciones.Regular;
-                }
-                else
-                {
-                    alumno.Condicion = AlumnoInscripcion.Condiciones.Inscripto;
-                }
-                new AlumnoInscripcionLogic().Save(alumno);
-                ShowForm(false);
-                Listar();
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 
