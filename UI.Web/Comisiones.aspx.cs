@@ -120,65 +120,47 @@ namespace UI.Web
                     linkAceptar.Text = "Aceptar";
                     break;
             }
-
-            try { 
-                ddlPlan.DataSource = new PlanLogic().GetAll();
-                ddlPlan.DataBind();
-                ddlPlan.Items.Insert(0, "[Seleccionar]");
-            }
-            catch (Exception ex)
-            {
-                Notificar(ex.Message);
-            }
+ 
+            ddlPlan.DataSource = new PlanLogic().GetAll();
+            ddlPlan.DataBind();
+            ddlPlan.Items.Insert(0, "[Seleccionar]");
         }
 
         private void MapearForm(int id)
         {
-            try { 
-                ComisionActual = ComisionLogic.GetOne(id);
+            ComisionActual = ComisionLogic.GetOne(id);
 
-                txtAnio.Text = ComisionActual.AnioEspecialidad.ToString();
-                txtDescripcion.Text = ComisionActual.Descripcion;
-                ddlPlan.SelectedValue = ComisionActual.Plan.ID.ToString();
-            }
-            catch (Exception ex)
-            {
-                Notificar(ex.Message);
-            }
+            txtAnio.Text = ComisionActual.AnioEspecialidad.ToString();
+            txtDescripcion.Text = ComisionActual.Descripcion;
+            ddlPlan.SelectedValue = ComisionActual.Plan.ID.ToString();
         }
 
         private void MapearEntidad()
         {
-            try { 
-                ComisionActual = ComisionLogic.GetOne(SelectedID);
-                switch (Modo)
-                {
-                    case ModoForm.Baja:
-                        SelectedID.ToString();
-                        ComisionActual.State = BusinessEntity.States.Deleted;
-                        return;
-                    case ModoForm.Alta:
-                        ComisionActual = new Comision { State = BusinessEntity.States.New };
-                        break;
-                    case ModoForm.Modificacion:
-                        ComisionActual.State = BusinessEntity.States.Modified;
-                        break;
-                }
-
-                if(int.Parse(txtAnio.Text) > 0 && int.Parse(txtDescripcion.Text) > 0)
-                {
-                    ComisionActual.AnioEspecialidad = int.Parse(txtAnio.Text);
-                    ComisionActual.Descripcion = txtDescripcion.Text;
-                    ComisionActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
-                }
-                else
-                {
-                    Notificar("Año y comisión deben ser positivos");
-                }
-            }
-            catch (Exception ex)
+            ComisionActual = ComisionLogic.GetOne(SelectedID);
+            switch (Modo)
             {
-                Notificar(ex.Message);
+                case ModoForm.Baja:
+                    SelectedID.ToString();
+                    ComisionActual.State = BusinessEntity.States.Deleted;
+                    return;
+                case ModoForm.Alta:
+                    ComisionActual = new Comision { State = BusinessEntity.States.New };
+                    break;
+                case ModoForm.Modificacion:
+                    ComisionActual.State = BusinessEntity.States.Modified;
+                    break;
+            }
+
+            if(int.Parse(txtAnio.Text) > 0 && int.Parse(txtDescripcion.Text) > 0)
+            {
+                ComisionActual.AnioEspecialidad = int.Parse(txtAnio.Text);
+                ComisionActual.Descripcion = txtDescripcion.Text;
+                ComisionActual.Plan = new PlanLogic().GetOne(int.Parse(ddlPlan.SelectedValue));
+            }
+            else
+            {
+                Notificar("Año y comisión deben ser positivos");
             }
         }
 

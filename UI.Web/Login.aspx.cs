@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 
 namespace UI.Web
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Login : Base
     {
 
         public static Usuario UsuarioActual { get; private set; }
@@ -18,11 +18,17 @@ namespace UI.Web
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
+            try { 
             this.Validate();
-            if (this.IsValid)
+                if (this.IsValid)
+                {
+                   Session["UsuarioGlobal"] = UsuarioActual;
+                    FormsAuthentication.RedirectFromLoginPage(txtUsuario.Text, false);
+                }
+            }
+            catch(Exception ex)
             {
-               Session["UsuarioGlobal"] = UsuarioActual;
-                FormsAuthentication.RedirectFromLoginPage(txtUsuario.Text, false);
+                Notificar(ex.Message);
             }
         }
 

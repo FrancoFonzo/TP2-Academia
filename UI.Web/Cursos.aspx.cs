@@ -126,70 +126,52 @@ namespace UI.Web
                     break;
             }
 
-            try { 
-                ddlComision.DataSource = new ComisionLogic().GetAll();
-                ddlComision.DataBind();
-                ddlComision.Items.Insert(0, "[Seleccionar]");
+            ddlComision.DataSource = new ComisionLogic().GetAll();
+            ddlComision.DataBind();
+            ddlComision.Items.Insert(0, "[Seleccionar]");
 
-                ddlMateria.DataSource = new MateriaLogic().GetAll();
-                ddlMateria.DataBind();
-                ddlMateria.Items.Insert(0, "[Seleccionar]");
-            }catch(Exception ex)
-            {
-                Notificar(ex.Message);
-            }
+            ddlMateria.DataSource = new MateriaLogic().GetAll();
+            ddlMateria.DataBind();
+            ddlMateria.Items.Insert(0, "[Seleccionar]");
         }
 
         private void MapearForm(int id)
         {
-            try
-            {
-                CursoActual = CursoLogic.GetOne(id);
+            CursoActual = CursoLogic.GetOne(id);
 
-                txtAnio.Text = CursoActual.AnioCalendario.ToString();
-                txtCupo.Text = CursoActual.Cupo.ToString();
-                ddlComision.SelectedValue = CursoActual.Comision.ID.ToString();
-                ddlMateria.SelectedValue = CursoActual.Materia.ID.ToString();
-            }catch(Exception ex)
-            {
-                Notificar(ex.Message);
-            }
+            txtAnio.Text = CursoActual.AnioCalendario.ToString();
+            txtCupo.Text = CursoActual.Cupo.ToString();
+            ddlComision.SelectedValue = CursoActual.Comision.ID.ToString();
+            ddlMateria.SelectedValue = CursoActual.Materia.ID.ToString();
         }
 
         private void MapearEntidad()
         {
-            try
+            CursoActual = CursoLogic.GetOne(SelectedID);
+            switch (Modo)
             {
-                CursoActual = CursoLogic.GetOne(SelectedID);
-                switch (Modo)
-                {
-                    case ModoForm.Baja:
-                        SelectedID.ToString();
-                        CursoActual.State = BusinessEntity.States.Deleted;
-                        return;
-                    case ModoForm.Alta:
-                        CursoActual = new Curso { State = BusinessEntity.States.New };
-                        break;
-                    case ModoForm.Modificacion:
-                        CursoActual.State = BusinessEntity.States.Modified;
-                        break;
-                }
-
-                if (int.Parse(txtAnio.Text) > 0 && int.Parse(txtCupo.Text) > 0)
-                {
-                    CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
-                    CursoActual.Cupo = int.Parse(txtCupo.Text);
-                    CursoActual.Comision = new ComisionLogic().GetOne(int.Parse(ddlComision.SelectedValue));
-                    CursoActual.Materia = new MateriaLogic().GetOne(int.Parse(ddlMateria.SelectedValue));
-                }
-                else
-                {
-                    Notificar("Año y cupo deben ser positivos");
-                }
+                case ModoForm.Baja:
+                    SelectedID.ToString();
+                    CursoActual.State = BusinessEntity.States.Deleted;
+                    return;
+                case ModoForm.Alta:
+                    CursoActual = new Curso { State = BusinessEntity.States.New };
+                    break;
+                case ModoForm.Modificacion:
+                    CursoActual.State = BusinessEntity.States.Modified;
+                    break;
             }
-            catch (Exception ex)
+
+            if (int.Parse(txtAnio.Text) > 0 && int.Parse(txtCupo.Text) > 0)
             {
-                Notificar(ex.Message);
+                CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
+                CursoActual.Cupo = int.Parse(txtCupo.Text);
+                CursoActual.Comision = new ComisionLogic().GetOne(int.Parse(ddlComision.SelectedValue));
+                CursoActual.Materia = new MateriaLogic().GetOne(int.Parse(ddlMateria.SelectedValue));
+            }
+            else
+            {
+                Notificar("Año y cupo deben ser positivos");
             }
         }
 

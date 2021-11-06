@@ -128,40 +128,28 @@ namespace UI.Web
 
         private void MapearForm(int id)
         {
-            try { 
-                EspecialidadActual = EspecialidadLogic.GetOne(id);
+            EspecialidadActual = EspecialidadLogic.GetOne(id);
 
-                txtDescripcion.Text = EspecialidadActual.Descripcion;
-            }catch(Exception ex)
-            {
-                Notificar(ex.Message);
-            }
+            txtDescripcion.Text = EspecialidadActual.Descripcion;
         }
 
         private void MapearEntidad()
         {
-            try
+            EspecialidadActual = EspecialidadLogic.GetOne(SelectedID);
+            switch (Modo)
             {
-                EspecialidadActual = EspecialidadLogic.GetOne(SelectedID);
-                switch (Modo)
-                {
-                    case ModoForm.Baja:
-                        SelectedID.ToString();
-                        EspecialidadActual.State = BusinessEntity.States.Deleted;
-                        return;
-                    case ModoForm.Alta:
-                        EspecialidadActual = new Especialidad { State = BusinessEntity.States.New };
-                        break;
-                    case ModoForm.Modificacion:
-                        EspecialidadActual.State = BusinessEntity.States.Modified;
-                        break;
-                }
-                EspecialidadActual.Descripcion = txtDescripcion.Text;
+                case ModoForm.Baja:
+                    SelectedID.ToString();
+                    EspecialidadActual.State = BusinessEntity.States.Deleted;
+                    return;
+                case ModoForm.Alta:
+                    EspecialidadActual = new Especialidad { State = BusinessEntity.States.New };
+                    break;
+                case ModoForm.Modificacion:
+                    EspecialidadActual.State = BusinessEntity.States.Modified;
+                    break;
             }
-            catch(Exception ex)
-            {
-                Notificar(ex.Message);
-            }
+            EspecialidadActual.Descripcion = txtDescripcion.Text;
         }
 
         private void SaveEntity(int id)
