@@ -7,6 +7,12 @@ body {
     background-color: #EEEEEE;
 }
 
+.center-content {
+    display: grid;
+    place-content: center;
+    text-align: center;
+}
+
 .navbar {
     height: 46px;
     overflow: hidden;
