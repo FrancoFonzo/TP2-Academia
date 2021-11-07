@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Business.Logic;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Business.Logic
+namespace Util
 {
     public static class Validaciones
     {
