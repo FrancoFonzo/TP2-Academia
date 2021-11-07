@@ -43,6 +43,7 @@ namespace UI.Desktop
             // 
             // tsPlanes
             // 
+            this.tsPlanes.AutoSize = false;
             this.tsPlanes.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tsPlanes.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsPlanes.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -52,7 +53,7 @@ namespace UI.Desktop
             this.tsbEliminar});
             this.tsPlanes.Location = new System.Drawing.Point(0, 0);
             this.tsPlanes.Name = "tsPlanes";
-            this.tsPlanes.Size = new System.Drawing.Size(732, 28);
+            this.tsPlanes.Size = new System.Drawing.Size(732, 35);
             this.tsPlanes.TabIndex = 0;
             this.tsPlanes.Text = "toolStrip1";
             // 
@@ -64,7 +65,7 @@ namespace UI.Desktop
             this.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAgregar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbAgregar.Name = "tsbAgregar";
-            this.tsbAgregar.Size = new System.Drawing.Size(29, 24);
+            this.tsbAgregar.Size = new System.Drawing.Size(29, 27);
             this.tsbAgregar.Text = "Agregar";
             this.tsbAgregar.Click += new System.EventHandler(this.tsbNuevo_Click);
             // 
@@ -76,7 +77,7 @@ namespace UI.Desktop
             this.tsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEditar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEditar.Name = "tsbEditar";
-            this.tsbEditar.Size = new System.Drawing.Size(29, 24);
+            this.tsbEditar.Size = new System.Drawing.Size(29, 27);
             this.tsbEditar.Text = "toolStripButton2";
             this.tsbEditar.ToolTipText = "Editar";
             this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
@@ -89,7 +90,7 @@ namespace UI.Desktop
             this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEliminar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEliminar.Name = "tsbEliminar";
-            this.tsbEliminar.Size = new System.Drawing.Size(29, 24);
+            this.tsbEliminar.Size = new System.Drawing.Size(29, 27);
             this.tsbEliminar.Text = "toolStripButton3";
             this.tsbEliminar.ToolTipText = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
@@ -106,14 +107,14 @@ namespace UI.Desktop
             this.descripcion,
             this.especialidad});
             this.dgvPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPlanes.Location = new System.Drawing.Point(0, 28);
+            this.dgvPlanes.Location = new System.Drawing.Point(0, 35);
             this.dgvPlanes.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPlanes.MultiSelect = false;
             this.dgvPlanes.Name = "dgvPlanes";
             this.dgvPlanes.ReadOnly = true;
             this.dgvPlanes.RowHeadersWidth = 51;
             this.dgvPlanes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPlanes.Size = new System.Drawing.Size(732, 325);
+            this.dgvPlanes.Size = new System.Drawing.Size(732, 318);
             this.dgvPlanes.TabIndex = 1;
             // 
             // id
@@ -161,7 +162,6 @@ namespace UI.Desktop
             this.tsPlanes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

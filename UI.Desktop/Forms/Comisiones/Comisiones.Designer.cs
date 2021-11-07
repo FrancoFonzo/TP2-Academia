@@ -44,6 +44,7 @@ namespace UI.Desktop
             // 
             // tsComision
             // 
+            this.tsComision.AutoSize = false;
             this.tsComision.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsComision.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsComision.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -53,7 +54,7 @@ namespace UI.Desktop
             this.tsComision.Location = new System.Drawing.Point(0, 0);
             this.tsComision.Name = "tsComision";
             this.tsComision.Padding = new System.Windows.Forms.Padding(0);
-            this.tsComision.Size = new System.Drawing.Size(800, 28);
+            this.tsComision.Size = new System.Drawing.Size(800, 35);
             this.tsComision.TabIndex = 0;
             // 
             // tsbAgregar
@@ -64,7 +65,7 @@ namespace UI.Desktop
             this.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAgregar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbAgregar.Name = "tsbAgregar";
-            this.tsbAgregar.Size = new System.Drawing.Size(29, 24);
+            this.tsbAgregar.Size = new System.Drawing.Size(29, 31);
             this.tsbAgregar.Text = "toolStripButton1";
             this.tsbAgregar.ToolTipText = "Agregar\r\n";
             this.tsbAgregar.Click += new System.EventHandler(this.tsbAgregar_Click);
@@ -77,7 +78,7 @@ namespace UI.Desktop
             this.tsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEditar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEditar.Name = "tsbEditar";
-            this.tsbEditar.Size = new System.Drawing.Size(29, 24);
+            this.tsbEditar.Size = new System.Drawing.Size(29, 31);
             this.tsbEditar.Text = "toolStripButton2";
             this.tsbEditar.ToolTipText = "Editar";
             this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
@@ -90,7 +91,7 @@ namespace UI.Desktop
             this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEliminar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEliminar.Name = "tsbEliminar";
-            this.tsbEliminar.Size = new System.Drawing.Size(29, 24);
+            this.tsbEliminar.Size = new System.Drawing.Size(29, 31);
             this.tsbEliminar.Text = "toolStripButton3";
             this.tsbEliminar.ToolTipText = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
@@ -108,14 +109,14 @@ namespace UI.Desktop
             this.descripcion,
             this.anioEspecialidad});
             this.dgvComisiones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvComisiones.Location = new System.Drawing.Point(0, 28);
+            this.dgvComisiones.Location = new System.Drawing.Point(0, 35);
             this.dgvComisiones.Margin = new System.Windows.Forms.Padding(0);
             this.dgvComisiones.MultiSelect = false;
             this.dgvComisiones.Name = "dgvComisiones";
             this.dgvComisiones.ReadOnly = true;
             this.dgvComisiones.RowHeadersWidth = 51;
             this.dgvComisiones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvComisiones.Size = new System.Drawing.Size(800, 422);
+            this.dgvComisiones.Size = new System.Drawing.Size(800, 415);
             this.dgvComisiones.TabIndex = 9;
             // 
             // id
@@ -171,7 +172,6 @@ namespace UI.Desktop
             this.tsComision.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComisiones)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

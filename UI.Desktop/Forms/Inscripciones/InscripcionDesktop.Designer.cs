@@ -129,7 +129,7 @@ namespace UI.Desktop
             this.cbxCondicion.DisplayMember = "Condicion";
             this.cbxCondicion.Enabled = false;
             this.cbxCondicion.FormattingEnabled = true;
-            this.cbxCondicion.Location = new System.Drawing.Point(441, 9);
+            this.cbxCondicion.Location = new System.Drawing.Point(441, 8);
             this.cbxCondicion.Margin = new System.Windows.Forms.Padding(5);
             this.cbxCondicion.Name = "cbxCondicion";
             this.cbxCondicion.Size = new System.Drawing.Size(286, 24);

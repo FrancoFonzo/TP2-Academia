@@ -36,14 +36,16 @@ namespace UI.Desktop
             this.lblHsSeman = new System.Windows.Forms.Label();
             this.lblHsTot = new System.Windows.Forms.Label();
             this.lblPlan = new System.Windows.Forms.Label();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtHsSemanales = new System.Windows.Forms.TextBox();
             this.txtHsTotales = new System.Windows.Forms.TextBox();
             this.cbxPlan = new System.Windows.Forms.ComboBox();
+            this.panelBottom = new System.Windows.Forms.Panel();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.tlMaterias.SuspendLayout();
+            this.panelBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlMaterias
@@ -64,19 +66,15 @@ namespace UI.Desktop
             this.tlMaterias.Controls.Add(this.txtHsSemanales, 3, 0);
             this.tlMaterias.Controls.Add(this.txtHsTotales, 3, 1);
             this.tlMaterias.Controls.Add(this.cbxPlan, 1, 2);
-            this.tlMaterias.Controls.Add(this.btnAceptar, 3, 4);
-            this.tlMaterias.Controls.Add(this.btnCancelar, 2, 4);
             this.tlMaterias.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlMaterias.Location = new System.Drawing.Point(0, 0);
             this.tlMaterias.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tlMaterias.Name = "tlMaterias";
-            this.tlMaterias.RowCount = 5;
+            this.tlMaterias.RowCount = 3;
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlMaterias.Size = new System.Drawing.Size(683, 136);
+            this.tlMaterias.Size = new System.Drawing.Size(682, 111);
             this.tlMaterias.TabIndex = 0;
             // 
             // lblID
@@ -127,37 +125,12 @@ namespace UI.Desktop
             // 
             this.lblPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblPlan.AutoSize = true;
-            this.lblPlan.Location = new System.Drawing.Point(4, 72);
+            this.lblPlan.Location = new System.Drawing.Point(4, 79);
             this.lblPlan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlan.Name = "lblPlan";
             this.lblPlan.Size = new System.Drawing.Size(36, 17);
             this.lblPlan.TabIndex = 8;
             this.lblPlan.Text = "Plan";
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.AutoSize = true;
-            this.btnAceptar.Location = new System.Drawing.Point(327, 103);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(89, 27);
-            this.btnAceptar.TabIndex = 10;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.AutoSize = true;
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(455, 103);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(100, 27);
-            this.btnCancelar.TabIndex = 11;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // txtID
             // 
@@ -187,7 +160,7 @@ namespace UI.Desktop
             this.txtHsSemanales.Location = new System.Drawing.Point(455, 5);
             this.txtHsSemanales.Margin = new System.Windows.Forms.Padding(5);
             this.txtHsSemanales.Name = "txtHsSemanales";
-            this.txtHsSemanales.Size = new System.Drawing.Size(223, 22);
+            this.txtHsSemanales.Size = new System.Drawing.Size(222, 22);
             this.txtHsSemanales.TabIndex = 5;
             // 
             // txtHsTotales
@@ -196,7 +169,7 @@ namespace UI.Desktop
             this.txtHsTotales.Location = new System.Drawing.Point(455, 37);
             this.txtHsTotales.Margin = new System.Windows.Forms.Padding(5);
             this.txtHsTotales.Name = "txtHsTotales";
-            this.txtHsTotales.Size = new System.Drawing.Size(223, 22);
+            this.txtHsTotales.Size = new System.Drawing.Size(222, 22);
             this.txtHsTotales.TabIndex = 7;
             // 
             // cbxPlan
@@ -206,29 +179,68 @@ namespace UI.Desktop
             this.cbxPlan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxPlan.DisplayMember = "Descripcion";
             this.cbxPlan.FormattingEnabled = true;
-            this.cbxPlan.Location = new System.Drawing.Point(95, 69);
+            this.cbxPlan.Location = new System.Drawing.Point(95, 75);
             this.cbxPlan.Margin = new System.Windows.Forms.Padding(5);
             this.cbxPlan.Name = "cbxPlan";
             this.cbxPlan.Size = new System.Drawing.Size(222, 24);
             this.cbxPlan.TabIndex = 9;
             this.cbxPlan.ValueMember = "ID";
             // 
+            // panelBottom
+            // 
+            this.panelBottom.Controls.Add(this.btnAceptar);
+            this.panelBottom.Controls.Add(this.btnCancelar);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Location = new System.Drawing.Point(0, 111);
+            this.panelBottom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(682, 42);
+            this.panelBottom.TabIndex = 2;
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAceptar.AutoSize = true;
+            this.btnAceptar.Location = new System.Drawing.Point(577, 4);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(100, 33);
+            this.btnAceptar.TabIndex = 15;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.AutoSize = true;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(473, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(100, 33);
+            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // MateriaDesktop
             // 
-            this.AcceptButton = this.btnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(683, 136);
+            this.ClientSize = new System.Drawing.Size(682, 153);
             this.Controls.Add(this.tlMaterias);
+            this.Controls.Add(this.panelBottom);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MateriaDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "MateriasDesktop";
+            this.Text = "Materia";
             this.tlMaterias.ResumeLayout(false);
             this.tlMaterias.PerformLayout();
+            this.panelBottom.ResumeLayout(false);
+            this.panelBottom.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,12 +254,13 @@ namespace UI.Desktop
         private System.Windows.Forms.Label lblHsSeman;
         private System.Windows.Forms.Label lblHsTot;
         private System.Windows.Forms.Label lblPlan;
-        private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtHsSemanales;
         private System.Windows.Forms.TextBox txtHsTotales;
         private System.Windows.Forms.ComboBox cbxPlan;
+        private System.Windows.Forms.Panel panelBottom;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

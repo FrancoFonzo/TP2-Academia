@@ -39,7 +39,7 @@
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" HeaderText="Error" ValidationGroup="formRegistrar" />
         <asp:Panel ID="formActionsPanel" runat="server">
             <asp:LinkButton ID="linkCancelar" runat="server" OnClick="linkCancelar_Click">Cancelar</asp:LinkButton>
-            <asp:LinkButton ID="linkGuardar" runat="server" OnClick="linkGuardar_Click">Guardar</asp:LinkButton>
+            &nbsp;<asp:LinkButton ID="linkGuardar" runat="server" OnClick="linkGuardar_Click">Guardar</asp:LinkButton>
         </asp:Panel>
     </asp:Panel>
 </asp:Content>

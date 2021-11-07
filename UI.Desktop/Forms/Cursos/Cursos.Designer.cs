@@ -59,14 +59,14 @@ namespace UI.Desktop
             this.materia,
             this.comision});
             this.dgvCursos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCursos.Location = new System.Drawing.Point(0, 28);
+            this.dgvCursos.Location = new System.Drawing.Point(0, 35);
             this.dgvCursos.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCursos.MultiSelect = false;
             this.dgvCursos.Name = "dgvCursos";
             this.dgvCursos.ReadOnly = true;
             this.dgvCursos.RowHeadersWidth = 51;
             this.dgvCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCursos.Size = new System.Drawing.Size(800, 422);
+            this.dgvCursos.Size = new System.Drawing.Size(800, 415);
             this.dgvCursos.TabIndex = 9;
             // 
             // id
@@ -119,6 +119,7 @@ namespace UI.Desktop
             // 
             // tsCursos
             // 
+            this.tsCursos.AutoSize = false;
             this.tsCursos.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tsCursos.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsCursos.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -128,7 +129,7 @@ namespace UI.Desktop
             this.tsbEliminar});
             this.tsCursos.Location = new System.Drawing.Point(0, 0);
             this.tsCursos.Name = "tsCursos";
-            this.tsCursos.Size = new System.Drawing.Size(800, 28);
+            this.tsCursos.Size = new System.Drawing.Size(800, 35);
             this.tsCursos.TabIndex = 0;
             // 
             // tsbAgregar
@@ -139,7 +140,7 @@ namespace UI.Desktop
             this.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAgregar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbAgregar.Name = "tsbAgregar";
-            this.tsbAgregar.Size = new System.Drawing.Size(29, 24);
+            this.tsbAgregar.Size = new System.Drawing.Size(29, 31);
             this.tsbAgregar.Text = "toolStripButton1";
             this.tsbAgregar.ToolTipText = "Agregar";
             this.tsbAgregar.Click += new System.EventHandler(this.tsbAgregar_Click);
@@ -152,7 +153,7 @@ namespace UI.Desktop
             this.tsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEditar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEditar.Name = "tsbEditar";
-            this.tsbEditar.Size = new System.Drawing.Size(29, 24);
+            this.tsbEditar.Size = new System.Drawing.Size(29, 31);
             this.tsbEditar.Text = "toolStripButton2";
             this.tsbEditar.ToolTipText = "Editar";
             this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
@@ -165,7 +166,7 @@ namespace UI.Desktop
             this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEliminar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEliminar.Name = "tsbEliminar";
-            this.tsbEliminar.Size = new System.Drawing.Size(29, 24);
+            this.tsbEliminar.Size = new System.Drawing.Size(29, 31);
             this.tsbEliminar.Text = "toolStripButton3";
             this.tsbEliminar.ToolTipText = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
@@ -186,7 +187,6 @@ namespace UI.Desktop
             this.tsCursos.ResumeLayout(false);
             this.tsCursos.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
