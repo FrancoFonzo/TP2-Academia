@@ -26,17 +26,20 @@
             <asp:Label ID="lblDocente" runat="server" Text="Docente"></asp:Label>
             &nbsp;<asp:DropDownList ID="ddlDocentes" runat="server" DataValueField="ID">
             </asp:DropDownList>
+            <asp:RequiredFieldValidator ID="validDocente" runat="server" ControlToValidate="ddlDocentes" ErrorMessage="El docente no puede ser nulo." ForeColor="Red" InitialValue="[Seleccionar]" ValidationGroup="formDictados">*</asp:RequiredFieldValidator>
             <br />
             <asp:Label ID="lblCurso" runat="server" Text="Curso"></asp:Label>
             &nbsp;<asp:DropDownList ID="ddlCursos" runat="server" DataValueField="ID">
             </asp:DropDownList>
+            <asp:RequiredFieldValidator ID="validCurso" runat="server" ControlToValidate="ddlCursos" ErrorMessage="El curso no puede ser nulo." ForeColor="Red" InitialValue="[Seleccionar]" ValidationGroup="formDictados">*</asp:RequiredFieldValidator>
             <br />
             <asp:Label ID="lblCargo" runat="server" Text="Cargo"></asp:Label>
             &nbsp;<asp:DropDownList ID="ddlCargos" runat="server">
             </asp:DropDownList>
+            <asp:RequiredFieldValidator ID="validCargo" runat="server" ControlToValidate="ddlCargos" ErrorMessage="El cargo no puede ser nulo." ForeColor="Red" InitialValue="[Seleccionar]" ValidationGroup="formDictados">*</asp:RequiredFieldValidator>
             <br />
             <br />
-            <asp:ValidationSummary ID="vsErrores" runat="server" ForeColor="Red" HeaderText="Error" ValidationGroup="formCursos" />
+            <asp:ValidationSummary ID="vsErrores" runat="server" ForeColor="Red" HeaderText="Error" ValidationGroup="formDictados" />
             <asp:Panel ID="formActionsPanel" runat="server">
                 <asp:LinkButton ID="linkCancelar" runat="server" OnClick="linkCancelar_Click">Cancelar</asp:LinkButton>
                 &nbsp;&nbsp;

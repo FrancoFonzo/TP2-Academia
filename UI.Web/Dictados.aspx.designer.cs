@@ -96,6 +96,15 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.DropDownList ddlDocentes;
 
         /// <summary>
+        /// Control validDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validDocente;
+
+        /// <summary>
         /// Control lblCurso.
         /// </summary>
         /// <remarks>
@@ -114,6 +123,15 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.DropDownList ddlCursos;
 
         /// <summary>
+        /// Control validCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validCurso;
+
+        /// <summary>
         /// Control lblCargo.
         /// </summary>
         /// <remarks>
@@ -130,6 +148,15 @@ namespace UI.Web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCargos;
+
+        /// <summary>
+        /// Control validCargo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validCargo;
 
         /// <summary>
         /// Control vsErrores.

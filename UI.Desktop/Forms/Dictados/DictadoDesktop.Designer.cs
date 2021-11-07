@@ -217,7 +217,7 @@ namespace UI.Desktop
             this.Controls.Add(this.panelBottom);
             this.Name = "DictadoDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "DictadoDesktop";
+            this.Text = "Dictado";
             this.tlComision.ResumeLayout(false);
             this.tlComision.PerformLayout();
             this.panelBottom.ResumeLayout(false);

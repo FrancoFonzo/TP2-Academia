@@ -51,6 +51,7 @@ namespace UI.Desktop
             // 
             // tsPersonas
             // 
+            this.tsPersonas.AutoSize = false;
             this.tsPersonas.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsPersonas.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsPersonas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -60,7 +61,7 @@ namespace UI.Desktop
             this.tsbSeleccionar});
             this.tsPersonas.Location = new System.Drawing.Point(0, 0);
             this.tsPersonas.Name = "tsPersonas";
-            this.tsPersonas.Size = new System.Drawing.Size(982, 28);
+            this.tsPersonas.Size = new System.Drawing.Size(982, 35);
             this.tsPersonas.TabIndex = 3;
             // 
             // tsbAgregar
@@ -71,7 +72,7 @@ namespace UI.Desktop
             this.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAgregar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbAgregar.Name = "tsbAgregar";
-            this.tsbAgregar.Size = new System.Drawing.Size(29, 24);
+            this.tsbAgregar.Size = new System.Drawing.Size(29, 31);
             this.tsbAgregar.Text = "Agregar";
             this.tsbAgregar.ToolTipText = "Agregar";
             this.tsbAgregar.Click += new System.EventHandler(this.tsbAgregarP_Click);
@@ -84,7 +85,7 @@ namespace UI.Desktop
             this.tsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEditar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEditar.Name = "tsbEditar";
-            this.tsbEditar.Size = new System.Drawing.Size(29, 24);
+            this.tsbEditar.Size = new System.Drawing.Size(29, 31);
             this.tsbEditar.Text = "Editar";
             this.tsbEditar.ToolTipText = "Editar";
             this.tsbEditar.Click += new System.EventHandler(this.tsbEditarP_Click);
@@ -97,7 +98,7 @@ namespace UI.Desktop
             this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEliminar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbEliminar.Name = "tsbEliminar";
-            this.tsbEliminar.Size = new System.Drawing.Size(29, 24);
+            this.tsbEliminar.Size = new System.Drawing.Size(29, 31);
             this.tsbEliminar.Text = "Eliminar";
             this.tsbEliminar.ToolTipText = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminarP_Click);
@@ -110,7 +111,7 @@ namespace UI.Desktop
             this.tsbSeleccionar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSeleccionar.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.tsbSeleccionar.Name = "tsbSeleccionar";
-            this.tsbSeleccionar.Size = new System.Drawing.Size(29, 24);
+            this.tsbSeleccionar.Size = new System.Drawing.Size(29, 31);
             this.tsbSeleccionar.Text = "Seleccionar";
             this.tsbSeleccionar.ToolTipText = "Seleccionar";
             this.tsbSeleccionar.Visible = false;
@@ -135,14 +136,14 @@ namespace UI.Desktop
             this.plan,
             this.tipoPerson});
             this.dgvPersonas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPersonas.Location = new System.Drawing.Point(0, 28);
+            this.dgvPersonas.Location = new System.Drawing.Point(0, 35);
             this.dgvPersonas.MultiSelect = false;
             this.dgvPersonas.Name = "dgvPersonas";
             this.dgvPersonas.ReadOnly = true;
             this.dgvPersonas.RowHeadersWidth = 51;
             this.dgvPersonas.RowTemplate.Height = 24;
             this.dgvPersonas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPersonas.Size = new System.Drawing.Size(982, 425);
+            this.dgvPersonas.Size = new System.Drawing.Size(982, 418);
             this.dgvPersonas.TabIndex = 5;
             // 
             // id
@@ -244,7 +245,6 @@ namespace UI.Desktop
             this.tsPersonas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
