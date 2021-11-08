@@ -71,5 +71,10 @@ namespace UI.Desktop
                 Notificar("Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void dgvCursos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
