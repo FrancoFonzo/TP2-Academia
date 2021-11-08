@@ -3,7 +3,7 @@
     <script runat = "server" >
         void ValidarRegexEmail(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = Business.Logic.Validaciones.ValidarRegexEmail(args.Value);
+            args.IsValid = Util.Validaciones.ValidarRegexEmail(args.Value);
         }
     </script>
 </asp:Content>
