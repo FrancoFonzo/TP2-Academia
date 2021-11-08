@@ -69,7 +69,16 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.LinkButton linkEliminar;
 
         /// <summary>
-        /// Control formPanel.
+        /// linkAgregar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkAgregar;
+
+        /// <summary>
+        /// formPanel control.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.

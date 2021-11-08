@@ -41,6 +41,22 @@ namespace UI.Web
             set { this.ViewState["SelectedID"] = value; }
         }
 
+        protected int cursoSelectedID
+        {
+            get
+            {
+                if (this.ViewState["cursoSelectedID"] != null)
+                {
+                    return (int)this.ViewState["cursoSelectedID"];
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            set { this.ViewState["cursoSelectedID"] = value; }
+        }
+
         protected bool IsRowSelected()
         {
             if (SelectedID == 0)

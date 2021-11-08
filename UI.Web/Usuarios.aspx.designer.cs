@@ -13,7 +13,6 @@ namespace UI.Web
 
     public partial class Usuarios
     {
-
         /// <summary>
         /// Control gridPanel.
         /// </summary>
@@ -142,6 +141,7 @@ namespace UI.Web
 
         /// <summary>
         /// Control validClave.
+
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.

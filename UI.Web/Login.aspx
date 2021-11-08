@@ -10,6 +10,7 @@
 </head>
 <body>
     <header id="header">
+        <h1>&nbsp;</h1>
         <h1>Academia</h1>
     </header>
     <form id="form" class="login" runat="server">
