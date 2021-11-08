@@ -76,24 +76,6 @@ namespace UI.Web
             }
         }
 
-        protected void linkAceptar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Validate();
-                if (IsValid)
-                {
-                    SaveEntity(SelectedID);
-                    ShowForm(false);
-                    Listar();
-                }
-            }
-            catch (Exception ex)
-            {
-                Notificar(ex.Message);
-            }
-        }
-
         protected void linkCancelar_Click(object sender, EventArgs e)
         {
             ShowForm(false);
@@ -104,7 +86,6 @@ namespace UI.Web
             ClearForm();
             formPanel.Visible = visible;
             gridPanel.Visible = !visible;
-            linkAgregar.Visible = !visible;
         }
 
         private void ClearForm()
@@ -232,11 +213,6 @@ namespace UI.Web
             {
                 Notificar(ex.Message);
             }
-        }
-
-        protected void linkAgregar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Inscripciones.aspx");
         }
     }
 }

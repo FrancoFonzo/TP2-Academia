@@ -30,7 +30,6 @@
             <asp:LinkButton ID="linkEditar" runat="server" OnClick="linkEditar_Click">Editar</asp:LinkButton>
             &nbsp;&nbsp;
             <asp:LinkButton ID="linkEliminar" runat="server" OnClick="linkEliminar_Click">Eliminar</asp:LinkButton>
-            <asp:LinkButton ID="linkAgregar" runat="server" OnClick="linkAgregar_Click">Nueva Inscripcion</asp:LinkButton>
         </asp:Panel>
     </asp:Panel>
     <asp:Panel ID="formPanel" runat="server" Visible="False">
