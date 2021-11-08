@@ -9,6 +9,9 @@ namespace UI.Web
     {
 
         private Usuario UsuarioActual { get; set; }
+
+        private AlumnoInscripcion InscripcionActual { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidarPermisos(Persona.TiposPersonas.Docente);
@@ -18,7 +21,7 @@ namespace UI.Web
                 try
                 {
                     formPanelCurso.Visible = true;
-                    switch (UsuarioActual.Persona?.Tipo)
+                    switch (UsuarioActual.Persona.Tipo)
                     {
                         case Persona.TiposPersonas.Administrador:
                             lblDocente.Visible = true;
@@ -60,6 +63,7 @@ namespace UI.Web
                 Notificar(ex.Message);
             }
         }
+
         protected void ddlDocente_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -81,16 +85,7 @@ namespace UI.Web
                 this.Validate();
                 if (this.IsValid)
                 {
-                    var alumno = new AlumnoInscripcionLogic().GetOne(this.SelectedID);
-
-                    int.TryParse(txtNota.Text, out int nota);
-                    if (nota < 1 || nota > 10)
-                    {
-                        throw new Exception("La nota debe ser un numero entre 1 y 10");
-                    }
-                    alumno.State = BusinessEntity.States.Modified;
-                    SetCondicion(alumno);
-                    new AlumnoInscripcionLogic().Save(alumno);
+                    SaveEntity(SelectedID);
                     ShowForm(false);
                     Listar();
                 }
@@ -104,6 +99,42 @@ namespace UI.Web
         protected void linkCancelar_Click(object sender, EventArgs e)
         {
             ShowForm(false);
+        }
+
+        private void MapearEntidad()
+        {
+            InscripcionActual = new AlumnoInscripcionLogic().GetOne(this.SelectedID);
+
+            int.TryParse(txtNota.Text, out int nota);
+            if (nota < 0 || nota > 10)
+            {
+                throw new Exception("La nota debe ser un numero entre 1 y 10");
+            }
+            InscripcionActual.State = BusinessEntity.States.Modified;
+            if (nota == 0)
+            {
+                InscripcionActual.Nota = null;
+            }
+            else
+            {
+                InscripcionActual.Nota = nota;
+            }
+            
+            SetCondicion(InscripcionActual);
+        }
+
+        private void SaveEntity(int id)
+        {
+            try
+            {
+                InscripcionActual = new AlumnoInscripcionLogic().GetOne(id);
+                MapearEntidad();
+                new AlumnoInscripcionLogic().Save(InscripcionActual);
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         private void ShowForm(bool visible)
