@@ -43,9 +43,15 @@ namespace UI.Web
         protected void linkNuevo_Click(object sender, EventArgs e)
         {
             Modo = ModoForm.Alta;
-            MapearInicial();
-            ShowForm(true);
-            Listar();
+            try
+            {
+                MapearInicial();
+                ShowForm(true);
+                Listar();
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
 
         protected void linkEliminar_Click(object sender, EventArgs e)
@@ -53,20 +59,32 @@ namespace UI.Web
             if (IsRowSelected())
             {
                 Modo = ModoForm.Baja;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
+                try
+                {
+                    SaveEntity();
+                    ListarInscripciones();
+                }
+                catch(Exception ex)
+                {
+                    Notificar(ex.Message);
+                }
             }
         }
 
         protected void linkAceptar_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            if (this.IsValid)
+            try
             {
-                SaveEntity();
-                ShowForm(false);
-                Listar();
+                this.Validate();
+                if (this.IsValid)
+                {
+                    SaveEntity();
+                    ShowForm(false);
+                    Listar();
+                }
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
 
@@ -101,17 +119,12 @@ namespace UI.Web
             gvCursos.DataBind();
         }
 
-        private void MapearForm(int id)
-        {
-            InscripcionActual = InscripcionLogic.GetOne(id);
-        }
-
         private void MapearEntidad()
         {
+            InscripcionActual = InscripcionLogic.GetOne(SelectedID);
             switch (Modo)
             {
                 case ModoForm.Baja:
-                    SelectedID.ToString();
                     InscripcionActual.State = BusinessEntity.States.Deleted;
                     return;
                 case ModoForm.Alta:
@@ -136,11 +149,17 @@ namespace UI.Web
        
         private void SaveEntity()
         {
-            MapearEntidad();
-            InscripcionLogic.Save(InscripcionActual);
-            if (Modo == ModoForm.Baja)
+            try
             {
-                SelectedID = 0;
+                MapearEntidad();
+                InscripcionLogic.Save(InscripcionActual);
+                if (Modo == ModoForm.Baja)
+                {
+                    SelectedID = 0;
+                }
+            }catch(Exception ex)
+            {
+                Notificar(ex.Message);
             }
         }
         
@@ -164,8 +183,20 @@ namespace UI.Web
 
         protected void ddlAlumnos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllAlumno(int.Parse(ddlAlumnos.SelectedValue));
-            gvInscripciones.DataBind();
+            ListarInscripciones();
+        }
+
+        private void ListarInscripciones()
+        {
+            try
+            {
+                gvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllAlumno(int.Parse(ddlAlumnos.SelectedValue));
+                gvInscripciones.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
         }
     }
 }

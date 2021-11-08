@@ -25,7 +25,6 @@
         </asp:Panel>
     </asp:Panel>
     <asp:Panel ID="formPanel" runat="server" Visible="False">
-        <br />
         <asp:Label ID="lblCursos" runat="server" Text="Cursos:"></asp:Label>
         <br />
         <asp:GridView ID="gvCursos" runat="server" AutoGenerateColumns="False" 
