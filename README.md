@@ -9,12 +9,12 @@ Integrantes - Grupo 8:
 - German Tano
 - Lara del Coro
 
-##[Web App](https://academia-web.azurewebsites.net/) 
+## [Web App](https://academia-web.azurewebsites.net/) 
 
-##[Azure DevOps](https://dev.azure.com/francofonzo1/TP2-Academia) 
+## [Azure DevOps](https://dev.azure.com/francofonzo1/TP2-Academia) 
 
-###Build Pipeline
+### Build Pipeline
 [![Build Status](https://dev.azure.com/francofonzo1/TP2-Academia/_apis/build/status/FrancoFonzo.TP2-Academia?branchName=main)](https://dev.azure.com/francofonzo1/TP2-Academia/_build/latest?definitionId=11&branchName=main)
 
-###Release Pipeline
+### Release Pipeline
 [![Deployment](https://vsrm.dev.azure.com/francofonzo1/_apis/public/Release/badge/1f0fc620-66c1-4b9c-9858-396048d59537/1/1)](https://vsrm.dev.azure.com/francofonzo1/_apis/public/Release/badge/1f0fc620-66c1-4b9c-9858-396048d59537/1/1)
