@@ -214,5 +214,15 @@ namespace UI.Desktop
             lblTitulo.Text = form.Text;
             form.Show();
         }
+
+        private void btnReportesCursos_Click(object sender, EventArgs e)
+        {
+            OpenForm(new RepViewer());
+        }
+
+        private void btnReportesPlanes_Click(object sender, EventArgs e)
+        {
+            OpenForm(new RViewerPlanes());
+        }
     }
 }
