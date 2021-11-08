@@ -70,5 +70,9 @@ namespace UI.Web
             return true;
         }
 
+        protected void linkRecuperarClave_Click(object sender, EventArgs e)
+        {
+            Notificar("Funcion no implementada.");
+        }
     }
 }
