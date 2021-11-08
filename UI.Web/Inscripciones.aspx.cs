@@ -12,21 +12,25 @@ namespace UI.Web
     public partial class Inscripciones : Base
     {
         private static AlumnoInscripcionLogic InscripcionLogic = new AlumnoInscripcionLogic();
-      
-        private static CursoLogic CursoLogic = new CursoLogic();
-        private AlumnoInscripcion InscripcionActual { get; set; }
-       
-       // public Usuario UsuarioActual { get; set; }
-        
+        private AlumnoInscripcion InscripcionActual { get; set; }        
             
-        private Persona PersonaActual { get; set; }
-
-
+        private Usuario UsuarioActual { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            UsuarioActual = (Usuario)Session["UsuarioGlobal"];
+
             if (!Page.IsPostBack)
             {
+                if(UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Alumno)
+                {
+                    gvInscripciones.Columns.RemoveAt(4);
+                    linkEliminar.Visible = false;
+                    lblAlumnos.Visible = false;
+                    ddlAlumnos.Visible = false;
+                }
+                ddlAlumnos.DataSource = new PersonaLogic().GetAllTipo(Persona.TiposPersonas.Alumno);
+                ddlAlumnos.DataBind();
 
                 Listar();
             }
@@ -41,17 +45,7 @@ namespace UI.Web
             Modo = ModoForm.Alta;
             MapearInicial();
             ShowForm(true);
-        }
-
-        protected void linkEditar_Click(object sender, EventArgs e)
-        {
-            if (IsRowSelected())
-            {
-                Modo = ModoForm.Modificacion;
-                MapearInicial();
-                ShowForm(true);
-                MapearForm(SelectedID);
-            }
+            Listar();
         }
 
         protected void linkEliminar_Click(object sender, EventArgs e)
@@ -70,7 +64,7 @@ namespace UI.Web
             this.Validate();
             if (this.IsValid)
             {
-                SaveEntity(SelectedID);
+                SaveEntity();
                 ShowForm(false);
                 Listar();
             }
@@ -83,20 +77,12 @@ namespace UI.Web
 
         private void ShowForm(bool visible)
         {
-            this.ClearForm();
             formPanel.Visible = visible;
             gridPanel.Visible = !visible;
         }
 
-        private void ClearForm()
-        {
-            txtAlumno.Text = string.Empty;
-
-        }
-
         private void MapearInicial()
         {
-            // UsuarioActual = (Usuario)Session["UsuarioGlobal"];
 
             switch (Modo)
             {
@@ -111,33 +97,17 @@ namespace UI.Web
                     linkAceptar.Text = "Aceptar";
                     break;
             }
-
-            ddlCondicion.DataSource = Enum.GetValues(typeof(AlumnoInscripcion.Condiciones));
-            ddlCondicion.DataBind();
-            ddlCondicion.Items.Insert(0, "[Seleccionar]");
-            gvCursos.DataSource = CursoLogic.GetAllNoInscByPersona(PersonaActual.ID);
+            gvCursos.DataSource = new CursoLogic().GetAllNoInscByPersona(UsuarioActual.Persona.ID);
             gvCursos.DataBind();
-            txtAlumno.Text = PersonaActual.ToString();
         }
 
         private void MapearForm(int id)
         {
             InscripcionActual = InscripcionLogic.GetOne(id);
-
-            txtAlumno.Text = PersonaActual.ToString();
-
-
-            ddlCondicion.SelectedValue = InscripcionActual.Condicion.ToString();
-            // gvCursos.DataSource = CursoLogic.GetAllNoInscByPersona(PersonaActual.ID);
-
         }
 
         private void MapearEntidad()
         {
-            InscripcionActual = InscripcionLogic.GetOne(SelectedID);
-
-          // UsuarioActual = (Usuario)Session["UsuarioGlobal"];
-
             switch (Modo)
             {
                 case ModoForm.Baja:
@@ -151,27 +121,25 @@ namespace UI.Web
                     InscripcionActual.State = BusinessEntity.States.Modified;
                     break;
             }
-            InscripcionActual.Alumno = PersonaActual;
 
-            /*if (!String.IsNullOrEmpty(ddlPersona.SelectedValue))
+            if(UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)
             {
-                int.TryParse(ddlPersona.SelectedValue, out int id);
-                UsuarioActual.Persona = new PersonaLogic().GetOne(id);
-            }*/
+                InscripcionActual.Alumno = new PersonaLogic().GetOne(int.Parse(ddlAlumnos.SelectedValue));
+            }
+            else
+            {
+                InscripcionActual.Alumno = UsuarioActual.Persona;
+            }
 
-            InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)Enum.Parse(typeof(AlumnoInscripcion.Condiciones), ddlCondicion.SelectedValue);
-          //  InscripcionActual.Curso = ;
-         //   (Curso)dgvCursos.SelectedRows[0].DataBoundItem;
+            InscripcionActual.Curso = new CursoLogic().GetOne(this.cursoSelectedID);
         }
        
-        private void SaveEntity(int id)
+        private void SaveEntity()
         {
-            InscripcionActual = InscripcionLogic.GetOne(id);
             MapearEntidad();
             InscripcionLogic.Save(InscripcionActual);
             if (Modo == ModoForm.Baja)
             {
-                //Resetear ID seleccionado cuando se borra un registro, ya que el ID dejara de existir.
                 SelectedID = 0;
             }
         }
@@ -180,26 +148,24 @@ namespace UI.Web
         {
             try
             {
-                
-               
-              //  PersonaActual = (Persona)Session["UsuarioGlobal"];
-
-                this.gvInscripciones.DataSource = InscripcionLogic.GetAllAlumno(PersonaActual.ID);
-                this.gvInscripciones.DataBind();
-
+                gvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllAlumno(UsuarioActual.Persona.ID);
+                gvInscripciones.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificar("Error al recuperar los datos de la inscripcion.");
+                Notificar(ex.Message);
             }
         }
 
         protected void gvCursos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            
-                this.SelectedID = (int)this.gvCursos.SelectedValue;
-            
+            this.cursoSelectedID = (int)this.gvCursos.SelectedValue;
+        }
+
+        protected void ddlAlumnos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            gvInscripciones.DataSource = new AlumnoInscripcionLogic().GetAllAlumno(int.Parse(ddlAlumnos.SelectedValue));
+            gvInscripciones.DataBind();
         }
     }
 }

@@ -190,12 +190,6 @@ namespace UI.Web
         {
             try
             {
-                if (Login.UsuarioActual.Persona.Tipo == Persona.TiposPersonas.Administrador)
-                {
-                    linkEditar.Visible = false;
-                    linkEliminar.Visible = false;
-                    linkNuevo.Visible = false;
-                }
                 this.gvPersonas.DataSource = PersonaLogic.GetAll();
                 this.gvPersonas.DataBind();
             }
