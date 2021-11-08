@@ -81,6 +81,24 @@ namespace UI.Web
             ShowForm(false);
         }
 
+        protected void linkAceptar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Validate();
+                if (IsValid)
+                {
+                    SaveEntity(SelectedID);
+                    ShowForm(false);
+                    Listar();
+                }
+            }
+            catch (Exception ex)
+            {
+                Notificar(ex.Message);
+            }
+        }
+
         private void ShowForm(bool visible)
         {
             ClearForm();
@@ -214,5 +232,6 @@ namespace UI.Web
                 Notificar(ex.Message);
             }
         }
+
     }
 }
