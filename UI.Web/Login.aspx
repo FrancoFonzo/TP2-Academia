@@ -26,7 +26,7 @@
             <asp:Button ID="btnIniciarSesion" runat="server" BorderStyle="None" Text="Iniciar Sesión" BackColor="#27B1C5" Font-Bold="True" Height="30px" OnClick="btnIniciarSesion_Click" Width="245px" />
             <br />
             <asp:ValidationSummary ID="vsLogin" runat="server" ForeColor="Red" CssClass="auto-style1" />
-            <asp:LinkButton ID="linkRecuperarClave" runat="server" BorderStyle="None" Width="240px">¿Has olvidado la contraseña?</asp:LinkButton>
+            <asp:LinkButton ID="linkRecuperarClave" runat="server" BorderStyle="None" Width="240px" CausesValidation="False" OnClick="linkRecuperarClave_Click" style="height: 22px">¿Has olvidado la contraseña?</asp:LinkButton>
         </fieldset>
     </form>
 </body>

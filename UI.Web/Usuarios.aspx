@@ -3,7 +3,7 @@
     <script runat = "server" >
         void ValidarRegexClave(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = Regex.IsMatch(args.Value, ".{4,50}");
+            args.IsValid = Util.Validaciones.ValidarRegexClave(args.Value);
         }
         </script>
 </asp:Content>
