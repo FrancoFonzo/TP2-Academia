@@ -33,40 +33,13 @@ namespace UI.Web
         protected global::System.Web.UI.WebControls.GridView gvPlan;
 
         /// <summary>
-        /// Control gridActionsPanel.
+        /// Control UCBotones1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel gridActionsPanel;
-
-        /// <summary>
-        /// Control linkNuevo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkNuevo;
-
-        /// <summary>
-        /// Control linkEditar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkEditar;
-
-        /// <summary>
-        /// Control linkEliminar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkEliminar;
+        protected global::UI.Web.UCBotones UCBotones1;
 
         /// <summary>
         /// Control formPanel.
