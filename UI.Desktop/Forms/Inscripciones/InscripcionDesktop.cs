@@ -180,12 +180,7 @@ namespace UI.Desktop
                 return false;
             }
             var curso = (Curso)dgvCursos.SelectedRows[0].DataBoundItem;
-            if (new AlumnoInscripcionLogic().CountInscripcionesByCursos(curso.ID) >= curso.Cupo)
-            {
-                Notificar("Sin cupos", "El curso no tiene mas cupos disponibles.",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            new AlumnoInscripcionLogic().ValidarCupo(curso);
             return true;
         }
     }

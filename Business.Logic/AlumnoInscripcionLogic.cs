@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using Business.Entities;
 using Data.Database;
 
@@ -41,6 +42,16 @@ namespace Business.Logic
         public int CountInscripcionesByCursos(int idCurso)
         {
             return InscripcionData.CountInscripcionesByCursos(idCurso);
+        }
+        public bool ValidarCupo(Curso curso)
+        {
+            if (new AlumnoInscripcionLogic().CountInscripcionesByCursos(curso.ID) >= curso.Cupo)
+            {
+                MessageBox.Show("Sin cupos", "El curso no tiene mas cupos disponibles.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
     }
 }
