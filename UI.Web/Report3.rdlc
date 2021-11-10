@@ -2,25 +2,103 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
+      <Rectangle Name="Rectangle1">
+        <ReportItems>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Alumnos</Value>
+                    <Style>
+                      <FontFamily>Century Gothic</FontFamily>
+                      <FontSize>40pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>CornflowerBlue</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.03188cm</Top>
+            <Left>1.00542cm</Left>
+            <Height>1.84354cm</Height>
+            <Width>6.49709cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>1.00889cm</Top>
+        <Left>0.3419cm</Left>
+        <Height>3.69062cm</Height>
+        <Width>9.77605cm</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <BackgroundColor>LightGrey</BackgroundColor>
+        </Style>
+      </Rectangle>
+      <Image Name="IM1_ACADEMIA">
+        <Source>Embedded</Source>
+        <Value>graduation_cap_main</Value>
+        <Sizing>FitProportional</Sizing>
+        <Top>0.38048cm</Top>
+        <Left>11.56435cm</Left>
+        <Height>4.31903cm</Height>
+        <Width>4.60375cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+      <Line Name="Line1">
+        <Top>5.41073cm</Top>
+        <Left>0.3419cm</Left>
+        <Height>0cm</Height>
+        <Width>21.44828cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Color>LightSteelBlue</Color>
+            <Style>Solid</Style>
+            <Width>5pt</Width>
+          </Border>
+        </Style>
+      </Line>
       <Tablix Name="Tablix1">
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.63734cm</Width>
+              <Width>5.2754cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.60115cm</Width>
+              <Width>5.2754cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.88088cm</Width>
+              <Width>5.2754cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.70682cm</Width>
+              <Width>5.62208cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.66615cm</Height>
+              <Height>0.94396cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -31,10 +109,8 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ID Plan</Value>
-                              <Style>
-                                <FontFamily>Century Gothic</FontFamily>
-                              </Style>
+                              <Value>Nombre</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -63,10 +139,8 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Descripcion</Value>
-                              <Style>
-                                <FontFamily>Century Gothic</FontFamily>
-                              </Style>
+                              <Value>Apellido</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -95,10 +169,8 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ID Especialidad</Value>
-                              <Style>
-                                <FontFamily>Century Gothic</FontFamily>
-                              </Style>
+                              <Value>Legajo</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -120,23 +192,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox8">
+                    <Textbox Name="Textbox3">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Desc Esp</Value>
-                              <Style>
-                                <FontFamily>Century Gothic</FontFamily>
-                              </Style>
+                              <Value>Email</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox8</rd:DefaultName>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -153,27 +223,25 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.66615cm</Height>
+              <Height>0.94396cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="ID">
+                    <Textbox Name="Nombre">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!ID.Value</Value>
-                              <Style>
-                                <FontFamily>Century Gothic</FontFamily>
-                              </Style>
+                              <Value>=Fields!Nombre.Value</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>ID</rd:DefaultName>
+                      <rd:DefaultName>Nombre</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -189,23 +257,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Descripcion">
+                    <Textbox Name="Apellido">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Descripcion.Value</Value>
-                              <Style>
-                                <FontFamily>Century Gothic</FontFamily>
-                              </Style>
+                              <Value>=Fields!Apellido.Value</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Descripcion</rd:DefaultName>
+                      <rd:DefaultName>Apellido</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -221,23 +287,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="IDEsp">
+                    <Textbox Name="Legajo">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!IDEsp.Value</Value>
-                              <Style>
-                                <FontFamily>Century Gothic</FontFamily>
-                              </Style>
+                              <Value>=Fields!Legajo.Value</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>IDEsp</rd:DefaultName>
+                      <rd:DefaultName>Legajo</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -253,23 +317,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="DescEsp">
+                    <Textbox Name="EMail">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!DescEsp.Value</Value>
-                              <Style>
-                                <FontFamily>Century Gothic</FontFamily>
-                              </Style>
+                              <Value>=Fields!EMail.Value</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>DescEsp</rd:DefaultName>
+                      <rd:DefaultName>EMail</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -301,15 +363,16 @@
               <KeepWithGroup>After</KeepWithGroup>
             </TablixMember>
             <TablixMember>
-              <Group Name="Detalles" />
+              <Group Name="Details" />
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.8582cm</Top>
+        <Top>6.32037cm</Top>
         <Left>0.3419cm</Left>
-        <Height>1.3323cm</Height>
-        <Width>15.82619cm</Width>
+        <Height>1.88792cm</Height>
+        <Width>21.44828cm</Width>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -317,125 +380,11 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.16667in</Height>
+    <Height>3.90625in</Height>
     <Style />
   </Body>
-  <Width>6.5in</Width>
+  <Width>8.9375in</Width>
   <Page>
-    <PageHeader>
-      <Height>5.03883cm</Height>
-      <PrintOnFirstPage>true</PrintOnFirstPage>
-      <PrintOnLastPage>true</PrintOnLastPage>
-      <ReportItems>
-        <Image Name="IM1_ACADEMIA">
-          <Source>Embedded</Source>
-          <Value>graduation_cap_main</Value>
-          <Sizing>FitProportional</Sizing>
-          <Left>11.56435cm</Left>
-          <Height>4.31903cm</Height>
-          <Width>4.60375cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </Image>
-        <Rectangle Name="Rectangle1">
-          <ReportItems>
-            <Textbox Name="Textbox1">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Planes</Value>
-                      <Style>
-                        <FontFamily>Century Gothic</FontFamily>
-                        <FontSize>40pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                        <Color>CornflowerBlue</Color>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>1.03188cm</Top>
-              <Left>1.00542cm</Left>
-              <Height>1.84354cm</Height>
-              <Width>6.49709cm</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-          </ReportItems>
-          <KeepTogether>true</KeepTogether>
-          <Top>0.62841cm</Top>
-          <Left>0.3419cm</Left>
-          <Height>3.69062cm</Height>
-          <Width>9.77605cm</Width>
-          <ZIndex>1</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <BackgroundColor>LightGrey</BackgroundColor>
-          </Style>
-        </Rectangle>
-        <Line Name="Line1">
-          <Top>4.933cm</Top>
-          <Left>0.3419cm</Left>
-          <Height>0cm</Height>
-          <Width>15.82619cm</Width>
-          <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Color>LightSteelBlue</Color>
-              <Style>Solid</Style>
-              <Width>5pt</Width>
-            </Border>
-          </Style>
-        </Line>
-      </ReportItems>
-      <Style>
-        <Border>
-          <Style>None</Style>
-        </Border>
-      </Style>
-    </PageHeader>
-    <PageFooter>
-      <Height>2.11667cm</Height>
-      <PrintOnFirstPage>true</PrintOnFirstPage>
-      <PrintOnLastPage>true</PrintOnLastPage>
-      <ReportItems>
-        <Line Name="Line2">
-          <Top>0.17639cm</Top>
-          <Left>0.3419cm</Left>
-          <Height>0cm</Height>
-          <Width>15.82619cm</Width>
-          <Style>
-            <Border>
-              <Color>LightSteelBlue</Color>
-              <Style>Solid</Style>
-              <Width>5pt</Width>
-            </Border>
-          </Style>
-        </Line>
-      </ReportItems>
-      <Style>
-        <Border>
-          <Style>None</Style>
-        </Border>
-      </Style>
-    </PageFooter>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
     <LeftMargin>2cm</LeftMargin>
@@ -447,45 +396,57 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="DSCursos">
+    <DataSource Name="DataSet2">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>370605a5-7453-41ba-9439-23a73c677054</rd:DataSourceID>
+      <rd:DataSourceID>390960a0-9a71-4bf8-a3bd-468ce4afc6aa</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>DSCursos</DataSourceName>
+        <DataSourceName>DataSet2</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="ID">
-          <DataField>ID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Descripcion">
-          <DataField>Descripcion</DataField>
+        <Field Name="Nombre">
+          <DataField>Nombre</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="IDEsp">
-          <DataField>IDEsp</DataField>
+        <Field Name="Apellido">
+          <DataField>Apellido</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Legajo">
+          <DataField>Legajo</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="DescEsp">
-          <DataField>DescEsp</DataField>
+        <Field Name="EMail">
+          <DataField>EMail</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Direccion">
+          <DataField>Direccion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FechaNacimiento">
+          <DataField>FechaNacimiento</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Telefono">
+          <DataField>Telefono</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>DSCursos</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\FDKPO\source\repos\FrancoFonzo\TP2-Academia\UI.Desktop\DSCursos.xsd</rd:SchemaPath>
-        <rd:TableName>Plan</rd:TableName>
+        <rd:DataSetName>DataSet2</rd:DataSetName>
+        <rd:SchemaPath>D:\Facultad\Tercer año\.NET\TP2-Academia\UI.Web\DataSet2.xsd</rd:SchemaPath>
+        <rd:TableName>DSAlumnos</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>PlanTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>DSAlumnosTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -549,5 +510,5 @@ ASbABJgAE2ACTIAJMAEmwASYABNgAkyACTABJsAEmAATYAJMgAkwASbABJgAE2ACTIAJMAEmwASYABNg
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>2f99c1a3-9248-471b-b2ce-d94646542c7a</rd:ReportID>
+  <rd:ReportID>029db062-ddb3-429e-94d5-0cda4b45f357</rd:ReportID>
 </Report>
