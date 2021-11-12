@@ -85,6 +85,20 @@
     <Content Include="Global.asax" />
     <Content Include="Inscripciones.aspx" />
     <Content Include="Personas.aspx" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UCBotones.ascx" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="RegistrarNotas.aspx" />
     <Content Include="Login.aspx" />
@@ -215,6 +229,13 @@
     </Compile>
     <Compile Include="Personas.aspx.designer.cs">
       <DependentUpon>Personas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UCBotones.ascx.cs">
+      <DependentUpon>UCBotones.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UCBotones.ascx.designer.cs">
+      <DependentUpon>UCBotones.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

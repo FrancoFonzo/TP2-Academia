@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Materias" Language="C#" MasterPageFile="~/Menu.Master" AutoEventWireup="true" CodeBehind="Materias.aspx.cs" Inherits="UI.Web.Materias" %>
+<%@ Register src="UCBotones.ascx" tagname="UCBotones" tagprefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
@@ -16,13 +17,8 @@
             </Columns>
             <SelectedRowStyle BackColor="Black" ForeColor="White" />
         </asp:GridView>
-        <asp:Panel ID="gridActionsPanel" runat="server">
-            <asp:LinkButton ID="linkNuevo" runat="server" OnClick="linkNuevo_Click">Nuevo</asp:LinkButton>
-            &nbsp;&nbsp;
-            <asp:LinkButton ID="linkEditar" runat="server" OnClick="linkEditar_Click">Editar</asp:LinkButton>
-            &nbsp;&nbsp;
-            <asp:LinkButton ID="linkEliminar" runat="server" OnClick="linkEliminar_Click">Eliminar</asp:LinkButton>
-        </asp:Panel>
+        <br />
+        <uc1:UCBotones ID="UCBotones1" runat="server" Oneditar="linkEditar_Click" Oneliminar="linkEliminar_Click" Onnuevo="linkNuevo_Click"/>
     </asp:Panel>
     <asp:Panel ID="formPanel" runat="server" Visible="False">
         Materia<asp:TextBox ID="txtMateria" runat="server" type="string" Width="259px"></asp:TextBox>
