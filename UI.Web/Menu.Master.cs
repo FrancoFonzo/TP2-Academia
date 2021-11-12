@@ -89,12 +89,12 @@ namespace UI.Web
 
         protected void reportAlumnos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("ReporteAlumnos.aspx");
         }
 
         protected void reportPlanes_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("ReportePlanes.aspx");
         }
 
         protected void linkInscripciones_Click(object sender, EventArgs e)
